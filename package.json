@@ -1,0 +1,23 @@
+{
+  "name": "pfcclab-blog",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress",
+    "build": "vitepress build",
+    "serve": "vitepress serve",
+    "fmt": "prettier --write ."
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.4",
+    "@types/markdown-it": "^12.2.3",
+    "@types/node": "^18.7.13",
+    "feed": "^4.2.1",
+    "gray-matter": "^4.0.2",
+    "prettier": "^3.0.3",
+    "tailwindcss": "^3.1.8",
+    "vitepress": "1.0.0-rc.24",
+    "vue": "^3.3.6"
+  }
+}
