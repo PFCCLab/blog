@@ -1,5 +1,5 @@
 ---
-title: Hi, PFCCLab!
+title: Hi, PFCC!
 date: 2023-10-25
 author:
    name: Nyakku Shigure
@@ -7,7 +7,7 @@ author:
    # avatar: https://nyakku.moe/avatar.jpg
 ---
 
-PFCCLab 博客正式搭建起来啦～欢迎大家来发表博客～
+PFCC 博客正式搭建起来啦～欢迎大家来发表博客～
 
 ---
 

@@ -1,6 +1,6 @@
-# PFCCLab blog
+# PFCC blog
 
-PFCCLab 社区博客
+PFCC 社区博客
 
 ## 本地开发
 
