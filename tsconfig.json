@@ -5,6 +5,6 @@
     "strict": true,
     "jsx": "preserve"
   },
-  "include": ["./.vitepress/**/*"],
-  "exclude": ["./.vitepress/cache/**/*"]
+  "include": ["./src/.vitepress/**/*"],
+  "exclude": ["./src/.vitepress/cache/**/*"]
 }

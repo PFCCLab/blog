@@ -1,3 +1,18 @@
-node_modules
+# macOS
+.DS_Store
+
+# .vscode
+/.vscode/
+
+# node
+node_modules/
+
+# build
 dist
-.vitepress/cache
+
+# pnpm
+.pnpm-store
+
+# vitepress
+src/.vitepress/cache
+

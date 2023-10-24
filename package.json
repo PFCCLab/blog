@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vitepress",
-    "build": "vitepress build",
-    "serve": "vitepress serve",
+    "dev": "vitepress dev src",
+    "build": "vitepress build src",
+    "serve": "vitepress serve src",
     "fmt": "prettier --write ."
   },
   "devDependencies": {
