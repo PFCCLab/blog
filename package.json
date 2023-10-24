@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "license": "CC0-1.0",
+  "packageManager": "pnpm@8.9.2",
   "scripts": {
     "dev": "vitepress dev src",
     "build": "vitepress build src",
