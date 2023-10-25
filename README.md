@@ -20,6 +20,8 @@ pnpm dev
 
 此时便可以按照提示打开相应的网址进行本地开发啦～
 
+更多开发指南见 [CONTRIBUTING.md](./CONTRIBUTING.md)
+
 ## 致谢
 
-本博客使用 [VitePress](https://vitepress.dev/) 作为静态网站生成工具，主题基于 Vue 官方博客 [The Vue Point](https://blog.vuejs.org/)进行定制修改
+本博客使用 [VitePress](https://vitepress.dev/) 作为静态网站生成工具，主题基于 Vue 官方博客 [The Vue Point](https://blog.vuejs.org/) 进行定制修改
