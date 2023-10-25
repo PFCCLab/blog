@@ -5,8 +5,8 @@
 /* TODO(SigureMo): Update colors */
 
 :root {
-  --c-brand: #3eaf7c;
-  --c-brand-light: #4abf8a;
+  --c-brand: #3334e3;
+  --c-brand-light: #0062B0;
 }
 
 nav img {
@@ -146,8 +146,8 @@ span.lang {
 }
 
 .custom-block.tip {
-  border: 1px solid #42b883;
+  border: 1px solid #0073d2;
 }
 .custom-block.tip:before {
-  color: #42b883;
+  color: #0073d2;
 }
