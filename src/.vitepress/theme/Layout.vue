@@ -3,6 +3,7 @@ import { useData } from 'vitepress'
 import Home from './Home.vue'
 import Article from './Article.vue'
 import NotFound from './NotFound.vue'
+import About from './About.vue'
 
 const { page, frontmatter, site } = useData()
 </script>
@@ -28,10 +29,10 @@ const { page, frontmatter, site } = useData()
           >
           <!-- TODO(SigureMo): Add RSS Feed -->
           <!-- TODO(SigureMo): Add About page -->
-          <!-- <span class="mr-2 ml-2">·</span>
+          <span class="mr-2 ml-2">·</span>
           <a class="hover:text-gray-700 dark:hover:text-gray-200" href="/about.html" rel="noopener"
             >About</a
-          > -->
+          >
           <span class="mr-2 ml-2">·</span>
           <a
             class="hover:text-gray-700 dark:hover:text-gray-200"
@@ -44,7 +45,8 @@ const { page, frontmatter, site } = useData()
       </nav>
     </div>
     <main class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
-      <Home v-if="frontmatter.index" />
+      <Home v-if="frontmatter.layout === 'home'" />
+      <About v-else-if="frontmatter.layout === 'about'" />
       <NotFound v-else-if="page.isNotFound" />
       <Article v-else />
     </main>

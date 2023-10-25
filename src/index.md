@@ -1,3 +1,3 @@
 ---
-index: true
+layout: home
 ---
