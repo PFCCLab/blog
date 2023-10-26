@@ -14,7 +14,7 @@ const { page, frontmatter, site } = useData()
       <nav class="flex justify-between items-center py-10 font-bold">
         <a class="text-xl" href="/" :aria-label="site.title">
           <!-- TODO(SigureMo): Update this logo -->
-          <img class="inline-block mr-2" style="width: 120px" alt="logo" src="/logo.ico" />
+          <img class="inline-block mr-2" style="width: 120px" alt="logo" src="/logo.png" />
           <span v-if="!frontmatter.index" class="hidden md:inline dark:text-white">{{
             site.title
           }}</span>

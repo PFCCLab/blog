@@ -3,7 +3,8 @@
     "module": "NodeNext",
     "allowJs": true,
     "strict": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "types": ["vite-plugin-pwa/client"]
   },
   "include": ["./src/.vitepress/**/*"],
   "exclude": ["./src/.vitepress/cache/**/*"]
