@@ -58,7 +58,7 @@ pnpm dev
 
 ### 图片文件
 
-图片文件统一放置在 [`src/public/images`](./src/public/images) 目录下，每篇博客对应一个子目录，子目录名即为博客的文件名，比如 `hello-world.md` 对应的图片目录为 `src/public/images/hello-world`。
+图片文件统一放置在 [`src/images`](./src/images) 目录下，每篇博客对应一个子目录，子目录名即为博客的文件名，比如 `hello-world.md` 对应的图片目录为 `src/images/hello-world`。
 
 ## 博客主题开发指南
 
