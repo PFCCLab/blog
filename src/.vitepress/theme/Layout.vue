@@ -9,7 +9,7 @@ const { page, frontmatter, site } = useData()
 </script>
 
 <template>
-  <div class="antialiased dark:bg-gray-50">
+  <div class="antialiased dark:bg-neutral-900">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
       <nav class="flex justify-between items-center py-10 font-bold">
         <a class="text-xl" href="/" :aria-label="site.title">
