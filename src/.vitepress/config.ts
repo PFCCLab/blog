@@ -1,10 +1,15 @@
 import { defineConfig } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 
+const metaInfo = {
+  title: 'Hi, PFCC!',
+  description: 'PFCC 社区博客～',
+}
+
 export default withPwa(
   defineConfig({
-    title: 'Hi, PFCC!',
-    description: 'PFCC 社区博客～',
+    title: metaInfo.title,
+    description: metaInfo.description,
     lang: 'zh-CN',
     cleanUrls: true,
     head: [
@@ -54,9 +59,9 @@ export default withPwa(
       registerType: 'autoUpdate',
       manifest: {
         id: '/',
-        name: 'Hi, PFCC!',
-        short_name: 'Hi, PFCC!',
-        description: 'PFCC 社区博客～',
+        name: metaInfo.title,
+        short_name: metaInfo.title,
+        description: metaInfo.description,
         theme_color: '#ffffff',
         start_url: '/',
         lang: 'zh-CN',
