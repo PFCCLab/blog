@@ -4,8 +4,9 @@
     "allowJs": true,
     "strict": true,
     "jsx": "preserve",
-    "types": ["vite-plugin-pwa/client"]
+    "types": ["vite-plugin-pwa/client"],
+    "lib": ["esnext", "webworker"]
   },
   "include": ["./src/.vitepress/**/*"],
-  "exclude": ["./src/.vitepress/cache/**/*"]
+  "exclude": ["./src/.vitepress/cache/**/*", "./src/.vitepress/dist/**/*"]
 }
