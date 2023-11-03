@@ -1,6 +1,6 @@
 ---
 title: Hi, PFCC!
-date: 2023-10-25
+date: 2023-10-24
 author:
    name: Nyakku Shigure
    github: SigureMo

@@ -45,6 +45,6 @@ author:
 
 ## 彩蛋 🎊
 
-最后，我们还一起跟随军哥 [@jzhang533](https://github.com/jzhang533) 观看了一唱外国小姐姐的 livehouse，很精彩哟！
+最后，我们还一起跟随军哥 [@jzhang533](https://github.com/jzhang533) 观看了一场外国小姐姐的 livehouse，很精彩哟！
 
 ![图片6](../images/chengdu-kaiyuanshe/chengdu-egg.jpg)
