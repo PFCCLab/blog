@@ -11,7 +11,8 @@
     "build": "vitepress build src",
     "serve": "vitepress serve src",
     "fmt": "prettier --write .",
-    "fmt:check": "prettier --check ."
+    "fmt:check": "prettier --check .",
+    "img:compress": "tsx scripts/compress-image.mts"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.4",
@@ -21,14 +22,16 @@
     "feed": "^4.2.1",
     "gray-matter": "^4.0.2",
     "prettier": "^3.0.3",
+    "sharp": "^0.32.6",
     "simple-git-hooks": "^2.9.0",
     "tailwindcss": "^3.1.8",
+    "tsx": "^3.14.0",
     "vite-plugin-pwa": "^0.16.5",
     "vitepress": "1.0.0-rc.24",
     "vue": "^3.3.6",
     "workbox-window": "^7.0.0"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm run fmt"
+    "pre-commit": "pnpm run fmt && pnpm run img:compress"
   }
 }
