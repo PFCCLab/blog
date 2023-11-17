@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 
 const metaInfo = {
-  title: 'Hi, PFCC!',
-  description: 'PFCC 社区博客～',
+  title: '飞桨开源社区博客',
+  description: 'Wonderful stories from PaddlePaddle contributors',
 }
 
 export default withPwa(

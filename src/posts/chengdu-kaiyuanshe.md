@@ -33,7 +33,7 @@ author:
 
 在29日，我们还相约飞桨社区成都的开发者们线下面基，以下是痛失真名的成都开发者（~~网友~~）：
 
--  卢畅 [@AndSonder](https://github.com/AndSonder)；陈思州 [@jjyaoao](https://github.com/jjyaoao)；王龙志 [@Wanglongzhi2001](https://github.com/Wanglongzhi2001)；谢俊霖[@PommesPeter](https://github.com/PommesPeter)
+-  卢畅（左一） [@AndSonder](https://github.com/AndSonder)；陈思州（左二） [@jjyaoao](https://github.com/jjyaoao)；王龙志（左四） [@Wanglongzhi2001](https://github.com/Wanglongzhi2001)；谢俊霖（左五）[@PommesPeter](https://github.com/PommesPeter)
 
 ![图片4](../images/chengdu-kaiyuanshe/chengdu-kaiyuanshe-04.jpg)
 
@@ -45,6 +45,6 @@ author:
 
 ## 彩蛋 🎊
 
-最后，我们还一起跟随军哥 [@jzhang533](https://github.com/jzhang533) 观看了一唱外国小姐姐的 livehouse，很精彩哟！
+最后，我们还一起跟随军哥 [@jzhang533](https://github.com/jzhang533) 观看了一场外国小姐姐的 livehouse，很精彩哟！
 
 ![图片6](../images/chengdu-kaiyuanshe/chengdu-egg.jpg)
