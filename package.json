@@ -32,6 +32,6 @@
     "workbox-window": "^7.0.0"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm run fmt && pnpm run img:compress"
+    "pre-commit": "pnpm run fmt"
   }
 }

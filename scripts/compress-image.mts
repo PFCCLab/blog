@@ -1,11 +1,11 @@
 import { resolve, relative } from 'node:path'
-import { readdir, access, stat, readFile, writeFile, unlink } from 'node:fs/promises'
-import { existsSync, createReadStream, ReadStream } from 'node:fs'
-import { exit } from 'node:process'
+import { readdir, stat, readFile, writeFile, unlink } from 'node:fs/promises'
+import { existsSync, createReadStream } from 'node:fs'
 import sharp, { type Sharp, type WebpOptions } from 'sharp'
 
 const IMG_DIR = resolve('src/images')
 const POST_DIR = resolve('src/posts')
+const DEFAULT_NEED_PROCESS_IMG_DIRS = await readdir(IMG_DIR)
 const IGNORE_FILES = ['.DS_Store']
 const IMG_MAX_SIZE = 300 * 1024 // bytes
 const IMG_MAX_WIDTH = 1000 // px
@@ -97,26 +97,35 @@ async function compressImage(imgFile: string, postFile: string): Promise<number>
   return selectedBuffer.byteLength
 }
 
-for (const postImgDirName of await readdir(IMG_DIR)) {
-  if (IGNORE_FILES.includes(postImgDirName)) {
-    continue
+async function main(args: string[]) {
+  let need_process_img_dirs = DEFAULT_NEED_PROCESS_IMG_DIRS
+  if (args.length > 0) {
+    need_process_img_dirs = args
   }
-  const postFile = resolve(POST_DIR, `${postImgDirName}.md`)
-  if (!existsSync(postFile)) {
-    console.log(`Found image dir ${postImgDirName} without post file ${postFile}`)
-    process.exit(1)
-  }
-  const postImgDir = resolve(IMG_DIR, postImgDirName)
-  for (const imgName of await readdir(postImgDir)) {
+  console.log(`Compressing images in ${need_process_img_dirs}`)
+  for (const postImgDirName of need_process_img_dirs) {
     if (IGNORE_FILES.includes(postImgDirName)) {
       continue
     }
-    const imgFile = resolve(postImgDir, imgName)
-    const imgSize = (await stat(imgFile)).size
-    if (imgSize > IMG_MAX_SIZE) {
-      console.log(`Compressing ${imgFile} (${imgSize} bytes)`)
-      const compressedSize = await compressImage(imgFile, postFile)
-      console.log(`Compressed ${imgFile} to ${compressedSize} bytes`)
+    const postFile = resolve(POST_DIR, `${postImgDirName}.md`)
+    if (!existsSync(postFile)) {
+      console.log(`Found image dir ${postImgDirName} without post file ${postFile}`)
+      process.exit(1)
+    }
+    const postImgDir = resolve(IMG_DIR, postImgDirName)
+    for (const imgName of await readdir(postImgDir)) {
+      if (IGNORE_FILES.includes(postImgDirName)) {
+        continue
+      }
+      const imgFile = resolve(postImgDir, imgName)
+      const imgSize = (await stat(imgFile)).size
+      if (imgSize > IMG_MAX_SIZE) {
+        console.log(`Compressing ${imgFile} (${imgSize} bytes)`)
+        const compressedSize = await compressImage(imgFile, postFile)
+        console.log(`Compressed ${imgFile} to ${compressedSize} bytes`)
+      }
     }
   }
 }
+
+await main(process.argv.slice(2))
