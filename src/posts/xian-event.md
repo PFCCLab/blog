@@ -21,16 +21,16 @@ author:
 
 [@megemini](https://github.com/megemini) 在做《将 xdoctest 引入到飞桨框架工作流中》的项目答辩。
 
-![xian-event-02](../images/xian-event/xian-event-02.webp)
+![xian-event-02](../images/xian-event/xian-event-02.jpg)
 
 [@qiuwenbogdut](https://github.com/qiuwenbogdut)在做《实现飞桨框架动态图反向图的可视化》的项目答辩。
-![xian-event-03](../images/xian-event/xian-event-03.webp)
+![xian-event-03](../images/xian-event/xian-event-03.jpg)
 
 [@co63oc](https://github.com/co63oc)在做《PaddleScience 领域前沿论文复现》的项目答辩（远程接入，遗憾没见到真人）。
-![xian-event-04](../images/xian-event/xian-event-04.webp)
+![xian-event-04](../images/xian-event/xian-event-04.jpg)
 
 [@zrr1999](https://github.com/zrr1999)在做《实现飞桨框架的 python level jit compiler》的项目答辩。
-![xian-event-05](../images/xian-event/xian-event-05.webp)
+![xian-event-05](../images/xian-event/xian-event-05.jpg)
 
 梦师傅在跟顺师傅和詹师傅交流。
 
