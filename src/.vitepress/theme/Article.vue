@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Date from './Date.vue'
-import Author from './Author.vue'
+import Authors from './Authors.vue'
 import { computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
 import { data as posts } from './posts.data.js'
@@ -34,7 +34,7 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
       class="divide-y xl:divide-y-0 divide-gray-200 dark:divide-slate-200/5 xl:grid xl:grid-cols-4 xl:gap-x-10 pb-16 xl:pb-20"
       style="grid-template-rows: auto 1fr"
     >
-      <Author />
+      <Authors />
       <div
         class="divide-y divide-gray-200 dark:divide-slate-200/5 xl:pb-0 xl:col-span-3 xl:row-span-2"
       >
