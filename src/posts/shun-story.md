@@ -7,7 +7,7 @@ author:
    # avatar:
 co_authors:
    - name: 文潇
-     github: wenxiaohahahah
+     github: wenxiaohahaha
    - name: 柳顺（顺师傅）
      github: megemini
 ---
