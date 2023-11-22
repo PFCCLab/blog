@@ -39,6 +39,8 @@ const extraClasses = computed(() => {
 <template>
   <li class="flex items-center" :class="extraClasses">
     <img v-if="avatarUrl" :src="avatarUrl" alt="author image" class="w-10 h-10 rounded-md" />
-    <div class="inline-block bg-slate-200 px-2 py-2 rounded-md mx-2"><slot></slot></div>
+    <div class="inline-block bg-slate-200 px-2 py-2 rounded-md mx-2 dark:bg-zinc-700">
+      <slot></slot>
+    </div>
   </li>
 </template>
