@@ -25,6 +25,6 @@ Jun 给同学们介绍了飞桨开源社区的基本情况
 
 ## 彩蛋 🎊
 
-飞将社区曾经在Apollo Park接待过北大的国际留学生，梦师傅曾经全英文给参加北京大学夏季夏令营的牛校的神兽们讲解过飞桨。
+飞桨开源社区曾经在Apollo Park接待过北大的国际留学生，梦师傅曾经全英文给参加北京大学夏季夏令营的牛校的神兽们讲解过飞桨。
 ![apollo-park-all](../images/pku-course/apollo-park-all.jpg)
 ![apollo-park-meng-present](../images/pku-course/apollo-park-meng-present.jpg)
