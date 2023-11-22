@@ -24,10 +24,13 @@ const messageType = computed(() => {
 const extraClasses = computed(() => {
   const type_ = messageType.value
   if (type_ === 'left') {
-    return {}
+    return {
+      'mr-10': true,
+    }
   } else {
     return {
       'flex-row-reverse': true,
+      'ml-10': true,
     }
   }
 })
