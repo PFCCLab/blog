@@ -1,5 +1,7 @@
 # PFCC blog
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8524346d-583f-47f9-ab65-1865e6675766/deploy-status)](https://app.netlify.com/sites/pfccblog/deploys)
+
 PFCC 社区博客
 
 ## 本地开发
