@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <ul>
+  <ul class="p-0">
     <slot></slot>
   </ul>
 </template>
