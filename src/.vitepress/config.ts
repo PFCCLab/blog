@@ -4,6 +4,7 @@ import { withPwa } from '@vite-pwa/vitepress'
 const metaInfo = {
   title: '飞桨开源社区博客',
   description: 'Wonderful stories from PaddlePaddle contributors',
+  gtagId: 'G-7XR50K1YRK',
 }
 
 export default withPwa(
@@ -52,6 +53,19 @@ export default withPwa(
           href: '/icons/mask-icon.svg',
           color: '#ffffff',
         },
+      ],
+      // Google Analytics
+      [
+        'script',
+        { async: '', src: `https://www.googletagmanager.com/gtag/js?id=${metaInfo.gtagId}` },
+      ],
+      [
+        'script',
+        {},
+        `window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${metaInfo.gtagId}');`,
       ],
     ],
     pwa: {
