@@ -10,11 +10,12 @@
     "dev": "vitepress dev src",
     "build": "vitepress build src",
     "serve": "vitepress serve src",
-    "fmt": "prettier --write .",
-    "fmt:check": "prettier --check .",
+    "fmt": "lint-md src/**/*.md --fix && prettier --write .",
+    "fmt:check": "lint-md src/**/*.md && prettier --check .",
     "img:compress": "tsx scripts/compress-image.mts"
   },
   "devDependencies": {
+    "@lint-md/cli": "^2.0.0",
     "@tailwindcss/typography": "^0.5.10",
     "@types/markdown-it": "^13.0.7",
     "@types/node": "^20.10.0",

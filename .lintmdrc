@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "space-around-alphabet": 2,
+    "space-around-number": 2
+  }
+}
