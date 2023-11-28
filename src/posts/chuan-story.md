@@ -193,7 +193,7 @@ import MessageBox from '../.vitepress/components/MessageBox.vue'
    </Message>
 </MessageBox>
 
-### by 卢师傅（[sanbuphy](https://github.com/sanbuphy)）
+### by 卢师傅（[AndSonder](https://github.com/AndSonder)）
 
 <MessageBox>
    <Message name="卢畅" github="AndSonder">
