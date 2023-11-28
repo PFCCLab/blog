@@ -56,12 +56,12 @@ import ImageBox from '../.vitepress/components/ImageBox.vue'
    **🍢🍢:** 爱好当然是出去走走玩玩，感受一下人间烟火气。打卡的话当然是福建的省会厦门啦🐶，在十里长堤跟着男女朋友看看夕阳，鼓浪屿的小巷子。平潭岛也挺不错的(🍢🍢没去过但是朋友圈已经发爆了，图中为蓝眼泪时期，需要特定的季节，且肉眼看不出来这种效果，需要相机长曝光，大家别跑空咯)。
 
     <div style="display: flex; justify-content: space-between">
-      <ImageBox url="../images/chuan-story/chuan-04.jpg" describe="厦门杏林大桥(来源: 川川相册)" centerStyle="width: 33%;" />
-      <ImageBox url="../images/chuan-story/chuan-05.jpg" describe="十里长堤(来源: 川川相册)" centerStyle="width: 33%;" />
-      <ImageBox url="../images/chuan-story/chuan-06.jpg" describe="鼓浪屿(来源:厦门文旅公众号)" centerStyle="width: 28%;" />
+      <ImageBox url="../images/chuan-story/chuan-04.jpg" description="厦门杏林大桥(来源: 川川相册)" centerStyle="width: 33%;" />
+      <ImageBox url="../images/chuan-story/chuan-05.jpg" description="十里长堤(来源: 川川相册)" centerStyle="width: 33%;" />
+      <ImageBox url="../images/chuan-story/chuan-06.jpg" description="鼓浪屿(来源:厦门文旅公众号)" centerStyle="width: 28%;" />
    </div>
 
-   <ImageBox url="../images/chuan-story/chuan-07.jpg" describe="平潭（来源: 新华社2023/04/29 ）"/>
+   <ImageBox url="../images/chuan-story/chuan-07.jpg" description="平潭（来源: 新华社 2023/04/29 ）"/>
 
 3. **据我了解，你在初中时就用易语言写了个安卓 APP 给奶奶使用，你能详细讲讲这个 APP 的设计目的和功能么？你当时学习了些什么技术才把这个 APP 做成？那又是通过哪种方式（看书?上网学习?视频?）学习的呢？**
 
@@ -212,12 +212,12 @@ import ImageBox from '../.vitepress/components/ImageBox.vue'
 
 最后让我们欣赏一下川大摄影师的大作吧 📷
 
-<ImageBox url="../images/chuan-story/chuan-14.jpg" describe="北京798艺术区"/>
-<ImageBox url="../images/chuan-story/chuan-15.jpg" describe="福州三江口大桥"/>
+<ImageBox url="../images/chuan-story/chuan-14.jpg" description="北京 798 艺术区"/>
+<ImageBox url="../images/chuan-story/chuan-15.jpg" description="福州三江口大桥"/>
 
 <div style="display: flex; justify-content: space-between">
-   <ImageBox url="../images/chuan-story/chuan-16.jpg" describe="福州烟台山" centerStyle="width: 49%;"/>
-   <ImageBox url="../images/chuan-story/chuan-17.jpg" describe="厦门中医院附近" centerStyle="width: 49%;"/>
+   <ImageBox url="../images/chuan-story/chuan-16.jpg" description="福州烟台山" centerStyle="width: 49%;"/>
+   <ImageBox url="../images/chuan-story/chuan-17.jpg" description="厦门中医院附近" centerStyle="width: 49%;"/>
 </div>
 
 ---

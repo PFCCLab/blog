@@ -1,20 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const { url, describe, centerStyle, legendStyle } = defineProps<{
+const { url, description, centerStyle, legendStyle } = defineProps<{
   url: string
-  describe: string
+  description?: string
   centerStyle?: string
   legendStyle?: string
 }>()
-
-const src = computed(() => {
-  return url
-})
-
-const alt = computed(() => {
-  return describe
-})
 
 const centerstyle = computed(() => {
   const centerStyle_ = centerStyle ?? null
@@ -35,7 +27,7 @@ const legendstyles = computed(() => {
 
 <template>
   <div :style="centerstyle">
-    <img :src="src" :alt="alt" />
-    <div :style="legendstyles">{{ alt }}</div>
+    <img :src="url" :alt="description" />
+    <div :style="legendstyles">{{ description }}</div>
   </div>
 </template>
