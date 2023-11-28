@@ -22,18 +22,6 @@ import MessageBox from '../.vitepress/components/MessageBox.vue'
 
 ## 一、前言
 
-<MessageBox>
-   <Message name="megemini" github="megemini">
-   1111111 喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵
-   </Message>
-   <Message name="megemini" github="megemini">
-   2222222 喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵
-   </Message>
-   <Message type="right" name="megemini" github="megemini">
-   2222222 喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵`喵喵` <code>xxx</code> {{ 1111+ 2222 }} 使用 markdown **xxxxx** <pre>xxx</pre>
-   </Message>
-</MessageBox>
-
 是谁，能让最摸 🐟 的开发者禁不住 PR 的诱惑，疯狂求 review？又是谁，让向来严于待人、宽以律己的 Paddle 开发者忍不住夸夸？接下来，有请我们的大佬——**顺师傅**✨
 
 ![shun-01](../images/shun-story/shun-01.jpg)
