@@ -1,9 +1,24 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useData, useRoute } from 'vitepress'
 import Date from './Date.vue'
+import Pagination from './Pagination.vue'
 import { data as posts } from './posts.data.js'
-import { useData } from 'vitepress'
+const route = useRoute()
 
-const { frontmatter, site } = useData()
+const { frontmatter, site, page } = useData()
+
+// @ts-ignore
+const postsPerPage = page.value.postsPerPage ?? Number.MAX_SAFE_INTEGER
+const numPages = Math.ceil(posts.length / postsPerPage)
+const pageIndex = computed(() => {
+  return route.path === '/' ? 1 : Number(route.path.split('/')[2])
+})
+const postsInPage = computed(() => {
+  const start = (pageIndex.value - 1) * postsPerPage
+  const end = start + postsPerPage
+  return posts.slice(start, end)
+})
 </script>
 
 <template>
@@ -19,7 +34,7 @@ const { frontmatter, site } = useData()
       </p>
     </div>
     <ul class="divide-y divide-gray-200 dark:divide-slate-200/5">
-      <li class="py-12" v-for="{ title, url, date, excerpt } of posts">
+      <li class="py-12" v-for="{ title, url, date, excerpt } of postsInPage">
         <article class="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
           <Date :date="date" />
           <div class="space-y-5 xl:col-span-3">
@@ -40,5 +55,10 @@ const { frontmatter, site } = useData()
         </article>
       </li>
     </ul>
+    <Pagination
+      :num-pages="numPages"
+      :pageIndex="pageIndex"
+      v-if="postsInPage.length !== posts.length"
+    />
   </div>
 </template>

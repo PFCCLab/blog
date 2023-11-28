@@ -1,16 +1,17 @@
 import { defineConfig } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 
-const metaInfo = {
+export const siteConfig = {
   title: '飞桨开源社区博客',
   description: 'Wonderful stories from PaddlePaddle contributors',
   gtagId: 'G-7XR50K1YRK',
+  postsPerPage: 2,
 }
 
 export default withPwa(
   defineConfig({
-    title: metaInfo.title,
-    description: metaInfo.description,
+    title: siteConfig.title,
+    description: siteConfig.description,
     lang: 'zh-CN',
     cleanUrls: true,
     head: [
@@ -57,7 +58,7 @@ export default withPwa(
       // Google Analytics
       [
         'script',
-        { async: '', src: `https://www.googletagmanager.com/gtag/js?id=${metaInfo.gtagId}` },
+        { async: '', src: `https://www.googletagmanager.com/gtag/js?id=${siteConfig.gtagId}` },
       ],
       [
         'script',
@@ -65,7 +66,7 @@ export default withPwa(
         `window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '${metaInfo.gtagId}');`,
+        gtag('config', '${siteConfig.gtagId}');`,
       ],
     ],
     pwa: {
@@ -73,9 +74,9 @@ export default withPwa(
       registerType: 'autoUpdate',
       manifest: {
         id: '/',
-        name: metaInfo.title,
-        short_name: metaInfo.title,
-        description: metaInfo.description,
+        name: siteConfig.title,
+        short_name: siteConfig.title,
+        description: siteConfig.description,
         theme_color: '#ffffff',
         start_url: '/',
         lang: 'zh-CN',
@@ -103,6 +104,11 @@ export default withPwa(
           },
         ],
       },
+    },
+    async transformPageData(pageData, { siteConfig: _ }) {
+      return {
+        postsPerPage: siteConfig.postsPerPage,
+      }
     },
   })
 )
