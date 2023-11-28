@@ -15,11 +15,6 @@ co_authors:
 
 ---
 
-<script setup>
-import Message from '../.vitepress/components/Message.vue'
-import MessageBox from '../.vitepress/components/MessageBox.vue'
-</script>
-
 ## 一、前言
 
 是谁，能让最摸 🐟 的开发者禁不住 PR 的诱惑，疯狂求 review？又是谁，让向来严于待人、宽以律己的 Paddle 开发者忍不住夸夸？接下来，有请我们的大佬——**顺师傅**✨
