@@ -10,7 +10,7 @@ const { numPages, pageIndex } = defineProps<{
 <template>
   <div class="flex justify-center space-x-2 py-4">
     <a
-      class="px-3 py-2 rounded-md font-bold"
+      class="px-3 py-2 rounded-md font-bold hover:outline outline-green-700"
       :class="{
         'bg-green-200 dark:bg-green-700': pageIndex === i,
         'text-green-700 dark:text-green-300': pageIndex !== i,
