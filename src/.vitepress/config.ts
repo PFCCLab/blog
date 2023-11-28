@@ -5,7 +5,7 @@ export const siteConfig = {
   title: '飞桨开源社区博客',
   description: 'Wonderful stories from PaddlePaddle contributors',
   gtagId: 'G-7XR50K1YRK',
-  postsPerPage: 2,
+  postsPerPage: 5,
 }
 
 export default withPwa(

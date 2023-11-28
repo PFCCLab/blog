@@ -57,7 +57,7 @@ const postsInPage = computed(() => {
     </ul>
     <Pagination
       :num-pages="numPages"
-      :pageIndex="pageIndex"
+      :page-index="pageIndex"
       v-if="postsInPage.length !== posts.length"
     />
   </div>

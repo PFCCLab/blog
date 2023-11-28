@@ -8,7 +8,7 @@ const { numPages, pageIndex } = defineProps<{
 </script>
 
 <template>
-  <div class="flex justify-center space-x-2 py-2">
+  <div class="flex justify-center space-x-2 py-4">
     <a
       class="px-3 py-2 rounded-md font-bold"
       :class="{
