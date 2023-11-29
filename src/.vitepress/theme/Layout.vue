@@ -28,7 +28,6 @@ const { page, frontmatter, site } = useData()
             ><span class="hidden sm:inline">GitHub </span>Source</a
           >
           <!-- TODO(SigureMo): Add RSS Feed -->
-          <!-- TODO(SigureMo): Add About page -->
           <span class="mr-2 ml-2">·</span>
           <a class="hover:text-gray-700 dark:hover:text-gray-200" href="/about.html" rel="noopener"
             >About</a
