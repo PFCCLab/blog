@@ -76,4 +76,7 @@ table {
   max-width: 100%;
   overflow: auto;
 }
+div {
+  word-wrap: break-word;
+}
 </style>
