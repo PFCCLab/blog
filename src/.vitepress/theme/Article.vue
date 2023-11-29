@@ -67,3 +67,13 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
     </div>
   </article>
 </template>
+
+<style>
+table {
+  display: block;
+  width: 100%;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+}
+</style>
