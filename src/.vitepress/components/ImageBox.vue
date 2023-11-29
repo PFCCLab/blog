@@ -26,8 +26,8 @@ const legendstyles = computed(() => {
 </script>
 
 <template>
-  <div :style="centerstyle">
+  <figure :style="centerstyle">
     <img :src="url" :alt="description" />
-    <div :style="legendstyles">{{ description }}</div>
-  </div>
+    <figcaption :style="legendstyles">{{ description }}</figcaption>
+  </figure>
 </template>
