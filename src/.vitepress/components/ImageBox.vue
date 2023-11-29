@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 const { url, description, centerStyle, legendStyle } = defineProps<{
   url: string
-  description?: string
+  description: string
   centerStyle?: string
   legendStyle?: string
 }>()
