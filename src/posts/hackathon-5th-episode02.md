@@ -1,5 +1,5 @@
 ---
-title: 【飞桨黑客松】第五期活动上线8周，框架赛道提交率近90% (#2)
+title: PaddlePaddle Hackathon Episode 02 | 第五期活动上线8周，框架赛道提交率近90%
 date: 2023-12-01
 author:
    name: 梦师傅
@@ -9,7 +9,7 @@ co_authors:
      github: Tulip-hua
 ---
 
-向大家快速介绍飞桨黑客松第五期开展以来的进展 (update 2)。
+向大家快速介绍飞桨黑客松第五期开展以来的进展（11.4-12.1）
 
 <!-- more -->
 
@@ -34,7 +34,7 @@ co_authors:
 
 #### 赛道亮点
 
--  尽管本期黑客松整体难度较往期提升，但社区开发者表现出了极大的专业能力和热情，任务已经 100% 被大家认领 。
+-  尽管本期黑客松整体难度较往期提升，但社区开发者表现出了极大的专业能力和热情，任务已经 100% 被大家认领；
 -  框架方向提交率近 90%，科学计算方向提交率 70%+，均高于往期黑客松。
 
 #### 参与提示
@@ -81,6 +81,6 @@ co_authors:
 
 ## 彩蛋 🎊： 欢迎大家线下来见面
 
-本周六（12 月 2 日）14:00 - 17:00 在 **北京 798** 举行飞桨开源社区 meetup，报名问卷：https://paddle.wjx.cn/vm/m1OLk4E.aspx# ，欢迎大家来聊天，飞桨定制咖啡等你打卡~， 梦师傅和花花在咖啡厅等着大家。
+本周六（12 月 2 日）14:00 - 17:00 在 **北京 798** 举行飞桨开源社区 meetup，报名问卷：https://paddle.wjx.cn/vm/m1OLk4E.aspx# ，欢迎大家来聊天，飞桨定制咖啡等你打卡，梦师傅和花花在咖啡厅等着大家~
 
-![monthly-report-4](../images/hackathon-5th-monthly-report-2/monthly-report-2-4.jpeg)
+![hackathon-5th-pp-coffee](../images/hackathon-5th/pp-coffee.jpeg)
