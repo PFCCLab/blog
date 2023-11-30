@@ -3,8 +3,9 @@ import Date from './Date.vue'
 import Authors from './Authors.vue'
 import { computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
-import { data as posts } from './posts.data.js'
+import { data as postsData } from './posts.data.js'
 
+const { posts } = postsData
 const { frontmatter: data } = useData()
 
 const route = useRoute()
@@ -67,3 +68,16 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
     </div>
   </article>
 </template>
+
+<style>
+table {
+  display: block;
+  width: 100%;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+}
+div {
+  word-wrap: break-word;
+}
+</style>

@@ -16,3 +16,5 @@ dist
 # vitepress
 src/.vitepress/cache
 
+# Generated dynamic routes
+src/pages/*

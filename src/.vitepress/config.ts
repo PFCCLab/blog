@@ -1,14 +1,18 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, defineConfigWithTheme } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 
-const metaInfo = {
+interface ThemeConfig {
+  postsPerPage?: number
+}
+
+export const metaInfo = {
   title: '飞桨开源社区博客',
   description: 'Wonderful stories from PaddlePaddle contributors',
   gtagId: 'G-7XR50K1YRK',
 }
 
 export default withPwa(
-  defineConfig({
+  defineConfigWithTheme<ThemeConfig>({
     title: metaInfo.title,
     description: metaInfo.description,
     lang: 'zh-CN',
@@ -103,6 +107,9 @@ export default withPwa(
           },
         ],
       },
+    },
+    themeConfig: {
+      postsPerPage: 10,
     },
   })
 )
