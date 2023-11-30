@@ -1,17 +1,20 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, defineConfigWithTheme } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 
-export const siteConfig = {
+interface ThemeConfig {
+  postsPerPage?: number
+}
+
+export const metaInfo = {
   title: '飞桨开源社区博客',
   description: 'Wonderful stories from PaddlePaddle contributors',
   gtagId: 'G-7XR50K1YRK',
-  postsPerPage: 10,
 }
 
 export default withPwa(
-  defineConfig({
-    title: siteConfig.title,
-    description: siteConfig.description,
+  defineConfigWithTheme<ThemeConfig>({
+    title: metaInfo.title,
+    description: metaInfo.description,
     lang: 'zh-CN',
     cleanUrls: true,
     head: [
@@ -58,7 +61,7 @@ export default withPwa(
       // Google Analytics
       [
         'script',
-        { async: '', src: `https://www.googletagmanager.com/gtag/js?id=${siteConfig.gtagId}` },
+        { async: '', src: `https://www.googletagmanager.com/gtag/js?id=${metaInfo.gtagId}` },
       ],
       [
         'script',
@@ -66,7 +69,7 @@ export default withPwa(
         `window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '${siteConfig.gtagId}');`,
+        gtag('config', '${metaInfo.gtagId}');`,
       ],
     ],
     pwa: {
@@ -74,9 +77,9 @@ export default withPwa(
       registerType: 'autoUpdate',
       manifest: {
         id: '/',
-        name: siteConfig.title,
-        short_name: siteConfig.title,
-        description: siteConfig.description,
+        name: metaInfo.title,
+        short_name: metaInfo.title,
+        description: metaInfo.description,
         theme_color: '#ffffff',
         start_url: '/',
         lang: 'zh-CN',
@@ -105,10 +108,8 @@ export default withPwa(
         ],
       },
     },
-    async transformPageData(pageData, { siteConfig: _ }) {
-      return {
-        postsPerPage: siteConfig.postsPerPage,
-      }
+    themeConfig: {
+      postsPerPage: 10,
     },
   })
 )

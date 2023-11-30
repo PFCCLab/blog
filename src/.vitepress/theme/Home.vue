@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
+import { data as postsData } from './posts.data.js'
 import Date from './Date.vue'
 import Pagination from './Pagination.vue'
-import { data as posts } from './posts.data.js'
+
 const route = useRoute()
+const { posts, postsPerPage, numPages } = postsData
 
-const { frontmatter, site, page } = useData()
+const { frontmatter, site } = useData()
 
-// @ts-ignore
-const postsPerPage = page.value.postsPerPage ?? Number.MAX_SAFE_INTEGER
-const numPages = Math.ceil(posts.length / postsPerPage)
 const pageIndex = computed(() => {
   return route.path === '/' ? 1 : Number(route.path.split('/')[2])
 })
