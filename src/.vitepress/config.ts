@@ -1,4 +1,4 @@
-import { defineConfig, defineConfigWithTheme } from 'vitepress'
+import { defineConfigWithTheme } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 
 interface ThemeConfig {

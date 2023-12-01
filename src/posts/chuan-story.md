@@ -22,6 +22,19 @@ import MessageBox from '../.vitepress/components/MessageBox.vue'
 </script>
 <!-- 导入聊天框功能 -->
 
+<style>
+figure {
+   text-align: center;
+}
+figcaption {
+   color: orange;
+   border-bottom: 1px solid #d9d9d9;
+   display: inline-block;
+   color: #999;
+   padding: 2px;
+}
+</style>
+
 ## 一、前言
 
 > 按川川要求，以下均以 🍢🍢 代称川川。
@@ -54,13 +67,25 @@ import MessageBox from '../.vitepress/components/MessageBox.vue'
 
    **🍢🍢:** 爱好当然是出去走走玩玩，感受一下人间烟火气。打卡的话当然是福建的省会厦门啦🐶，在十里长堤跟着男女朋友看看夕阳，鼓浪屿的小巷子。平潭岛也挺不错的(🍢🍢没去过但是朋友圈已经发爆了，图中为蓝眼泪时期，需要特定的季节，且肉眼看不出来这种效果，需要相机长曝光，大家别跑空咯)。
 
-    <div style="display: flex; justify-content: space-between">
-       <img src="../images/chuan-story/chuan-04.jpg" alt="chuan-04" style="width: 33%;">
-       <img src="../images/chuan-story/chuan-05.jpg" alt="chuan-05" style="width: 33%;">
-       <img src="../images/chuan-story/chuan-06.jpg" alt="chuan-06" style="width: 33%;">
+   <div style="display: flex; justify-content: space-between">
+      <figure style="width: 33%">
+         <img src="../images/chuan-story/chuan-04.jpg" alt="厦门杏林大桥（来源: 川川相册）" />
+         <figcaption>厦门杏林大桥（来源: 川川相册）</figcaption>
+      </figure>
+      <figure style="width: 33%">
+         <img src="../images/chuan-story/chuan-05.jpg" alt="十里长堤（来源: 川川相册）" />
+         <figcaption>十里长堤（来源: 川川相册）</figcaption>
+      </figure>
+      <figure style="width: 28%">
+         <img src="../images/chuan-story/chuan-06.jpg" alt="鼓浪屿（来源:厦门文旅公众号）" />
+         <figcaption>鼓浪屿（来源:厦门文旅公众号）</figcaption>
+      </figure>
    </div>
 
-   ![chuan-07](../images/chuan-story/chuan-07.jpg)
+   <figure>
+      <img src="../images/chuan-story/chuan-07.jpg" alt="平潭（来源: 新华社 2023/04/29 ）" />
+      <figcaption>平潭（来源: 新华社 2023/04/29 ）</figcaption>
+   </figure>
 
 3. **据我了解，你在初中时就用易语言写了个安卓 APP 给奶奶使用，你能详细讲讲这个 APP 的设计目的和功能么？你当时学习了些什么技术才把这个 APP 做成？那又是通过哪种方式（看书?上网学习?视频?）学习的呢？**
 
@@ -161,7 +186,7 @@ import MessageBox from '../.vitepress/components/MessageBox.vue'
    </Message>
 </MessageBox>
 
-### by 卢师傅（[sanbuphy](https://github.com/sanbuphy)）
+### by 卢师傅（[AndSonder](https://github.com/AndSonder)）
 
 <MessageBox>
    <Message name="卢畅" github="AndSonder">
@@ -211,13 +236,24 @@ import MessageBox from '../.vitepress/components/MessageBox.vue'
 
 最后让我们欣赏一下川大摄影师的大作吧 📷
 
-![chuan-14](../images/chuan-story/chuan-14.jpg)
-
-![chuan-15](../images/chuan-story/chuan-15.jpg)
+<figure>
+   <img src="../images/chuan-story/chuan-14.jpg" alt="北京 798 艺术区" />
+   <figcaption>北京 798 艺术区</figcaption>
+</figure>
+<figure>
+   <img src="../images/chuan-story/chuan-15.jpg" alt="福州三江口大桥" />
+   <figcaption>福州三江口大桥</figcaption>
+</figure>
 
 <div style="display: flex; justify-content: space-between">
-    <img src="../images/chuan-story/chuan-16.jpg" alt="chuan-16" style="width: 49%;">
-    <img src="../images/chuan-story/chuan-17.jpg" alt="chuan-17" style="width: 49%;">
+   <figure style="width: 49%;">
+      <img src="../images/chuan-story/chuan-16.jpg" alt="福州烟台山" />
+      <figcaption>福州烟台山</figcaption>
+   </figure>
+   <figure style="width: 49%;">
+      <img src="../images/chuan-story/chuan-17.jpg" alt="厦门中医院附近" />
+      <figcaption>厦门中医院附近</figcaption>
+   </figure>
 </div>
 
 ---
