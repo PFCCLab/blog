@@ -14,7 +14,7 @@ author:
 
 ## 1. 飞桨开源数据一览
 
--  在 [GitHub PaddlePaddle](https://github.com/PaddlePaddle)[组织](https://github.com/PaddlePaddle)下，有 90+个开源的代码仓库。
+-  在 [GitHub PaddlePaddle 组织](https://github.com/PaddlePaddle)下，有 90+个开源的代码仓库。
 -  累计 Commits 超过 93 万次，PR&ISSUE 的贡献者超过 18000 人。
 -  飞桨框架位列 GitHub 中国项目活跃度榜首。（[2022 中国开源年度报告](https://www.infoq.cn/minibook/EA3IfyXsCLTzSzJNc10z)）
 -  全球开源项目中，开源动力指数位列前 30。（[2023 年 10 月份，Linux 基金会统计](https://docs.google.com/spreadsheets/d/1HO6ZO7T3noU2CfafsmyCHmsfURs7Ah01Wrs2tcyBEs0/htmlview#)）
@@ -84,7 +84,7 @@ IDC 发布的 2022 年中国深度学习框架和平台市场份额报告显示�
 
 先来讲一个故事。
 
-大概在 2022 年 12 月份的时候，通过代码扫描工具发现了飞桨框架的 100 多个小 bug 🐛。说是 bug，但是问题真的很小，诸如堆栈溢出（stack overflow）、UFA 非法地址访问（UFA illegal address access）、Python IndexError、空指针（Null pointer）、除 0 错误（divide by 0），大部分 bug 可以被很少的一行或几行代码 fix。飞桨研发团队的管理方式是全员负责制，即每一行开源代码都可以找到对应的研发人员来负责，数量繁多的 bug 覆盖研发工程师范围级广，这件事情变成了一个管理难题，难以内部推动解决。
+大概在 2022 年 12 月份的时候，通过代码扫描工具发现了飞桨框架的 100 多个小 bug 🐛。说是 bug，但是问题真的很小，诸如堆栈溢出（stack overflow）、UFA 非法地址访问（UFA illegal address access）、Python IndexError、空指针（Null pointer）、除 0 错误（divide by 0），大部分 bug 可以被很少的一行或几行代码 fix。飞桨研发团队的管理方式是全员负责制，即每一行开源代码都可以找到对应的研发人员来负责，数量繁多的 bug 覆盖研发工程师范围极广，这件事情变成了一个管理难题，难以内部推动解决。
 
 ![issues](../images/2023-os-report/6-1-issues.jpg)
 
@@ -130,7 +130,7 @@ bug 发现了不能不修，怎么修呢？我们把目光放到了开源社区�
 
 与此同时，配套直播课程经过多期打磨，已形成完整的飞桨开源贡献视频资料，并发布在星河社区课程专区 [深度学习开发指南——黑客松 5.0 - 飞桨 AI Studio 星河社区-人工智能学习与实训社区](https://aistudio.baidu.com/course/introduce/30009)，跟着飞桨导师，从这里开始你的黑客松之旅吧 💕
 
-更多黑客松活动情况，可查看 blog：[PaddlePaddle Hackathon Episode01](https://pfcc.blog/posts/hackathon-5th-episode01)、[PaddlePaddle Hackathon Episode02](https://pfcc.blog/posts/hackathon-5th-episode02)
+更多黑客松活动情况，可查看 blog：[PaddlePaddle Hackathon Episode01](hackathon-5th-episode01.md)、[PaddlePaddle Hackathon Episode02](hackathon-5th-episode02.md)
 
 ## 8. 飞桨开源社区有哪些玩法
 
@@ -188,7 +188,7 @@ bug 发现了不能不修，怎么修呢？我们把目光放到了开源社区�
 
 在飞桨开源社区，我们结识了许多有趣可爱的人，程序员不再是一个标签化 🏷 的群体。他们中，有「摸资本主义的鱼，建设社会主义框架」的 Intel 工程师 [jinyouzhi](https://github.com/jinyouzhi)，有社区 Committer 手搓框架入职百度的全栈 001 喵喵喵 [SigureMo](https://github.com/SigureMo)，有「水遍」所有开发任务群强势进入贡献者排行榜的 002 张师傅 [Liyulingyue](https://github.com/Liyulingyue)，有获得硬件伙伴高度称赞的 3w+ 部署代码贡献达人 [Zheng-Bicheng](https://github.com/Zheng-Bicheng)，...，甚至还有五年级的小朋友 [zhiheng-liu](https://github.com/zhiheng-liu) 刷新飞桨 Contributor 最小年龄记录。
 
-因此我们萌生了创建这个 blog 网站的想法，由全栈工程师 001 搭建前端服务，后端开源在 GitHub，记录飞桨开源社区的故事，欢迎各位开发者投稿呀~~ https://pfcc.blog/
+因此我们萌生了创建这个 blog 网站的想法，由全栈工程师 001 搭建，代码开源在 GitHub，记录飞桨开源社区的故事，欢迎各位开发者投稿呀~~ https://pfcc.blog/
 
 ![funny-memes](../images/2023-os-report/9-1-funny-memes.jpg)
 
