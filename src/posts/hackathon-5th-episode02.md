@@ -1,5 +1,5 @@
 ---
-title: PaddlePaddle Hackathon Episode 02 | 第五期活动上线8周，框架赛道提交率近90%
+title: PaddlePaddle Hackathon Episode 02 | 第五期活动上线 8 周，框架赛道提交率近90%
 date: 2023-12-01
 author:
    name: 梦师傅
@@ -77,7 +77,7 @@ co_authors:
 
 -  欢迎大家到代码仓库: [Camp](https://github.com/PFCCLab/Camp) 里围观集训营的同学们的工作。
 
-更多详情请查看 issue：https://github.com/PaddlePaddle/Paddle/issues/57262
+更多详情请查看 issue：https://github.com/PaddlePaddle/Paddle/issues/57264
 
 ## 彩蛋 🎊： 欢迎大家线下来见面
 

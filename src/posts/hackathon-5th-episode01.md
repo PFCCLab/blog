@@ -1,5 +1,5 @@
 ---
-title: PaddlePaddle Hackathon Episode 01 | 第五期活动上线4周，直播圆满收官，三大赛道进展顺利
+title: PaddlePaddle Hackathon Episode 01 | 第五期活动上线 4 周，直播圆满收官，三大赛道进展顺利
 date: 2023-11-03
 author:
    name: 梦师傅
@@ -96,7 +96,7 @@ co_authors:
 
 -  欢迎大家到代码仓库: [Camp](https://github.com/PFCCLab/Camp) 里围观集训营的同学们的工作。
 
-更多详情请查看 issue：https://github.com/PaddlePaddle/Paddle/issues/57262
+更多详情请查看 issue：https://github.com/PaddlePaddle/Paddle/issues/57264
 
 ## 活动运营与推广
 
