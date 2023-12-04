@@ -106,7 +106,7 @@ bug 发现了不能不修，怎么修呢？我们把目光放到了开源社区�
 
 ## 7. 社区主导项目：Community over Code
 
-[Community over Code](https://www.apache.org/theapacheway/) 是 Apache 软件基金会的项目中最广为人知的理念。尽管在社区的沟通方式上，跟 ASF 所鼓励的用邮件组来沟通不一样，飞桨社区的绝大部分沟通方式是在大家熟悉的微信群里，但从解决 「[First Good Issue](https://github.com/PaddlePaddle/Paddle/issues?q=label%3A%22good+first+issue%22+)」 加入进来的社区开发者们， 在熟悉了社区之后，同样可以迸发更大的能量。
+[Community over Code](https://www.apache.org/theapacheway/) 是 Apache 软件基金会的项目中最广为人知的理念。尽管在社区的沟通方式上，跟 ASF 所鼓励的用邮件组来沟通不一样，飞桨社区的绝大部分沟通方式是在大家熟悉的微信群里，但从解决 「[Good First Issue](https://github.com/PaddlePaddle/Paddle/issues?q=label%3A%22good+first+issue%22+)」 加入进来的社区开发者们， 在熟悉了社区之后，同样可以迸发更大的能量。
 
 再来讲一个故事。
 
