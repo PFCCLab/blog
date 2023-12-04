@@ -1,23 +1,23 @@
 ---
-title: 飞桨开源社区成为国内 Top1，我们做对了什么？
+title: 飞桨开源社区成为国内 Top，我们做对了什么？
 date: 2023-12-02
 author:
    name: 梦师傅
    github: Ligoml
 ---
 
-什么是开源项目和开源社区？国内活跃度 Top1 的开源社区，都有哪些有趣的人和事？开源社区之于开源项目有何重要意义？
+什么是开源项目和开源社区？国内活跃度 Top 的开源社区，都有哪些有趣的人和事？开源社区之于开源项目有何重要意义？
 
 <!-- more -->
 
-开源项目（Open Source Project），顾名思义是指开放源代码的可以被公众使用的软件项目，在开源合规的基础上，其他开发者可以对软件进行使用、修改和发行。基于「共建共治共享」的开源理念，许多开源项目汇聚了一批拥有共同兴趣爱好的开发者，形成了一个个独特的开源社区（Open Source Community）。据第三方数据显示，飞桨开源社区已成为国内 Top1 的开源社区，作为社区维护者，我们做对了什么？
+开源项目（Open Source Project），顾名思义是指开放源代码的可以被公众使用的软件项目，在开源合规的基础上，其他开发者可以对软件进行使用、修改和发行。基于「共建共治共享」的开源理念，许多开源项目汇聚了一批拥有共同兴趣爱好的开发者，形成了一个个独特的开源社区（Open Source Community）。据第三方数据显示，飞桨开源社区已成为国内 Top 的开源社区，作为社区维护者，我们做对了什么？
 
 ## 1. 飞桨开源数据一览
 
 -  在 [GitHub PaddlePaddle 组织](https://github.com/PaddlePaddle)下，有 90+个开源的代码仓库。
 -  累计 Commits 超过 93 万次，PR&ISSUE 的贡献者超过 18000 人。
 -  飞桨框架位列 GitHub 中国项目活跃度榜首。（[2022 中国开源年度报告](https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd)）
--  全球开源项目中，开源动力指数位列前 30。（[2023 年 10 月份，Linux 基金会旗下的云原生计算基金会统计]https://github.com/cncf/velocity#current-reports)）
+-  全球开源项目中，开源动力指数位列前 30。（[2023 年 10 月份，Linux 基金会旗下的云原生计算基金会统计](https://github.com/cncf/velocity#current-reports)）
 
 ## 2. 整体飞桨平台的情况
 
@@ -37,7 +37,7 @@ IDC 发布的 2022 年中国深度学习框架和平台市场份额报告显示�
 
 **BAIDU Contributors**：专职的研发部门（深度学习技术平台部），及非专职的其他部门的工程师。
 
-尽管并没有一种特定的方法来识别某位 contributor 是否是百度的雇员， 但你依然可以从 github profile 或者 author email 中来找到大量活跃的百度工程师的身影。
+尽管并没有一种特定的方法来识别某位 contributor 是否是百度的雇员，但你依然可以从 github profile 或者 author email 中来找到大量活跃的百度工程师的身影。
 
 **Corporate Contributors**：NVIDIA、INTEL、昆仑芯、寒武纪，等等多家硬件公司的专职工程师。
 
@@ -94,7 +94,7 @@ bug 发现了不能不修，怎么修呢？我们把目光放到了开源社区�
 
 ![nianhouzaishuo](../images/2023-os-report/6-2-nianhouzaishuo.jpg)
 
-更为经典的是一名社区开发者 [RedContritio](https://github.com/RedContritio) 在除夕夜连着提了 18 个 PR，因为那个时间点大家都在欢度春节，没有人和他抢，导致他的 PR 编号都是连号的，由于 PR 质量过高，最后也顺利的全部完成了合入 ✅，给了我们 **一点小小的开源震撼**。
+更为经典的是一名社区开发者 [RedContritio](https://github.com/RedContritio) 在除夕夜连着提了 18 个 PR，因为那个时间点大家都在欢度春节，没有人和他抢，导致他的 PR 编号都是连号的，由于 PR 质量过高，最后也顺利的全部完成了合入 ✅，给了我们**一点小小的开源震撼**。
 
 ![pullrequests](../images/2023-os-report/6-3-pullrequests.jpg)
 
@@ -110,7 +110,7 @@ bug 发现了不能不修，怎么修呢？我们把目光放到了开源社区�
 
 再来讲一个故事。
 
-作为源自百度的开源项目，飞桨的运营团队通常可以接触到一些第三方办赛的邀请，这次找到我们的是第六届“中国软件开源创新大赛”，这是一个由中国计算机学会（CCF）主办，西北工业大学、绿色计算产业联盟、CCF 开源发展委员会联合承办的大型赛事，联合百度、清华大学等企业单位以及多所高校共同设置赛题，飞桨参与了“开源任务挑战赛”赛道，发布了 16 道具有一定难度的、需要参赛选手自行拆解与项目管理的开源任务。我们称其为 「[HappyOpenSource Pro](https://github.com/PaddlePaddle/Paddle/labels/HappyOpenSource%20Pro)」 ，**快乐开源进阶版**。任务详情：[飞桨框架任务挑战赛（上）](https://github.com/PaddlePaddle/Paddle/issues/53172)、[飞桨框架任务挑战赛（下）](https://github.com/PaddlePaddle/Paddle/issues/55663)
+作为源自百度的开源项目，飞桨的运营团队通常可以接触到一些第三方办赛的邀请，这次找到我们的是第六届『中国软件开源创新大赛』，这是一个由中国计算机学会（CCF）主办，西北工业大学、绿色计算产业联盟、CCF 开源发展委员会联合承办的大型赛事，联合百度、清华大学等企业单位以及多所高校共同设置赛题，飞桨参与了『开源任务挑战赛』赛道，发布了 16 道具有一定难度的、需要参赛选手自行拆解与项目管理的开源任务。我们称其为 「[HappyOpenSource Pro](https://github.com/PaddlePaddle/Paddle/labels/HappyOpenSource%20Pro)」 ，**快乐开源进阶版**。任务详情：[飞桨框架任务挑战赛（上）](https://github.com/PaddlePaddle/Paddle/issues/53172)、[飞桨框架任务挑战赛（下）](https://github.com/PaddlePaddle/Paddle/issues/55663)
 
 让我们惊喜的是，这些即使是内部研发团队都觉得棘手的开发任务，被一批高水平的开发者完美的解决了。以飞桨赛道一等奖项目：[赛题五：将 xdoctest 引入到飞桨框架工作流中](https://github.com/PaddlePaddle/Paddle/issues/53172#paddlepaddle05) 为例，项目涉及修改 1400+ API，数十万行代码，24 位开发者近 3 个月协同工作，队长 [megemini](https://github.com/megemini) 成长为 Reviewer，800 万飞桨用户从中受益。
 
