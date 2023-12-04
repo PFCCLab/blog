@@ -16,8 +16,8 @@ author:
 
 -  在 [GitHub PaddlePaddle 组织](https://github.com/PaddlePaddle)下，有 90+个开源的代码仓库。
 -  累计 Commits 超过 93 万次，PR&ISSUE 的贡献者超过 18000 人。
--  飞桨框架位列 GitHub 中国项目活跃度榜首。（[2022 中国开源年度报告](https://www.infoq.cn/minibook/EA3IfyXsCLTzSzJNc10z)）
--  全球开源项目中，开源动力指数位列前 30。（[2023 年 10 月份，Linux 基金会统计](https://docs.google.com/spreadsheets/d/1HO6ZO7T3noU2CfafsmyCHmsfURs7Ah01Wrs2tcyBEs0/htmlview#)）
+-  飞桨框架位列 GitHub 中国项目活跃度榜首。（[2022 中国开源年度报告](https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd)）
+-  全球开源项目中，开源动力指数位列前 30。（[2023 年 10 月份，Linux 基金会旗下的云原生计算基金会统计]https://github.com/cncf/velocity#current-reports)）
 
 ## 2. 整体飞桨平台的情况
 
@@ -37,11 +37,11 @@ IDC 发布的 2022 年中国深度学习框架和平台市场份额报告显示�
 
 **BAIDU Contributors**：专职的研发部门（深度学习技术平台部），及非专职的其他部门的工程师。
 
-![baidu-contributors](../images/2023-os-report/3-1-baidu-contributors.jpg)
+尽管并没有一种特定的方法来识别某位 contributor 是否是百度的雇员， 但你依然可以从 github profile 或者 author email 中来找到大量活跃的百度工程师的身影。
 
-**Corporate Contributors**：NVIDIA、INTEL、昆仑芯、寒武纪，等多家硬件公司的专职工程师。
+**Corporate Contributors**：NVIDIA、INTEL、昆仑芯、寒武纪，等等多家硬件公司的专职工程师。
 
-![corporate-contributors](../images/2023-os-report/3-2-corporate-contributors.jpg)
+翻看[AUTHORS.md](https://github.com/PaddlePaddle/Paddle/blob/develop/AUTHORS.md)文件，或者查看飞桨的代码仓库的 commits log，你总能看到来自于这些硬件公司的优秀的工程师的贡献。（小彩蛋：你甚至能找到 intel 工程师们的一张合照）
 
 **Individual Contributors**：来自高校的学生及来自企业的工程师在业余时间的贡献。
 
@@ -55,7 +55,7 @@ IDC 发布的 2022 年中国深度学习框架和平台市场份额报告显示�
 
 ![projects](../images/2023-os-report/4-1-projects.jpg)
 
-除此之外，在飞桨的端到端开发套件 PaddleOCR、PaddleClas、PaddleDetection、PaddleSeg，包括大模型套件 PaddleNLP、PaddleMIX 中，社区开发者贡献了许多 SOTA 的算法模型、训推一体 pipeline、tutorials&demo，与飞桨团队共同打磨易用的深度学习框架与工具组件。
+除此之外，在飞桨的端到端开发套件 PaddleOCR、PaddleClas、PaddleDetection、PaddleSeg，以及大模型套件 PaddleNLP、PaddleMIX 中，社区开发者贡献了许多 SOTA 的算法模型、训推一体 pipeline、tutorials&demo，与飞桨团队共同打磨易用的深度学习框架与工具组件。
 
 这里可以查看更多进行中和已结项的项目：https://github.com/orgs/PaddlePaddle/projects/7
 
@@ -84,7 +84,7 @@ IDC 发布的 2022 年中国深度学习框架和平台市场份额报告显示�
 
 先来讲一个故事。
 
-大概在 2022 年 12 月份的时候，通过代码扫描工具发现了飞桨框架的 100 多个小 bug 🐛。说是 bug，但是问题真的很小，诸如堆栈溢出（stack overflow）、UFA 非法地址访问（UFA illegal address access）、Python IndexError、空指针（Null pointer）、除 0 错误（divide by 0），大部分 bug 可以被很少的一行或几行代码 fix。飞桨研发团队的管理方式是全员负责制，即每一行开源代码都可以找到对应的研发人员来负责，数量繁多的 bug 覆盖研发工程师范围极广，这件事情变成了一个管理难题，难以内部推动解决。
+大概在 2022 年 12 月份的时候，通过代码扫描工具发现了飞桨框架的 100 多个小 bug 🐛。说是 bug，但是问题真的很小，诸如堆栈溢出（stack overflow）、UFA 非法地址访问（UFA illegal address access）、Python IndexError、空指针（Null pointer）、除 0 错误（divide by 0），大部分 bug 可以被很少的一行或几行代码 fix。
 
 ![issues](../images/2023-os-report/6-1-issues.jpg)
 
@@ -106,11 +106,11 @@ bug 发现了不能不修，怎么修呢？我们把目光放到了开源社区�
 
 ## 7. 社区主导项目：Community over Code
 
-社区开发者是不是只能在有研发工程师指导的情况下做一些简单的研发工作呢？有没有可能，其实可以迸发更大的能量，主导一些项目，真正实现「Community over Code」的口号呢？
+[Community over Code](https://www.apache.org/theapacheway/) 是 Apache 软件基金会的项目中最广为人知的理念。尽管在社区的沟通方式上，跟 ASF 所鼓励的用邮件组来沟通不一样，飞桨社区的绝大部分沟通方式是在大家熟悉的微信群里，但从解决 First Good Issue 加入进来的社区开发者们， 在熟悉了社区之后，同样可以迸发更大的能量。
 
 再来讲一个故事。
 
-作为百度的开源项目，飞桨的运营团队通常可以接触到一些第三方办赛的邀请，这次找到我们的是第六届“中国软件开源创新大赛”，这是一个由中国计算机学会（CCF）主办，西北工业大学、绿色计算产业联盟、CCF 开源发展委员会联合承办的大型赛事，联合百度、清华大学等企业单位以及多所高校共同设置赛题，飞桨参与了“开源任务挑战赛”赛道，发布了 16 道具有一定难度的、需要参赛选手自行拆解与项目管理的开源任务。我们称其为 「[HappyOpenSource Pro](https://github.com/PaddlePaddle/Paddle/labels/HappyOpenSource%20Pro)」 ，**快乐开源进阶版**。任务详情：[飞桨框架任务挑战赛（上）](https://github.com/PaddlePaddle/Paddle/issues/53172)、[飞桨框架任务挑战赛（下）](https://github.com/PaddlePaddle/Paddle/issues/55663)
+作为源自百度的开源项目，飞桨的运营团队通常可以接触到一些第三方办赛的邀请，这次找到我们的是第六届“中国软件开源创新大赛”，这是一个由中国计算机学会（CCF）主办，西北工业大学、绿色计算产业联盟、CCF 开源发展委员会联合承办的大型赛事，联合百度、清华大学等企业单位以及多所高校共同设置赛题，飞桨参与了“开源任务挑战赛”赛道，发布了 16 道具有一定难度的、需要参赛选手自行拆解与项目管理的开源任务。我们称其为 「[HappyOpenSource Pro](https://github.com/PaddlePaddle/Paddle/labels/HappyOpenSource%20Pro)」 ，**快乐开源进阶版**。任务详情：[飞桨框架任务挑战赛（上）](https://github.com/PaddlePaddle/Paddle/issues/53172)、[飞桨框架任务挑战赛（下）](https://github.com/PaddlePaddle/Paddle/issues/55663)
 
 让我们惊喜的是，这些即使是内部研发团队都觉得棘手的开发任务，被一批高水平的开发者完美的解决了。以飞桨赛道一等奖项目：[赛题五：将 xdoctest 引入到飞桨框架工作流中](https://github.com/PaddlePaddle/Paddle/issues/53172#paddlepaddle05) 为例，项目涉及修改 1400+ API，数十万行代码，24 位开发者近 3 个月协同工作，队长 [megemini](https://github.com/megemini) 成长为 Reviewer，800 万飞桨用户从中受益。
 
@@ -150,7 +150,7 @@ bug 发现了不能不修，怎么修呢？我们把目光放到了开源社区�
 
 详情可查看 issue：https://github.com/PaddlePaddle/Paddle/issues/56689
 
-**「启航计划」** 是 **百度飞桨社区** 发起的远程项目，也是「护航计划」的前置活动（不了解护航计划请看这里 ➡️ [护航计划说明](https://github.com/PFCCLab/Camp)）。我们以**集训营**的形式，鼓励开发者**积极参与快乐开源活动**，以此提升自己的代码实践能力。你可以把它当做【HACKATHON 预备营】，在这里找到志同道合的小伙伴，一起开发，一起成长。
+**「启航计划」** 是 **飞桨社区** 发起的远程项目，也是「护航计划」的前置活动（不了解护航计划请看这里 ➡️ [护航计划说明](https://github.com/PFCCLab/Camp)）。我们以**集训营**的形式，鼓励开发者**积极参与快乐开源活动**，以此提升自己的代码实践能力。你可以把它当做【HACKATHON 预备营】，在这里找到志同道合的小伙伴，一起开发，一起成长。
 
 详情可查看 issue：https://github.com/PaddlePaddle/Paddle/issues/58497
 
