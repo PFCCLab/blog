@@ -14,8 +14,8 @@ author:
 
 ## 1. 飞桨开源数据一览
 
--  在 [GitHub PaddlePaddle 组织](https://github.com/PaddlePaddle)下，有 90+个开源的代码仓库。
--  累计 Commits 超过 93 万次，PR&ISSUE 的贡献者超过 18000 人。
+-  在 [GitHub PaddlePaddle 组织](https://github.com/PaddlePaddle)下，有 90+ 个开源的代码仓库。
+-  累计 Commits 超过 93 万次，PR & ISSUE 的贡献者超过 18000 人。
 -  飞桨框架位列 GitHub 中国项目活跃度榜首。（[2022 中国开源年度报告](https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd)）
 -  全球开源项目中，开源动力指数位列前 30。（[2023 年 10 月份，Linux 基金会旗下的云原生计算基金会统计](https://github.com/cncf/velocity#current-reports)）
 
@@ -100,13 +100,13 @@ bug 发现了不能不修，怎么修呢？我们把目光放到了开源社区�
 
 后来，快乐开源活动就顺理成章的成为了飞桨开源社区长期有效的日常活动，旨在通过简单易上手的开发任务，帮助开发者渐进的了解飞桨、参与开源。我们会按季度更新礼品清单、统计参与活动的开发者信息，并完成礼品邮寄。随着开发者参与热情越来越高，礼品也从游戏键盘、无线耳机升级到了 PS5、iPad、Apple Watch 等。
 
-在 2022 年 Q4，快乐开源活动完成了一次全新升级 🔥，任务范围从 Paddle 框架扩展到科学计算 PaddleScience、大模型套件（PaddleMIX、PaddleNLP）、端到端开发套件（PaddleOCR、PaddleSeg、PaddleClas、PaddleDetection）、动转静孵化项目 PaddleSOT 等更多飞桨生态开源项目，**上线「✨ 热身任务」、「🎯 命题任务」与「💡 开放任务」**，使用「[HappyOpenSource](https://github.com/PaddlePaddle/Paddle/labels/HappyOpenSource)」 标签追踪相关的 issue 与 pr，我们确立了「 **Grow Together, and Have Fun！**」为口号，快乐开源活动逐渐做大做强~
+在 2023 年 Q4，快乐开源活动完成了一次全新升级 🔥，任务范围从 Paddle 框架扩展到科学计算 PaddleScience、大模型套件（PaddleMIX、PaddleNLP）、端到端开发套件（PaddleOCR、PaddleSeg、PaddleClas、PaddleDetection）、动转静孵化项目 PaddleSOT 等更多飞桨生态开源项目，**上线「✨ 热身任务」、「🎯 命题任务」与「💡 开放任务」**，使用「[HappyOpenSource](https://github.com/PaddlePaddle/Paddle/labels/HappyOpenSource)」 标签追踪相关的 issue 与 pr，我们确立了「 **Grow Together, and Have Fun！**」为口号，快乐开源活动逐渐做大做强~
 
 更多信息可访问活动 issue 了解：https://github.com/PaddlePaddle/Paddle/issues/56689
 
 ## 7. 社区主导项目：Community over Code
 
-[Community over Code](https://www.apache.org/theapacheway/) 是 Apache 软件基金会的项目中最广为人知的理念。尽管在社区的沟通方式上，跟 ASF 所鼓励的用邮件组来沟通不一样，飞桨社区的绝大部分沟通方式是在大家熟悉的微信群里，但从解决 First Good Issue 加入进来的社区开发者们， 在熟悉了社区之后，同样可以迸发更大的能量。
+[Community over Code](https://www.apache.org/theapacheway/) 是 Apache 软件基金会的项目中最广为人知的理念。尽管在社区的沟通方式上，跟 ASF 所鼓励的用邮件组来沟通不一样，飞桨社区的绝大部分沟通方式是在大家熟悉的微信群里，但从解决 「[First Good Issue](https://github.com/PaddlePaddle/Paddle/issues?q=label%3A%22good+first+issue%22+)」 加入进来的社区开发者们， 在熟悉了社区之后，同样可以迸发更大的能量。
 
 再来讲一个故事。
 
@@ -170,7 +170,7 @@ bug 发现了不能不修，怎么修呢？我们把目光放到了开源社区�
 
 **PFCC，全称 Paddle Framework Contributor Club，飞桨核心框架贡献者俱乐部**，是一个有兴趣、正在、或者已经为[飞桨开源框架](https://github.com/PaddlePaddle/Paddle/)做开源贡献的贡献者成立的虚拟组织，在这里，飞桨开源框架的贡献者进行讨论、交流和分享，并为飞桨框架做出持续的贡献。
 
-目前，PFCC 已汇聚 100+Contributor，6 名贡献者成长为 Committer，维持双周一次技术分享会，累计召开 30+次，产生上百个议题（详见[会议纪要](https://github.com/PaddlePaddle/community/tree/master/pfcc/meetings)），与飞桨产研团队探讨飞桨框架硬核技术难题，发起联合开发项目。
+目前，PFCC 已汇聚 100+ Contributor，6 名贡献者成长为 Committer，维持双周一次技术分享会，累计召开 30+ 次，产生上百个议题（详见[会议纪要](https://github.com/PaddlePaddle/community/tree/master/pfcc/meetings)），与飞桨产研团队探讨飞桨框架硬核技术难题，发起联合开发项目。
 
 更多信息可前往社区查看：https://github.com/PaddlePaddle/community/tree/master/pfcc
 
