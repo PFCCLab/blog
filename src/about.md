@@ -51,4 +51,4 @@ title: 关于我们
 
 希望我们的博客能够带给大家更多惊喜，谢谢大家～
 
-![first-blog](../images/first-post/first-post.jpg)
+![first-blog](/images/first-post/first-post.jpg)
