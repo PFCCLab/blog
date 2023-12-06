@@ -1,6 +1,6 @@
 ---
 title: 【开源江湖闲聊录】从入门到入职（入土）：黄师傅的校招 offer 指南!
-date: 2023-12-5
+date: 2023-12-05
 author:
    name: 孙钟恺
    github: sunzhongkai588
