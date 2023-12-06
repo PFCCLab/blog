@@ -1,6 +1,6 @@
 ---
 title: 【开源江湖闲聊录】躺平健身搞开源：敏师傅的三十而立
-date: 2023-12-7
+date: 2023-12-07
 author:
    name: 孙钟恺
    github: sunzhongkai588
