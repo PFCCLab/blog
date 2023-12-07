@@ -90,8 +90,8 @@ export default createContentLoader('posts/*.md', {
       .sort((a, b) => b.date.time - a.date.time)
     const postsPerPage = getPostsPerPage()
     const numPages = Math.ceil(posts.length / postsPerPage)
-    // await createPagesDynamicRoutesWithCache(numPages)
-    await createPagesDynamicRoutes(numPages)
+    await createPagesDynamicRoutesWithCache(numPages)
+    console.log('createPagesDynamicRoutesWithCache')
     return {
       posts,
       postsPerPage,
