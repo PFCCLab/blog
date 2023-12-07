@@ -173,9 +173,9 @@ figcaption {
 <MessageBox>
    <Message name="孙钟恺" github="sunzhongkai588">
    一开始对敏哥印象深刻，是因为敏哥的微信昵称拼音——讷言敏行（nè yán mǐn xíng），总共 4 个，有位前同事能把其中 2 个读错成 nà ... ... háng。🤣
- 
-   之后，从提文档修复的 PR 开始，就能明显感觉到敏哥的进步，再到后来敏哥能一口气把好多快乐开源任务都认领完成了，真的非常厉害。
-   </Message>
+
+之后，从提文档修复的 PR 开始，就能明显感觉到敏哥的进步，再到后来敏哥能一口气把好多快乐开源任务都认领完成了，真的非常厉害。
+</Message>
 </MessageBox>
 
 ### by 婷姐（[zhangting2020](https://github.com/zhangting2020)）
@@ -217,9 +217,9 @@ figcaption {
 <MessageBox>
    <Message name="张伟鸿" github="longranger2">
    敏师傅给我的感觉就如同金庸武侠小说里的扫地僧，活跃在飞桨各大大小小的社区当中，神秘而且武功深不可测，有极高技艺却又深藏不露。嘴上说着摸鱼，但上班的时候提起 PR 毫不手软（敏师傅，咱贵公司还招人吗[可怜]）。敏师傅也是一部行走的百科全书，上知天文，下知地理，尤其对吃的颇有造诣，如果你想知道不同地方的美食，问敏师傅就对了。
-  
-   不过我也得来吐槽下敏师傅，平时我认领的任务还没开始做的时候，张师傅都是口嗨说要背刺我，但只有敏师傅是来真的，直接把我认领的任务做了，希望敏师傅下次能给我留口汤喝，ball ball you 了😭
-   </Message>
+
+不过我也得来吐槽下敏师傅，平时我认领的任务还没开始做的时候，张师傅都是口嗨说要背刺我，但只有敏师傅是来真的，直接把我认领的任务做了，希望敏师傅下次能给我留口汤喝，ball ball you 了😭
+</Message>
 </MessageBox>
 
 ### by 陈沧夜（[mrcangye](https://github.com/mrcangye)）
@@ -283,7 +283,7 @@ figcaption {
 
 敏哥在采访也精心写了一份【个人自述】，好奇的话可以读一下哦～
 
-> 编者注✍️：我把它放在了博客 [GitHub repo](https://github.com/PFCCLab/blog) 下的 `src/images/limin-story/` 文件夹下哦～感兴趣可以自己去翻翻
+> 编者注✍️：我把它放在了博客 [GitHub repo](https://github.com/PFCCLab/blog) 下的 `src/eggs/limin-story/` 文件夹下哦～感兴趣可以自己去翻翻
 
 ---
 

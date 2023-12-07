@@ -72,6 +72,7 @@ export default withPwa(
         gtag('config', '${metaInfo.gtagId}');`,
       ],
     ],
+    srcExclude: ['eggs/**/*.md'],
     pwa: {
       outDir: '.vitepress/dist',
       registerType: 'autoUpdate',
