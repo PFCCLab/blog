@@ -27,6 +27,8 @@ title: 关于我们
 
 -  [【开源江湖闲聊录】社区掌舵人：顺师傅的 Paddle 之旅](./posts/shun-story.md)
 -  [【开源江湖闲聊录】英雄不问出处：川师傅的逆袭之路](./posts/chuan-story.md)
+-  [【开源江湖闲聊录】从入门到入职（入土）：黄师傅的校招 offer 指南!](./posts/huangjiyi-story.md)
+-  [【开源江湖闲聊录】躺平健身搞开源：敏师傅的三十而立](./posts/limin-story.md)
 
 ---
 

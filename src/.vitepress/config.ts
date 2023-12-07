@@ -72,6 +72,7 @@ export default withPwa(
         gtag('config', '${metaInfo.gtagId}');`,
       ],
     ],
+    srcExclude: ['eggs/**/*.md'],
     pwa: {
       outDir: '.vitepress/dist',
       registerType: 'autoUpdate',
@@ -109,7 +110,7 @@ export default withPwa(
       },
     },
     themeConfig: {
-      postsPerPage: 10,
+      postsPerPage: 99,
     },
   })
 )
