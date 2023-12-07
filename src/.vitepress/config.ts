@@ -110,7 +110,7 @@ export default withPwa(
       },
     },
     themeConfig: {
-      postsPerPage: 10,
+      postsPerPage: 99,
     },
   })
 )
