@@ -8,7 +8,7 @@
   "scripts": {
     "postinstall": "simple-git-hooks",
     "dev": "vitepress dev src",
-    "build": "vitepress build src --mpa",
+    "build": "vitepress build src",
     "serve": "vitepress serve src",
     "fmt": "lint-md src/**/*.md --fix && prettier --write .",
     "fmt:check": "lint-md src/**/*.md && prettier --check .",
