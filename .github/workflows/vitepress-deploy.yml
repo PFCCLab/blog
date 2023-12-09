@@ -36,9 +36,9 @@ jobs:
       - name: log
         run: |
           echo "======="
-          ls src/.vitepress/dist/pages
+          ls src/.vitepress/dist
           echo "======="
-          ls src/pages
+          ls src/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
