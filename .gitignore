@@ -17,4 +17,5 @@ dist
 src/.vitepress/cache
 
 # Generated dynamic routes
-src/pages/*
+src/pages/*.md
+src/pages/*.paths.ts
