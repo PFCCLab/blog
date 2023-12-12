@@ -3,12 +3,12 @@ title: 【开源江湖闲聊录】初中生也能当开发者❓少年黄瓜的�
 date: 2023-12-12
 author:
    name: 孙钟恺
-   GitHub: sunzhongkai588
+   github: sunzhongkai588
 co_authors:
    - name: 文潇（小记者）
-     GitHub: wenxiaohahaha
+     github: wenxiaohahaha
    - name: 黄锦源（黄瓜大帝）
-     GitHub: Berniehuang2008
+     github: Berniehuang2008
 ---
 
 他来了，他来了，他带着满满的故事，迈着自信的步伐向我们走来了！虽然刚满 15 岁，但**小小黄瓜**的开源史却已有好几年！学校趣事？开源经历？迷人帅照？成山作业？你都能在本篇博客看到！
@@ -49,15 +49,13 @@ figcaption {
    </Message>
    </MessageBox>
 
-2. **现在是一名初三学生，课程学习忙么？有什么讨厌的科目没有？😁😁**
+2. **现在是一名初三学生，课程学习忙么？有什么喜欢的科目没有？😁😁**
 
    <MessageBox>
    <Message name="黄瓜🥒" github="Berniehuang2008">
-   忙啊，当然忙。每天周考，从四点半考到六点，放学回家一堆卷子烦的要死。最讨厌当属道法，也就是政治（估计各位小时候也都讨厌它🙃）。这玩意一点逻辑都没有，车轱辘话来回说，跟写代码差了十万八千里。。。
+   忙啊，当然忙。每天周考，从四点半考到六点，放学回家一堆卷子烦的要死。最喜欢的是数学，没有原因，就是喜欢😳。
    </Message>
    </MessageBox>
-
-   > 编者注✍️：再说下去博客要凉了。
 
 3. **学校最近有什么有趣的事情可以和大家分享一下！**
 
