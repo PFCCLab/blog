@@ -115,7 +115,7 @@ export default withPwa(
       },
     },
     themeConfig: themeConfig,
-    async buildEnd() {
+    async postRender() {
       function getPostsPerPageAtBuiltTime(): number {
         return themeConfig.postsPerPage ?? Number.MAX_SAFE_INTEGER
       }
