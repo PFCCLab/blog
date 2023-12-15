@@ -1,8 +1,13 @@
-import { defineConfigWithTheme } from 'vitepress'
+import { defineConfigWithTheme, createContentLoader } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
+import createPostsLoader from './theme/loaders/posts.js'
 
 interface ThemeConfig {
   postsPerPage?: number
+}
+
+const themeConfig: ThemeConfig = {
+  postsPerPage: 10,
 }
 
 export const metaInfo = {
@@ -109,8 +114,12 @@ export default withPwa(
         ],
       },
     },
-    themeConfig: {
-      postsPerPage: 10,
+    themeConfig: themeConfig,
+    async buildEnd() {
+      function getPostsPerPageAtBuiltTime(): number {
+        return themeConfig.postsPerPage ?? Number.MAX_SAFE_INTEGER
+      }
+      await createPostsLoader(getPostsPerPageAtBuiltTime).load()
     },
   })
 )

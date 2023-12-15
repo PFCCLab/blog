@@ -1,7 +1,7 @@
 import { writeFile, mkdir } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 
-import { createContentLoader, type SiteConfig } from 'vitepress'
+import { createContentLoader } from 'vitepress'
 
 export interface Post {
   title: string
@@ -19,10 +19,6 @@ export interface PostsData {
   numPages: number
 }
 
-declare const data: PostsData
-
-export { data }
-
 function asyncCallWithCache<K>(fn: (key: K) => Promise<void>): (key: K) => Promise<void> {
   let cache: K
   return async (key: K) => {
@@ -31,11 +27,6 @@ function asyncCallWithCache<K>(fn: (key: K) => Promise<void>): (key: K) => Promi
       await fn(key)
     }
   }
-}
-
-function getPostsPerPage(): number {
-  const config: SiteConfig = (globalThis as any).VITEPRESS_CONFIG
-  return config.userConfig.themeConfig?.postsPerPage ?? Number.MAX_SAFE_INTEGER
 }
 
 async function createPagesDynamicRoutes(numPages: number): Promise<void> {
@@ -77,28 +68,29 @@ export default {
 
 const createPagesDynamicRoutesWithCache = asyncCallWithCache(createPagesDynamicRoutes)
 
-export default createContentLoader('posts/*.md', {
-  excerpt: '<!-- more -->',
-  async transform(raw): Promise<PostsData> {
-    const posts = raw
-      .map(({ url, frontmatter, excerpt }) => ({
-        title: frontmatter.title,
-        url,
-        excerpt,
-        date: formatDate(frontmatter.date),
-      }))
-      .sort((a, b) => b.date.time - a.date.time)
-    const postsPerPage = getPostsPerPage()
-    const numPages = Math.ceil(posts.length / postsPerPage)
-    await createPagesDynamicRoutesWithCache(numPages)
-    console.log('createPagesDynamicRoutesWithCache')
-    return {
-      posts,
-      postsPerPage,
-      numPages,
-    }
-  },
-})
+export default function createPostsLoader(getPostsPerPage: () => number) {
+  return createContentLoader('posts/*.md', {
+    excerpt: '<!-- more -->',
+    async transform(raw): Promise<PostsData> {
+      const posts = raw
+        .map(({ url, frontmatter, excerpt }) => ({
+          title: frontmatter.title,
+          url,
+          excerpt,
+          date: formatDate(frontmatter.date),
+        }))
+        .sort((a, b) => b.date.time - a.date.time)
+      const postsPerPage = getPostsPerPage()
+      const numPages = Math.ceil(posts.length / postsPerPage)
+      await createPagesDynamicRoutesWithCache(numPages)
+      return {
+        posts,
+        postsPerPage,
+        numPages,
+      }
+    },
+  })
+}
 
 function formatDate(raw: string): Post['date'] {
   const date = new Date(raw)
