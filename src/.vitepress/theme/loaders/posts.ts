@@ -29,7 +29,7 @@ function asyncCallWithCache<K>(fn: (key: K) => Promise<void>): (key: K) => Promi
   }
 }
 
-async function createPagesDynamicRoutes(numPages: number): Promise<void> {
+export async function createPagesDynamicRoutes(numPages: number): Promise<void> {
   const pagesDir = `src/pages`
   const pagesDynamicRouteMdPath = `${pagesDir}/[page].md`
   const pagesDynamicRouteTsPath = `${pagesDir}/[page].paths.ts`

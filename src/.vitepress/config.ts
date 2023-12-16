@@ -6,7 +6,7 @@ interface ThemeConfig {
   postsPerPage?: number
 }
 
-const themeConfig: ThemeConfig = {
+export const themeConfig: ThemeConfig = {
   postsPerPage: 10,
 }
 
