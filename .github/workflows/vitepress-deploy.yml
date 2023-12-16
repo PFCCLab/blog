@@ -33,13 +33,6 @@ jobs:
       - name: Build VitePress site
         run: pnpm build
 
-      - name: log
-        run: |
-          echo "======="
-          ls src/.vitepress/dist
-          echo "======="
-          ls src/
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
