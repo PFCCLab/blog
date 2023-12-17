@@ -53,4 +53,6 @@ title: 关于我们
 
 希望我们的博客能够带给大家更多惊喜，谢谢大家～
 
-![first-blog](./images/first-post/first-post.jpg)
+<p align="center">
+   <img src="./images/first-post/first-post.jpg" style="max-width: min(100%, 800px)" />
+</p>

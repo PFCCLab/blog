@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Post } from './posts.data.js'
+import type { Post } from './loaders/posts.js'
 
 const props = defineProps<{ date: Post['date'] }>()
 

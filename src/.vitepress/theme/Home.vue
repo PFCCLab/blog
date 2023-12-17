@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
-import { data as postsData } from './posts.data.js'
+import { data as postsData } from './loaders/posts.data.js'
 import Date from './Date.vue'
 import Pagination from './Pagination.vue'
 
