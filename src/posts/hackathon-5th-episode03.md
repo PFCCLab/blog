@@ -89,6 +89,6 @@ PaddlePaddle Hackathon 飞桨黑客马拉松（以下简称为“飞桨黑客松
 
 **加入 PFCC，与我们一起参与到飞桨框架的开发中吧！**
 
-戳这里看飞桨开源社区故事 **➡️** https://pfcc.blog/
+戳这里看飞桨开源社区故事 **➡️** <https://pfcc.blog/>
 
 原文链接：https://mp.weixin.qq.com/s/Yjvwj8br84sPard1lLoNOQ
