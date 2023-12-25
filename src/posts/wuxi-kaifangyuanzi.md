@@ -6,7 +6,7 @@ author:
    github: Ligoml
 ---
 
-2023 年 12 月 15 日顺利完成[「第一届开放原子开源大赛 - 飞桨 PaddlePaddle 开源贡献挑战赛」](https://competition.atomgit.com/competitionInfo?id=85216ad0ef0811ed99d49fc42bfa011c)决赛路演，产生 2 支一等奖队伍，16 日参加开放原子开源基金会举办的[「2023开放原子开发者大会」](https://openatomcon.openatom.cn/)，与各开源组织与机构同行沟通交流，收获满满~
+2023 年 12 月 15 日顺利完成[「第一届开放原子开源大赛 - 飞桨 PaddlePaddle 开源贡献挑战赛」](https://competition.atomgit.com/competitionInfo?id=85216ad0ef0811ed99d49fc42bfa011c)决赛路演，产生 2 支一等奖队伍，16 日参加开放原子开源基金会举办的[「2023 开放原子开发者大会」](https://openatomcon.openatom.cn/)，与各开源组织与机构同行沟通交流，收获满满~
 
 <!-- more -->
 
