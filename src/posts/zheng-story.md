@@ -43,9 +43,9 @@ figcaption {
 
 <MessageBox>
    <Message name="郑师傅" github="Zheng-Bicheng">
-   网络上躁皮不用多说，臊皮领域涉及抖音、微博、小红书、贴吧、知乎、B站等多个社交软件。你问我躁皮能力有多强，我得问问你懂不懂活了 23 年，吧龄有 13.4 年的含金量（如下图）。人家小学玩泥巴，我的小学玩贴吧，抽象要从小培养。
+   网络上躁皮不用多说，臊皮领域涉及抖音、微博、小红书、贴吧、知乎、B 站等多个社交软件。你问我躁皮能力有多强，我得问问你懂不懂活了 23 年，吧龄有 13.4 年的含金量（如下图）。人家小学玩泥巴，我的小学玩贴吧，抽象要从小培养。
    <br/>
-   ​我涉及的游戏领域的主要是 Steam 上的 RPG 游戏和 Switch 上的战旗游戏。我的游戏方式讲究一个另辟蹊径，例如玩神界原罪的时候，大多数人都忙着通主线，我主打一个小偷玩法，所到之处能偷的东西全给我偷光了。与之相反的是，我在游戏里大偷四方，现实里却被称为“电瓶侠”。截止至目前为止，已经被偷了 20 颗电瓶，快说谢谢电瓶侠😭。
+   ​我涉及的游戏领域的主要是 Steam 上的 RPG 游戏和 Switch 上的战旗游戏。我的游戏方式讲究一个另辟蹊径，例如玩神界原罪的时候，大多数人都忙着通主线，我主打一个小偷玩法，所到之处能偷的东西全给我偷光了。与之相反的是，我在游戏里大偷四方，现实里却被称为“电瓶侠”。截止至目前为止，已经被偷了 20 颗电瓶，快说谢谢电瓶侠 😭。
    <br/>
    顺便有没有大佬带我玩《双人成行》的，一缺一现在~
    </Message>
@@ -53,14 +53,14 @@ figcaption {
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 70%;">
-      <img src="../images/zheng-story/Captain-03.jpg" alt="郑师傅吧龄" />
+      <img src="../images/zheng-story/Captain-03.jpg"/>
       <figcaption>郑师傅吧龄</figcaption>
     </figure>
 </div>
 
-> 郑师傅注：提一嘴，我玩了 13.4 年贴吧，臊皮能力不足李梦柳十分之一，鬼知道这姐妹经历了啥！
+> 郑师傅注：提一嘴，我玩了 13.4 年贴吧，臊皮能力不足梦师傅十分之一，鬼知道这姐妹经历了啥！
 
-> 编者注✍️：提到的梦柳（@[Ligoml](https://github.com/Ligoml)）是我们飞桨社区非常优秀的美女产品经理❤️！！
+> 编者注✍️：提到的梦师傅（@[Ligoml](https://github.com/Ligoml)）是我们飞桨社区非常优秀的美女产品经理 ❤️！！
 
 ## 二、采访内容
 
@@ -92,7 +92,7 @@ figcaption {
 
    ​从实力上，不管你的实力是强是弱，在社区里都有属于你的位置，各种任务任你挑，研发大哥人也都很好，即使很忙也愿意抽时间出来和你讲思路讲方法。
 
-   ​在 Paddle 社区里，我比较活跃的项目其实就是[FastDeploy](https://github.com/PaddlePaddle/FastDeploy)。FD 的定位是端到端的部署框架，希望让即使是 AI 初学者的用户也能用极少的代码量跑通模型部署。我主要负责的部分都是和移植相关，涉及到的部分包括 Rockchip 推理后端的移植，几个社区 CV 模型的移植，类似人脸对齐这种后端算法的移植。
+   ​在 Paddle 社区里，我比较活跃的项目其实就是 [FastDeploy](https://github.com/PaddlePaddle/FastDeploy)。FD 的定位是端到端的部署框架，希望让即使是 AI 初学者的用户也能用极少的代码量跑通模型部署。我主要负责的部分都是和移植相关，涉及到的部分包括 Rockchip 推理后端的移植，几个社区 CV 模型的移植，类似人脸对齐这种后端算法的移植。
 
    ​要是提到影响力，FastDeploy 的定位其实就比较尴尬了。由于适配了非常多的底层推理框架，FD 内部为了兼容性是牺牲了一部分的性能的。从公司的角度看，对于小公司来说，用 FD 基本上会做一些魔改，来达到最优的性能（这也是后期我维护 FD 次数慢慢变少的原因，在我们公司内部，我基于 FD 做了大量的魔改，已经和现在的 FD 主分支几乎不兼容了）；大公司有自己的高水平研发工程师，也不会去用 FD，因此 FD 的使用场景还是有一定的局限性的。
 
@@ -116,8 +116,8 @@ figcaption {
    <!-- 下图为RK开发者大会的合照 -->
    <div style="display: flex; justify-content: center">
       <figure style="width: 80%;">
-         <img src="../images/zheng-story/Captain-05.jpeg" alt="RK开发者大会的合照" />
-         <figcaption>上图为RK开发者大会的合照</figcaption>
+         <img src="../images/zheng-story/Captain-05.jpeg"/>
+         <figcaption>上图为 RK 开发者大会的合照</figcaption>
       </figure>
    </div>
     
@@ -125,8 +125,8 @@ figcaption {
    ​<!-- 下图为郑师傅和上文的Liliya姐 -->
    <div style="display: flex; justify-content: center">
       <figure style="width: 80%;">
-         <img src="../images/zheng-story/Captain-04.jpeg" alt="下图为郑师傅和上文的Liliya姐" />
-         <figcaption>上图为郑师傅和上文的Liliya姐</figcaption>
+         <img src="../images/zheng-story/Captain-04.jpeg"/>
+         <figcaption>上图为郑师傅和上文的 Liliya 姐</figcaption>
       </figure>
    </div>
 
@@ -138,7 +138,7 @@ figcaption {
 
    **郑师傅：** 我这么正直的人怎么会阴阳怪气呢？比起阴阳怪气和口嗨，李梦柳和神可比我强多了。至于练习阴阳怪气嘛，多亏了啵啵姐。世上本没有阴阳师，阴阳啵啵姐多了，也便成了阴阳师。
 
-   > 编者注✍️：啵啵姐是指飞桨社区优优优秀的美女运营花花。
+   > 编者注✍️：啵啵姐是指飞桨社区优优优秀的美女运营花花（[@Tulip-hua](https://github.com/Tulip-hua)）。
 
    > 梦师傅本人注✍️：郑必城根本不会阴阳怪气！
 
@@ -164,8 +164,8 @@ figcaption {
       <!-- 雪糕＋合照 -->
       <div style="display: flex; justify-content: center">
          <figure style="width: 90%;">
-            <img src="../images//zheng-story/Captain-02.jpg" alt="雪糕+合照" />
-            <figcaption>左图为参观百度时的合照，右图为郑师傅最喜欢的喵喵喵雪糕</figcaption>
+            <img src="../images//zheng-story/Captain-02.jpg"/>
+            <figcaption>左图为参观百度时小度拍的合照，右图为郑师傅最喜欢的喵喵喵雪糕</figcaption>
          </figure>
       </div>
 
@@ -179,7 +179,7 @@ figcaption {
 
 ### **001**([@SigureMo](https://github.com/SigureMo))
 
-我对 001 的第一印象就是代码能力很强，但是有点闷骚。作为带我入门的大佬，肯定是要感谢 001 的，因为 001 人实在太好了❤️，不光带我开源还带我“开原”，属于是工作生活两不误了。
+我对 001 的第一印象就是代码能力很强，但是有点闷骚。作为带我入门的大佬，肯定是要感谢 001 的，因为 001 人实在太好了 ❤️，不光带我开源还带我“开原”，属于是工作生活两不误了。
 
 ### **应晟大佬**（[@yingshengBD](https://github.com/yingshengBD)）
 
@@ -221,7 +221,7 @@ figcaption {
 
 <div style="display: flex; justify-content: center">
    <figure style="width: 70%;">
-      <img src="../images/zheng-story/Captain-06.jpg" alt="下图为郑师傅和上文的Liliya姐" />
+      <img src="../images/zheng-story/Captain-06.jpg"/>
       <figcaption>上图为郑师傅经典语录集</figcaption>
    </figure>
 </div>
@@ -230,6 +230,6 @@ figcaption {
 
 ## 写在最后 💡
 
-**【开源江湖闲聊录】** 是一项专门为 Paddle 社区的开发者打造的特色访谈栏目📚。在这里，我们邀请到每一位别具一格且富有热情的开发者，通过文字或语音的方式进行深入采访 🎙️，探索并展现他们背后独一无二的故事，将他们的经历、见解和创意整理成精彩内容，呈现给整个社区。
+**【开源江湖闲聊录】** 是一项专门为 Paddle 社区的开发者打造的特色访谈栏目 📚。在这里，我们邀请到每一位别具一格且富有热情的开发者，通过文字或语音的方式进行深入采访 🎙️，探索并展现他们背后独一无二的故事，将他们的经历、见解和创意整理成精彩内容，呈现给整个社区。
 
 ---
