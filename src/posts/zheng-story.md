@@ -217,7 +217,7 @@ figcaption {
 
 就一个字，神！
 
-## 四、 郑师傅的名言集
+## 四、郑师傅的名言集
 
 <div style="display: flex; justify-content: center">
    <figure style="width: 70%;">
