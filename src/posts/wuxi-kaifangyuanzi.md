@@ -49,7 +49,7 @@ author:
 
 ![OS-Projects](../images/wuxi-kaifangyuanzi/OS-Projects.jpeg)
 
-「2023 活力开源贡献者-技术、生态贡献」奖：陈锐彪（[From00](https://github.com/From00)）、李梦柳（[Ligoml](https://github.com/Ligoml)）、骆涛（[luotao1](https://github.com/luotao1)）、张留杰（[Aurelius84](https://github.com/Aurelius84)）、刘宇博[RedContritio](https://github.com/RedContritio)、何森森（[HydrogenSulfate](https://github.com/HydrogenSulfate)）
+「2023 活力开源贡献者-技术、生态贡献」奖：陈锐彪（[From00](https://github.com/From00)）、李梦柳（[Ligoml](https://github.com/Ligoml)）、骆涛（[luotao1](https://github.com/luotao1)）、张留杰（[Aurelius84](https://github.com/Aurelius84)）、刘宇博（[RedContritio](https://github.com/RedContritio)）、何森森（[HydrogenSulfate](https://github.com/HydrogenSulfate)）
 
 ![OS-Contributors-01](../images/wuxi-kaifangyuanzi/OS-Contributors-01.jpeg)
 
