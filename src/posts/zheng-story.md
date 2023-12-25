@@ -173,47 +173,47 @@ figcaption {
 
       **郑师傅：** 和张师傅（@[liyulingyue](https://github.com/liyulingyue)）这群开源奋斗逼相比，我实在太摸鱼了。希望大家都能向张师傅学习，在开源中贡献自己的力量。
 
-## 三、从你的全世界路过——Captain 篇
+## 三、从你的全世界路过——郑师傅（Captain）篇
 
 ​前几篇博客上都有板块谈大家对被采访者的印象，但是今天郑师傅想来个板块单独谈谈**他对社区大佬的印象** 🤩🤩🤩。由于在 Paddle 社区，大佬实在太多了，郑师傅就抽一部分大佬讲讲他对他们的印象。
 
-### **001**(@[SigureMo](https://github.com/SigureMo))
+### **001**([@SigureMo](https://github.com/SigureMo))
 
 我对 001 的第一印象就是代码能力很强，但是有点闷骚。作为带我入门的大佬，肯定是要感谢 001 的，因为 001 人实在太好了❤️，不光带我开源还带我“开原”，属于是工作生活两不误了。
 
-### **应晟大佬**（@[yingshengBD](https://github.com/yingshengBD)）
+### **应晟大佬**（[@yingshengBD](https://github.com/yingshengBD)）
 
 应晟大佬是个很帅的糙汉子，刚认识他的时候给我的第一感觉就是相当的程序员，但是他参加直播的时候打理了一下，卧槽，嘎嘎帅啊。在我第一次参加黑客松的时候他给了我非常多的帮助，帮我积极协调了项目的各种进度内容，也让我了解到了一些职场相关的内容。
 
-### **啵啵姐**（@[Tulip-hua](https://github.com/Tulip-hua)）
+### **啵啵姐**（[@Tulip-hua](https://github.com/Tulip-hua)）
 
 原谅我管百度唯一指定童工叫姐。刚开始认识她的时候，她说别人叫她“芋泥妹” 👧，我想着我一 00 后也这么叫不是显得我太老了？所以叫她“啵啵姐”，后来发现大家都挺爱这么叫的。这位更是重量级，又能给我开源资源又能带我玩。世界可以没有耶路撒冷，但开源不能没有啵啵姐。
 
-### **雷青大佬**（@[leiqing1](https://github.com/leiqing1)）
+### **雷青大佬**（[@leiqing1](https://github.com/leiqing1)）
 
 雷青大佬在我参与开源的初期给了我很大很大的帮助，没有她做为桥梁我就没办法认识到那么多的百度研发工程师。雷青姐人也超级好，还记得她来福州的时候我请她吃饭，结账的时候她觉得不能让我一学生请客，把我手机藏起来买单，这才是神仙姐姐 🙍🏻‍♀️ 啊。算起来已经欠她两顿饭了，有机会一定要还了。
 
-### **佳军大佬**（@[jiangjiajun](https://github.com/jiangjiajun)）
+### **佳军大佬**（[@jiangjiajun](https://github.com/jiangjiajun)）
 
 蒋大佬的代码我只能说，牛逼，真他妈牛逼。人跟人的差距真大，一个在我看来很难的问题，他总是能一下子就找到关键点。在我开源生涯中他是各种指点，牛逼，真的牛逼。说起来还画了好多的饼给这位大佬，但是这些饼的工作量都有点大，最后大部分都慢慢不了了之了，现在正在慢慢捡起来做。
 
-### **延君大佬**（@[DefTruth](https://github.com/DefTruth)）
+### **延君大佬**（[@DefTruth](https://github.com/DefTruth)）
 
 延君大佬人很热情，帮我审核了很多的代码，他不但在 coding 上给了我很大的帮助，还对我的职业生涯规划起了很大作用，在我两难的时候给了我很正确的建议。
 
-### **梦柳姐**（@[Ligoml](https://github.com/Ligoml)）
+### **梦柳姐**（[@Ligoml](https://github.com/Ligoml)）
 
 这位也是重量级，Paddle 除了神以外的嘴炮王。她在我这 Title 太多，包括但不限于我的 Github 头像拥有者、最帅猫拥有者、最肥猫拥有者、最傻猫拥有者。
 
-### **孙哥**（@[sunzhongkai588](https://github.com/sunzhongkai588)）
+### **孙哥**（[@sunzhongkai588](https://github.com/sunzhongkai588)）
 
 一见如故，和我一样惨。我是扑克牌里的小王那孙哥就是扑克牌里的大王 🤡。
 
-### **军哥**（@[jzhang533](https://github.com/jzhang533)）
+### **军哥**（[@jzhang533](https://github.com/jzhang533)）
 
 很感谢军哥帮忙推动了 Paddle 框架在 Arm 上的 whl 包的适配，没有军哥，Arm 虚拟硬件在百度云上的部署就没办法推动了，就是啥时候能上线 Paddle 官网就更好了。
 
-### **衍哥**(@[blazingsiyan](https://github.com/blazingsiyan))
+### **衍哥**([@blazingsiyan](https://github.com/blazingsiyan))
 
 就一个字，神！
 
