@@ -1,6 +1,6 @@
 ---
 title: 飞桨开源社区参加开放原子开源大赛 & 开发者大会
-date: 2023-12-16
+date: 2023-12-26
 author:
    name: 梦师傅
    github: Ligoml
@@ -25,11 +25,11 @@ author:
 | 赛题六：基于 PINN 的 CFD 离散网格优化        | PaddleScience | BUAAC503 团队       | 北京航空航天大学 | 三等奖   | 代码开源地址：https://atomgit.com/generic/sensitivity-PaddleScience <br/>PR 链接：https://atomgit.com/paddlepaddle/PaddleScience/change/1                                                           |
 
 -  活动详情页：https://competition.atomgit.com/competitionInfo?id=85216ad0ef0811ed99d49fc42bfa011c
--  新闻稿件：https://gongyi.cctv.com/2023/12/16/ARTImsV56UJOMQm80Fe9mQik231216.shtml?spm=C74732.Pj8CR3j1HiY5.EYvPQRqpeJWP.2（上央视啦）
+-  新闻稿件：https://gongyi.cctv.com/2023/12/16/ARTImsV56UJOMQm80Fe9mQik231216.shtml?spm=C74732.Pj8CR3j1HiY5.EYvPQRqpeJWP.2 （上央视啦）
 
 ![competition-roadshow](../images/wuxi-kaifangyuanzi/competition-roadshow.jpeg)
 
-很有精神！
+> 梦师傅注✍️：很有精神！
 
 ## 开放原子开发者大会 - 开源治理与开发者运营分论坛 💬
 
