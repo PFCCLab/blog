@@ -1,5 +1,5 @@
 ---
-title: PaddlePaddle Hackathon Episode 02 | 第五期活动上线 8 周，框架赛道提交率近90%
+title: PaddlePaddle Hackathon Episode 02 | 第五期活动上线 8 周，框架赛道提交率近 90%
 date: 2023-12-01
 author:
    name: 梦师傅
