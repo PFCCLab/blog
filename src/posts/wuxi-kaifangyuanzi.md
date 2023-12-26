@@ -48,16 +48,13 @@ author:
 
 ![OS-Projects](../images/wuxi-kaifangyuanzi/OS-Projects.jpeg)
 
-
 ![OS-Contributors-01](../images/wuxi-kaifangyuanzi/OS-Contributors-01.jpeg)
-
 
 ![OS-Contributors-02](../images/wuxi-kaifangyuanzi/OS-Contributors-02.jpeg)
 
-
 ![OS-Contributors-03](../images/wuxi-kaifangyuanzi/OS-Contributors-03.jpeg)
 
-- 新闻稿件：https://mp.weixin.qq.com/s/ktN-8_hWADIgBm89UFA5jw
+-  新闻稿件：https://mp.weixin.qq.com/s/ktN-8_hWADIgBm89UFA5jw
 
 最后展示一个大合照 🏆 ~ 2023 收获满满，2024 一定会更好！提前给大家拜个早年 🧧🧨
 
