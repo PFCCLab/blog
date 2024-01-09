@@ -54,12 +54,11 @@ figcaption {
    **小散师傅：** 其实这个很简单。只要你和我一样宅 & 不打游戏 & 没有女朋友 & 打字飞快，就可以一次性水完全部群了！（群保安，不时保卫一下群里的业主们😂😂）为数不多的好处就是因此可以认识各类大佬。
    <!-- 配套文字表情包 -->
    <div style="display: flex; justify-content: center">
-   <figure style="width: 80%;">
-   <img src="../images//sanbu-story/sanbu-02.jpg"/>
-   <figcaption>小散四件套</figcaption>
-   </figure>
+       <figure style="width: 80%;">
+         <img src="../images//sanbu-story/sanbu-02.jpg"/>
+         <figcaption>小散四件套</figcaption>
+       </figure>
    </div>
-
 
 3. **听说不只是 Paddle 的群，你也加了很多别的群，有没有比较有意思的群可以分享？**
 
@@ -77,13 +76,13 @@ figcaption {
 
    > 编者注✍️：下面有小散师傅参与管弦乐团的照片哦～
 
-<!-- 狗望情侣照 -->
-<div style="display: flex; justify-content: center">
-    <figure style="width: 60%;">
-      <img src="../images/sanbu-story/sanbu-03.jpg" alt="梦的证据" />
-      <figcaption>上述谈到的小狗望情侣照片</figcaption>
-    </figure>
-</div>
+   <!-- 狗望情侣照 -->
+   <div style="display: flex; justify-content: center">
+      <figure style="width: 60%;">
+         <img src="../images/sanbu-story/sanbu-03.jpg" alt="梦的证据" />
+         <figcaption>上述谈到的小狗望情侣照片</figcaption>
+      </figure>
+   </div>
 
 5. **我了解到：你是物理系出身，当时为什么会选这个专业呢？后来为什么又放弃对物理的学习？**
 
@@ -98,12 +97,12 @@ figcaption {
 
     <!-- 徐高讲课中的图 -->
 
-<div style="display: flex; justify-content: center">
-<figure style="width: 60%;">
-<img src="../images//sanbu-story/sanbu-04.jpg"/>
-<figcaption>徐高讲课中的图</figcaption>
-</figure>
-</div>
+   <div style="display: flex; justify-content: center">
+       <figure style="width: 60%;">
+         <img src="../images//sanbu-story/sanbu-04.jpg"/>
+         <figcaption>徐高讲课中的图</figcaption>
+       </figure>
+    </div>
 
 7. **在转向深度学习的过程中，有没有遇到什么困难？又是如何克服的？**
 
@@ -187,8 +186,9 @@ figcaption {
 17.   **即将跨年了，散师傅给我们小小总结一下你的 2023 年，展望一下 2024 年怎么样？**
 
       **小散师傅：** 2023 有一些务虚，希望 2024 可以更加务实、专注、静下心，不要偷懒，聚焦于做一些长期主义、有用的事情（比如某个方向能够随手成百上千行），链接更多的有缘人并相互成长。希望自己可以变成更从容的人、能帮助别人的人、更阳光开朗的人、能传递快乐与希望的人。
-不过，比起展望自己的 2024，我更希望大家的 2024 都能变得越来越好；人间短暂，希望我们都能走在希望的田野上，无论岁月如何流淌，都能在梦想的道路上互相映照，让生命力在每一处角落绽放。我无比真诚祝愿每一位看过&没看过这篇博客的朋友都能寻找到自己的希翼与幸福。
-祝愿每一位人安好。
+
+      不过，比起展望自己的 2024，我更希望大家的 2024 都能变得越来越好；人间短暂，希望我们都能走在希望的田野上，无论岁月如何流淌，都能在梦想的道路上互相映照，让生命力在每一处角落绽放。我无比真诚祝愿每一位看过&没看过这篇博客的朋友都能寻找到自己的希翼与幸福。
+      祝愿每一位人安好。
 
       > 编者注✍️：这是小散师傅非常非常认真写的祝福，酝酿了很久很久！
 
