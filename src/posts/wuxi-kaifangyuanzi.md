@@ -24,7 +24,6 @@ author:
 | 赛题六：基于 PINN 的 CFD 离散网格优化        | PaddleScience | 杭电飞碟 团队       | 杭州电子科技大学 | 二等奖   | 代码开源地址：https://atomgit.com/guagua/paddle_hangdian <br/>PR 链接：https://atomgit.com/paddlepaddle/PaddleScience/change/13                                                                     |
 | 赛题六：基于 PINN 的 CFD 离散网格优化        | PaddleScience | BUAAC503 团队       | 北京航空航天大学 | 三等奖   | 代码开源地址：https://atomgit.com/generic/sensitivity-PaddleScience <br/>PR 链接：https://atomgit.com/paddlepaddle/PaddleScience/change/1                                                           |
 
--  活动详情页：https://competition.atomgit.com/competitionInfo?id=85216ad0ef0811ed99d49fc42bfa011c
 -  新闻稿件：https://gongyi.cctv.com/2023/12/16/ARTImsV56UJOMQm80Fe9mQik231216.shtml?spm=C74732.Pj8CR3j1HiY5.EYvPQRqpeJWP.2 （上央视啦）
 
 ![competition-roadshow](../images/wuxi-kaifangyuanzi/competition-roadshow.jpeg)
@@ -49,17 +48,13 @@ author:
 
 ![OS-Projects](../images/wuxi-kaifangyuanzi/OS-Projects.jpeg)
 
-「2023 活力开源贡献者-技术、生态贡献」奖：陈锐彪（[From00](https://github.com/From00)）、李梦柳（[Ligoml](https://github.com/Ligoml)）、骆涛（[luotao1](https://github.com/luotao1)）、张留杰（[Aurelius84](https://github.com/Aurelius84)）、刘宇博（[RedContritio](https://github.com/RedContritio)）、何森森（[HydrogenSulfate](https://github.com/HydrogenSulfate)）
-
 ![OS-Contributors-01](../images/wuxi-kaifangyuanzi/OS-Contributors-01.jpeg)
-
-「2023 活力开源贡献者-技术贡献」奖：黄子豪（[DrRyanHuang](https://github.com/DrRyanHuang)）、田川（[gouzil](https://github.com/gouzil)）、张一乔（[Liyulingyue](https://github.com/Liyulingyue)）、刘远乐（[yuanlehome](https://github.com/yuanlehome)）、卢雨畋（[sanbuphy](https://github.com/sanbuphy)）、陆琦（[MarioLulab](https://github.com/MarioLulab)）、徐晓健（[SigureMo](https://github.com/SigureMo)）、詹荣瑞（[zrr1999](https://github.com/zrr1999)）、郑必城（[Zheng-Bicheng](https://github.com/Zheng-Bicheng)）、崔子航（[Asthestarsfalll](https://github.com/Asthestarsfalll)）
 
 ![OS-Contributors-02](../images/wuxi-kaifangyuanzi/OS-Contributors-02.jpeg)
 
-「2023 活力开源贡献者-生态贡献」奖：李志宇（[heavyrain-lzy](https://github.com/heavyrain-lzy)）
-
 ![OS-Contributors-03](../images/wuxi-kaifangyuanzi/OS-Contributors-03.jpeg)
+
+-  新闻稿件：https://mp.weixin.qq.com/s/ktN-8_hWADIgBm89UFA5jw
 
 最后展示一个大合照 🏆 ~ 2023 收获满满，2024 一定会更好！提前给大家拜个早年 🧧🧨
 
