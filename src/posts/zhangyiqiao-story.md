@@ -37,8 +37,12 @@ figcaption {
 
 ## 一、张一乔专属定制海报
 
-![zhangyiqiao-01](../images/zhangyiqiao-story/zhangyiqiao-01.jpeg)
-
+   <div style="display: flex; justify-content: center">
+       <figure style="width: 50%;">
+         <img src="../images//zhangyiqiao-story/zhangyiqiao-01.jpeg"/>
+         <figcaption>张师傅专属定制海报</figcaption>
+       </figure>
+   </div>
 > 张师傅注：我不会吉他 🎸，但是有一把！
 
 ## 二、采访内容
@@ -149,20 +153,16 @@ figcaption {
 
 ## 三、生活中的点点滴滴——张师傅篇
 
-   <!-- 张师傅日常 -->
-   <div style="display: flex; justify-content: center">
-       <figure style="width: 50%;">
-         <img src="../images//zhangyiqiao-story/zhangyiqiao-07.jpeg"/>
-         <figcaption>张师傅日常</figcaption>
-       </figure>
-   </div>
-
-   <!-- 张师傅黑暗料理 -->
-   <div style="display: flex; justify-content: center">
-       <figure style="width: 50%;">
-         <img src="../images//zhangyiqiao-story/zhangyiqiao-08.jpeg"/>
-         <figcaption>张师傅黑暗料理</figcaption>
-       </figure>
+<!-- 张师傅日常 -->
+   <div style="display: flex; justify-content: space-between">
+      <figure style="width: 49%">
+         <img src="../images//zhangyiqiao-story/zhangyiqiao-07.jpeg" alt="左图：张师傅日常" />
+         <figcaption>张师傅的日常</figcaption>
+      </figure>
+      <figure style="width: 49%">
+         <img src="../images//zhangyiqiao-story/zhangyiqiao-08.jpeg" alt="右图：黑暗料理" />
+         <figcaption>张师傅的精心制作的黑暗料理</figcaption>
+      </figure>
    </div>
 
 ---
