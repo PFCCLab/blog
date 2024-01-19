@@ -43,7 +43,8 @@ figcaption {
          <figcaption>张师傅专属定制海报</figcaption>
        </figure>
    </div>
-> 张师傅注：我不会吉他 🎸，但是有一把！
+
+   > 张师傅注：我不会吉他 🎸，但是有一把！
 
 ## 二、采访内容
 
@@ -142,6 +143,7 @@ figcaption {
       </div>
 
 15.   **马上 2024 年了，可以分享一下新的一年里你有什么计划么？**
+
       **张师傅：** 2024 年计划就是 2023 年的计划。女朋友这一条还是可以不完成！
       <!-- 张师傅计划 -->
       <div style="display: flex; justify-content: center">
