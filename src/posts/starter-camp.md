@@ -1,6 +1,6 @@
 ---
 title: 新征程 ⛵️ ｜飞桨「启航计划」集训营圆满落幕
-date: 2024-2-8
+date: 2024-2-18
 author:
    name: 孙钟恺
    github: sunzhongkai588
