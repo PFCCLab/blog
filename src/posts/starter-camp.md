@@ -40,19 +40,19 @@ figcaption {
 -  不进行面试，直接进行**简历筛选**。
 -  集训内容为完成 **【快乐开源任务】**，合入 1 个 PR 即满足结营条件，相对轻松。
 -  提供**高质量集训课程**，并以 PR review 交流的形式进行沟通，而非导师一对一带教的形式。
--  时间周期更短（2个月），门槛相对更低。
+-  时间周期更短（2 个月），门槛相对更低。
 
 ### 参与者需要做什么？
 
-#### 1. 自选任务，并投递简历报名，通过筛选后即可入营。集训营持续2个月，上限 30 人。
+#### 1. 自选任务，并投递简历报名，通过筛选后即可入营。集训营持续 2 个月，上限 30 人
 
 -  共有 36 名候选人参与报名并投递简历。内部筛选后，最终通过 29 位学员。
--  入选学员中，22 名学生（电子科大、西交、杭电、浙大、清华…）、7 名企业开发者。
+-  入选学员中，22 名学生（电子科大、西交、杭电、浙大、清华……）、7 名企业开发者。
 -  入选学员中，13 名 PFCC 成员，16 名新人。
 
 > 入选营员：[@NKNaN](https://github.com/NKNaN)、[@shiofjsaio](https://github.com/shiofjsaio)、[@YangWulve](https://github.com/YangWulve)、[@Hhankyangg](https://github.com/Hhankyangg)、[@sanbuphy](https://github.com/sanbuphy)、[@Atlantisming](https://github.com/Atlantisming)、[@GreatV](https://github.com/GreatV)、[@Tsaiyue](https://github.com/Tsaiyue)、[@Kaedeharai](https://github.com/Kaedeharai)、[@wyyang23](https://github.com/wyyang23)、[@jiongjiongli](https://github.com/jiongjiongli)、[@rhmaaa](https://github.com/rhmaaa)、[@cocoshe](https://github.com/cocoshe)、[@zbt78](https://github.com/zbt78)、[@YibinLiu666](https://github.com/YibinLiu666)、[@Turingg](https://github.com/Turingg)、[@ooooo-create](https://github.com/ooooo-create)、[@ccsuzzh](https://github.com/ccsuzzh)、[@zade23](https://github.com/zade23)、[@challengewly](https://github.com/challengewly)、[@zoey333](https://github.com/zoey333)、[@unicornshell](https://github.com/unicornshell)、[@storm-ice](https://github.com/storm-ice)、[@YinKeYu](https://github.com/YinKeYu)、[@Olive-2019](https://github.com/Olive-2019)、[@fsczz](https://github.com/fsczz)、[@jiangziyan-693](https://github.com/jiangziyan-693)、[@isLinXu](https://github.com/isLinXu)、[@jingsongliujing](https://github.com/jingsongliujing)
 
-#### 2. 按兴趣参与集训课程（一周一次）并按时提交双周周报。
+#### 2. 按兴趣参与集训课程（一周一次）并按时提交双周周报
 
 -  以实际开发为导向，每周开展一次课程，总计安排 6 次课程。
 -  营员每双周提交一次周报，追踪集训进展和计划，总计提交 4 期双周报。
@@ -68,7 +68,7 @@ figcaption {
     </figure>
 </div>
 
-#### 3. 完成 3 个打卡任务，并至少合入 1 个快乐开源 PR。
+#### 3. 完成 3 个打卡任务，并至少合入 1 个快乐开源 PR
 
 -  打卡任务一：修改飞桨文档。25 人完成
 -  打卡任务二：Paddle 本地编译。13 人完成
@@ -81,7 +81,7 @@ figcaption {
     </figure>
 </div>
 
-#### 4. 结营期间，可自愿申请一、二、三等奖，并参加答辩。
+#### 4. 结营期间，可自愿申请一、二、三等奖，并参加答辩
 
 -  共有 3 位营员申请（[@zbt78](https://github.com/zbt78)、[@Tsaiyue](https://github.com/Tsaiyue)、[@ooooo-create](https://github.com/ooooo-create)），并均顺利通过一、二、三等奖答辩。
 -  一、二等奖获得者（[@zbt78](https://github.com/zbt78)、[@Tsaiyue](https://github.com/Tsaiyue)）当场**入选护航计划集训营**。
@@ -154,13 +154,13 @@ figcaption {
 1. 共有 **19** 位营员合入了超过 **110** 个快乐开源 PR。
 2. 社区新加入 **11** 名 contributor。
 3. **15** 名营员成功通过考核、顺利结营，**2** 名优秀营员入选护航计划。
-4. [@cocoshe](https://github.com/cocoshe) 在开发过程中沉淀 1 篇《 PHI算子库kernel注册全流程源码阅读》。
+4. [@cocoshe](https://github.com/cocoshe) 在开发过程中沉淀 1 篇《 PHI 算子库 kernel 注册全流程源码阅读》。
 
 ### 数字背后的情况
 
 > 1. 共有 **19** 位营员合入了超过 **110** 个快乐开源 PR。
 
-完成 80+ 文档、15+ 新 IR 适配、15+ 静态图推全、 5+ cmake治理、 5+ 复数算子等等题目，文档相关任务约占总体完成任务的一半左右.
+完成 80+ 文档、15+ 新 IR 适配、15+ 静态图推全、 5+ cmake 治理、 5+ 复数算子等等题目，文档相关任务约占总体完成任务的一半左右.
 
 > 2. 社区新加入 **11** 名 contributor。
 
@@ -170,7 +170,7 @@ figcaption {
 
 考核通过的营员中，有 10 名是原 PFCC 成员，纯新人通过率不高（31%），猜测是启航计划的活动缺乏引导。
 
-## 03 - 新的尝试——Docs偶像女团（精品小团）
+## 03 - 新的尝试——Docs 偶像女团（精品小团）
 
 ### 是什么？
 
@@ -179,12 +179,12 @@ figcaption {
 ### 由谁组成？
 
 1. 3 名大二女生（2 名启航计划学员 [@Turingg](https://github.com/Turingg) [@Kaedeharai](https://github.com/Kaedeharai)，1 名社区开发者[@entired](https://github.com/entired)），主要负责开发和维护。
-2. 1 名热心社区开发者（[O师傅](https://github.com/ooooo-create)，大三），负责日常手把手指导 3 名女生。
+2. 1 名热心社区开发者（[O 师傅](https://github.com/ooooo-create)，大三），负责日常手把手指导 3 名女生。
 3. 2 名飞桨内部同学，负责维持团体运转、答疑解惑。
 
 ### 为什么组成这个团体？
 
-集训期间，2位女生开发意愿比较强烈，但对具体做什么事情感到迷茫，因此孙师傅就把她们拉入（~~骗进~~）了docs小组。
+集训期间，2 位女生开发意愿比较强烈，但对具体做什么事情感到迷茫，因此孙师傅就把她们拉入（~~骗进~~）了 docs 小组。
 
 ### 运转机制？
 
@@ -193,3 +193,5 @@ figcaption {
 -  **如流群日常沟通交流**。
 
 ![starter-11](../images/starter-camp/starter-11.png)
+
+> 详细资料见：[community/docs_group](https://github.com/PFCCLab/Starter/tree/main/community/docs_group)
