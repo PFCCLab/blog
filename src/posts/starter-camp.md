@@ -140,13 +140,6 @@ figcaption {
 -  PM 和助教会根据结营要求，在结营期间对每位学员进行评估，判断是否满足结营条件。
 -  针对一、二、三等奖的答辩，会邀请相应方向的研发导师进行评估。同时，这也是进入**护航计划的绝佳机会**，因为研发导师会有充足的时间来了解你～
 
-<div style="display: flex; justify-content: center">
-    <figure style="width: 60%">
-        <img src="../images/starter-camp/starter-09.png" alt="答辩评估" />
-        <figcaption>研发导师评分表（部分）</figcaption>
-    </figure>
-</div>
-
 ## 02 - 活动成果
 
 ### 数字上的成果
@@ -154,7 +147,7 @@ figcaption {
 1. 共有 **19** 位营员合入了超过 **110** 个快乐开源 PR。
 2. 社区新加入 **11** 名 contributor。
 3. **15** 名营员成功通过考核、顺利结营，**2** 名优秀营员入选护航计划。
-4. [@cocoshe](https://github.com/cocoshe) 在开发过程中沉淀 1 篇《 PHI 算子库 kernel 注册全流程源码阅读》。
+4. [@cocoshe](https://github.com/cocoshe) 在开发过程中沉淀 1 篇[《 PHI 算子库 kernel 注册全流程源码阅读》](https://github.com/PaddlePaddle/community/blob/master/pfcc/paddle-code-reading/PHI_kernel_registration/PHI_kernel_registration.md)。
 
 ### 数字背后的情况
 
