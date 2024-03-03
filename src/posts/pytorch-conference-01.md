@@ -1,6 +1,6 @@
 ---
 title: 【睁眼看世界 🌍】｜PyTorch Conference 2023 - State of PyTorch
-date: 2024-2-05
+date: 2024-3-03
 author:
    name: 孙钟恺
    github: sunzhongkai588
