@@ -1,105 +1,166 @@
 ---
-title: 【开源江湖闲聊录】｜《Pytorch Conference 2023 翻译系列》1-Pytorch2.0 与社区现状介绍
+title: 【睁眼看世界 🌍】｜PyTorch Conference 2023 - State of PyTorch
 date: 2024-2-05
 author:
-   name: 文潇
-   github: wenxiaohahaha
+   name: 孙钟恺
+   github: sunzhongkai588
 co_authors:
-   - name: 孙钟恺
-     github: sunzhongkai588
    - name: 散步（小散）
      github: sanbuphy
 ---
 
-“负暄檐宇下，散步池塘曲”，本期我们邀请到了热情好学的散步 🚶‍♀️ 师傅！你想知道他的人生理想么？你想了解他的学习历程么？你想知道他的日常生活么？你想得到他的真挚祝福么？点击此篇博客，让我们一起走进小散的浪漫人生～
+本文是对 PyTorch Conference 2023 中的《[State of PyTorch](https://www.youtube.com/watch?v=dR0lHxt3Tjo&t=83s)》部分进行了精准的中文翻译和详细的文字总结，旨在向读者介绍 **PyTorch 社区的2023年动态**。同时也特别参考了[散步](https://github.com/sanbuphy)大佬的《[PyTorch Conference 2023 翻译系列文章](https://www.aispacewalk.cn/docs/ai/framework/pytorch/PytorchConference2023/State_of_PyTorch)》，在此基础上，进行了细致的校对和优化，确保翻译准确无误。对散步大佬之前的辛勤翻译和对开源社区的贡献，表示衷心的感谢和敬意。
+
+---
 
 <!-- more -->
 
-大纲
+## 写在最前
 
-PyTorch 2.0 版本发布情况介绍
-2022 年 PyTorch 三大重要事件
-春季代码清理活动
-PyTorch 基金会成立
-四个新成员加入
-PyTorch 代码提交量及贡献者情况
-提交次数及提交者
-使用 PyTorch 的项目数量
-研究文章数量
-PyTorch 社区现状
-Discuz 论坛情况
-如何参与贡献 PyTorch
-详细要点
+【睁眼看世界 🌍】专栏旨在打破知识边界，通过将国际上的优秀文章、会议精华以及高质量学习资料翻译成中文，使得这些宝贵的知识资源能够为广大中文读者所共享，而不是局限于国内的小圈子。
 
-1. PyTorch 2.0 发布情况
+对于对此有兴趣、愿意贡献力量的开发者，也可以联系[孙师傅](https://github.com/sunzhongkai588)，一同完善这个栏目，共同促进知识的自由流动和技术的共同进步。
 
-2 千万次下载量
-添加了多种新功能,如 MPS、TorchScript、set_default_device 等 2. 2022 年三大事件
+## Lightning Talk
 
-春季代码清理活动:27 名参与者,合并 45+ PRs
-基金会成立第一年:6 家新成员加入,覆盖范围更广 3. 代码提交&贡献者情况
+我的名字是 Alban，是 META 的一名软件工程师，已经在 Pytorch 工作了很长时间，并且主要在 PyTorch 核心库维护方面做了很多工作。
 
-12,000 次提交,8%来自核心维护者之外
-1,128 名贡献者,较 2021 年增长 10%
-使用 PyTorch 的 GitHub 项目达 60 万个,增长 20%
-7,000 多篇基于 PyTorch 的研究论文发表 4. PyTorch 社区现状
+在今天这个快速闪电演讲中，我要给大家介绍一下 Pytorch 的现状。以前参加过大会的人，也许知道我们每年都在进行着类似的讨论。Joe 去年就在这里做了类似演讲。今天我想谈论的是三个重要的 PyTorch 里程碑，以及今年发生的三个重要活动，还会谈论一些有趣的数字。Joe 之前已经给大家展示过其中的一些，但能亲眼看到这些数据总归是很有趣的。而在最后，我会给大家介绍一下如何参与 Pytorch ，以及如何帮助我们一起建设 Pytorch。
 
-Discuz 论坛每月 2,000 帖,40 万浏览量 5. 如何参与贡献
+## PyTorch Milestones
 
-回答问题、提建议
-帮助调试复现问题
-提交代码、进行 Code Review
-完善文档
-参加文档马拉松活动
-全文
+### 1. PyTorch 2.0
 
-我的名字是 Albin，是 META 的一名软件工程师，已经在 Pytorch 工作了很长一段时间，并且主要在 PyTorch 核心库维护方面做了很多工作。
+> -  20M+ downloads
+> -  Adds:
+>    -  torch.compile
+>    -  MPS backend for Apple M1/M2
+>    -  torch.func
+>    -  set_default_device
+>    -  Better transformer
 
-在今天这个快速闪电演讲中，我要给大家介绍一下 Pytorch 的现状。以前参加过大会的人，也许都见过我们每年都在进行着类似的讨论。Joe 去年就在这里做了类似演讲。今天我想谈论的是三个重要的 PyTorch 里程碑，以及今年发生的三个重要活动，还会谈论一些有趣的数字。Joe 之前已经给大家展示过其中的一些，但能亲眼看到这些数据总归是很有趣的。而在最后，我会给大家介绍一下如何参与 Pytorch ，以及如何帮助我们一起 build Pytorch。
+第一个重要的 PyTorch 里程碑是：**今年（2023年）年初发布了 PyTorch 2.0 版本**。它在所有平台上下载超过 2000 万次，所以对我们来说，这是一个相当重要的发版。并且，下载数量仍在增加。它添加了一系列非常重要的功能：
 
-PyTorch 2.0
+1. **torch.compile**。我们已经讨论过它很多次，因此在这里不再讨论。
+2. **MPS 后端**。一个重要功能是支持 MPS 后端，能够充分利用 Apple M1/M2 芯片的 GPU部分。现在该功能处于测试阶段，随着覆盖范围和稳定性的提升，会支持更多新功能。
+3. **Torch.func**。对于了解这的人来说，它又叫 functorch。和 Jax 类似，它新增支持函数式 API，并且融入在 “PyTorch 世界”中，因此能兼容其他所有 Pytorch 功能。
+4. **set_default_device**。我不知道大家是否熟悉这个功能。它可以通过改变创建 PyTorch 模型时使用的默认设备，来显著加速初始化（initialization），例如直接在设备上进行初始化。或者如你在一些主题演讲中看到的例子一样，快速的创建模型。通过使用元设备（meta device），即一个没有数据的伪设备（fake device），来跳过模型的初始化过程，直接加载权重。这样就可以避免占用太多内存，进行不必要的初始化等类似事情。
+5. **更好的 transformer**。这是由 PyTorch 团队和众多 maintainers 共同努力做出的重大推进，一起改进 PyTorch 中的 transformer 模型。无论是 transofmer相关的高层 API ，还是底层运算，你都可以拥有目前的最佳实现。
 
--  20M+ downloads
--  Adds:
-   torch.compile
-   MPS backend for Apple M1/M2
-   torch.func
-   set default device
-   Better transformer
+> 编者注 ✍️：这部分演讲内容是对 PyTorch 2.0 简略概括，详细内容可以看 [Blog](https://pytorch.org/blog/pytorch-2.0-release/) 或 [2.0 Release notes](https://github.com/pytorch/pytorch/releases/tag/v2.0.0)。
 
-第一个重要的 PyTorch 里程碑是：今年早些时候 PyTorch 2.0 版本发布了。它在所有平台上下载超过 2000 万次，所以对我们来说，这是一个相当重大的发布。并且，下载数量仍在增加。它添加了一系列非常重要的功能。其中一个重要的功能是 MPS 后端（apple 等），现在处于测试阶段，在覆盖范围和稳定性上有了很大的提升，支持新功能。Torch.func，对于了解这一点的人来说，这是个非常实用的 torch。它添加了一个函数式 API。举个例子，Jax 已经有了。它在 PyTorch 世界中保持一致，并与其他所有功能一起工作。还有一个 set default device 功能，你们中不知道的人可能不熟悉它，它可以改变构建 PyTorch 模型时使用的默认设备，例如通过直接在设备上进行初始化来显著加速初始化，或者如你在一些主题演讲例子中看到的那样，可以快速地创建模型。
-你可以使用元设备，它是一个没有数据的虚拟设备，可以跳过模型的初始化过程，直接加载权重。这样就可以避免占用太多内存，进行不必要的初始化等，所有这些都会出现。最后是更好的 transformer 模型，这是许多人的共同努力的结果。PyTorch 团队和许多维护者都在改进 PyTorch 中的 transformer 模型。无论是高级的 api 核心功能，还是低级的实现，都尽量使用最佳的实现。
+### 2. Spring Docathon
 
-第一个重要的 PyTorch 里程碑是今年早些时候发布的 PyTorch 2.0 版本。在所有平台上下载超过 2000 万次，所以对我们来说是一个相当重大的发布。下载数量仍在增加。它添加了一系列非常重要的功能。其中一个重要的功能是 MPS 后端（apple 等）。现在处于测试阶段，在覆盖范围和稳定性上有了很大的提升，支持新功能。Torch.func，对于了解这一点的人来说，这是个非常实用的 torch。它添加了一个函数式 API。举个例子，Jax 已经有了。它在 PyTorch 世界中保持一致，并与其他所有功能一起工作。还有一个 set default device 功能，你们中不知道的人可能不熟悉它，它可以改变构建 PyTorch 模型时使用的默认设备，例如通过直接在设备上进行初始化来显著加速初始化，或者如你在一些主题演讲例子中看到的那样，可以快速地创建模型。
-你可以使用元设备，它是一个没有数据的虚拟设备，可以跳过模型的初始化过程，直接加载权重。这样就可以避免占用太多内存，进行不必要的初始化等，所有这些都会出现。最后是更好的 transformer 模型，这是许多人的共同努力的结果。PyTorch 团队和许多维护者都在改进 PyTorch 中的 transformer 模型。无论是高级的 api 核心功能，还是低级的实现，都尽量使用最佳的实现。
-另一个值得一提的重要里程碑是今年发生的春季代码清理活动，我们有 27 个参与者，合并了 45 多个 pull request，关闭了 53 个问题。这对改进我们的教程仓库非常有帮助，提高质量增加了新的教程，并确保我们拥有最新的教程。最后，正如乔和易卜拉欣之前提到的，这是基金会成立的第一年。
-图片
-在今年六月份，该组织对新成员开放了。所以能够看到我们已经有了这个事实，真的让人非常激动。在我写这篇演讲的时候，我们有四个新成员，现在又增加了两个，所以它的增长速度比我做幻灯片还快。我要说我对我们正在吸引的成员的多样性非常兴奋。正如 IBM 和 Intel，你可以看到，底层组件、新的后端，但 Graphcore 的 Hugging-facing 则更高级和面向终端用户。看到我们在所有方面都在增长，对于基金会和生态系统来说，这是非常令人兴奋的。
-现在来说几个数字。对于那些关注代码库的人来说，过去一年我们有 12000 次提交。我们非常高兴看到开源贡献增长了 8%，我们指的是来自于通常核心维护人员以外的开源贡献者。
-图片
-图表展示了每年我们在一个代码库中有多少次提交，如你所见，它正在不断增长，发生了越来越多的事情。
-The pytorch/pytorch top contributors
+> -  27 active partipants
+> -  5 new tutorials & exampels
+> -  45+ PRs merged
+> -  53+ issues closed
 
--  1128 Contributors this year (+10% more than last year
--  Top oss Contributors
-   @peterbell10
-   @nkaretnikov
-   @XiaobingSuper
-   @cyyever
-   @lezcano
-   所有这些都是我们所有贡献者共同努力的结果。今年我们有 1,128 名贡献者参与其中。他们为该代码库做出了贡献。相比去年增长了 10%，看到这么多人致力于这项工作真的非常令人兴奋。我在这里列出了一些做出了最多提交的人的名字，他们非常重要，因为有很多人只提交了少量的代码，但对于我们的贡献和代码改进却非常重要。所有这一切的努力使得我们在 GitHub 上有 600,000 多个使用 PyTorch 的项目，相比去年增长了 20%。因此，看到越来越多的人实际使用 PyTorch，并发布利用 PyTorch 的代码，真的非常令人兴奋。其中大部分来自于研究领域，PyTorch 仍然推动着很多最新技术的发展。今年已经发表了 7,000 多个与 GitHub 代码库相关的研究论文，仍然有 60%的人在使用 PyTorch 来进行 AI 研究实现。因此，看到一个非常开放和繁荣的研究生态系统真的非常令人兴奋。
-   图片
-   如今，PyTorch 在行业方面也取得了显著的进展，之前一直滞后的情况正在迎头赶上。例如，根据 LinkedIn 的统计数据，我们看到每年有 50%的人表示 PyTorch 是一项核心技能，他们希望学习更多，并且越来越多的工作也需要掌握 PyTorch。这一切都得益于我们庞大的社区。我们在 Disqus 论坛上也有相关数据，这是用户、开发者和所有人互动的主要平台。每月约有 400 名新成员加入，并且浏览量超过 200 万次。这是一个非常活跃的网站，每月有约 2000 篇帖子。我们需要很多人来回答所有这些问题，这就是我呼吁大家行动起来的原因。加入我们吧！PyTorch 是一个开源项目，这是我们所战斗的。有了这个基础，我们形成了一个庞大的社区。
-   图片
-   我们有了这个新的页面，它是 PyTorch 贡献的终极指南。
-   https://github.com/pytorch/pytorch/wiki/The-Ultimate-Guide-to-PyTorch-Contributions
-   请去查看一下。我会给你们讲一下如何参与其中。有很多非代码贡献。所以对 PyTorch 的贡献不仅仅是编写代码，还有很多其他方面的工作。
-   图片
-   在左边你们可以看到我之前提到的论坛。我们有一个 DevDiscuss，还有一个 Discuss 论坛。发表问题，回答问题，并与社区讨论是非常重要的工作，任何人都可以参与。另外，我们正在为社区中的每个人构建 PyTorch，所以报告问题、提出新功能的建议等都是你可以贡献的重要内容。比如说，我们正在寻找更多关于我们正在编写的所有功能的反馈。我相信对 Torch Compile 你们已经听说过很多了。您今天听到了很多其他功能。请给我们反馈，告诉我们有什么不起作用，什么工作得很好，以及您想看到什么。
-   Code contributions
--  Reproduce and investigate issues
--  Bugfix/FeaturePullReguests
--  Review/maintain
--  Documentationch
-   当然，还有代码贡献，正如你们中的许多人可能知道的那样。这里我认为第一点对人们特别有趣，因为...它不是你总是会考虑的事情，但帮助复现和调查问题是非常非常有帮助的一件事情。当我多年前为 PyTorch 做贡献时，我做的第一件事就是调试问题，并在论坛上回答问题。所以这非常有趣，并且也非常有帮助。因为一旦我们确切知道问题是什么，接下来的阶段就简单得多了，那就是修复错误和功能，发送拉取请求来修复问题。在 PyTorch 里，发送拉取请求的部分，在很多情况下实际上是最快的部分。找出需要做什么实际上才是最关键的。
-   第三点是，我鼓励任何感兴趣的人提交代码，同时帮助我们审查代码并维护 Python 代码库。现在基金会完全开放了，我们有来自不同地方的许多人帮助我们维护库的各个子集。所以我建议并鼓励任何有兴趣的人参与其中。关于文档的更改，我相信许多人都知道我们的文档网站和教程网站。我们正在更加努力地制作许多文档。对于这方面的任何贡献都是受欢迎的。至于这一点，对于那些还没看到的人，我们下个月将要举办一个 PyTorch 文档马拉松。如果你有兴趣与我们合作，学习新的技能并获得很多认可，去我们的博客文章看看。我们有一个公告博客文章，你可以在那里注册。
+另一个值得一提的重要里程碑是：**今年（2023年）发起的 Spring Docathon 活动**。该活动共吸引了27位开发者参与，成功合入了超过45个PR（Pull Request），解决了 53 个 Issues。非常有效的促进了我们 tutorials 仓库的改进，不仅提高了教程的质量，还增加了新的教程内容，确保我们的教程始终保持最新。
+
+> 编者注 ✍️：其实飞桨也提供了 [Paddle Docathon](https://github.com/PaddlePaddle/docs/issues/6427) ，活动初衷和 PyTorch 是一样的，但整体难度和质量比起 PyTorch Docathon 来说要低一些。第六期黑客松会有一个专门的赛道：优秀稿件征集与传播，大家也可以敬请期待。
+
+### 3. First Year of the Foundation
+
+> -  Open to new membership June 2023
+> -  New premier members (IBM, Intel, Hugging-facing)
+> -  New general members (Graphcore)
+
+最后，正如Joe和Ibrahim所提到的，今年（2023）是基金会成立的第一年。并且在今年六月，基金会向新成员敞开了大门。面对当前的发展，我们感到无比兴奋。
+
+在我撰写这篇演讲稿时，我们已经迎来了四名新成员，而现在又新增了两名，增长的速度甚至超过了我制作幻灯片的速度。我对我们吸引到的成员的多样性感到非常激动，既有专注于底层组件和后端技术的企业，如IBM和Intel，也有更注重高层应用、面向终端用户的企业，如Graphcore和Hugging Face。看到我们在各个方面都在取得增长，对基金会和整个生态系统来说，确实是非常令人振奋的。
+
+> 编者注 ✍️：Ibrahim Haddad 是 Linux 基金会副总裁（AI & DATA方向），也是 [PyTorch Foundation](https://pytorch.org/foundation) 董事会的执行官。
+
+## PyTorch in Numbers
+
+接下来，让我们来看一些数字。
+
+### 1. The pytorch/pytorch codebase
+
+对于那些密切关注代码库的人而言，过去的一年（2022年），我们总共有12000次commits。并且我们非常高兴看到开源贡献增长了8%，这里的增长特指来自于**除日常核心维护人员之外**的开源贡献者。
+
+图表展示了每年我们代码库的 commits 数量。如你所见，它正在不断增长，并且未来也会越来越多。
+
+![conference-1](../images/pytorch-conference-01/conference-1.png)
+
+### 2. The pytorch/pytorch top contributors
+
+> -  1128 Contributors this year (+10% more than last year)
+> -  Top OSS Contributors
+>    -  [@peterbell10](https://github.com/peterbell10)
+>    -  [@nkaretnikov](https://github.com/nkaretnikov)
+>    -  [@XiaobingSuper](https://github.com/XiaobingSuper)
+>    -  [@cyyever](https://github.com/cyyever)
+>    -  [@lezcano](https://github.com/lezcano)
+>    -  [@BowenBao](https://github.com/BowenBao)
+
+所有的开源贡献增长都离不开我们每一位贡献者的共同努力。今年，我们共有 1,128 名贡献者对代码库作出了贡献，相较去年增长了10%。看到这么多人投身于PyTorch的开源工作，实在是让人感到非常振奋。
+
+我在此列出了一些提交量最多的贡献者的GitHub ID，他们的活跃度非常高。当然，还有许多人虽然只提交了少量代码，但他们对代码的改进和贡献的多样性也极为关键。
+
+这所有的努力共同促成了，GitHub上使用PyTorch的仓库数量超过600,000个，比去年增长了20%。因此，看到越来越多的人不仅使用PyTorch，还发布基于PyTorch实现的代码，这确实非常让人兴奋。
+
+![conference-2](../images/pytorch-conference-01/conference-2.png)
+
+### 3. Driving state-of-the-art AI research
+
+其中，大部分代码来自于**科研领域**，PyTorch在推动许多前沿AI技术的发展方面发挥了重要作用。今年，已有超过7,000个AI科研论文相关的GitHub仓库用到了 PyTorch。事实上，60%的AI研究成果是基于PyTorch来实现的。因此，见证这样一个开放、繁荣的科研生态，我们感到无比兴奋。
+
+![conference-3](../images/pytorch-conference-01/conference-3.png)
+
+### 4. Powering the AI indusry
+
+> -  65K+ PyTorch professionals(on LinkedIn)
+>    -  50%+ YOY increase
+> -  3K new jobs requiring PyTorch
+
+如今，PyTorch在工业界的发展也取得了显著进步，正在迅速弥补之前的落后处境。以LinkedIn的统计数据为例，我们观察到将PyTorch作为核心技能的求职者每年增长率达到50%，同时，越来越多的职位也开始要求应聘者掌握PyTorch。
+
+### 5. Talk of the town
+
+我们的一切成就，都离不开我们庞大社区的支持。接下来，我想分享一些关于社区的有趣数据。Discuss Forum是PyTorch为用户、开发者及其他所有人提供的互动论坛。每月，我们有大约400名新成员加入，网站浏览量超过200万次。同时，我们的网站也非常活跃，每月约有2000篇新帖子发布。我们非常需要活跃的社区，让更多成员帮忙解答用户和开发者的问题。
+
+![conference-4](../images/pytorch-conference-01/conference-4.png)
+
+## Join us
+
+在这里，我想呼吁大家加入我们！PyTorch 不仅是一个开源项目，它也是我们共同奋斗的目标。只有依靠一个庞大而活跃的社区，我们才能不断推动 PyTorch 向前发展。因此，我们做了很多工作来尝试巩固我们的社区生态。
+
+### 1. How to get involved
+
+我们根据社区里很不错的反馈（包括如何帮助新成员融入、如何让他们共同参与到PyTorch的建设中来），创建了一个新页面——PyTorch 终极贡献指南。点击下面的链接可以查看，接下来我也会讲一下如何参与其中。
+
+> Pytorch 终极贡献指南：https://github.com/pytorch/pytorch/wiki/The-Ultimate-Guide-to-PyTorch-Contributions
+
+### 2.Non-code contributions
+
+首先我想和大家讲的是，我们是有很多**非代码的贡献**。所以对 PyTorch 的贡献远不止编写代码，还有很多其他方面的工作。
+
+![conference-5](../images/pytorch-conference-01/conference-5.png)
+
+在左边可以看到我之前提到的论坛。同时我们还有一个开发者论坛 [Dev-Discuss](https://dev-discuss.pytorch.org/)，在这里，你可以提问、回答问题或与社区成员讨论各种话题。这些都是非常重要的贡献方式，而且每个人都可以参与其中。另外，因为社区中的所有人都可以建设 PyTorch，所以报告问题、提出新功能建议等也是你可以做出的重要贡献。例如，我们非常欢迎大家对我今天提到的新功能提出反馈，无论是 torch.compile 还是其他功能。请告诉我们什么地方做得不够好，什么工作得很好，以及你还需要什么功能。
+
+### 3. Code contributions
+
+> -  Reproduce and investigate issues
+> -  Bugfix/FeaturePullReguests
+> -  Review/maintain
+> -  Documentationch
+
+当然，众所周知，**代码贡献**自然也是非常重要的。这里我认为第一点（Reproduce and investigate issues）特别有趣，这可能不是每个人都会想到的贡献方式，但帮助复现和调查 issues 是非常非常有价值的一件事情，即使这并不是在“编写代码”，并且也比较耗时。多年前，当我开始为 PyTorch 做贡献时，我做的第一件事就是 debugging issues，并在论坛上回答问题。这不仅有趣，也非常有帮助，因为一旦我们明确了问题所在，接下来的修复bug和增加新功能的工作就会变得更加简单。在 PyTorch 社区，提交bug修复或新功能的PR往往是解决问题过程中最迅速的一步。找到问题所在，弄清楚需要做什么，实际上才是最关键的的。
+
+第三点是，我鼓励任何感兴趣的开发者不只是提交代码，也帮助我们审查代码和维护代码库。现在基金会完全开放了，我们有来自世界各地的许多贡献者帮助我们维护 PyTorch 的子仓库，我们鼓励所有感兴趣的人参与进来。
+
+最后，我们也非常重视文档的编写和改进。我相信许多人都知道我们的文档网站和教程网站，我们也在努力的增加更多文档内容，所以任何文档相关的贡献都非常欢迎。对于那些对此感兴趣的人，我们下个月将举办一个 PyTorch Docathon 文档马拉松活动。如果你想参加，学习新技能并获得认可，请关注我们的博客文章了解更多信息。
+
+![conference-6](../images/pytorch-conference-01/conference-6.png)
+
+> 编者注 ✍️：活动已经结束了哦～
+
+## 编者最后的碎碎念
+
+-  PyTorch 生态力量非常强大，是目前 Paddle 或者国内任何一个深度学习框架都无法企及的一个高度。
+-  Paddle 本身的社区治理结构、运作方式，其实是带有一定国内特色的。
+-  翻译会议真的很花时间，比单纯的翻译文章累多了，散佬能翻译30多篇会议内容真的太强了。目前散佬在和 Linux 基金会取得联系，可能会有专门的团队进行翻译，有兴趣的也可以联系散佬。
+-  散佬做的一个英文转录翻译的工具，可以看看：https://github.com/sanbuphy/WhisperTranslator
