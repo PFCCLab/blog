@@ -113,13 +113,13 @@ figcaption {
 
    **汪师傅：** 我是以 Paddle2ONNX 的用户角色加入的。郑师傅（[@Zheng-Bicheng](https://github.com/Zheng-Bicheng)）是 PMC Chair，已经提了很多 PR，是主要力量。后面我可能就是多解答一些 issue。
 
-   > 为了 Paddle2ONNX 项目的可持续健康发展和加强社区治理， 飞桨社区开源发展工作组决定设立 Paddle2ONNX PMC(Project Management Committee) 来负责 Paddle2ONNX 项目的技术决策和维护。
+   > 笔者注✍️：为了 Paddle2ONNX 项目的可持续健康发展和加强社区治理， 飞桨社区开源发展工作组决定设立 Paddle2ONNX PMC(Project Management Committee) 来负责 Paddle2ONNX 项目的技术决策和维护。
 
 10.   **据我所知，汪师傅在一家生物公司工作。为什么在生物公司你还是坚持 AI 开源，而且还是 AI 框架开源？**
 
       **汪师傅：** 生物公司也有很多项目要用到 AI，例如血细胞分类、识别尿液官型、识别液面高度等等。坚持开源主要是下班时间比较早，而我又不喜欢出门玩，只能在家写写代码消磨一下时间。
 
-11.   **看你的 GitHub 热力图是全绿的，是怎么做到的呀？真的在 7*24 小时搞开源吗？**
+11.   **看你的 GitHub 热力图是全绿的，是怎么做到的呀？真的在 7\*24 小时搞开源吗？**
 
       **汪师傅：** 下班时候比较早，每天都能写写代码。例如做一做快乐开源任务、做一做黑客松题目，写一写自己的开源项目等等。
       <!-- 汪师傅热力图 -->
@@ -140,7 +140,7 @@ figcaption {
 
 14.   **八卦一下，汪师傅和你的妻子是怎么认识的呀？**
 
-          **汪师傅：** 通过我奶奶介绍认识的，她家当时正好在我奶奶家隔壁开店。然后加上了微信，聊聊天，见见面，这样子就认识了。
+      **汪师傅：** 通过我奶奶介绍认识的，她家当时正好在我奶奶家隔壁开店。然后加上了微信，聊聊天，见见面，这样子就认识了。
 
       <!-- 汪师傅老婆照片集 1-->
        <div style="display: flex; justify-content: center">
@@ -173,12 +173,12 @@ figcaption {
 
 15.   **你有什么想对社区小伙伴说的么？**
 
-          **汪师傅：** 热爱生活，热爱开源。
+        **汪师傅：** 热爱生活，热爱开源。
 
-          > 汪师傅也有博客哦！大家可以去看看👉 https://vlight.me/ ❤️ 一起交流技术，共同进步！
+        > 笔者注✍️：汪师傅也有博客哦！大家可以去看看👉 https://vlight.me/ ❤️ 一起交流技术，共同进步！
 
-      <!-- 汪师傅喝酒照 1-->
-       <div style="display: flex; justify-content: center">
+<!-- 汪师傅喝酒照 1-->
+ <div style="display: flex; justify-content: center">
            <figure style="width: 80%;">
              <img src="../images//wangxin-story/wangxin-11.jpeg"/>
              <figcaption>汪师傅喝酒照 1</figcaption>
