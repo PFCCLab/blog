@@ -45,7 +45,7 @@ co_authors:
 
 1. **torch.compile**。我们已经讨论过它很多次，因此在这里不再讨论。
 2. **MPS 后端**。一个重要功能是支持 MPS 后端，能够充分利用 Apple M1/M2 芯片的 GPU 部分。现在该功能处于测试阶段，随着覆盖范围和稳定性的提升，会支持更多新功能。
-3. **Torch.func**。对于了解这的人来说，它又叫 functorch。和 Jax 类似，它新增支持函数式 API，并且融入在 “PyTorch 世界”中，因此能兼容其他所有 PyTorch 功能。
+3. **torch.func**。对于了解这的人来说，它又叫 functorch。和 Jax 类似，它新增支持函数式 API，并且融入在 “PyTorch 世界”中，因此能兼容其他所有 PyTorch 功能。
 4. **set_default_device**。我不知道大家是否熟悉这个功能。它可以通过改变创建 PyTorch 模型时使用的默认设备，来显著加速初始化（initialization），例如直接在设备上进行初始化。或者如你在一些主题演讲中看到的例子一样，快速的创建模型。通过使用元设备（meta device），即一个没有数据的伪设备（fake device），来跳过模型的初始化过程，直接加载权重。这样就可以避免占用太多内存，进行不必要的初始化等类似事情。
 5. **更好的 transformer**。这是由 PyTorch 团队和众多 maintainers 共同努力做出的重大推进，一起改进 PyTorch 中的 transformer 模型。无论是 transofmer 相关的高层 API ，还是底层运算，你都可以拥有目前的最佳实现。
 
@@ -54,11 +54,11 @@ co_authors:
 ### 2. Spring Docathon
 
 > -  27 active partipants
-> -  5 new tutorials & exampels
+> -  5 new tutorials & examples
 > -  45+ PRs merged
 > -  53+ issues closed
 
-另一个值得一提的重要里程碑是：**今年（2023 年）发起的 Spring Docathon 活动**。该活动共吸引了 27 位开发者参与，成功合入了超过 45 个 PR（Pull Request），解决了 53 个 Issues。非常有效的促进了我们 tutorials 仓库的改进，不仅提高了教程的质量，还增加了新的教程内容，确保我们的教程始终保持最新。
+另一个值得一提的重要里程碑是：**今年（2023 年）发起的 Spring Docathon 活动**。该活动共吸引了 27 位开发者参与，成功合入了超过 45 个 PR（Pull Request），解决了 53 个 Issues。非常有效地促进了我们 [tutorials 仓库](https://github.com/pytorch/tutorials)的改进，不仅提高了教程的质量，还增加了新的教程内容，确保我们的教程始终保持最新。
 
 > 编者注 ✍️：其实飞桨也提供了 [Paddle Docathon](https://github.com/PaddlePaddle/docs/issues/6427) ，活动初衷和 PyTorch 是一样的，但整体难度和质量比起 PyTorch Docathon 来说要低一些。第六期黑客松会有一个专门的赛道：优秀稿件征集与传播，大家也可以敬请期待。
 
