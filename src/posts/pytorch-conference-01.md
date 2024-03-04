@@ -25,9 +25,9 @@ co_authors:
 
 ## Lightning Talk
 
-我的名字是 Alban，是 META 的一名软件工程师，已经在 Pytorch 工作了很长时间，并且主要在 PyTorch 核心库维护方面做了很多工作。
+我的名字是 Alban，是 META 的一名软件工程师，已经在 PyTorch 工作了很长时间，并且主要在 PyTorch 核心库维护方面做了很多工作。
 
-在今天这个快速闪电演讲中，我要给大家介绍一下 Pytorch 的现状。以前参加过大会的人，也许知道我们每年都在进行着类似的讨论。Joe 去年就在这里做了类似演讲。今天我想谈论的是三个重要的 PyTorch 里程碑，以及今年发生的三个重要活动，还会谈论一些有趣的数字。Joe 之前已经给大家展示过其中的一些，但能亲眼看到这些数据总归是很有趣的。而在最后，我会给大家介绍一下如何参与 Pytorch ，以及如何帮助我们一起建设 Pytorch。
+在今天这个快速闪电演讲中，我要给大家介绍一下 PyTorch 的现状。以前参加过大会的人，也许知道我们每年都在进行着类似的讨论。Joe 去年就在这里做了类似演讲。今天我想谈论的是三个重要的 PyTorch 里程碑，以及今年发生的三个重要活动，还会谈论一些有趣的数字。Joe 之前已经给大家展示过其中的一些，但能亲眼看到这些数据总归是很有趣的。而在最后，我会给大家介绍一下如何参与 PyTorch ，以及如何帮助我们一起建设 PyTorch。
 
 ## PyTorch Milestones
 
@@ -45,7 +45,7 @@ co_authors:
 
 1. **torch.compile**。我们已经讨论过它很多次，因此在这里不再讨论。
 2. **MPS 后端**。一个重要功能是支持 MPS 后端，能够充分利用 Apple M1/M2 芯片的 GPU 部分。现在该功能处于测试阶段，随着覆盖范围和稳定性的提升，会支持更多新功能。
-3. **Torch.func**。对于了解这的人来说，它又叫 functorch。和 Jax 类似，它新增支持函数式 API，并且融入在 “PyTorch 世界”中，因此能兼容其他所有 Pytorch 功能。
+3. **Torch.func**。对于了解这的人来说，它又叫 functorch。和 Jax 类似，它新增支持函数式 API，并且融入在 “PyTorch 世界”中，因此能兼容其他所有 PyTorch 功能。
 4. **set_default_device**。我不知道大家是否熟悉这个功能。它可以通过改变创建 PyTorch 模型时使用的默认设备，来显著加速初始化（initialization），例如直接在设备上进行初始化。或者如你在一些主题演讲中看到的例子一样，快速的创建模型。通过使用元设备（meta device），即一个没有数据的伪设备（fake device），来跳过模型的初始化过程，直接加载权重。这样就可以避免占用太多内存，进行不必要的初始化等类似事情。
 5. **更好的 transformer**。这是由 PyTorch 团队和众多 maintainers 共同努力做出的重大推进，一起改进 PyTorch 中的 transformer 模型。无论是 transofmer 相关的高层 API ，还是底层运算，你都可以拥有目前的最佳实现。
 
@@ -133,7 +133,7 @@ co_authors:
 
 我们根据社区里很不错的反馈（包括如何帮助新成员融入、如何让他们共同参与到 PyTorch 的建设中来），创建了一个新页面——PyTorch 终极贡献指南。点击下面的链接可以查看，接下来我也会讲一下如何参与其中。
 
-> Pytorch 终极贡献指南：https://github.com/pytorch/pytorch/wiki/The-Ultimate-Guide-to-PyTorch-Contributions
+> PyTorch 终极贡献指南：https://github.com/pytorch/pytorch/wiki/The-Ultimate-Guide-to-PyTorch-Contributions
 
 ### 2.Non-code contributions
 
@@ -164,5 +164,5 @@ co_authors:
 
 -  PyTorch 生态力量非常强大，是目前 Paddle 或者国内任何一个深度学习框架都无法企及的一个高度。
 -  Paddle 本身的社区治理结构、运作方式，其实是带有一定国内特色的。
--  翻译会议真的很花时间，比单纯的翻译文章累多了，散佬能翻译 30 多篇会议内容真的太强了。目前散佬在和 Linux 基金会取得联系，可能会有专门的团队进行翻译，有兴趣的也可以联系散佬。
--  散佬做的一个英文转录翻译的工具，可以看看：https://github.com/sanbuphy/WhisperTranslator
+-  翻译会议真的很花时间，比单纯的翻译文章累多了，散步能翻译到 30 篇后（总共 60 多篇） 的会议内容真的太强了。目前散步在和 Linux 基金会取得联系，可能会有专门的团队进行翻译，有兴趣加入的也可以联系他。
+-  散步做的一个英文转录翻译的工具，可以看看：https://github.com/sanbuphy/WhisperTranslator
