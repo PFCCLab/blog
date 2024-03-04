@@ -173,22 +173,24 @@ figcaption {
 
 15.   **你有什么想对社区小伙伴说的么？**
 
-        **汪师傅：** 热爱生活，热爱开源。
+      **汪师傅：** 热爱生活，热爱开源。
 
-        > 笔者注✍️：汪师傅也有博客哦！大家可以去看看👉 https://vlight.me/ ❤️ 一起交流技术，共同进步！
+      > 笔者注✍️：汪师傅也有博客哦！大家可以去看看👉 https://vlight.me/ ❤️ 一起交流技术，共同进步！
 
-<!-- 汪师傅喝酒照 1-->
- <div style="display: flex; justify-content: center">
+
+      <!-- 汪师傅喝酒拍的照片集 1-->
+       <div style="display: flex; justify-content: center">
            <figure style="width: 80%;">
              <img src="../images//wangxin-story/wangxin-11.jpeg"/>
-             <figcaption>汪师傅喝酒照 1</figcaption>
+             <figcaption>汪师傅喝酒拍的照片集 1</figcaption>
            </figure>
        </div>
-       <!-- 汪师傅喝酒照 2-->
+
+      <!-- 汪师傅喝酒拍的照片集 2-->
        <div style="display: flex; justify-content: center">
            <figure style="width: 80%;">
              <img src="../images//wangxin-story/wangxin-12.jpeg"/>
-             <figcaption>汪师傅喝酒照 2</figcaption>
+             <figcaption>汪师傅喝酒拍的照片集 2</figcaption>
            </figure>
        </div>
 
