@@ -1,6 +1,6 @@
 ---
 title: 【开源江湖闲聊录】Paddle 六边形战士？揭开汪师傅的神秘面纱～
-date: 2024-3-4
+date: 2024-3-18
 author:
    name: 文潇
    github: wenxiaohahaha
@@ -73,7 +73,7 @@ figcaption {
 
    **汪师傅：** 找工作的时候，一个亲戚正好拍了一张招聘广告，并且发给我了。招聘的公司在宁波，我就顺手投了一份简历，后面被录用了，就去宁波了。工作主要是做生化、免疫、血脂、血球、尿液分析仪里面涉及算法的部分。
 
-   > 笔者注：汪师傅本科毕业于安徽的淮北师范大学！
+   > 笔者注 ✍️：汪师傅本科毕业于安徽的淮北师范大学！
 
 4. **汪师傅工作四年多了，觉得工作后自己最大的变化是什么呢？**
 
@@ -89,7 +89,7 @@ figcaption {
 
 7. **你在 Paddle 社区中做了很多贡献，当时为什么想着加入 Paddle 开源社区？后来又为什么一直坚持给 Paddle 做贡献？你觉得这些贡献有什么意义？**
 
-   **汪师傅：** 我是从学习 OCR 接触到 Paddle 社区的。当时在 AI Studio 上有一门课叫「动手学 OCR·十讲」，学习的过程中开始看 PaddleOCR 的代码和文档。在阅读文档的时候会发现错误，就慢慢开始提一些 typo fix 的 PR。而给 Paddle 框架做贡献则是从 Paddle 黑客松和快乐开源任务开始的。我做的第一个 Paddle 框架的贡献是 [[CodeStyle](https://github.com/PaddlePaddle/Paddle/issues/47143)] Compiler Warning tracking issue 相关的。这些开源贡献的意义大概是加深了对开源框架的理解、提升了自己写代码的能力，对代码质量有了更高的追求。
+   **汪师傅：** 我是从学习 OCR 接触到 Paddle 社区的。当时在 AI Studio 上有一门课叫「动手学 OCR·十讲」，学习的过程中开始看 PaddleOCR 的代码和文档。在阅读文档的时候会发现错误，就慢慢开始提一些 typo fix 的 PR。而给 Paddle 框架做贡献则是从 Paddle 黑客松和快乐开源任务开始的。我做的第一个 Paddle 框架的贡献是 [[CodeStyle] Compiler Warning tracking issue](https://github.com/PaddlePaddle/Paddle/issues/47143) 相关的。这些开源贡献的意义大概是加深了对开源框架的理解、提升了自己写代码的能力，对代码质量有了更高的追求。
    <!-- 汪师傅部分开源任务展示 1 -->
    <div style="display: flex; justify-content: center">
        <figure style="width: 80%;">
@@ -113,7 +113,7 @@ figcaption {
 
    **汪师傅：** 我是以 Paddle2ONNX 的用户角色加入的。郑师傅（[@Zheng-Bicheng](https://github.com/Zheng-Bicheng)）是 PMC Chair，已经提了很多 PR，是主要力量。后面我可能就是多解答一些 issue。
 
-   > 笔者注✍️：为了 Paddle2ONNX 项目的可持续健康发展和加强社区治理， 飞桨社区开源发展工作组决定设立 Paddle2ONNX PMC(Project Management Committee) 来负责 Paddle2ONNX 项目的技术决策和维护。
+   > 笔者注 ✍️：为了 Paddle2ONNX 项目的可持续健康发展和加强社区治理， 飞桨社区开源发展工作组决定设立 Paddle2ONNX PMC(Project Management Committee) 来负责 Paddle2ONNX 项目的技术决策和维护。
 
 10.   **据我所知，汪师傅在一家生物公司工作。为什么在生物公司你还是坚持 AI 开源，而且还是 AI 框架开源？**
 
