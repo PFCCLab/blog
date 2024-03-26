@@ -11,6 +11,7 @@ export interface Post {
     string: string
   }
   excerpt: string | undefined
+  pinned?: boolean
 }
 
 export interface PostsData {
@@ -78,8 +79,18 @@ export default function createPostsLoader(getPostsPerPage: () => number) {
           url,
           excerpt,
           date: formatDate(frontmatter.date),
+          pinned: frontmatter.pinned === true,
         }))
-        .sort((a, b) => b.date.time - a.date.time)
+        // .sort((a, b) => b.date.time - a.date.time)
+        .sort((a, b) => {
+          if (a.pinned && !b.pinned) {
+            return -1
+          } else if (!a.pinned && b.pinned) {
+            return 1
+          } else {
+            return b.date.time - a.date.time
+          }
+        });
       const postsPerPage = getPostsPerPage()
       const numPages = Math.ceil(posts.length / postsPerPage)
       await createPagesDynamicRoutesWithCache(numPages)
