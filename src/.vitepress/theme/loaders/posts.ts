@@ -90,7 +90,7 @@ export default function createPostsLoader(getPostsPerPage: () => number) {
           } else {
             return b.date.time - a.date.time
           }
-        });
+        })
       const postsPerPage = getPostsPerPage()
       const numPages = Math.ceil(posts.length / postsPerPage)
       await createPagesDynamicRoutesWithCache(numPages)
