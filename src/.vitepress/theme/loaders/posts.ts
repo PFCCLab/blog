@@ -81,7 +81,6 @@ export default function createPostsLoader(getPostsPerPage: () => number) {
           date: formatDate(frontmatter.date),
           pinned: frontmatter.pinned === true,
         }))
-        // .sort((a, b) => b.date.time - a.date.time)
         .sort((a, b) => {
           if (a.pinned && !b.pinned) {
             return -1
