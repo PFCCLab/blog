@@ -15,22 +15,22 @@
     "img:compress": "tsx scripts/compress-image.mts"
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.10",
-    "@vite-pwa/vitepress": "^0.3.1",
-    "tailwindcss": "^3.4.0",
-    "tsx": "^4.7.0",
-    "vite-plugin-pwa": "^0.17.4",
-    "vitepress": "1.0.0-rc.34",
-    "vue": "^3.4.3",
+    "@tailwindcss/typography": "^0.5.11",
+    "@vite-pwa/vitepress": "^0.4.0",
+    "tailwindcss": "^3.4.2",
+    "tsx": "^4.7.1",
+    "vite-plugin-pwa": "^0.19.7",
+    "vitepress": "1.0.1",
+    "vue": "^3.4.21",
     "workbox-window": "^7.0.0"
   },
   "devDependencies": {
     "@lint-md/cli": "^2.0.0",
     "@types/markdown-it": "^13.0.7",
-    "@types/node": "^20.10.6",
-    "prettier": "^3.1.1",
-    "sharp": "^0.33.1",
-    "simple-git-hooks": "^2.9.0"
+    "@types/node": "^20.11.30",
+    "prettier": "^3.2.5",
+    "sharp": "^0.33.3",
+    "simple-git-hooks": "^2.11.1"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm run fmt"
