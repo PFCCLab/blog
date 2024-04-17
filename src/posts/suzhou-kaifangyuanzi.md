@@ -18,16 +18,16 @@ author:
 
 赛题有一定难度，但同时奖金也颇为丰厚🤩：
 
-- 赛题一：OCR 端到端识别任务
-  - 一等奖：1 支队伍，每支队伍奖金 15 万元
-  - 二等奖：1 支队伍，每支队伍奖金 4 万元
-  - 三等奖：1 支队伍，每支队伍奖金 1 万元
-  - 开源贡献奖：7 支队伍，荣誉证书
-- 赛题二：通用表格识别任务
-  - 一等奖：1 支队伍，每支队伍奖金 7 万元
-  - 二等奖：1 支队伍，每支队伍奖金 2 万元
-  - 三等奖：1 支队伍，每支队伍奖金 1 万元
-  - 开源贡献奖：7 支队伍，荣誉证书
+-  赛题一：OCR 端到端识别任务
+   -  一等奖：1 支队伍，每支队伍奖金 15 万元
+   -  二等奖：1 支队伍，每支队伍奖金 4 万元
+   -  三等奖：1 支队伍，每支队伍奖金 1 万元
+   -  开源贡献奖：7 支队伍，荣誉证书
+-  赛题二：通用表格识别任务
+   -  一等奖：1 支队伍，每支队伍奖金 7 万元
+   -  二等奖：1 支队伍，每支队伍奖金 2 万元
+   -  三等奖：1 支队伍，每支队伍奖金 1 万元
+   -  开源贡献奖：7 支队伍，荣誉证书
 
 ## 赛程回顾
 
@@ -73,15 +73,15 @@ author:
 
 经过紧张的路演和现场打分，最终决出了我们两个赛题的获奖队伍，如下表所示。
 
-| 赛题   | 奖项       | 团队名称（括号内为 AI Studio 团队名）    | 仓库地址                                                     |
-| ------ | ---------- | -------------------------------------- | ------------------------------------------------------------ |
-| 赛题一 | 一等奖     | openocr                                | https://atomgit.com/paddleocr_competition/openocr            |
-| 赛题一 | 二等奖     | zjj421                                 | https://atomgit.com/paddleocr_competition/zjj421             |
-| 赛题二 | 一等奖     | ocr 识别队（珍珠小田田的团队）          | https://atomgit.com/paddleocr_competition/ocr_recognition    |
-| 赛题二 | 二等奖     | 识别先锋（dudekenny 的团队）            | https://atomgit.com/paddleocr_competition/RecognitionPioneer |
-| 赛题二 | 三等奖     | 豆没有皮吖                             | https://atomgit.com/paddleocr_competition/doumeiyoupiya      |
-| 赛题二 | 开源贡献奖 | 树先生                                 | https://atomgit.com/paddleocr_competition/Mr.Tree            |
-| 赛题二 | 开源贡献奖 | 几支孤鸭嘎嘎嘎（两只孤鸭嘎嘎嘎的团队） | https://atomgit.com/paddleocr_competition/duckgaga           |
+| 赛题   | 奖项       | 团队名称（括号内为 AI Studio 团队名）  | 仓库地址                                                      |
+| ------ | ---------- | -------------------------------------- | ------------------------------------------------------------- |
+| 赛题一 | 一等奖     | openocr                                | https://atomgit.com/paddleocr_competition/openocr             |
+| 赛题一 | 二等奖     | zjj421                                 | https://atomgit.com/paddleocr_competition/zjj421              |
+| 赛题二 | 一等奖     | ocr 识别队（珍珠小田田的团队）         | https://atomgit.com/paddleocr_competition/ocr_recognition     |
+| 赛题二 | 二等奖     | 识别先锋（dudekenny 的团队）           | https://atomgit.com/paddleocr_competition/RecognitionPioneer  |
+| 赛题二 | 三等奖     | 豆没有皮吖                             | https://atomgit.com/paddleocr_competition/doumeiyoupiya       |
+| 赛题二 | 开源贡献奖 | 树先生                                 | https://atomgit.com/paddleocr_competition/Mr.Tree             |
+| 赛题二 | 开源贡献奖 | 几支孤鸭嘎嘎嘎（两只孤鸭嘎嘎嘎的团队） | https://atomgit.com/paddleocr_competition/duckgaga            |
 | 赛题二 | 开源贡献奖 | 长城信息（飞行的的团队）               | https://atomgit.com/paddleocr_competition/GreatWallInfo_task2 |
 
 恭喜所有的获奖队伍！🎉🎉🎉你们都是开源创新之路上的佼佼者！🚀🚀🚀
