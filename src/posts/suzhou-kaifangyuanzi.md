@@ -1,5 +1,5 @@
 ---
-title: PaddleOCR 算法模型挑战赛圆满落幕
+title: PaddleOCR 算法模型挑战赛圆满落幕 & 杭州开发者线下 Meetup
 date: 2024-04-17
 author:
    name: 尤师傅
@@ -7,6 +7,8 @@ author:
 ---
 
 2024 年 4 月 12 日，[开放原子开源大赛 PaddleOCR 算法模型挑战赛](https://competition.atomgit.com/competitionInfo?id=d25e62a0d7f27876a8c4219bfc0be90e) 决赛路演在苏州工业园区人工智能产业园 G1 栋 3 楼会议中心顺利举行，并取得圆满成功！🎉价值 15 万元的大奖花落谁家？选手们的技术方案有多硬核？快来看看吧~
+
+BTW，在 4 月 14 日 我们飞桨开源社区的工作人员也顺路来到杭州，在西子湖畔的一家餐厅里举办了杭州开发者线下 Meetup，和众多熟悉又陌生的“网友”成功面基 😊。
 
 <!-- more -->
 
@@ -51,7 +53,7 @@ author:
 
 ![host](../images/suzhou-kaifangyuanzi/sun_host.jpg)
 
-我则有幸抱住军哥和涛姐的大腿，当了一回评审。😎
+我则有幸抱住军哥（[@jzhang533](https://github.com/@jzhang533)）和涛姐的大腿，当了一回评审。😎
 
 ![panelist](../images/suzhou-kaifangyuanzi/panelist.jpg)
 
@@ -97,3 +99,16 @@ author:
 虽然在国内开源项目的纯社区化治理道阻且艰，但飞桨团队还是要积极推动尝试。如果做成了，将是非常有意义的一件事。👊
 
 > 大家讨论的太入神，都忘记拍照留念了 😭
+
+## 杭州开发者线下 Meetu 剪影
+
+在 4 月 14 日，我们也邀请了 14 位（其中🐦了一位）飞桨开源社区的开发者，在西湖虎跑胖的餐厅里面基交友～军哥给每人都准备了一份神秘礼品哦 🎁。
+
+![meetup-1](../images/suzhou-kaifangyuanzi/meetup-1.jpg)
+
+> 以下为痛失真名现场
+>
+> -  第一排（从左往右）：马贺达 [@WintersMontagne10335](https://github.com/WintersMontagne10335)、尤江彬 [@Harryoung](https://github.com/Harryoung)、张军 [@jzhang533](https://github.com/jzhang533)、骆涛 [@luotao123](https://github.com/luotao123)、董黄莹 [@1want2sleep](https://github.com/1want2sleep)、吴奕琳 [@WoWYoYLoL](https://github.com/WoWYoYLoL)、方国勇 [@ooooo-create](https://github.com/ooooo-create)、杨昌辉 [@Yang-Changhui](https://github.com/Yang-Changhui)、刘佳新家属
+> -  第二排（从左往右）：汪昕 [@GreatV](https://github.com/GreatV)、吴荣飞 [@lknt](https://github.com/lknt)、刘益斌 [@YibinLiu666](https://github.com/YibinLiu666)、孙钟恺 [@sunzhongkai588](https://github.com/sunzhongkai588)、王海涛 [@yulangz](https://github.com/yulangz)、叶柯 [@cocoshe](https://github.com/cocoshe)、周高威 [@Eacient](https://github.com/Eacient)、杨泽群 [@idontkonwher](https://github.com/idontkonwher)、刘佳新 [@Marshalldteach](https://github.com/Marshalldteach)
+
+![meetup-2](../images/suzhou-kaifangyuanzi/meetup-2.jpg)
