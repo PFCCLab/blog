@@ -154,7 +154,7 @@ NKNaN 的职业生涯同样精彩纷呈——她曾冲动地辞去稳定的工�
 
 11.   **聊聊开源吧～是什么契机接触飞桨的呀？**
 
-      **NKNaN：** 在去年五六月的时候，我想做一些开源项目提升一下。因为当时抱有一个目的——进大厂，所以觉得做一些开源项目应该是有好处的，然后想做深度学习领域的开源项目，就去 GitHub 搜一些国内的深度学习社区嘛，看到 Paddle 仓库有一个 project —— call for contribution，在里边的列表里看到 paddlescience 有个题目，需要做 HamiltonianMonteCarlo（HMC） API。MonteCarlo 我肯定是知道的，但对 HMC 不太熟悉，我就搜了一下是啥样子的，感觉应该还挺好实现的，就帮着做了一下。
+      **NKNaN：** 在去年五六月的时候，我想做一些开源项目提升一下。因为当时抱有一个目的——进大厂，所以觉得做一些开源项目应该是有好处的，然后想做深度学习领域的开源项目，就去 GitHub 搜一些国内的深度学习社区嘛，看到 Paddle 仓库有一个 project —— call for contribution，在里边的列表里看到 [PaddleScience](https://github.com/PaddlePaddle/PaddleScience) 有个题目，需要做 HamiltonianMonteCarlo（HMC）API。MonteCarlo 我肯定是知道的，但对 HMC 不太熟悉，我就搜了一下是啥样子的，感觉应该还挺好实现的，就帮着做了一下。
 
 12.   **像科学计算、API 功能增强之类的开源任务都有一定挑战性的，但对你这样的大佬来说是不是难度不大？**
 
