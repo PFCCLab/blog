@@ -15,9 +15,9 @@ PFCC blog 采用了 [VitePress](https://vitepress.dev/) 作为静态网站生成
 ```jsonc
 {
    "[html][markdown][javascript][typescript][vue][jsonc][json]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
    },
-   "editor.formatOnSave": true,
+   "editor.formatOnSave": true
 }
 ```
 
