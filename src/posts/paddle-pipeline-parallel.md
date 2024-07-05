@@ -13,7 +13,7 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 ## 一、分布式集合通信模式
 
-集合通信模型适合处理CV/NLP领域这样具有稠密参数的模型。它有多种方式将数据/模型切分到多个设备上。每个设备可以成为一个Worker，每个Worker都需要及时的知道全局梯度信息。这样的话，每个Worker都需要将自己的梯度信息发送给其他的Worker，同时也需要接收其他Worker的梯度信息。这样的通信方式就是集合通信模式。
+集合通信模型适合处理 CV/NLP 领域这样具有稠密参数的模型。它有多种方式将数据/模型切分到多个设备上。每个设备可以成为一个 Worker，每个 Worker 都需要及时的知道全局梯度信息。这样的话，每个 Worker 都需要将自己的梯度信息发送给其他的 Worker ，同时也需要接收其他 Worker 的梯度信息。这样的通信方式就是集合通信模式。
 
 集合通信有好几种并行方式：
 
@@ -45,7 +45,7 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 ### 1.2 模型并行
 
-在模型参数较多的情况下，一张卡无法放下完整的模型参数，这时候就需要将模型参数切分到多张卡上,让我们先通过一张图了解一下模型并行的原理：
+在模型参数较多的情况下，一张卡无法放下完整的模型参数，这时候就需要将模型参数切分到多张卡上，让我们先通过一张图了解一下模型并行的原理：
 
 ![picture 0](../images/paddle-pipeline-parallel/42e5a90abf00a492f23160dbf9ff037623645b44ae902e49b23578f6a5f62b2f.jpg)  
 
@@ -66,7 +66,7 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 > 朴素流水并行的缺点：
 > 
-> 在任意给定时刻，除了一个 GPU 之外的其他所有 GPU 都是空闲的。因此，如果使用 4 个 GPU，则几乎等同于将单个 GPU 的内存量增加四倍，而其他资源 (如计算) 相当于没用上。所以，朴素流水线存在很多的Bubble。因此，朴素的流水线并行将会导致GPU使用率过低。
+> 在任意给定时刻，除了一个 GPU 之外的其他所有 GPU 都是空闲的。因此，如果使用 4 个 GPU，则几乎等同于将单个 GPU 的内存量增加四倍，而其他资源 (如计算) 相当于没用上。所以，朴素流水线存在很多的 Bubble 。因此，朴素的流水线并行将会导致 GPU 使用率过低。
 
 
 ![picture 3](../images/paddle-pipeline-parallel/2443fea068b43f57f4571d2e1ad35afe9d1de3a8c69491d0c390b3705835a665.jpg)  
@@ -83,32 +83,32 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 混合并行是指同时使用数据并行和流水线并行的方式，以 GPT-3 为例，以下是它训练时的设备并行方案：
 
-它首先被分为 64 个阶段，进行流水并行。每个阶段都运行在 6 台 DGX-A100 主机上。在6台主机之间，进行的是数据并行训练；每台主机有 8 张 GPU 显卡，同一台机器上的8张 GPU 显卡之间是进行模型并行训练$^{[1]}$。
+它首先被分为 64 个阶段，进行流水并行。每个阶段都运行在 6 台 DGX-A100 主机上。在6台主机之间，进行的是数据并行训练；每台主机有 8 张 GPU 显卡，同一台机器上的 8 张 GPU 显卡之间是进行模型并行训练$^{[1]}$。
 
 ![picture 2](../images/paddle-pipeline-parallel/ef6685e22ae1f3433ea2495c2d0633e697a0d37de6020d4e23e6fa58c826e540.png)  
 
 
-## 二、Paddle静态图流水并行
+## 二、Paddle 静态图流水并行
 
-在Paddle的静态图在流水线并行中,一个训练迭代通常被划分为三个子阶段：
+在 Paddle 的静态图在流水线并行中，一个训练迭代通常被划分为三个子阶段：
 
-- Forward: 前向计算,每个阶段计算并输出中间结果给下一个阶段;
-- Backward: 反向传播,每个阶段根据上一个阶段的梯度计算并传递当前阶段的梯度;
-- Optimize: 参数更新,收集所有阶段的梯度并更新模型参数。
+- Forward：前向计算，每个阶段计算并输出中间结果给下一个阶段；
+- Backward：反向传播，每个阶段根据上一个阶段的梯度计算并传递当前阶段的梯度；
+- Optimize：参数更新，收集所有阶段的梯度并更新模型参数。
 
-Paddle目前已经实现的流水线编排方式有两种，分别是：FThenB和1F1B。下面我们分别进行介绍：
+Paddle 目前已经实现的流水线编排方式有两种，分别是： FThenB 和 1F1B。下面我们分别进行介绍：
 
 ### 2.1 FThenB 编排模式
 
 `FThenB` 的编排模式也就是上面说到的微批次流水线并行，之所以叫做 `FThenB` 是因为在这种编排模式下，每个设备先执行前向计算，然后再执行反向传播。等待所有设备都执行完前向计算之后，再开始执行反向传播。
 
-`FThenB` 的编排模式将 mini-batch 细分为多个更小的 micro-batch（微批），送入GPU进行训练，来提高并行程度。但是这样做也有一个坏处就是，那就是把 batch 拆小了之后，对于那些需要统计量的层（如：Batch Normalization），就会导致计算变得麻烦，需要重新实现。而且 `Fthen-B` 模式由于缓存了多个 micro-batch 的中间变量和梯度，显存的实际利用率并不高。
+`FThenB` 的编排模式将 mini-batch 细分为多个更小的 micro-batch（微批），送入 GPU 进行训练，来提高并行程度。但是这样做也有一个坏处就是，那就是把 batch 拆小了之后，对于那些需要统计量的层（如：Batch Normalization），就会导致计算变得麻烦，需要重新实现。而且 `Fthen-B` 模式由于缓存了多个 micro-batch 的中间变量和梯度，显存的实际利用率并不高。
 
 ### 2.2 FThenB 相关代码解读
 
 在初始化 engine 类的时候会传入 `strategy` 参数，这个参数是一个 `auto.Strategy` 类的实例，用于配置流水线并行的策略。在 Strategy 类中，有一个 `pipeline` 属性，用于指定流水并行的编排模式。
 
-在 Parallelizer 执行 `parallel` 时候会在 `_apply_post_optimization` 中将编排模式（schedule_mode）保存到 `main_program._pipeline_opt["standalone_opt"]` 中。这个属性会在 ExecutorCache 中的 `_get_program_and_executor` 中被读取，用于编排Program。下面是相关代码：
+在 Parallelizer 执行 `parallel` 时候会在 `_apply_post_optimization` 中将编排模式（schedule_mode）保存到 `main_program._pipeline_opt["standalone_opt"]` 中。这个属性会在 ExecutorCache 中的 `_get_program_and_executor` 中被读取，用于编排 Program。下面是相关代码：
 
 ```python
 # python/paddle/base/executor.py
@@ -155,7 +155,7 @@ def apply_pass(main_program, startup_program, pass_name, pass_attr={}):
 
 编排的主要入口是 `pipeline_pass.apply`，`FThenB` 和 `1F1B` 的核心代码在 `pipeline_scheduler_pass.py` 中，其中还使用了一些继承类。下面我们先来梳理一下类之间的继承关系。其中主要涉及到的类包括：PassBase、PipelinePassBase、PipelineFThenBPass和Pipeline1F1BPass。
 
-PassBase 是所有Pass的基类，PipelinePassBase 是所有流水线编排Pass的基类，PipelineFThenBPass 和 Pipeline1F1BPass 分别是 FThenB 和 1F1B 的编排Pass。
+PassBase 是所有 Pass 的基类，PipelinePassBase 是所有流水线编排 Pass 的基类，PipelineFThenBPass 和 Pipeline1F1BPass 分别是 FThenB 和 1F1B 的编排 Pass。
 
 ```python
 PassBase - PipelinePassBase - PipelineFThenBPass
@@ -175,7 +175,7 @@ def _apply_single_impl(self, main_program, startup_program, context):
         startup_program (Program): 启动Program。
         context (PassContext): Pass的上下文信息。
     """
-    # 获取到拆分后的子Program和对应的类型
+    # 获取到拆分后的子 Program 和对应的类型
     job_types, sub_programs = self._partial_programs(main_program)
 
     jobs = self._create_job_list()
@@ -199,31 +199,31 @@ FThenB 编排的实现逻辑在 PipelineFThenBPass 类中实现，它继承自 P
 # python/paddle/distributed/passes/pipeline_scheduler_pass.py
 def _partial_programs(self, program):
     """
-    将主Program进行拆分，还可以实现前向和后向的计算任务重叠以提高计算效率。
+    将主 Program 进行拆分，还可以实现前向和后向的计算任务重叠以提高计算效率。
 
     Args:
         program (Program): 主Program。
 
     Returns:
-        tuple: 包含两个列表，第一个列表包含子Program的类型（如LR、FORWARD、BACKWARD、OPT），第二个列表包含相应的子Program。
+        tuple: 包含两个列表，第一个列表包含子 Program 的类型（如 LR、FORWARD、BACKWARD、OPT），第二个列表包含相应的子 Program。
     """
-    # 注意：标志 "enable_send_recv_overlap" 可能会增加GPU的保留内存。
+    # 注意：标志 "enable_send_recv_overlap" 可能会增加 GPU 的保留内存。
     enable_send_recv_overlap = self.get_attr("enable_send_recv_overlap")
     types = [LR, FORWARD, BACKWARD, OPT]
 
-    # 获取前向和后向子Program的列表
+    # 获取前向和后向子 Program 的列表
     sub_program_list = _program_for_fthenb_and_1f1b(
         program, enable_send_recv_overlap
     )
     return types, sub_program_list
 ```
 
-其中 `_program_for_fthenb_and_1f1b` 的主要作用是将主Program进行拆分，还可以实现前向和后向的计算任务重叠以提高计算效率。 这里我们暂时不讨论任务重叠的实现，只关注拆分的实现逻辑。下面是 `_program_for_fthenb_and_1f1b` 的实现逻辑：
+其中 `_program_for_fthenb_and_1f1b` 的主要作用是将主 Program 进行拆分，还可以实现前向和后向的计算任务重叠以提高计算效率。 这里我们暂时不讨论任务重叠的实现，只关注拆分的实现逻辑。下面是 `_program_for_fthenb_and_1f1b` 的实现逻辑：
 
 ```python
 # python/paddle/distributed/passes/pipeline_scheduler_pass.py
 def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
-    # 为fthenb和1f1bProgram创建子Program列表
+    # 为 fthenb 和1f1bProgram创建子 Program 列表
 
     if enable_send_recv_overlap:
         # 如果启用了发送接收操作的重叠，调用函数以进行重叠
@@ -232,13 +232,13 @@ def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
         # 否则，插入同步操作以确保顺序执行
         _insert_sync_for_fthenb_1f1b(program)
 
-    # 创建四个子Program，分别用于LR、FORWARD、BACKWARD和OPT任务
+    # 创建四个子 Program，分别用于 LR、FORWARD、BACKWARD和 OPT 任务
     lr_prog = Program()
     fwd_prog = Program()
     bwd_prog = Program()
     opt_prog = Program()
 
-    # 分割Program并将操作添加到各个子Program中
+    # 分割 Program 并将操作添加到各个子 Program 中
     def _split_ops(block):
         # 根据操作的角色将操作分成四类：LR、FORWARD、BACKWARD和OPT
         lr_ops = []
@@ -263,15 +263,15 @@ def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
         return lr_ops, fwd_ops, bwd_ops, opt_ops
 
     def _add_ops_into_block(src_block, dst_block, ops):
-        # 将操作添加到指定的子Program块中
+        # 将操作添加到指定的子 Program 块中
         for op in ops:
             _create_program(src_block, dst_block, op)
 
     for idx, src_block in enumerate(program.blocks):
-        # 遍历主Program的块
+        # 遍历主 Program 的块
         lr_ops, fwd_ops, bwd_ops, opt_ops = _split_ops(src_block)
         if idx == 0:
-            # 对于第一个块，添加LR、FORWARD、BACKWARD和OPT操作到相应子Program块
+            # 对于第一个块，添加 LR、FORWARD、BACKWARD和 OPT 操作到相应子 Program 块
             lr_block = lr_prog.block(0)
             _add_ops_into_block(src_block, lr_block, lr_ops)
 
@@ -285,7 +285,7 @@ def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
             _add_ops_into_block(src_block, opt_block, opt_ops)
         else:
             if len(lr_ops):
-                # 对于后续块，如果有LR操作，创建新的LR子Program块并将LR操作添加到其中
+                # 对于后续块，如果有 LR 操作，创建新的 LR 子 Program 块并将 LR 操作添加到其中
                 lr_block = lr_prog._create_block(
                     parent_idx=src_block.parent_idx
                 )
@@ -293,7 +293,7 @@ def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
                 _add_ops_into_block(src_block, lr_block, lr_ops)
 
             if len(fwd_ops):
-                # 同样，为FORWARD操作创建新子Program块
+                # 同样，为 FORWARD 操作创建新子 Program 块
                 fwd_block = fwd_prog._create_block(
                     parent_idx=src_block.parent_idx
                 )
@@ -301,7 +301,7 @@ def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
                 _add_ops_into_block(src_block, fwd_block, fwd_ops)
 
             if len(bwd_ops):
-                # 为BACKWARD操作创建新子Program块
+                # 为 BACKWARD 操作创建新子 Program 块
                 bwd_block = bwd_prog._create_block(
                     parent_idx=src_block.parent_idx
                 )
@@ -309,7 +309,7 @@ def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
                 _add_ops_into_block(src_block, bwd_block, bwd_ops)
 
             if len(opt_ops):
-                # 为OPT操作创建新子Program块
+                # 为 OPT 操作创建新子 Program 块
                 opt_block = opt_prog._create_block(
                     parent_idx=src_block.parent_idx
                 )
@@ -337,13 +337,13 @@ def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
     bwd_prog._rollback()
     opt_prog._rollback()
 
-    # 返回四个子Program，依次为LR、FORWARD、BACKWARD和OPT
+    # 返回四个子 Program，依次为 LR、FORWARD、BACKWARD和OPT
     return [lr_prog, fwd_prog, bwd_prog, opt_prog]
 ```
 
 其中 `_insert_sync_for_fthenb_1f1b` 的作用是插入同步操作，以实现"F-Then-B"和"1F-1B"流水线并行模式。插入同步操作的主要目的是确保在流水线并行训练中各个阶段（前向传播、后向传播、优化等）的计算流和通信流之间能够协同工作，以保持数据的一致性和正确性。这里我们不做详细介绍，感兴趣的小伙伴可以自行阅读源码 ([_insert_sync_for_fthenb_1f1b](https://github.com/AndSonder/Paddle/blob/1e7798fb1a0f1fdba48c006a17b30303aec8df57/python/paddle/distributed/passes/pass_utils.py#L409-L514))。
 
-`_program_for_fthenb_and_1f1b` 剩下的主要逻辑就是将主Program进行拆分，然后将操作添加到各个子Program中，我们一共有四个子Program，分别用于LR、FORWARD、BACKWARD和OPT任务。
+`_program_for_fthenb_and_1f1b` 剩下的主要逻辑就是将主 Program 进行拆分，然后将操作添加到各个子 Program 中，我们一共有四个子 Program，分别用于 LR、FORWARD、BACKWARD和 OPT 任务。
 
 在获得了 `job_types` 和 `sub_programs` 之后，我们就可以调用 `_create_job_list` 方法来创建 Job 列表。下面是 `_create_job_list` 的实现逻辑：
 
@@ -354,7 +354,7 @@ def _create_job_list(self):
     创建前向-后向流水线并行计算任务的任务列表。
 
     Returns:
-        list: 包含不同类型计算任务的列表，如LR、FORWARD、BACKWARD、OPT。
+        list: 包含不同类型计算任务的列表，如 LR、FORWARD、BACKWARD、OPT。
     """
     # 获取micro-batch的数量，通常由外部传递给流水线并行计算。
     num_micro_batches = self.get_attr("num_micro_batches")
@@ -380,14 +380,14 @@ def _create_job_list(self):
 
     # 创建一个优化任务，通常在所有micro-batch计算后执行。
     opt_job = core.Job(OPT)
-    opt_job.set_micro_batch_id(0)  # 通常只有一个优化任务，所以micro-batch次ID为0
+    opt_job.set_micro_batch_id(0)  # 通常只有一个优化任务，所以micro-batch次 ID 为0
     job_list.append(opt_job)
 
     # 返回包含不同类型计算任务的任务列表。
     return job_list
 ```
 
-由于 `FThanB` 编排策略就是在所有的 Forward 计算完成之后才会进行 Backward 计算，所以在 `_create_job_list` 中，我们会为每个 micro-batch 创建前向计算任务和后向计算任务。最后添加一个优化任务。 在获取了jobs之后，我们就可以将它们添加到 `plan` 中，然后返回 `plan`。
+由于 `FThanB` 编排策略就是在所有的 Forward 计算完成之后才会进行 Backward 计算，所以在 `_create_job_list` 中，我们会为每个 micro-batch 创建前向计算任务和后向计算任务。最后添加一个优化任务。 在获取了 jobs 之后，我们就可以将它们添加到 `plan` 中，然后返回 `plan`。
 
 ```python
 # python/paddle/distributed/passes/pipeline_scheduler_pass.py
@@ -400,7 +400,7 @@ def _apply_single_impl(self, main_program, startup_program, context):
 
 > jobs 和 type_to_program 之间的关系是怎样的？
 > 
-> jobs 是一个列表，包含了不同类型的计算任务，如 LR、FORWARD、BACKWARD、OPT。type_to_program 是一个字典，key 是计算任务的类型，value 是对应的子Program。
+> jobs 是一个列表，包含了不同类型的计算任务，如 LR、FORWARD、BACKWARD、OPT。type_to_program 是一个字典，key 是计算任务的类型，value 是对应的子 Program。
 
 
 ### 2.3 1F1B 编排模式
@@ -416,11 +416,11 @@ def _apply_single_impl(self, main_program, startup_program, context):
 
 ### 2.4 1F1B 相关代码解读
 
-1F1B 的编排策略顾名思义就是一个Forward之后跟一个Backward，这里的Forward和Backward都是指一个 micro-batch 的计算。1F1B 编排的实现逻辑在 Pipeline1F1BPass 类中实现，它继承自 PipelinePassBase 类。Pipeline1F1BPass 中重写了 `_partial_programs` 和 `_create_job_list` 方法。 `_partial_programs` 方法的实现逻辑如下
+1F1B 的编排策略顾名思义就是一个 Forward 之后跟一个 Backward，这里的 Forward 和 Backward 都是指一个 micro-batch 的计算。1F1B 编排的实现逻辑在 Pipeline1F1BPass 类中实现，它继承自 PipelinePassBase 类。Pipeline1F1BPass 中重写了 `_partial_programs` 和 `_create_job_list` 方法。 `_partial_programs` 方法的实现逻辑如下
 
 ```python
 def _partial_programs(self, program):
-    # 获取 "enable_send_recv_overlap" 标志，该FLAG可能增加显存消耗。
+    # 获取 "enable_send_recv_overlap" 标志，该 FLAG 可能增加显存消耗。
     enable_send_recv_overlap = self.get_attr("enable_send_recv_overlap")
 
     # 定义计算任务的类型列表，包括 LR、FORWARD、BACKWARD 和 OPT。
@@ -466,7 +466,7 @@ def _partial_programs(self, program):
     return types, sub_programs
 ```
 
-这里面的 `_backward_forward_overlap` 主要是用于实现前向传播和后向传播之间的交叠，是1F1B调度的优化算法。我们这里不做详细介绍，感兴趣的小伙伴可以自行阅读源码。除了 `_backward_forward_overlap` 之外，1F1B 的 `_partial_programs` 和 FThenB 的 `_partial_programs` 逻辑是一样的，都是调用 `_program_for_fthenb_and_1f1b` 函数，根据输入的 program 和 enable_send_recv_overlap 创建子Program。
+这里面的 `_backward_forward_overlap` 主要是用于实现前向传播和后向传播之间的交叠，是1F1B调度的优化算法。我们这里不做详细介绍，感兴趣的小伙伴可以自行阅读源码。除了 `_backward_forward_overlap` 之外，1F1B 的 `_partial_programs` 和 FThenB 的 `_partial_programs` 逻辑是一样的，都是调用 `_program_for_fthenb_and_1f1b` 函数，根据输入的 program 和 enable_send_recv_overlap 创建子 Program。
 
 下面我们来看看 `_create_job_list` 的实现逻辑：
 
@@ -500,7 +500,7 @@ def _create_job_list(self):
     backward_micro_batch_id = 0
     for i in range(micro_batch_in_1f1b):
         # 为稳定阶段中的每个计算任务（BACKWARD和FORWARD）创建对应的任务
-        # 每个micro-batch中都有一个BACKWARD和一个FORWARD计算任务
+        # 每个micro-batch中都有一个 BACKWARD 和一个 FORWARD 计算任务
         for job_type in self.jobs_in_stable_phase:
             job = core.Job(job_type)
             micro_batch_id = (
@@ -541,7 +541,7 @@ def _create_job_list(self):
 python -m paddle.distributed.launch --gpus 0,1,2,3 train.py
 ```
 
-这个 `paddle.distributed.launch` 模块会启动多个进程，每个进程都会执行 `train.py`，并且会传入不同的环境变量，用于指定当前进程的角色和进程数量。下面分析一下每个进程里面上面拆分出来的job是如何执行的。
+这个 `paddle.distributed.launch` 模块会启动多个进程，每个进程都会执行 `train.py`，并且会传入不同的环境变量，用于指定当前进程的角色和进程数量。下面分析一下每个进程里面上面拆分出来的 job 是如何执行的。
 
 在获取到编排好的 `job_list` 之后，我们就可以初始化 `Executor` 对象，然后执行 `Executor` 的 `run` 方法。下面是初始化 `StandaloneExecutor` 对象的代码：
 
@@ -601,7 +601,7 @@ StandaloneExecutor::StandaloneExecutor(const platform::Place& place,
   // 获取计划中的所有Job
   const auto& jobs = plan_.JobList();
 
-  // 对每个Job执行以下操作。
+  // 对每个 Job 执行以下操作。
   for (const auto& job : jobs) {
     const std::string& job_type = job->Type();
     std::shared_ptr<ProgramDesc> program = nullptr;
@@ -635,7 +635,7 @@ StandaloneExecutor::StandaloneExecutor(const platform::Place& place,
     // 当前仅支持 CPU。
     // 如果启用新 IR，创建一个包含计算的 IR 程序并将其更新为计划。
     if (FLAGS_enable_new_ir_in_executor) {
-      ... // 新IR相关代码暂不讨论
+      ... // 新 IR 相关代码暂不讨论
     } else {
       // 创建 InterpreterCore 并将其存储在 interpretercores_ 中。
       interpretercores_.emplace_back(
@@ -658,7 +658,7 @@ StandaloneExecutor::StandaloneExecutor(const platform::Place& place,
 }
 ```
 
-在初始化的时候，Paddle会为每个job都创建一个 `InterpreterCore` 对象，然后将这些 `InterpreterCore` 对象存储在 `interpretercores_` 中。在后续的执行过程中，Paddle会根据不同job执行不同 `InterpreterCore` 对象。初始化了StandaloneExecutor对象之后，我们就可以执行 `run` 方法了。下面是 C++ 端 `run` 方法的实现逻辑：
+在初始化的时候，Paddle会为每个 job 都创建一个 `InterpreterCore` 对象，然后将这些 `InterpreterCore` 对象存储在 `interpretercores_` 中。在后续的执行过程中，Paddle会根据不同 job 执行不同 `InterpreterCore` 对象。初始化了 StandaloneExecutor 对象之后，我们就可以执行 `run` 方法了。下面是 C++ 端 `run` 方法的实现逻辑：
 
 ```cpp
 paddle::framework::FetchList StandaloneExecutor::Run(
@@ -710,7 +710,7 @@ paddle::framework::FetchList StandaloneExecutor::Run(
           interpretercores_[type_to_first_id[job_type]]);
     }
 
-    // 如果作业的数量大于 1 且作业类型不是 "forward"，则运行作业（使用一个空的临时feed名称列表）。
+    // 如果作业的数量大于 1 且作业类型不是 "forward"，则运行作业（使用一个空的临时 feed 名称列表）。
     // 否则，运行作业并传递真正的 feed 名称列表。
     if (jobs.size() > 1 && job_type != "forward") {
       const std::vector<std::string> tmp_feed_names = {};
@@ -770,25 +770,25 @@ paddle::framework::FetchList StandaloneExecutor::Run(
 
 ### 3.1 工作背景
 
-当下大模型的训练时间较长，分布式训练时序图的可视化对于调试和分析模型的训练过程非常重要。当下没有工具能够直接给出各个GPU设备上不同Job的运行区间，因此我们需要设计一个可视化工具来实现这个功能。
+当下大模型的训练时间较长，分布式训练时序图的可视化对于调试和分析模型的训练过程非常重要。当下没有工具能够直接给出各个 GPU 设备上不同 Job 的运行区间，因此我们需要设计一个可视化工具来实现这个功能。
 
-当下的工作大多是可视化出cpu端的各个Job的运行区间。由于gpu任务的异步性，在cpu端启动的Job并不一定在gpu端立即执行，因此**cpu端的可视化并不能直接反映出gpu端的运行情况**。
+当下的工作大多是可视化出 cpu 端的各个 Job 的运行区间。由于 gpu 任务的异步性，在 cpu 端启动的 Job 并不一定在 gpu 端立即执行，因此 **cpu端的可视化并不能直接反映出 gpu 端的运行情况**。
 
 ![picture 8](../images/paddle-pipeline-parallel/e36dd9884d123d949f5dd7847461757f2d6a30cb2b2cd25aa58dae41c0917ed1.jpg)  
 
 
 ### 3.2 可视化实现思路
 
-我们的可视化工具的实现思路是：**在gpu端各个Job结束的时候，打印出Job的类型和结束时间，然后在使用python脚本这些信息，绘制出各个Job的运行区间**。
+我们的可视化工具的实现思路是：**在 gpu 端各个 Job 结束的时候，打印出 Job 的类型和结束时间，然后在使用 python 脚本这些信息，绘制出各个 Job 的运行区间**。
 
 ![picture 9](../images/paddle-pipeline-parallel/9c0fc9d4f5f7045fac7aafcfa4e9021da7762dc5d3dccb813fc5d8cf134a687d.jpg)  
 
 
 ### 3.3 准确定位Job的开始与结束时间
 
-Paddle中所有的计算任务都是在一个流上完成的，这个流我们叫做计算流。为了能够准确定位Job的开始与结束，我们需要找到每个Job中第一个计算算子，和最后一个计算算子，并在第一个计算算子之前插入一个 `cuda stream callback` ，在最后一个计算算子之后插入一个 `cuda callback`。由于 `cuda stream callback` 会等待计算流中前面的任务执行完毕后才会执行，因此我们可以准确的定位出Job的开始时间和结束时间。
+Paddle中所有的计算任务都是在一个流上完成的，这个流我们叫做计算流。为了能够准确定位 Job 的开始与结束，我们需要找到每个 Job 中第一个计算算子，和最后一个计算算子，并在第一个计算算子之前插入一个 `cuda stream callback` ，在最后一个计算算子之后插入一个 `cuda callback`。由于 `cuda stream callback` 会等待计算流中前面的任务执行完毕后才会执行，因此我们可以准确的定位出 Job 的开始时间和结束时间。
 
-前面说到过每个Job都是由一个 `InterpreterCore` 对象来执行的，我们在每个 `InterpreterCore` 对象中使用自定义类来存储Job的开始时间和结束时间。下面是每个 `InterpreterCore` 对象中插入 `cuda stream callback` 和 `cuda callback` 的代码：
+前面说到过每个 Job 都是由一个 `InterpreterCore` 对象来执行的，我们在每个 `InterpreterCore` 对象中使用自定义类来存储 Job 的开始时间和结束时间。下面是每个 `InterpreterCore` 对象中插入 `cuda stream callback` 和 `cuda callback` 的代码：
 
 ```cpp
 // paddle/fluid/framework/new_executor/program_interpreter.cc
@@ -798,7 +798,7 @@ void ProgramInterpreter::RunInstruction(const Instruction& instr_node) {
     instr_node.WaitEvent(place_);
 #if defined(PADDLE_WITH_CUDA)
     if (enable_job_schedule_profiler_) {
-      // 如果timer还没插入开始的callback并且当前的op不是通信op，那么就插入开始的callback
+      // 如果 timer 还没插入开始的 callback 并且当前的 op 不是通信 op，那么就插入开始的callback
       if (!calculate_stream_timer_->IsStarted() &&
           !interpreter::IsCommunicationOp(instr_node)) {
         VLOG(3) << "Start calculated stream timer from op: " << op->Type();
@@ -820,7 +820,7 @@ void ProgramInterpreter::ExecuteInstructionList(
     for (int i = vec_instr.size() - 1; i >= 0; --i) {
       auto& instr_node = vec_instr[i];
       if (!interpreter::IsCommunicationOp(instr_node)) {
-        // 记录下来最后一个计算op的id
+        // 记录下来最后一个计算 op 的id
         VLOG(3) << "Last calculated op type: " << instr_node.OpBase()->Type();
         last_calculate_instr_id_ = i;
         break;
@@ -841,7 +841,7 @@ void ProgramInterpreter::RunInstructionAsync(size_t instr_id) {
 
 #if defined(PADDLE_WITH_CUDA)
     if (enable_job_schedule_profiler_) {
-      // 给最后一个计算op之后插入一个callback
+      // 给最后一个计算 op 之后插入一个callback
       if (instr_id == last_calculate_instr_id_ &&
           calculate_stream_timer_->IsStarted()) {
         VLOG(3) << "Stop calculated stream timer from op: "
@@ -853,7 +853,7 @@ void ProgramInterpreter::RunInstructionAsync(size_t instr_id) {
 }
 ```
 
-当所有的Job都执行完毕之后，我们就可以 `StandAloneExecutor` 的 `Run` 方法中获取到每个Job的开始时间和结束时间了。下面是获取Job开始时间和结束时间的代码：
+当所有的 Job 都执行完毕之后，我们就可以 `StandAloneExecutor` 的 `Run` 方法中获取到每个 Job 的开始时间和结束时间了。下面是获取 Job 开始时间和结束时间的代码：
 
 ```cpp
 // paddle/fluid/framework/new_executor/standalone_executor.cc
@@ -900,7 +900,7 @@ std::tuple<double, double> ProgramInterpreter::InterpreterRunTime() {
 
 ### 3.4 可视化工具的实现
 
-在获取到每个Job的开始时间和结束时间之后，我们就可以使用python脚本来绘制出各个Job的运行区间了。可视化工具的实现思路是将每个Job的开始时间和结束时间保存成Chrome Trace Event的格式，然后使用 `chrome://tracing` 工具来绘制出各个Job的运行区间。以下是绘制效果图：
+在获取到每个 Job 的开始时间和结束时间之后，我们就可以使用 python 脚本来绘制出各个 Job 的运行区间了。可视化工具的实现思路是将每个 Job 的开始时间和结束时间保存成 Chrome Trace Event的格式，然后使用 `chrome://tracing` 工具来绘制出各个 Job 的运行区间。以下是绘制效果图：
 
 ![picture 10](../images/paddle-pipeline-parallel/ac0590be474ceb2ce695085a1f2178860592b650d9be2ce428de15ff2b4f93a8.png)  
 
