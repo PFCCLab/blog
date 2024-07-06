@@ -10,17 +10,16 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 <!-- more -->
 
-
 ## 一、分布式集合通信模式
 
 集合通信模型适合处理 CV/NLP 领域这样具有稠密参数的模型。它有多种方式将数据/模型切分到多个设备上。每个设备可以成为一个 Worker，每个 Worker 都需要及时的知道全局梯度信息。这样的话，每个 Worker 都需要将自己的梯度信息发送给其他的 Worker ，同时也需要接收其他 Worker 的梯度信息。这样的通信方式就是集合通信模式。
 
 集合通信有好几种并行方式：
 
-- 数据并行
-- 模型并行
-- 流水线并行
-- 混合并行
+-  数据并行
+-  模型并行
+-  流水线并行
+-  混合并行
 
 下面我们分别进行介绍：
 
@@ -30,14 +29,11 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 > 数据并行适用于模型参数较少的情况，一张卡可以放下完整的模型参数。这样的策略能让我们增加 batch_size，加快训练速度
 
-
 下图详细的说明了纯数据并行的训练流程：
 
-![picture 1](../images/paddle-pipeline-parallel/7fb96083be8628ce2b5fc11951251e36ea5d46ffb7fb8409c1f2cdf55afda521.png)  
-
+![picture 1](../images/paddle-pipeline-parallel/7fb96083be8628ce2b5fc11951251e36ea5d46ffb7fb8409c1f2cdf55afda521.png)
 
 如图数据集平均分为多份 `data partition1` 和 `data partition2` ，每个卡上保存完整的模型参数并独立处理一份子数据集，以加速模型训练过程。在数据并行训练过程中，每个卡上的输入数据是不同的。各个卡独立地执行网络的前向运算和反向计算，计算出各自卡上的参数梯度。随后，使用 AllReduce 等集合通信原语，将各个卡上计算出的参数梯度进行累加聚合，得到最终的全局参数梯度。最后，全局参数梯度进入优化器进行参数更新，完成一个完整的 mini-batch 训练流程。图中的箭头表示了各个卡之间的通信过程。
-
 
 > 集合通信原语是集合通信的基础操作的集合，如广播（Broadcast）、收集（Gather）、分散（Scatter）、规约（Reduce）等。其中规约是指将集群内多个节点将数据发送给一个节点，这个节点会使用接收到的数据集中运算，如累加、累积、均值、方差等等。而上文提到的 AllReduce 则是指多对多的规约，即有多个数据发送节点和多个数据接收节点，所有节点的规约运算结果会广播到所有节点上。
 
@@ -47,7 +43,7 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 在模型参数较多的情况下，一张卡无法放下完整的模型参数，这时候就需要将模型参数切分到多张卡上，让我们先通过一张图了解一下模型并行的原理：
 
-![picture 0](../images/paddle-pipeline-parallel/42e5a90abf00a492f23160dbf9ff037623645b44ae902e49b23578f6a5f62b2f.jpg)  
+![picture 0](../images/paddle-pipeline-parallel/42e5a90abf00a492f23160dbf9ff037623645b44ae902e49b23578f6a5f62b2f.jpg)
 
 模型并行的情况下每个设备上的数据都是一样的，只有模型被拆分到了各个设备上。每个设备只拥有模型的一部分，所有计算设备上的模型拼在一起，才是完整的模型。
 
@@ -61,23 +57,19 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 如下图所示，网络共包含 4 层，我们可以把第 0 层放置在卡 0 上运行，第 1 层和第 2 层放置在卡 1 上运行，第 4 层放置在卡 2 上运行。在训练过程中，卡 0 接收输入数据进行计算，并将计算结果发送给卡 1；卡 1 接收到卡 0 的计算结果后进行计算，并将计算结果发送给卡 2；卡 2 接收到卡 1 的计算结果后进行计算，得到损失函数值，完成前向计算。反向计算逻辑与前向刚好相反。 这个过程就像是流水线一样，每个卡都在处理不同的数据，从而提高了训练效率。
 
-![picture 1](../images/paddle-pipeline-parallel/8ee7403adb680995a09f570c906b7fcfe433e4b504ce6f52e44727b07a96dfb6.jpg)  
-
+![picture 1](../images/paddle-pipeline-parallel/8ee7403adb680995a09f570c906b7fcfe433e4b504ce6f52e44727b07a96dfb6.jpg)
 
 > 朴素流水并行的缺点：
-> 
+>
 > 在任意给定时刻，除了一个 GPU 之外的其他所有 GPU 都是空闲的。因此，如果使用 4 个 GPU，则几乎等同于将单个 GPU 的内存量增加四倍，而其他资源 (如计算) 相当于没用上。所以，朴素流水线存在很多的 Bubble 。因此，朴素的流水线并行将会导致 GPU 使用率过低。
 
-
-![picture 3](../images/paddle-pipeline-parallel/2443fea068b43f57f4571d2e1ad35afe9d1de3a8c69491d0c390b3705835a665.jpg)  
-
+![picture 3](../images/paddle-pipeline-parallel/2443fea068b43f57f4571d2e1ad35afe9d1de3a8c69491d0c390b3705835a665.jpg)
 
 #### 1.3.2 微批次流水线并行
 
 微批次流水线并行是指将一个训练迭代划分为多个子阶段，每个子阶段都是一个微批次，每个微批次都会在不同的设备上进行计算。在每个子阶段中，每个设备都会计算出一个梯度，然后将这些梯度进行累加，得到最终的梯度，最后使用这个梯度更新模型参数。
 
-![picture 4](../images/paddle-pipeline-parallel/1ac95bbf288d8509d7db6ab46ce0bae6aa03dccbe4c6d1ea84e1b02c8108550a.jpg)  
-
+![picture 4](../images/paddle-pipeline-parallel/1ac95bbf288d8509d7db6ab46ce0bae6aa03dccbe4c6d1ea84e1b02c8108550a.jpg)
 
 ### 1.4 混合并行
 
@@ -85,16 +77,15 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 它首先被分为 64 个阶段，进行流水并行。每个阶段都运行在 6 台 DGX-A100 主机上。在 6 台主机之间，进行的是数据并行训练；每台主机有 8 张 GPU 显卡，同一台机器上的 8 张 GPU 显卡之间是进行模型并行训练 $^{[1]}$。
 
-![picture 2](../images/paddle-pipeline-parallel/ef6685e22ae1f3433ea2495c2d0633e697a0d37de6020d4e23e6fa58c826e540.png)  
-
+![picture 2](../images/paddle-pipeline-parallel/ef6685e22ae1f3433ea2495c2d0633e697a0d37de6020d4e23e6fa58c826e540.png)
 
 ## 二、Paddle 静态图流水并行
 
 在 Paddle 的静态图在流水线并行中，一个训练迭代通常被划分为三个子阶段：
 
-- Forward：前向计算，每个阶段计算并输出中间结果给下一个阶段；
-- Backward：反向传播，每个阶段根据上一个阶段的梯度计算并传递当前阶段的梯度；
-- Optimize：参数更新，收集所有阶段的梯度并更新模型参数。
+-  Forward：前向计算，每个阶段计算并输出中间结果给下一个阶段；
+-  Backward：反向传播，每个阶段根据上一个阶段的梯度计算并传递当前阶段的梯度；
+-  Optimize：参数更新，收集所有阶段的梯度并更新模型参数。
 
 Paddle 目前已经实现的流水线编排方式有两种，分别是： FThenB 和 1F1B。下面我们分别进行介绍：
 
@@ -130,7 +121,7 @@ if (
 
 在 `apply_pass` 中会调用 `FThenB` 或者 `1F1B` 的编排策略，将 `main_program` 切分成多个子 Program。下面是 `apply_pass` 的相关代码：
 
-```python 
+```python
 def apply_pass(main_program, startup_program, pass_name, pass_attr={}):
     assert pass_name in [
         "FThenB",
@@ -164,7 +155,7 @@ PassBase - PipelinePassBase - PipelineFThenBPass
 
 在 PassBase 中定义了 `apply` 方法，`apply` 来方法中又进一步封装了 `_apply_impl` 和 `_apply_single_impl` 方法。PipelinePassBase 中重写了 `_apply_single_impl` 方法:
 
-```python 
+```python
 # python/paddle/distributed/passes/pipeline_pass_base.py
 def _apply_single_impl(self, main_program, startup_program, context):
     """
@@ -341,7 +332,7 @@ def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
     return [lr_prog, fwd_prog, bwd_prog, opt_prog]
 ```
 
-其中 `_insert_sync_for_fthenb_1f1b` 的作用是插入同步操作，以实现"F-Then-B"和"1F-1B"流水线并行模式。插入同步操作的主要目的是确保在流水线并行训练中各个阶段（前向传播、后向传播、优化等）的计算流和通信流之间能够协同工作，以保持数据的一致性和正确性。这里我们不做详细介绍，感兴趣的小伙伴可以自行阅读源码 ([_insert_sync_for_fthenb_1f1b](https://github.com/AndSonder/Paddle/blob/1e7798fb1a0f1fdba48c006a17b30303aec8df57/python/paddle/distributed/passes/pass_utils.py#L409-L514))。
+其中 `_insert_sync_for_fthenb_1f1b` 的作用是插入同步操作，以实现"F-Then-B"和"1F-1B"流水线并行模式。插入同步操作的主要目的是确保在流水线并行训练中各个阶段（前向传播、后向传播、优化等）的计算流和通信流之间能够协同工作，以保持数据的一致性和正确性。这里我们不做详细介绍，感兴趣的小伙伴可以自行阅读源码 ([\_insert_sync_for_fthenb_1f1b](https://github.com/AndSonder/Paddle/blob/1e7798fb1a0f1fdba48c006a17b30303aec8df57/python/paddle/distributed/passes/pass_utils.py#L409-L514))。
 
 `_program_for_fthenb_and_1f1b` 剩下的主要逻辑就是将主 Program 进行拆分，然后将操作添加到各个子 Program 中，我们一共有四个子 Program，分别用于 LR、FORWARD、BACKWARD 和 OPT 任务。
 
@@ -397,18 +388,15 @@ def _apply_single_impl(self, main_program, startup_program, context):
     context.set_attr("plan", plan)
 ```
 
-
 > jobs 和 type_to_program 之间的关系是怎样的？
-> 
+>
 > jobs 是一个列表，包含了不同类型的计算任务，如 LR、FORWARD、BACKWARD、OPT。type_to_program 是一个字典，key 是计算任务的类型，value 是对应的子 Program。
-
 
 ### 2.3 1F1B 编排模式
 
 在 `1F1B` 的编排模式下，每个设备先执行前向计算，然后再执行反向传播。不等待所有设备都执行完前向计算，就开始执行反向传播。
 
-![picture 7](../images/paddle-pipeline-parallel/6935a194889bb7a55f17c0bb45cb6a4395ef63c6d6fcfe24154eafee61e8c451.jpg)  
-
+![picture 7](../images/paddle-pipeline-parallel/6935a194889bb7a55f17c0bb45cb6a4395ef63c6d6fcfe24154eafee61e8c451.jpg)
 
 1F1B 示例如图所示，以 GPU3 的 F1（GPU3 的第 2 个 micro-batch 的前向计算）为例，F1 在计算前，F1 的反向 B1（GPU3 的第 1 个 micro-batch 的反向计算）已经计算结束，即可释放 F1 的中间变量，从而 F2 可以复用 F1 中间变量的显存。
 
@@ -458,7 +446,7 @@ def _partial_programs(self, program):
         logger.debug(
             f"type = {types[i]}, sub_programs = {sub_programs[i]}\n"
         )
-    
+
     # 记录调试信息，打印在稳定阶段执行的计算任务类型。
     logger.debug(f"jobs_in_stable_phase = {self.jobs_in_stable_phase}")
 
@@ -526,11 +514,10 @@ def _create_job_list(self):
     return job_list
 ```
 
-
 可以看到，1F1B 的 `_create_job_list` 和 FThenB 的逻辑略有不同，1F1B 的 `_create_job_list` 中会根据 `pp_stage` 和 `pp_degree` 来确定前向计算任务和后向计算任务的数量。在稳定阶段中，每个 micro-batch 中都有一个 BACKWARD 和一个 FORWARD 计算任务。最后添加一个优化任务。
 
 > 预热过程是什么？
-> 
+>
 > 根据 1F1B 的流水编排图可以发现，在训练刚刚开始的时候，gpu 中会有很大的空闲，这个时候任务的执行顺序不是完全按照 1F1B 的编排方式，预热阶段就是对应这个过程。
 
 ### 2.5 流水并行执行过程
@@ -571,7 +558,7 @@ return new_program, new_exe
 
 其中的核心代码 `apply_pass` 在上面已经介绍过了。 在 `apply_pass` 中会调用 `FThenB` 或者 `1F1B` 的编排策略，将 `main_program` 切分成多个子 Program。
 
-_StandaloneExecutor 是 C++ 端的一个类，下面是它的构造函数：
+\_StandaloneExecutor 是 C++ 端的一个类，下面是它的构造函数：
 
 ```cpp
 StandaloneExecutor::StandaloneExecutor(const platform::Place& place,
@@ -774,15 +761,13 @@ paddle::framework::FetchList StandaloneExecutor::Run(
 
 当下的工作大多是可视化出 cpu 端的各个 Job 的运行区间。由于 gpu 任务的异步性，在 cpu 端启动的 Job 并不一定在 gpu 端立即执行，因此 **cpu 端的可视化并不能直接反映出 gpu 端的运行情况**。
 
-![picture 8](../images/paddle-pipeline-parallel/e36dd9884d123d949f5dd7847461757f2d6a30cb2b2cd25aa58dae41c0917ed1.jpg)  
-
+![picture 8](../images/paddle-pipeline-parallel/e36dd9884d123d949f5dd7847461757f2d6a30cb2b2cd25aa58dae41c0917ed1.jpg)
 
 ### 3.2 可视化实现思路
 
 我们的可视化工具的实现思路是：**在 gpu 端各个 Job 结束的时候，打印出 Job 的类型和结束时间，然后在使用 python 脚本这些信息，绘制出各个 Job 的运行区间**。
 
-![picture 9](../images/paddle-pipeline-parallel/9c0fc9d4f5f7045fac7aafcfa4e9021da7762dc5d3dccb813fc5d8cf134a687d.jpg)  
-
+![picture 9](../images/paddle-pipeline-parallel/9c0fc9d4f5f7045fac7aafcfa4e9021da7762dc5d3dccb813fc5d8cf134a687d.jpg)
 
 ### 3.3 准确定位 Job 的开始与结束时间
 
@@ -902,12 +887,9 @@ std::tuple<double, double> ProgramInterpreter::InterpreterRunTime() {
 
 在获取到每个 Job 的开始时间和结束时间之后，我们就可以使用 python 脚本来绘制出各个 Job 的运行区间了。可视化工具的实现思路是将每个 Job 的开始时间和结束时间保存成 Chrome Trace Event 的格式，然后使用 `chrome://tracing` 工具来绘制出各个 Job 的运行区间。以下是绘制效果图：
 
-![picture 10](../images/paddle-pipeline-parallel/ac0590be474ceb2ce695085a1f2178860592b650d9be2ce428de15ff2b4f93a8.png)  
-
-
+![picture 10](../images/paddle-pipeline-parallel/ac0590be474ceb2ce695085a1f2178860592b650d9be2ce428de15ff2b4f93a8.png)
 
 ## 参考文献
 
 1. https://docs.oneflow.org/master/parallelism/01_introduction.html#_5
 2. https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/05_parallel_end_to_end/index_cn.html
-
