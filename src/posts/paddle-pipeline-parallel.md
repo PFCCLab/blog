@@ -28,7 +28,7 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 纯数据并行模式下数据集被平均分为多份，每个卡上保存完整的模型参数并独立处理一份子数据集，以加速模型训练过程。
 
-> 数据并行适用于模型参数较少的情况，一张卡可以放下完整的模型参数。这样的策略能让我们增加batch_size，加快训练速度
+> 数据并行适用于模型参数较少的情况，一张卡可以放下完整的模型参数。这样的策略能让我们增加 batch_size，加快训练速度
 
 
 下图详细的说明了纯数据并行的训练流程：
@@ -83,7 +83,7 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 混合并行是指同时使用数据并行和流水线并行的方式，以 GPT-3 为例，以下是它训练时的设备并行方案：
 
-它首先被分为 64 个阶段，进行流水并行。每个阶段都运行在 6 台 DGX-A100 主机上。在6台主机之间，进行的是数据并行训练；每台主机有 8 张 GPU 显卡，同一台机器上的 8 张 GPU 显卡之间是进行模型并行训练 $^{[1]}$。
+它首先被分为 64 个阶段，进行流水并行。每个阶段都运行在 6 台 DGX-A100 主机上。在 6 台主机之间，进行的是数据并行训练；每台主机有 8 张 GPU 显卡，同一台机器上的 8 张 GPU 显卡之间是进行模型并行训练 $^{[1]}$。
 
 ![picture 2](../images/paddle-pipeline-parallel/ef6685e22ae1f3433ea2495c2d0633e697a0d37de6020d4e23e6fa58c826e540.png)  
 
@@ -153,7 +153,7 @@ def apply_pass(main_program, startup_program, pass_name, pass_attr={}):
     return plan
 ```
 
-编排的主要入口是 `pipeline_pass.apply`，`FThenB` 和 `1F1B` 的核心代码在 `pipeline_scheduler_pass.py` 中，其中还使用了一些继承类。下面我们先来梳理一下类之间的继承关系。其中主要涉及到的类包括：PassBase、PipelinePassBase、PipelineFThenBPass和Pipeline1F1BPass。
+编排的主要入口是 `pipeline_pass.apply`，`FThenB` 和 `1F1B` 的核心代码在 `pipeline_scheduler_pass.py` 中，其中还使用了一些继承类。下面我们先来梳理一下类之间的继承关系。其中主要涉及到的类包括：PassBase、PipelinePassBase、PipelineFThenBPass 和 Pipeline1F1BPass。
 
 PassBase 是所有 Pass 的基类，PipelinePassBase 是所有流水线编排 Pass 的基类，PipelineFThenBPass 和 Pipeline1F1BPass 分别是 FThenB 和 1F1B 的编排 Pass。
 
@@ -343,7 +343,7 @@ def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
 
 其中 `_insert_sync_for_fthenb_1f1b` 的作用是插入同步操作，以实现"F-Then-B"和"1F-1B"流水线并行模式。插入同步操作的主要目的是确保在流水线并行训练中各个阶段（前向传播、后向传播、优化等）的计算流和通信流之间能够协同工作，以保持数据的一致性和正确性。这里我们不做详细介绍，感兴趣的小伙伴可以自行阅读源码 ([_insert_sync_for_fthenb_1f1b](https://github.com/AndSonder/Paddle/blob/1e7798fb1a0f1fdba48c006a17b30303aec8df57/python/paddle/distributed/passes/pass_utils.py#L409-L514))。
 
-`_program_for_fthenb_and_1f1b` 剩下的主要逻辑就是将主 Program 进行拆分，然后将操作添加到各个子 Program 中，我们一共有四个子 Program，分别用于 LR、FORWARD、BACKWARD和 OPT 任务。
+`_program_for_fthenb_and_1f1b` 剩下的主要逻辑就是将主 Program 进行拆分，然后将操作添加到各个子 Program 中，我们一共有四个子 Program，分别用于 LR、FORWARD、BACKWARD 和 OPT 任务。
 
 在获得了 `job_types` 和 `sub_programs` 之后，我们就可以调用 `_create_job_list` 方法来创建 Job 列表。下面是 `_create_job_list` 的实现逻辑：
 
@@ -412,7 +412,7 @@ def _apply_single_impl(self, main_program, startup_program, context):
 
 1F1B 示例如图所示，以 GPU3 的 F1（GPU3 的第 2 个 micro-batch 的前向计算）为例，F1 在计算前，F1 的反向 B1（GPU3 的第 1 个 micro-batch 的反向计算）已经计算结束，即可释放 F1 的中间变量，从而 F2 可以复用 F1 中间变量的显存。
 
-有研究文献表明，`1F1B`` 方式相比于 `FthenB` 方式，峰值显存可以节省 37.5%，对比朴素流水线并行峰值显存明显下降，设备资源利用率显著提升。
+有研究文献表明，`1F1B` 方式相比于 `FthenB` 方式，峰值显存可以节省 37.5%，对比朴素流水线并行峰值显存明显下降，设备资源利用率显著提升。
 
 ### 2.4 1F1B 相关代码解读
 
@@ -466,7 +466,7 @@ def _partial_programs(self, program):
     return types, sub_programs
 ```
 
-这里面的 `_backward_forward_overlap` 主要是用于实现前向传播和后向传播之间的交叠，是1F1B调度的优化算法。我们这里不做详细介绍，感兴趣的小伙伴可以自行阅读源码。除了 `_backward_forward_overlap` 之外，1F1B 的 `_partial_programs` 和 FThenB 的 `_partial_programs` 逻辑是一样的，都是调用 `_program_for_fthenb_and_1f1b` 函数，根据输入的 program 和 enable_send_recv_overlap 创建子 Program。
+这里面的 `_backward_forward_overlap` 主要是用于实现前向传播和后向传播之间的交叠，是 1F1B 调度的优化算法。我们这里不做详细介绍，感兴趣的小伙伴可以自行阅读源码。除了 `_backward_forward_overlap` 之外，1F1B 的 `_partial_programs` 和 FThenB 的 `_partial_programs` 逻辑是一样的，都是调用 `_program_for_fthenb_and_1f1b` 函数，根据输入的 program 和 enable_send_recv_overlap 创建子 Program。
 
 下面我们来看看 `_create_job_list` 的实现逻辑：
 
@@ -531,11 +531,11 @@ def _create_job_list(self):
 
 > 预热过程是什么？
 > 
-> 根据1F1B的流水编排图可以发现，在训练刚刚开始的时候，gpu中会有很大的空闲，这个时候任务的执行顺序不是完全按照1F1B的编排方式，预热阶段就是对应这个过程。
+> 根据 1F1B 的流水编排图可以发现，在训练刚刚开始的时候，gpu 中会有很大的空闲，这个时候任务的执行顺序不是完全按照 1F1B 的编排方式，预热阶段就是对应这个过程。
 
 ### 2.5 流水并行执行过程
 
-没启动多卡训练的时候，paddle的训练命令类似于：
+没启动多卡训练的时候，paddle 的训练命令类似于：
 
 ```bash
 python -m paddle.distributed.launch --gpus 0,1,2,3 train.py
@@ -571,7 +571,7 @@ return new_program, new_exe
 
 其中的核心代码 `apply_pass` 在上面已经介绍过了。 在 `apply_pass` 中会调用 `FThenB` 或者 `1F1B` 的编排策略，将 `main_program` 切分成多个子 Program。
 
-_StandaloneExecutor 是C++端的一个类，下面是它的构造函数：
+_StandaloneExecutor 是 C++ 端的一个类，下面是它的构造函数：
 
 ```cpp
 StandaloneExecutor::StandaloneExecutor(const platform::Place& place,
@@ -658,7 +658,7 @@ StandaloneExecutor::StandaloneExecutor(const platform::Place& place,
 }
 ```
 
-在初始化的时候，Paddle会为每个 job 都创建一个 `InterpreterCore` 对象，然后将这些 `InterpreterCore` 对象存储在 `interpretercores_` 中。在后续的执行过程中，Paddle会根据不同 job 执行不同 `InterpreterCore` 对象。初始化了 StandaloneExecutor 对象之后，我们就可以执行 `run` 方法了。下面是 C++ 端 `run` 方法的实现逻辑：
+在初始化的时候，Paddle 会为每个 job 都创建一个 `InterpreterCore` 对象，然后将这些 `InterpreterCore` 对象存储在 `interpretercores_` 中。在后续的执行过程中，Paddle 会根据不同 job 执行不同 `InterpreterCore` 对象。初始化了 StandaloneExecutor 对象之后，我们就可以执行 `run` 方法了。下面是 C++ 端 `run` 方法的实现逻辑：
 
 ```cpp
 paddle::framework::FetchList StandaloneExecutor::Run(
@@ -772,7 +772,7 @@ paddle::framework::FetchList StandaloneExecutor::Run(
 
 当下大模型的训练时间较长，分布式训练时序图的可视化对于调试和分析模型的训练过程非常重要。当下没有工具能够直接给出各个 GPU 设备上不同 Job 的运行区间，因此我们需要设计一个可视化工具来实现这个功能。
 
-当下的工作大多是可视化出 cpu 端的各个 Job 的运行区间。由于 gpu 任务的异步性，在 cpu 端启动的 Job 并不一定在 gpu 端立即执行，因此 **cpu端的可视化并不能直接反映出 gpu 端的运行情况**。
+当下的工作大多是可视化出 cpu 端的各个 Job 的运行区间。由于 gpu 任务的异步性，在 cpu 端启动的 Job 并不一定在 gpu 端立即执行，因此 **cpu 端的可视化并不能直接反映出 gpu 端的运行情况**。
 
 ![picture 8](../images/paddle-pipeline-parallel/e36dd9884d123d949f5dd7847461757f2d6a30cb2b2cd25aa58dae41c0917ed1.jpg)  
 
@@ -784,9 +784,9 @@ paddle::framework::FetchList StandaloneExecutor::Run(
 ![picture 9](../images/paddle-pipeline-parallel/9c0fc9d4f5f7045fac7aafcfa4e9021da7762dc5d3dccb813fc5d8cf134a687d.jpg)  
 
 
-### 3.3 准确定位Job的开始与结束时间
+### 3.3 准确定位 Job 的开始与结束时间
 
-Paddle中所有的计算任务都是在一个流上完成的，这个流我们叫做计算流。为了能够准确定位 Job 的开始与结束，我们需要找到每个 Job 中第一个计算算子，和最后一个计算算子，并在第一个计算算子之前插入一个 `cuda stream callback` ，在最后一个计算算子之后插入一个 `cuda callback`。由于 `cuda stream callback` 会等待计算流中前面的任务执行完毕后才会执行，因此我们可以准确的定位出 Job 的开始时间和结束时间。
+Paddle 中所有的计算任务都是在一个流上完成的，这个流我们叫做计算流。为了能够准确定位 Job 的开始与结束，我们需要找到每个 Job 中第一个计算算子，和最后一个计算算子，并在第一个计算算子之前插入一个 `cuda stream callback` ，在最后一个计算算子之后插入一个 `cuda callback`。由于 `cuda stream callback` 会等待计算流中前面的任务执行完毕后才会执行，因此我们可以准确的定位出 Job 的开始时间和结束时间。
 
 前面说到过每个 Job 都是由一个 `InterpreterCore` 对象来执行的，我们在每个 `InterpreterCore` 对象中使用自定义类来存储 Job 的开始时间和结束时间。下面是每个 `InterpreterCore` 对象中插入 `cuda stream callback` 和 `cuda callback` 的代码：
 
@@ -900,7 +900,7 @@ std::tuple<double, double> ProgramInterpreter::InterpreterRunTime() {
 
 ### 3.4 可视化工具的实现
 
-在获取到每个 Job 的开始时间和结束时间之后，我们就可以使用 python 脚本来绘制出各个 Job 的运行区间了。可视化工具的实现思路是将每个 Job 的开始时间和结束时间保存成 Chrome Trace Event的格式，然后使用 `chrome://tracing` 工具来绘制出各个 Job 的运行区间。以下是绘制效果图：
+在获取到每个 Job 的开始时间和结束时间之后，我们就可以使用 python 脚本来绘制出各个 Job 的运行区间了。可视化工具的实现思路是将每个 Job 的开始时间和结束时间保存成 Chrome Trace Event 的格式，然后使用 `chrome://tracing` 工具来绘制出各个 Job 的运行区间。以下是绘制效果图：
 
 ![picture 10](../images/paddle-pipeline-parallel/ac0590be474ceb2ce695085a1f2178860592b650d9be2ce428de15ff2b4f93a8.png)  
 
