@@ -10,10 +10,10 @@ author:
 
 <!-- more -->
 
-## 顶尖模型引入，引领OCR技术潮流
+## 顶尖模型引入，引领 OCR 技术潮流
 
 PaddleOCR v2.8.0 版本隆重引入了**PaddleOCR 算法模型挑战赛的冠军方案**，为 OCR 领域树立了新的标杆。
-其中，赛题一“[OCR端到端识别任务](https://aistudio.baidu.com/competition/detail/1131/0/introduction)”的冠军方案——**场景文本识别算法 SVTRv2**，以其卓越的识别性能与泛化能力，为用户带来了前所未有的识别体验。
+其中，赛题一“[OCR 端到端识别任务](https://aistudio.baidu.com/competition/detail/1131/0/introduction)”的冠军方案——**场景文本识别算法 SVTRv2**，以其卓越的识别性能与泛化能力，为用户带来了前所未有的识别体验。
 
 ![SVTRv2](../images/paddleocr_release/SVTRv2.png)
 
@@ -21,7 +21,7 @@ PaddleOCR v2.8.0 版本隆重引入了**PaddleOCR 算法模型挑战赛的冠军
 
 ![SLANet-LCNetV2](../images/paddleocr_release/SLANet-LCNetV2.png)
 
-## 项目结构优化，聚焦OCR核心
+## 项目结构优化，聚焦 OCR 核心
 
 为了进一步提升 PaddleOCR 项目的专业性与易用性，我们决定将非核心模块 PPOCRLabel 和 StyleText 迁移至新的仓库，使 PaddleOCR 项目更加**专注于 OCR 与版面识别**的核心技术。这一举措不仅简化了项目结构，也为开发者提供了更加清晰的项目导航与资源访问路径。
 
@@ -31,7 +31,7 @@ PaddleOCR v2.8.0 版本隆重引入了**PaddleOCR 算法模型挑战赛的冠军
 
 半年多来，PaddleOCR 存在若干历史疑难问题，影响了开发者的使用体验。因此，在新版本中，我们重点解决了**更新 Backbone 后无法运行模型、numpy 版本依赖冲突、Mac 系统中运行卡顿**等一系列历史疑难问题。部分疑难问题还在解决过程中，欢迎广大开发者一起参与！
 
-> 详见：【[疑难解决】解决PaddleOCR历史存在的疑难Issue](https://github.com/PaddlePaddle/PaddleOCR/discussions/13057)
+> 详见：【[疑难解决】解决 PaddleOCR 历史存在的疑难 Issue](https://github.com/PaddlePaddle/PaddleOCR/discussions/13057)
 
 ## 其它优化改进，持续精进
 
@@ -47,7 +47,7 @@ PaddleOCR v2.8.0 版本隆重引入了**PaddleOCR 算法模型挑战赛的冠军
 
 需要特别强调的是，PaddleOCR v2.8.0 版本的每一个进步与成就都离不开开源社区的支持与贡献。在 **PMC（Project Management Committee）** 的统一管理下，众多社区开发者携手并进、共同努力，才使得 PaddleOCR 能够不断前行、日益完善。这里要特别感谢 PaddleOCR PMC 成员：[@GreatV](https://github.com/GreatV) (PMC Chair)、[@tink2123](https://github.com/tink2123) (PMC Chair)、[@Topdu](https://github.com/Topdu)、[@SWHL](https://github.com/SWHL)、[@Liyulingyue](https://github.com/Liyulingyue)、[@Sunting78](https://github.com/Sunting78)、[@jzhang533](https://github.com/jzhang533)，也感谢虽然暂未加入 PMC 但是作出了大量贡献的热心开发者。
 
-> 新版本contributors列表，贡献者数量创历史新高！
+> 新版本 contributors 列表，贡献者数量创历史新高！
 
 ![contributors](../images/paddleocr_release/contributors.png)
 
