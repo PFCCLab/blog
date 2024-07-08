@@ -101,7 +101,7 @@ Paddle 目前已经实现的流水线编排方式有两种，分别是： FThenB
 
 在 Parallelizer 执行 `parallel` 时候会在 `_apply_post_optimization` 中将编排模式（schedule_mode）保存到 `main_program._pipeline_opt["standalone_opt"]` 中。这个属性会在 ExecutorCache 中的 `_get_program_and_executor` 中被读取，用于编排 Program。下面是相关代码：
 
-```python
+```py
 # python/paddle/base/executor.py
 new_program = program.clone()
 if (
@@ -121,7 +121,7 @@ if (
 
 在 `apply_pass` 中会调用 `FThenB` 或者 `1F1B` 的编排策略，将 `main_program` 切分成多个子 Program。下面是 `apply_pass` 的相关代码：
 
-```python
+```py
 def apply_pass(main_program, startup_program, pass_name, pass_attr={}):
     assert pass_name in [
         "FThenB",
@@ -148,14 +148,14 @@ def apply_pass(main_program, startup_program, pass_name, pass_attr={}):
 
 PassBase 是所有 Pass 的基类，PipelinePassBase 是所有流水线编排 Pass 的基类，PipelineFThenBPass 和 Pipeline1F1BPass 分别是 FThenB 和 1F1B 的编排 Pass。
 
-```python
+```py
 PassBase - PipelinePassBase - PipelineFThenBPass
                             - Pipeline1F1BPass
 ```
 
 在 PassBase 中定义了 `apply` 方法，`apply` 来方法中又进一步封装了 `_apply_impl` 和 `_apply_single_impl` 方法。PipelinePassBase 中重写了 `_apply_single_impl` 方法:
 
-```python
+```py
 # python/paddle/distributed/passes/pipeline_pass_base.py
 def _apply_single_impl(self, main_program, startup_program, context):
     """
@@ -186,7 +186,7 @@ def _apply_single_impl(self, main_program, startup_program, context):
 
 FThenB 编排的实现逻辑在 PipelineFThenBPass 类中实现，它继承自 PipelinePassBase 类。PipelineFThenBPass 中重写了 `_partial_programs` 和 `_create_job_list` 方法。 `_partial_programs` 方法的实现逻辑如下
 
-```python
+```py
 # python/paddle/distributed/passes/pipeline_scheduler_pass.py
 def _partial_programs(self, program):
     """
@@ -211,7 +211,7 @@ def _partial_programs(self, program):
 
 其中 `_program_for_fthenb_and_1f1b` 的主要作用是将主 Program 进行拆分，还可以实现前向和后向的计算任务重叠以提高计算效率。 这里我们暂时不讨论任务重叠的实现，只关注拆分的实现逻辑。下面是 `_program_for_fthenb_and_1f1b` 的实现逻辑：
 
-```python
+```py
 # python/paddle/distributed/passes/pipeline_scheduler_pass.py
 def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
     # 为 fthenb 和1f1bProgram创建子 Program 列表
@@ -338,7 +338,7 @@ def _program_for_fthenb_and_1f1b(program, enable_send_recv_overlap=False):
 
 在获得了 `job_types` 和 `sub_programs` 之后，我们就可以调用 `_create_job_list` 方法来创建 Job 列表。下面是 `_create_job_list` 的实现逻辑：
 
-```python
+```py
 # python/paddle/distributed/passes/pipeline_scheduler_pass.py
 def _create_job_list(self):
     """
@@ -380,7 +380,7 @@ def _create_job_list(self):
 
 由于 `FThanB` 编排策略就是在所有的 Forward 计算完成之后才会进行 Backward 计算，所以在 `_create_job_list` 中，我们会为每个 micro-batch 创建前向计算任务和后向计算任务。最后添加一个优化任务。 在获取了 jobs 之后，我们就可以将它们添加到 `plan` 中，然后返回 `plan`。
 
-```python
+```py
 # python/paddle/distributed/passes/pipeline_scheduler_pass.py
 def _apply_single_impl(self, main_program, startup_program, context):
     ...
@@ -406,7 +406,7 @@ def _apply_single_impl(self, main_program, startup_program, context):
 
 1F1B 的编排策略顾名思义就是一个 Forward 之后跟一个 Backward，这里的 Forward 和 Backward 都是指一个 micro-batch 的计算。1F1B 编排的实现逻辑在 Pipeline1F1BPass 类中实现，它继承自 PipelinePassBase 类。Pipeline1F1BPass 中重写了 `_partial_programs` 和 `_create_job_list` 方法。 `_partial_programs` 方法的实现逻辑如下
 
-```python
+```py
 def _partial_programs(self, program):
     # 获取 "enable_send_recv_overlap" 标志，该 FLAG 可能增加显存消耗。
     enable_send_recv_overlap = self.get_attr("enable_send_recv_overlap")
@@ -458,7 +458,7 @@ def _partial_programs(self, program):
 
 下面我们来看看 `_create_job_list` 的实现逻辑：
 
-```python
+```py
 # python/paddle/distributed/passes/pipeline_scheduler_pass.py
 def _create_job_list(self):
     num_micro_batches = self.get_attr("num_micro_batches")
@@ -532,7 +532,7 @@ python -m paddle.distributed.launch --gpus 0,1,2,3 train.py
 
 在获取到编排好的 `job_list` 之后，我们就可以初始化 `Executor` 对象，然后执行 `Executor` 的 `run` 方法。下面是初始化 `StandaloneExecutor` 对象的代码：
 
-```python
+```py
 # python/paddle/base/executor.py
 new_program = program.clone()
 if (
