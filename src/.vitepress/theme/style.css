@@ -4,6 +4,10 @@
 
 /* TODO(SigureMo): Update colors */
 
+.vp-code span {
+  color: var(--shiki-dark, inherit);
+}
+
 :root {
   --c-brand: #3eaf7c;
   --c-brand-light: #4abf8a;
