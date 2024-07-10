@@ -12,7 +12,8 @@
     "serve": "vitepress serve src",
     "fmt": "lint-md src/**/*.md --fix && prettier --write .",
     "fmt:check": "lint-md src/**/*.md && prettier --check .",
-    "img:compress": "tsx scripts/compress-image.mts"
+    "img:compress": "tsx scripts/compress-image.mts",
+    "lint:filename": "tsx scripts/check-filename.mts"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.11",
