@@ -4,7 +4,7 @@ import { readdirSync } from 'node:fs'
 const POST_DIR = resolve('src/posts')
 const IN_GITHUB_ACTIONS = process.env.GITHUB_ACTIONS === 'true'
 
-function isMeetKebabCase(filename: string): boolean {
+function isKebabCase(filename: string): boolean {
   return /^[a-z0-9-]+$/.test(filename)
 }
 
@@ -21,7 +21,7 @@ function main() {
   let hasError = false
   for (const filename of postFilenames) {
     const filepath = resolve(POST_DIR, `${filename}.md`)
-    if (!isMeetKebabCase(filename)) {
+    if (!isKebabCase(filename)) {
       const errorMesssage = `Filename "${filename}" is not in kebab-case, suggest: "${suggestKebabCase(filename)}"`
       if (IN_GITHUB_ACTIONS) {
         console.log(`::error file=${filepath}::${errorMesssage}`)
