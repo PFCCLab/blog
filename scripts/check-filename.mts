@@ -1,4 +1,4 @@
-import { resolve, relative } from 'node:path'
+import { resolve } from 'node:path'
 import { readdirSync } from 'node:fs'
 
 const POST_DIR = resolve('src/posts')
