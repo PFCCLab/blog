@@ -25,7 +25,12 @@ function main() {
     if (!isMeetKebabCase(filename)) {
       const errorMesssage = `Filename "${filename}" is not in kebab-case, suggest: "${suggestKebabCase(filename)}"`
       if (IN_GITHUB_ACTIONS) {
+        console.log('in github actions')
         console.log(`::error file=${filepath}::${errorMesssage}`)
+      } else {
+        console.log(
+          `not in github actions, process.env.GITHUB_ACTIONS: ${process.env.GITHUB_ACTIONS}`
+        )
       }
       console.error(errorMesssage)
       hasError = true
