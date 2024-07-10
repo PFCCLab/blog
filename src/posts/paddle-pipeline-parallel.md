@@ -32,7 +32,7 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 下图详细的说明了纯数据并行的训练流程：
 
-![picture 1](../images/paddle-pipeline-parallel/7fb96083be8628ce2b5fc11951251e36ea5d46ffb7fb8409c1f2cdf55afda521.png)
+![picture 1](../images/paddle-pipeline-parallel/7fb96083be8628ce2b5fc11951251e36ea5d46ffb7fb8409c1f2cdf55afda521.jpg)
 
 如图数据集平均分为多份 `data partition1` 和 `data partition2` ，每个卡上保存完整的模型参数并独立处理一份子数据集，以加速模型训练过程。在数据并行训练过程中，每个卡上的输入数据是不同的。各个卡独立地执行网络的前向运算和反向计算，计算出各自卡上的参数梯度。随后，使用 AllReduce 等集合通信原语，将各个卡上计算出的参数梯度进行累加聚合，得到最终的全局参数梯度。最后，全局参数梯度进入优化器进行参数更新，完成一个完整的 mini-batch 训练流程。图中的箭头表示了各个卡之间的通信过程。
 
@@ -78,7 +78,7 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 它首先被分为 64 个阶段，进行流水并行。每个阶段都运行在 6 台 DGX-A100 主机上。在 6 台主机之间，进行的是数据并行训练；每台主机有 8 张 GPU 显卡，同一台机器上的 8 张 GPU 显卡之间是进行模型并行训练 $^{[1]}$。
 
-![picture 2](../images/paddle-pipeline-parallel/ef6685e22ae1f3433ea2495c2d0633e697a0d37de6020d4e23e6fa58c826e540.png)
+![picture 2](../images/paddle-pipeline-parallel/ef6685e22ae1f3433ea2495c2d0633e697a0d37de6020d4e23e6fa58c826e540.jpg)
 
 ## 二、Paddle 静态图流水并行
 
@@ -888,7 +888,7 @@ std::tuple<double, double> ProgramInterpreter::InterpreterRunTime() {
 
 在获取到每个 Job 的开始时间和结束时间之后，我们就可以使用 python 脚本来绘制出各个 Job 的运行区间了。可视化工具的实现思路是将每个 Job 的开始时间和结束时间保存成 Chrome Trace Event 的格式，然后使用 `chrome://tracing` 工具来绘制出各个 Job 的运行区间。以下是绘制效果图：
 
-![picture 10](../images/paddle-pipeline-parallel/ac0590be474ceb2ce695085a1f2178860592b650d9be2ce428de15ff2b4f93a8.png)
+![picture 10](../images/paddle-pipeline-parallel/ac0590be474ceb2ce695085a1f2178860592b650d9be2ce428de15ff2b4f93a8.jpg)
 
 ## 参考文献
 
