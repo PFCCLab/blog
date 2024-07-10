@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "license": "CC0-1.0",
-  "packageManager": "pnpm@8.9.2",
+  "packageManager": "pnpm@9.5.0",
   "scripts": {
     "postinstall": "simple-git-hooks",
     "dev": "vitepress dev src",
@@ -16,21 +16,21 @@
     "lint:filename": "tsx scripts/check-filename.mts"
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.11",
-    "@vite-pwa/vitepress": "^0.4.0",
-    "tailwindcss": "^3.4.2",
-    "tsx": "^4.7.1",
-    "vite-plugin-pwa": "^0.19.7",
-    "vitepress": "1.0.1",
-    "vue": "^3.4.21",
-    "workbox-window": "^7.0.0"
+    "@tailwindcss/typography": "^0.5.13",
+    "@vite-pwa/vitepress": "^0.5.0",
+    "tailwindcss": "^3.4.4",
+    "tsx": "^4.16.2",
+    "vite-plugin-pwa": "^0.20.0",
+    "vitepress": "1.3.0",
+    "vue": "^3.4.31",
+    "workbox-window": "^7.1.0"
   },
   "devDependencies": {
     "@lint-md/cli": "^2.0.0",
-    "@types/markdown-it": "^13.0.7",
-    "@types/node": "^20.11.30",
-    "prettier": "^3.2.5",
-    "sharp": "^0.33.3",
+    "@types/markdown-it": "^14.1.1",
+    "@types/node": "^20.14.10",
+    "prettier": "^3.3.2",
+    "sharp": "^0.33.4",
     "simple-git-hooks": "^2.11.1"
   },
   "simple-git-hooks": {
