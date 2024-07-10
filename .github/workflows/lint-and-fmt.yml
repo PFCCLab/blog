@@ -33,3 +33,7 @@ jobs:
       - name: Format check
         run: |
           pnpm fmt:check
+
+      - name: Check filename
+        run: |
+          pnpm lint:filename
