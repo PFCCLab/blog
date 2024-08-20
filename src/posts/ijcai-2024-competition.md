@@ -62,10 +62,10 @@ pinned: true
    ![Fig 8](../images/ijcai-2024-competition/fig8.jpg)
 
    选手们也是个个都不含糊，纷纷展示了自己的解决方案，那场面可真是热闹非凡！获奖选手的代码仓库也已经在 PaddleScience GitHub 上公开啦，大家快去围观吧！链接在这里 ➡️ [获奖选手代码仓库](https://github.com/PaddlePaddle/PaddleScience/tree/develop/jointContribution/IJCAI_2024)
-   
+
    ![Fig 9](../images/ijcai-2024-competition/fig9.png)
 
-- **会后采访现场**
+-  **会后采访现场**
 
    ![Fig 10](../images/ijcai-2024-competition/fig10.jpg)
 
