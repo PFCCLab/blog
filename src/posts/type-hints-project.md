@@ -65,11 +65,11 @@ def greeting(name: str) -> str:
 
 而最直观的反映就是，我们在诸如 VSCode 等 IDE 中，能够获取到接口的类型提示，并进行连续推导了：
 
-<!-- IDE 中使用类型提示 -->
+<!-- typing_ide.png -->
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/typing_ide.png"/>
-        <figcaption>IDE 中使用类型提示</figcaption>
+        <figcaption>typing_ide.png</figcaption>
     </figure>
 </div>
 
@@ -128,11 +128,11 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 而有些接口，Paddle 是通过 pybind 或 patch 的方式提供，则需要增加对应的 `stub` 文件。最基本的，如 `Tensor` 类，需要提供 `tensor.pyi` 文件：
 
-<!-- tensor.pyi -->
+<!-- tensor_pyi.png -->
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/tensor_pyi.png"/>
-        <figcaption>tensor.pyi</figcaption>
+        <figcaption>tensor_pyi.png</figcaption>
     </figure>
 </div>
 
@@ -177,17 +177,17 @@ Paddle 中会用到很多公用的标注类型，比如数据布局 `NCHW`、`NH
 
 三个部分。
 
-<!-- hierarchy.pyi -->
+<!-- hierarchy.png -->
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/hierarchy.png"/>
-        <figcaption>hierarchy.pyi</figcaption>
+        <figcaption>hierarchy.png</figcaption>
     </figure>
 </div>
 
 具体到 `_typing` 模块，其本身作为 Paddle 的一个私有模块放置于 `python/paddle` 目录下：
 
-<!-- typing_module.pyi -->
+<!-- typing_module.png -->
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/typing_module.png"/>
@@ -255,7 +255,7 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 前面提到，我们使用 `mypy` 来保证类型标注的准确性，这就涉及到 CI 流水线的建设问题。
 
-<!-- typing_ci.pyi -->
+<!-- typing_ci.png -->
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/typing_ci.png"/>
@@ -276,6 +276,14 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 所谓 `性能问题` ，如果使用过 `mypy` 的同学可能深有体会，这东西太慢了。我们在项目中同样遇到了性能问题，Paddle 中 2000+ 个接口，检查一遍需要 2 个多小时。因此，我们使用进程池的方式对接口做并行检查，也将整体检查时间缩减到 10 分钟左右（虽然有同学反馈，内存占用可能有几十个 GB ，whatever，反正是在 CI 上做检查，而且也没有崩，就当是啥都没发生吧 ... ...）。
 
+<!-- ci_con.png -->
+<div style="display: flex; justify-content: center">
+    <figure style="width: 80%;">
+        <img src="../images/type-hints-project/ci_con.png"/>
+        <figcaption>ci_con.png</figcaption>
+    </figure>
+</div>
+
 另外 `流程问题` 也是需要重点关注的。正如前文所讲，我们需要对接口做全量检查，但是，具体到每个接口的修改，则只能针对当前接口进行检查，否则问题无法收敛。因此，在整体类型标注完成之前，CI 的行为：
 
 - 默认：不检查类型
@@ -291,6 +299,14 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 这里还需要单独说明一下，实际上，我们更推荐项目做 `全量检查` 作为默认行为，但是，由于全量检查对于资源的消耗实在太大，这里才退而求其次使用增量检查。
 
+<!-- ci_shift.png -->
+<div style="display: flex; justify-content: center">
+    <figure style="width: 80%;">
+        <img src="../images/type-hints-project/ci_shift.png"/>
+        <figcaption>ci_shift.png</figcaption>
+    </figure>
+</div>
+
 ### 文档建设
 
 文档建设是另一个需要单独关注的问题。Python 的类型标注虽然仍然是 Python 语言的一部分，但是，对于大部分没有接触过的同学来说，这东西就像是 Python 和 C++ 或者 Rust 的结合体。而且，类型标注本身不仅仅需要对标注熟悉，还需要明确各个接口的实际运行过程才能完成一个正确的标注过程。代码的运行流程需要同学在标注的过程中层层分析，而文档建设需要做的，相当于一个引子，引导大家进入到 Paddle 类型标注的最佳实践中来。
@@ -304,54 +320,118 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 文档的建设也不是一蹴而就的，由于类型标注这个主题本身就非常庞大，我们的做法是，先在 `Tracking Issue` 中添加一个 `Q&A` 章节，让大家有个基础的入手指南，后续再逐步完善，并最终完成文档，形成 Paddle 项目本身的最佳实践。
 
-
+<!-- typing_doc.png -->
+<div style="display: flex; justify-content: center">
+    <figure style="width: 80%;">
+        <img src="../images/type-hints-project/typing_doc.png"/>
+        <figcaption>typing_doc.png</figcaption>
+    </figure>
+</div>
 
 ### 公开 API 的类型标注
 
+这个任务是整个项目的主体任务，可以根据参与者的范围不同划分为：
 
+- 内部，实现辅助的 `stub` 文件
+- 开放，实现其他公开接口的类型标注，也就是 `Inline type annotation`；占主要工作部分。
 
+我们在开展主要的类型标注任务之前，首先在内部完成了必要的 `stub` 文件的生成与编写任务。
 
+如前文所述，Paddle 很多接口是通过 pybind 或 patch 的方式对外开放的，这里最基础，也是最主要的是 `Tensor` 的实现。我们没有借鉴 `PyTorch` 等框架的做法使用 `静态解析` 的方式生成 `tensor.pyi` 文件，而是 `动态解析`：
 
+<!-- tensor_pyi_stub.png -->
+<div style="display: flex; justify-content: center">
+    <figure style="width: 80%;">
+        <img src="../images/type-hints-project/tensor_pyi_stub.png"/>
+        <figcaption>tensor_pyi_stub.png</figcaption>
+    </figure>
+</div>
 
-[【Hackathon 6th】为 Paddle 框架 API 添加类型提示（Type Hints） RFC community#858](https://github.com/PaddlePaddle/community/pull/858)
+如上图所示，`静态解析` 是指，通过解析 `yaml` 的配置项，结合模板与硬编码的方式生成 `stub` 文件。这样做的好处是，不会产生运行时依赖，也就是说，可以在项目编译的任意阶段导入。但是，这样的做法极其繁琐，非常容易出错，而且后续维护也会异常困难。由此，我们采用 `动态解析` 的方式，即，在项目编译的完成阶段，直接 `import paddle` ，再把相应的接口填入模板中一并打包进行分发。Python 目前最常采用，也是 Paddle 主要的分发方式是 `wheel` ，也就是将编译与打包分离，这也为 `动态解析` 提供了可行性。
 
-[为 Paddle 框架 API 添加类型提示（Type Hints）Tracking Issue](https://github.com/PaddlePaddle/Paddle/issues/63597)
+`_typing` 模块导入、CI 流水线建设、文档建设、`stub` 文件的生成，以上诸多任务的目的，便是推动 `公开接口的类型标注` 这个主体任务的进行。
 
-[[Type Hints] 为公开 API 标注类型提示信息](https://github.com/PaddlePaddle/Paddle/issues/65008)
+借助飞桨的完善的开源社区建设，6 月初，我们开放了 [[Type Hints] 为公开 API 标注类型提示信息](https://github.com/PaddlePaddle/Paddle/issues/65008) 这个主体标注任务。任务划分为三批，共 337 个子任务，前后有 30 多位开发者参与，完成了 Paddle 的 2000 多个 API 的类型标注，PR 数量有 300 多个。
 
+> 说明：这里 API 的数量以函数或方法为计数单位，如，一个类有两个公开接口，则计数为 2 。
 
+项目的整体工程量，不应该只以数量的多少进行计算，因为，这个任务不仅仅是数量多，难度也不是修改一两个字符这么简单。
 
-@zrr1999
-@gouzil
-@Asthestarsfalll
-@SigureMo
-@ooooo-create
-@megemini
-@liyongchao911
-@DrRyanHuang
-@enkilee
-@gsq7474741
-@sunzhongkai588
-@Liyulingyue
-@86kkd
-@NKNaN
-@tlxd
-@Luohongzhige
-@Fripping
-@crazyxiaoxi
-@Caogration
-@BHmingyang
-@Lans1ot
-@Whsjrczr
-@uanu2002
-@MikhayEeer
-@Jeff114514
-@haoyu2022
-@Betelgeu
-@Turingg
-@inaomIIsfarell
-@Wizard-ZP
-@Sekiro-x
-@successfulbarrier
-@MufanColin
-@luotao1
+这里就不得不再提一下，很多人认为 Python 太简单没什么技术难度这个认知偏见。Python 从编程语言的学习曲线上来说，确实适合新手入门，但是，写代码或者编程，实际上是个工程问题，而不是简单的代码堆砌。在整个类型标注的任务过程中，我们发现太多的，不仅仅是编码习惯上的问题，更是工程问题，从基础上影响了 Paddle 这个项目的构建。比如上面提到的 `Place` 与 `CPUPlace` 的继承关系问题；再如，项目中用到了诸多的枚举方式，而没有使用 `enum` ；各个接口所使用的参数类型、范围不一致问题更是比比皆是。
+
+说回项目的难度问题，由于 Python 语言的动态性，标注的过程中虽然有文档可以参考，但仍然需要人工逐个进行代码的跟踪，才能对具体的类型较为有把握。一旦接口的调用涉及到私有 API ，跟踪起来则尤为困难。这也是为何到目前为止，仍然没有一款工具，可以很好的辅助人工进行类型标注这个问题的根本原因。就算是目前大火的大模型也无法取代人工的标注工作，修改大模型的错误，与人工直接标注的工作量基本相当。
+
+我们这里以 `10` 分钟一个接口（修改 + review）的工作量进行计算：
+
+`10 min/task * 2191 task / 60 min / 8 hour ≈ 46 day`
+
+也就是大约两个月的工作量，可以大体上估算所需投入的成本。
+
+开源社区的介入，一方面缓解了项目的人力问题，使项目的完成成为可能；另一方面，也让更多的开发者接触到了类型标注这个特性。未来，Paddle 应该会将类型标注作为标准的编码行为，早点入坑也不至于开发的时候再抓辖。
+
+<!-- typing_participants.png -->
+<div style="display: flex; justify-content: center">
+    <figure style="width: 80%;">
+        <img src="../images/type-hints-project/typing_participants.png"/>
+        <figcaption>typing_participants.png</figcaption>
+    </figure>
+</div>
+
+## 项目结语
+
+将近 5 个月的时间，痛苦、喜悦、烦恼或者豁然开朗都已成过去，有始有终，项目总算有个交代，正如《黑神话：悟空》，完成比完美更重要。
+
+如果说未来有什么计划，完善私有接口的标注、完善测试用例、完善文档与最佳实践，等等 ... ...
+
+要做的可以有很多，而对于还没有接触过类型标注的同学，或者还在犹豫是否使用类型标注这个特性，今天突然想到一个不是很雅的比如：
+
+上完厕所，走出十丈远，突然意识到自己没有擦屁股 ... ... 你要如何做呢？
+
+最后，感谢飞桨各位大佬的支持，感谢开源社区的贡献！！！
+
+导师：
+
+- @SigureMo
+
+开发者：
+
+- @zrr1999
+- @gouzil
+- @Asthestarsfalll
+- @SigureMo
+- @ooooo-create
+- @megemini
+- @liyongchao911
+- @DrRyanHuang
+- @enkilee
+- @gsq7474741
+- @sunzhongkai588
+- @Liyulingyue
+- @86kkd
+- @NKNaN
+- @tlxd
+- @Luohongzhige
+- @Fripping
+- @crazyxiaoxi
+- @Caogration
+- @BHmingyang
+- @Lans1ot
+- @Whsjrczr
+- @uanu2002
+- @MikhayEeer
+- @Jeff114514
+- @haoyu2022
+- @Betelgeu
+- @Turingg
+- @inaomIIsfarell
+- @Wizard-ZP
+- @Sekiro-x
+- @successfulbarrier
+- @MufanColin
+- @luotao1
+
+## 参考链接
+
+- [【Hackathon 6th】为 Paddle 框架 API 添加类型提示（Type Hints） RFC community#858](https://github.com/PaddlePaddle/community/pull/858)
+- [为 Paddle 框架 API 添加类型提示（Type Hints）Tracking Issue](https://github.com/PaddlePaddle/Paddle/issues/63597)
+- [[Type Hints] 为公开 API 标注类型提示信息](https://github.com/PaddlePaddle/Paddle/issues/65008)
