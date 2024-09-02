@@ -2,11 +2,9 @@
 title: 项目收官 | 为 Paddle 框架 API 添加类型提示（Type Hints）
 date: 2024-09-01
 author:
-   name: 孙师傅
-   github: sunzhongkai588
-co_authors:
-   - name: 顺师傅
-     github: megemini
+   name: 顺师傅
+   github: megemini
+pinned: true
 ---
 
 【为 Paddle 框架 API 添加类型提示（Type Hints）】的项目总结。
@@ -390,44 +388,44 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 导师：
 
-- @SigureMo
+- @[SigureMo](https://github.com/SigureMo)
 
 开发者：
 
-- @zrr1999
-- @gouzil
-- @Asthestarsfalll
-- @SigureMo
-- @ooooo-create
-- @megemini
-- @liyongchao911
-- @DrRyanHuang
-- @enkilee
-- @gsq7474741
-- @sunzhongkai588
-- @Liyulingyue
-- @86kkd
-- @NKNaN
-- @tlxd
-- @Luohongzhige
-- @Fripping
-- @crazyxiaoxi
-- @Caogration
-- @BHmingyang
-- @Lans1ot
-- @Whsjrczr
-- @uanu2002
-- @MikhayEeer
-- @Jeff114514
-- @haoyu2022
-- @Betelgeu
-- @Turingg
-- @inaomIIsfarell
-- @Wizard-ZP
-- @Sekiro-x
-- @successfulbarrier
-- @MufanColin
-- @luotao1
+- @[zrr1999](https://github.com/zrr1999)
+- @[gouzil](https://github.com/gouzil)
+- @[Asthestarsfalll](https://github.com/Asthestarsfalll)
+- @[SigureMo](https://github.com/SigureMo)
+- @[ooooo-create](https://github.com/ooooo-create)
+- @[megemini](https://github.com/megemini)
+- @[liyongchao911](https://github.com/liyongchao911)
+- @[DrRyanHuang](https://github.com/DrRyanHuang)
+- @[enkilee](https://github.com/enkilee)
+- @[gsq7474741](https://github.com/gsq7474741)
+- @[sunzhongkai588](https://github.com/sunzhongkai588)
+- @[Liyulingyue](https://github.com/Liyulingyue)
+- @[86kkd](https://github.com/86kkd)
+- @[NKNaN](https://github.com/NKNaN)
+- @[tlxd](https://github.com/tlxd)
+- @[Luohongzhige](https://github.com/Luohongzhige)
+- @[Fripping](https://github.com/Fripping)
+- @[crazyxiaoxi](https://github.com/crazyxiaoxi)
+- @[Caogration](https://github.com/Caogration)
+- @[BHmingyang](https://github.com/BHmingyang)
+- @[Lans1ot](https://github.com/Lans1ot)
+- @[Whsjrczr](https://github.com/Whsjrczr)
+- @[uanu2002](https://github.com/uanu2002)
+- @[MikhayEeer](https://github.com/MikhayEeer)
+- @[Jeff114514](https://github.com/Jeff114514)
+- @[haoyu2022](https://github.com/haoyu2022)
+- @[Betelgeu](https://github.com/Betelgeuse)
+- @[Turingg](https://github.com/Turingg)
+- @[inaomIIsfarell](https://github.com/inaomIIsfarell)
+- @[Wizard-ZP](https://github.com/Wizard-ZP)
+- @[Sekiro-x](https://github.com/Sekiro-x)
+- @[successfulbarrier](https://github.com/successfulbarrier)
+- @[MufanColin](https://github.com/MufanColin)
+- @[luotao1](https://github.com/luotao1)
 
 ## 参考链接
 
