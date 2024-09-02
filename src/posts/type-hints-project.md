@@ -42,23 +42,23 @@ Python 在 3.5 版本通过 [PEP 484 – Type Hints](https://peps.python.org/pep
 
 以一段简单的 Python 代码为例：
 
-``` python
+```python
 def greeting(name):
     return 'Hello' + name
 ```
 
 添加上类型提示之后：
 
-``` python
+```python
 def greeting(name: str) -> str:
     return 'Hello' + name
 ```
 
 正如前文所讲，类型提示功能有诸多好处，如：
 
-- 帮助开发者了解代码类型信息
-- 提高代码的可读性和可维护性
-- 结合工具在开发阶段发现错误
+-  帮助开发者了解代码类型信息
+-  提高代码的可读性和可维护性
+-  结合工具在开发阶段发现错误
 
 而最直观的反映就是，我们在诸如 VSCode 等 IDE 中，能够获取到接口的类型提示，并进行连续推导了：
 
@@ -72,23 +72,23 @@ def greeting(name: str) -> str:
 
 项目的 RFC [【Hackathon 6th】为 Paddle 框架 API 添加类型提示（Type Hints）](https://github.com/PaddlePaddle/community/pull/858) 经过大家讨论之后，将此次项目的目标最终标定为：
 
-- **正确完成 Paddle 公开 API 的类型标注，但不声明 Paddle 类型标注的完备性。**
+-  **正确完成 Paddle 公开 API 的类型标注，但不声明 Paddle 类型标注的完备性。**
 
 这里需要单独说明一下 `标注的完备性` 。类型标注是个循序渐进的过程，Paddle 是个相对较大且复杂的项目，除了公开 API 之外，还存在较多非公开 API 与 C++ 接口，此次项目无法保证完成以上所有接口的类型标注，故此，不做 Paddle 类型标注的完备性说明。或者，换个说法，如果熟悉 Python 的类型标注和相关工具的使用，那么，此次项目不保证完成 Paddle 这个项目本身通过类型工具的检查，但是，需要保证外部项目使用 Paddle 时，能够正确识别、提示与检查 Paddle 所提供的公开 API 。
 
 项目中的任务，以任务模块的角度，分解为：
 
-- `_typing` 模块的引入
-- CI 流水线的建设
-- 文档建设
-- 公开 API 的类型标注
+-  `_typing` 模块的引入
+-  CI 流水线的建设
+-  文档建设
+-  公开 API 的类型标注
 
 具体的执行过程，通过 [Tracking Issue](https://github.com/PaddlePaddle/Paddle/issues/63597) 跟踪项目进展，分解为：
 
-- 第一阶段的前置任务
-- 第二阶段的代码标注主体任务
-- 第三阶段的补充测试
-- 第四阶段的收尾与总结
+-  第一阶段的前置任务
+-  第二阶段的代码标注主体任务
+-  第三阶段的补充测试
+-  第四阶段的收尾与总结
 
 ## 项目实施
 
@@ -96,29 +96,29 @@ def greeting(name: str) -> str:
 
 Python 官方提出了三种支持类型提示的 [包分发方式](https://typing.readthedocs.io/en/latest/spec/distributing.html#packaging-typed-libraries)：
 
-- `inline` ，行内
-- `stubs` ，文件
-- `third party` ，第三方
+-  `inline` ，行内
+-  `stubs` ，文件
+-  `third party` ，第三方
 
 结合 Paddle 项目本身的结构，这里采用:
 
-- **Inline type annotation + Stub files in package**
+-  **Inline type annotation + Stub files in package**
 
 的方案实施类型提示，具体为：
 
-- Python 接口，使用 `inline` 方式标注
-- 非 Python 接口，提供 `stub` 标注文件，并打包在 Paddle 中
+-  Python 接口，使用 `inline` 方式标注
+-  非 Python 接口，提供 `stub` 标注文件，并打包在 Paddle 中
 
 所谓 `inline` ，是将类型直接标注在源文件的接口定义中，如：
 
-``` python
+```python
 def log(x, name=None):
     ...
 ```
 
 直接修改接口代码为：
 
-``` python
+```python
 def log(x: Tensor, name: str | None = None) -> Tensor:
     ...
 ```
@@ -137,11 +137,11 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 另外，由于 Python 的类型标注特性一直在不断完善的过程之中，初期的一些特性很难支撑 Paddle 如此体量的项目，因此，我们提出项目实施过程中的一项基本原则：
 
-- **在不违背 Paddle 最低支持版本 3.8 语法的基础上，尽可能使用新版本 typing 特性**
+-  **在不违背 Paddle 最低支持版本 3.8 语法的基础上，尽可能使用新版本 typing 特性**
 
 所谓 `不违背 Paddle 最低支持版本 3.8 语法`，一个典型的例子是，Python 3.8 版本不能使用 `|` 进行类型别名的创建，如：
 
-``` python
+```python
 from typing_extensions import TypeAlias
 from typing import Union
 t: TypeAlias = Union[str, int]
@@ -149,14 +149,14 @@ t: TypeAlias = Union[str, int]
 
 在 Python 3.8 的语法中无法转写为：
 
-``` python
+```python
 from typing_extensions import TypeAlias
 t: TypeAlias = str | int
 ```
 
 但，我们希望 `尽可能使用新版本 typing 特性`，因此，通过 [PEP 563 – Postponed Evaluation of Annotations](https://peps.python.org/pep-0563/) ，我们可以在函数签名中使用 Python 3.10 的语法特性，如：
 
-``` python
+```python
 from __future__ import annotations
 def foo(bar: str | int) -> None:
     ...
@@ -164,13 +164,13 @@ def foo(bar: str | int) -> None:
 
 以上，为本项目实施的总体方案与基本原则，接下来，按照前文所讲的 `以任务模块的角度` ，简单拆分讲解一下。
 
-### _typing 模块的引入
+### \_typing 模块的引入
 
 Paddle 中会用到很多公用的标注类型，比如数据布局 `NCHW`、`NHWC` 等。`_typing` 模块的引入，一方面可以统一规范开发者的标注行为，减少维护成本，另一方面，也可以减少各类书写错误。可以将 `_typing` 模块的地位与 Python 中的 `int`、`str` 等基础类型等同，由此，整个 Paddle 项目的标注体系可以分为：
 
-- 基础类型
-- 基础类
-- 接口
+-  基础类型
+-  基础类
+-  接口
 
 三个部分。
 
@@ -198,8 +198,8 @@ Paddle 中会用到很多公用的标注类型，比如数据布局 `NCHW`、`NH
 
 但是，`_typing` 建设的过程中，也逐渐暴露出一些问题，最主要的有两个：
 
-- 粒度控制
-- 单元测试
+-  粒度控制
+-  单元测试
 
 所谓 `粒度控制` 是指，很难用统一的标注来划分哪些类型需要归类入 `_typing` ，哪些则直接使用 Python 的基础类型进行组合。比如，`_typing` 中的 `IntSequence = Sequence[int]`，很多地方都会用到，但，具体到每个接口，也许直接标注 `Sequence[int]` 会更简单。
 
@@ -207,7 +207,7 @@ Paddle 中会用到很多公用的标注类型，比如数据布局 `NCHW`、`NH
 
 最理想的方式当然是对每个接口做类型检测的单元测试，但是，由于项目本身的人力与时间投入不允许我们这么做，我们选择通过对接口中的 `示例代码` 做类型检查这种方式。
 
-``` python
+```python
 def log(x: Tensor, name: str | None = None) -> Tensor:
     r"""
     Calculates the natural log of the given input Tensor, element-wise.
@@ -262,14 +262,14 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 上图简单描述了 CI 流水线的整体流程：
 
-- 添加标注
-- 抽取示例代码
-- 静态检查
+-  添加标注
+-  抽取示例代码
+-  静态检查
 
 这里不再详述赘述 CI 流水线的建设过程，主要有两处考量与大家分享：
 
-- 性能问题
-- 流程问题
+-  性能问题
+-  流程问题
 
 所谓 `性能问题` ，如果使用过 `mypy` 的同学可能深有体会，这东西太慢了。我们在项目中同样遇到了性能问题，Paddle 中 2000+ 个接口，检查一遍需要 2 个多小时。因此，我们使用进程池的方式对接口做并行检查，也将整体检查时间缩减到 10 分钟左右（虽然有同学反馈，内存占用可能有几十个 GB ，whatever，反正是在 CI 上做检查，而且也没有崩，就当是啥都没发生吧 ... ...）。
 
@@ -283,16 +283,16 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 另外 `流程问题` 也是需要重点关注的。正如前文所讲，我们需要对接口做全量检查，但是，具体到每个接口的修改，则只能针对当前接口进行检查，否则问题无法收敛。因此，在整体类型标注完成之前，CI 的行为：
 
-- 默认：不检查类型
-- `[Typing]` 的 PR 做增量检查；也就是只检查 PR 中修改的接口
-- `[Typing all]` 的 PR 做全量检查；也就是检查所有接口
+-  默认：不检查类型
+-  `[Typing]` 的 PR 做增量检查；也就是只检查 PR 中修改的接口
+-  `[Typing all]` 的 PR 做全量检查；也就是检查所有接口
 
 由此，可以在容忍一定错误的状态下，逐步推进整体项目的进展。
 
 截止到本文发表为止，CI 已经切换到常规行为：
 
-- 默认：PR 做增量检查；也就是只检查 PR 中修改的接口
-- `[Typing]` 的 PR 做全量检查；也就是检查所有接口
+-  默认：PR 做增量检查；也就是只检查 PR 中修改的接口
+-  `[Typing]` 的 PR 做全量检查；也就是检查所有接口
 
 这里还需要单独说明一下，实际上，我们更推荐项目做 `全量检查` 作为默认行为，但是，由于全量检查对于资源的消耗实在太大，这里才退而求其次使用增量检查。
 
@@ -310,8 +310,8 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 这里涉及到几个问题：
 
-- `What`：Paddle 的类型标注关注什么
-- `How`：Paddle 的类型标注怎么做
+-  `What`：Paddle 的类型标注关注什么
+-  `How`：Paddle 的类型标注怎么做
 
 首先 `What` ，也就是明确任务的具体范围，如，公开 API ，函数的 signature，文档等。其次 `How` ，也就是 Paddle 做类型标注的最佳实践。比如 `使用 PEP 563，延迟类型注解计算` 。（这里有更详细的文档 [《Python 类型提示标注规范》](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/style_guide_and_references/type_annotations_specification_cn.html)）
 
@@ -329,8 +329,8 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 这个任务是整个项目的主体任务，可以根据参与者的范围不同划分为：
 
-- 内部，实现辅助的 `stub` 文件
-- 开放，实现其他公开接口的类型标注，也就是 `Inline type annotation`；占主要工作部分。
+-  内部，实现辅助的 `stub` 文件
+-  开放，实现其他公开接口的类型标注，也就是 `Inline type annotation`；占主要工作部分。
 
 我们在开展主要的类型标注任务之前，首先在内部完成了必要的 `stub` 文件的生成与编写任务。
 
@@ -388,47 +388,47 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 
 导师：
 
-- @[SigureMo](https://github.com/SigureMo)
+-  @[SigureMo](https://github.com/SigureMo)
 
 开发者：
 
-- @[zrr1999](https://github.com/zrr1999)
-- @[gouzil](https://github.com/gouzil)
-- @[Asthestarsfalll](https://github.com/Asthestarsfalll)
-- @[SigureMo](https://github.com/SigureMo)
-- @[ooooo-create](https://github.com/ooooo-create)
-- @[megemini](https://github.com/megemini)
-- @[liyongchao911](https://github.com/liyongchao911)
-- @[DrRyanHuang](https://github.com/DrRyanHuang)
-- @[enkilee](https://github.com/enkilee)
-- @[gsq7474741](https://github.com/gsq7474741)
-- @[sunzhongkai588](https://github.com/sunzhongkai588)
-- @[Liyulingyue](https://github.com/Liyulingyue)
-- @[86kkd](https://github.com/86kkd)
-- @[NKNaN](https://github.com/NKNaN)
-- @[tlxd](https://github.com/tlxd)
-- @[Luohongzhige](https://github.com/Luohongzhige)
-- @[Fripping](https://github.com/Fripping)
-- @[crazyxiaoxi](https://github.com/crazyxiaoxi)
-- @[Caogration](https://github.com/Caogration)
-- @[BHmingyang](https://github.com/BHmingyang)
-- @[Lans1ot](https://github.com/Lans1ot)
-- @[Whsjrczr](https://github.com/Whsjrczr)
-- @[uanu2002](https://github.com/uanu2002)
-- @[MikhayEeer](https://github.com/MikhayEeer)
-- @[Jeff114514](https://github.com/Jeff114514)
-- @[haoyu2022](https://github.com/haoyu2022)
-- @[Betelgeu](https://github.com/Betelgeuse)
-- @[Turingg](https://github.com/Turingg)
-- @[inaomIIsfarell](https://github.com/inaomIIsfarell)
-- @[Wizard-ZP](https://github.com/Wizard-ZP)
-- @[Sekiro-x](https://github.com/Sekiro-x)
-- @[successfulbarrier](https://github.com/successfulbarrier)
-- @[MufanColin](https://github.com/MufanColin)
-- @[luotao1](https://github.com/luotao1)
+-  @[zrr1999](https://github.com/zrr1999)
+-  @[gouzil](https://github.com/gouzil)
+-  @[Asthestarsfalll](https://github.com/Asthestarsfalll)
+-  @[SigureMo](https://github.com/SigureMo)
+-  @[ooooo-create](https://github.com/ooooo-create)
+-  @[megemini](https://github.com/megemini)
+-  @[liyongchao911](https://github.com/liyongchao911)
+-  @[DrRyanHuang](https://github.com/DrRyanHuang)
+-  @[enkilee](https://github.com/enkilee)
+-  @[gsq7474741](https://github.com/gsq7474741)
+-  @[sunzhongkai588](https://github.com/sunzhongkai588)
+-  @[Liyulingyue](https://github.com/Liyulingyue)
+-  @[86kkd](https://github.com/86kkd)
+-  @[NKNaN](https://github.com/NKNaN)
+-  @[tlxd](https://github.com/tlxd)
+-  @[Luohongzhige](https://github.com/Luohongzhige)
+-  @[Fripping](https://github.com/Fripping)
+-  @[crazyxiaoxi](https://github.com/crazyxiaoxi)
+-  @[Caogration](https://github.com/Caogration)
+-  @[BHmingyang](https://github.com/BHmingyang)
+-  @[Lans1ot](https://github.com/Lans1ot)
+-  @[Whsjrczr](https://github.com/Whsjrczr)
+-  @[uanu2002](https://github.com/uanu2002)
+-  @[MikhayEeer](https://github.com/MikhayEeer)
+-  @[Jeff114514](https://github.com/Jeff114514)
+-  @[haoyu2022](https://github.com/haoyu2022)
+-  @[Betelgeu](https://github.com/Betelgeuse)
+-  @[Turingg](https://github.com/Turingg)
+-  @[inaomIIsfarell](https://github.com/inaomIIsfarell)
+-  @[Wizard-ZP](https://github.com/Wizard-ZP)
+-  @[Sekiro-x](https://github.com/Sekiro-x)
+-  @[successfulbarrier](https://github.com/successfulbarrier)
+-  @[MufanColin](https://github.com/MufanColin)
+-  @[luotao1](https://github.com/luotao1)
 
 ## 参考链接
 
-- [【Hackathon 6th】为 Paddle 框架 API 添加类型提示（Type Hints） RFC community#858](https://github.com/PaddlePaddle/community/pull/858)
-- [为 Paddle 框架 API 添加类型提示（Type Hints）Tracking Issue](https://github.com/PaddlePaddle/Paddle/issues/63597)
-- [[Type Hints] 为公开 API 标注类型提示信息](https://github.com/PaddlePaddle/Paddle/issues/65008)
+-  [【Hackathon 6th】为 Paddle 框架 API 添加类型提示（Type Hints） RFC community#858](https://github.com/PaddlePaddle/community/pull/858)
+-  [为 Paddle 框架 API 添加类型提示（Type Hints）Tracking Issue](https://github.com/PaddlePaddle/Paddle/issues/63597)
+-  [[Type Hints] 为公开 API 标注类型提示信息](https://github.com/PaddlePaddle/Paddle/issues/65008)
