@@ -66,7 +66,7 @@ def greeting(name: str) -> str:
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/typing_ide.png"/>
-        <figcaption>typing_ide.png</figcaption>
+        <figcaption>IDE 中使用类型提示</figcaption>
     </figure>
 </div>
 
@@ -125,7 +125,7 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/tensor_pyi.png"/>
-        <figcaption>tensor_pyi.png</figcaption>
+        <figcaption>生成 tensor.pyi 文件</figcaption>
     </figure>
 </div>
 
@@ -174,7 +174,7 @@ Paddle 中会用到很多公用的标注类型，比如数据布局 `NCHW`、`NH
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/hierarchy.png"/>
-        <figcaption>hierarchy.png</figcaption>
+        <figcaption>类型层级结构</figcaption>
     </figure>
 </div>
 
@@ -184,7 +184,7 @@ Paddle 中会用到很多公用的标注类型，比如数据布局 `NCHW`、`NH
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/typing_module.png"/>
-        <figcaption>typing_module.pyi</figcaption>
+        <figcaption>_typing 模块</figcaption>
     </figure>
 </div>
 
@@ -252,7 +252,7 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/typing_ci.png"/>
-        <figcaption>typing_ci.pyi</figcaption>
+        <figcaption>CI 流水线</figcaption>
     </figure>
 </div>
 
@@ -273,7 +273,7 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/ci_con.png"/>
-        <figcaption>ci_con.png</figcaption>
+        <figcaption>并行处理</figcaption>
     </figure>
 </div>
 
@@ -296,7 +296,7 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/ci_shift.png"/>
-        <figcaption>ci_shift.png</figcaption>
+        <figcaption>CI 流水线切换</figcaption>
     </figure>
 </div>
 
@@ -317,7 +317,7 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/typing_doc.png"/>
-        <figcaption>typing_doc.png</figcaption>
+        <figcaption>类型标注文档</figcaption>
     </figure>
 </div>
 
@@ -336,7 +336,7 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/tensor_pyi_stub.png"/>
-        <figcaption>tensor_pyi_stub.png</figcaption>
+        <figcaption>静态解析 vs 动态解析</figcaption>
     </figure>
 </div>
 
@@ -366,7 +366,7 @@ def log(x: Tensor, name: str | None = None) -> Tensor:
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
         <img src="../images/type-hints-project/typing_participants.png"/>
-        <figcaption>typing_participants.png</figcaption>
+        <figcaption>开源贡献者</figcaption>
     </figure>
 </div>
 
