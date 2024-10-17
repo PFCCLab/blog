@@ -251,7 +251,7 @@ figcaption {
 
 ## 四. 大龄失业粉毛女青年旅行 Vlog
 
-TBD（梦师傅：在做了）
+戳戳 Vlog ➡️ [【离职日记｜裸辞后我都去玩了点什么】](https://www.bilibili.com/video/BV18911YYE8z/?share_source=copy_web&vd_source=037f1194a808c500e8df2bfbd4fd7001)
 
 ## 写在最后 💡
 
