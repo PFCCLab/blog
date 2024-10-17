@@ -32,7 +32,7 @@ figcaption {
 </style>
 
 > 原文：https://about.fb.com/news/2024/07/open-source-ai-is-the-path-forward/ <br>
-> ✍️ 写于 20 2 4 年 7月 23日 <br>
+> ✍️ 写于 2024 年 7 月 23 日 <br>
 > By 马克·扎克伯格，创始人兼 CEO
 
 ---
