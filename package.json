@@ -16,21 +16,21 @@
     "lint:filename": "tsx scripts/check-filename.mts"
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.13",
-    "@vite-pwa/vitepress": "^0.5.0",
-    "tailwindcss": "^3.4.4",
-    "tsx": "^4.16.2",
-    "vite-plugin-pwa": "^0.20.0",
+    "@tailwindcss/typography": "^0.5.15",
+    "@vite-pwa/vitepress": "^0.5.3",
+    "tailwindcss": "^3.4.14",
+    "tsx": "^4.19.2",
+    "vite-plugin-pwa": "^0.20.5",
     "vitepress": "1.4.3",
-    "vue": "^3.4.31",
-    "workbox-window": "^7.1.0"
+    "vue": "^3.5.12",
+    "workbox-window": "^7.3.0"
   },
   "devDependencies": {
     "@lint-md/cli": "^2.0.0",
-    "@types/markdown-it": "^14.1.1",
-    "@types/node": "^20.14.10",
-    "prettier": "^3.3.2",
-    "sharp": "^0.33.4",
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^22.8.6",
+    "prettier": "^3.3.3",
+    "sharp": "^0.33.5",
     "simple-git-hooks": "^2.11.1"
   },
   "simple-git-hooks": {
