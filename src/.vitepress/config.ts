@@ -1,5 +1,6 @@
-import { defineConfigWithTheme, createContentLoader } from 'vitepress'
+import { defineConfigWithTheme } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
+import { genFeed } from './genFeed.js'
 
 interface ThemeConfig {
   postsPerPage?: number
@@ -114,5 +115,6 @@ export default withPwa(
       },
     },
     themeConfig: themeConfig,
+    buildEnd: genFeed,
   })
 )
