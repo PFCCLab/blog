@@ -2,7 +2,7 @@
 title: 第二十八期 “CCF 开源高校行”暨“木兰技术开放日”走进北京大学活动成功举办
 date: 2024-11-17
 author:
-   name: 莹莹
+   name: 小莹莹
    github: E-Pudding
 pinned: true
 ---
