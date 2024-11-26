@@ -64,5 +64,5 @@ figcaption {
 
 ### 写在最后：飞桨开源社区活动介绍
 
-骆涛（百度飞桨资深研发工程师 [@luotao1](https://github.com/luotao1)）介绍了飞桨开源社区的活动。我们会不定期走进校园、开展线下 Meetup，线上的启航计划、快乐开源以及进阶的飞桨黑客松。欢迎大家持续关注飞桨的各种活动哦O(∩_∩)O 哈哈 对于对此有兴趣、愿意贡献力量的开发者，也可以联系 [孙师傅](https://github.com/sunzhongkai588)
+骆涛（百度飞桨资深研发工程师 [@luotao1](https://github.com/luotao1)）介绍了飞桨开源社区的活动。我们会不定期走进校园、开展线下 Meetup，线上的启航计划、快乐开源以及进阶的飞桨黑客松。欢迎大家持续关注飞桨的各种活动哦，对于对此有兴趣、愿意贡献力量的开发者，也可以联系 [孙师傅](https://github.com/sunzhongkai588)
 ![百度飞桨资深研发工程师骆涛](../images/zju-event/luotao.jpg)
