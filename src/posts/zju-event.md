@@ -49,7 +49,7 @@ figcaption {
 
 ### 4. 从零开始的开源之旅
 
-汪昕（美康生物算法工程师、PaddleOCR PMC Chair、飞桨开发者技术专家 PPDE [@GreatV](https://github.com/GreatV)）分享了自己的开源经历，从薅 GitHub 羊毛到成为开源贡献者，从 type fix 到深入参与开源项目建设，从成为 PaddleOCR Contributor 到成为 Paddle Committer 的参与开源社区的经历。
+汪昕（美康生物算法工程师、PaddleOCR PMC Chair、飞桨开发者技术专家 PPDE [@GreatV](https://github.com/GreatV)）分享了自己的开源经历，从薅 GitHub 羊毛到成为开源贡献者，从 typo fix 到深入参与开源项目建设，从成为 PaddleOCR Contributor 到成为 Paddle Committer 的参与开源社区的经历。
 ![飞桨开发者技术专家汪昕](../images/zju-event/greatv.jpg)
 
 ### 5. 开源让我越来越领先
