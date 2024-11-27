@@ -80,7 +80,7 @@ figcaption {
    ![结营啦](../images/BUAA-qhjh3/camping.png)
 
 7. 百度飞桨框架产品负责人张军老师做开源讲座
-![张军老师](../images/BUAA-qhjh3/junge.png)
+   ![张军老师](../images/BUAA-qhjh3/junge.png)
 
 ## 持续合作 共绘拔尖人才培养蓝图
 
