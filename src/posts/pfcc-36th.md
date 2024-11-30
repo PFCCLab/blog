@@ -39,8 +39,8 @@ figcaption {
 
 1. 如何通过 [Ivy](https://github.com/unifyai/ivy) 将 PyTorch 和 TensorFlow 模型进行转换，并直接在 Paddle 项目中使用。（35 min） [@djl11](https://github.com/djl11)
 
-   -  demo：[How To Convert Models from PyTorch to PaddlePaddle](https://unify.ai/docs/ivy/demos/examples_and_demos/dinov2_to_paddle.html)
-   -  QA 环节
+   - demo：[How To Convert Models from PyTorch to PaddlePaddle](https://unify.ai/docs/ivy/demos/examples_and_demos/dinov2_to_paddle.html)
+   - QA 环节
 
    <!-- Ivy -->
    <div style="display: flex; justify-content: center">
@@ -52,8 +52,8 @@ figcaption {
 
 2. [@RedContritio](https://github.com/tink2123) [PaConvert](https://github.com/PaddlePaddle/PaConvert) 代码转换工具介绍 （10 ～ 20min）
 
-   -  PaConvert 介绍
-   -  QA 环节
+   - PaConvert 介绍
+   - QA 环节
 
    <!-- PaConvert -->
    <div style="display: flex; justify-content: center">
@@ -71,7 +71,7 @@ figcaption {
 
 ### Part-1： Ivy （部分）
 
--  **问题 1：** 你有测试过多少模型能够转换成功？
+- **问题 1：** 你有测试过多少模型能够转换成功？
 
     <MessageBox>
     <Message name="Daniel" github="djl11">
@@ -79,7 +79,7 @@ figcaption {
     </Message>
     </MessageBox>
 
--  **问题 2：** 对于成功转换的模型，它会影响性能吗？或者可能需要更多的时间来训练嘛？
+- **问题 2：** 对于成功转换的模型，它会影响性能吗？或者可能需要更多的时间来训练嘛？
 
     <MessageBox>
     <Message name="Daniel" github="djl11">
@@ -91,7 +91,7 @@ figcaption {
     </Message>
     </MessageBox>
 
--  **问题 3：** 请问是否有覆盖率相关的工作，类似 PyTorch 那样对后端支持覆盖率有表单或者对应的 CI 流水线
+- **问题 3：** 请问是否有覆盖率相关的工作，类似 PyTorch 那样对后端支持覆盖率有表单或者对应的 CI 流水线
 
    <MessageBox>
    <Message name="Daniel" github="djl11">
@@ -101,7 +101,7 @@ figcaption {
    </Message>
    </MessageBox>
 
--  **问题 4：** PyTorch 大概有两千多个 API，包括很多废弃的、不常见的 API，有多少可以通过 Ivy 转换？
+- **问题 4：** PyTorch 大概有两千多个 API，包括很多废弃的、不常见的 API，有多少可以通过 Ivy 转换？
 
    <MessageBox>
    <Message name="Daniel" github="djl11">
@@ -115,7 +115,7 @@ figcaption {
 
    > 编者注：细节戳 ➡️ [ivy/functional/frontends](https://github.com/unifyai/ivy/tree/main/ivy/functional/frontends)
 
--  **问题 5：** 我们刚看到的前端，目前支持了很多。但现在还有很多 API 不能转换，那我该怎么做？怎么处理它们？
+- **问题 5：** 我们刚看到的前端，目前支持了很多。但现在还有很多 API 不能转换，那我该怎么做？怎么处理它们？
 
    <MessageBox>
    <Message name="Daniel" github="djl11">
@@ -125,7 +125,7 @@ figcaption {
    </Message>
    </MessageBox>
 
--  **问题 6：** PyTorch API 有很多参数，不同参数可以组成各种组合，如果某些参数不支持，则如何处理？
+- **问题 6：** PyTorch API 有很多参数，不同参数可以组成各种组合，如果某些参数不支持，则如何处理？
 
    <MessageBox>
    <Message name="Daniel" github="djl11">
@@ -133,7 +133,7 @@ figcaption {
    </Message>
    </MessageBox>
 
--  **问题 7：** 目前大模型很流行。对于预训练的大模型，有大量的预训练权重，是否有更快的方式进行转换。
+- **问题 7：** 目前大模型很流行。对于预训练的大模型，有大量的预训练权重，是否有更快的方式进行转换。
 
    <MessageBox>
    <Message name="Daniel" github="djl11">
@@ -145,7 +145,7 @@ figcaption {
    </Message>
    </MessageBox>
 
--  **问题 8：** 当引入一个新 API 时，支持新 API 的成本有多大？
+- **问题 8：** 当引入一个新 API 时，支持新 API 的成本有多大？
 
    <MessageBox>
    <Message name="Daniel" github="djl11">
@@ -155,7 +155,7 @@ figcaption {
    </Message>
    </MessageBox>
 
--  **问题 9：** Ivy 是有特定的前端 API，还是只转译其他框架？
+- **问题 9：** Ivy 是有特定的前端 API，还是只转译其他框架？
 
    <MessageBox>
    <Message name="Daniel" github="djl11">
@@ -163,7 +163,7 @@ figcaption {
    </Message>
    </MessageBox>
 
--  **问题 10：** 听起来和 keras 很相似？
+- **问题 10：** 听起来和 keras 很相似？
 
    <MessageBox>
    <Message name="Daniel" github="djl11">
@@ -171,7 +171,7 @@ figcaption {
    </Message>
    </MessageBox>
 
--  **问题 11：** 我们是否需要使用更高的内存来转换模型？因为也许转换模型过程中需要保存中间信息，所以可能会占用一些内存。所以我想问问，像转换 llama 这样的大模型是否 ok？
+- **问题 11：** 我们是否需要使用更高的内存来转换模型？因为也许转换模型过程中需要保存中间信息，所以可能会占用一些内存。所以我想问问，像转换 llama 这样的大模型是否 ok？
 
    <MessageBox>
    <Message name="Daniel" github="djl11">
@@ -183,7 +183,7 @@ figcaption {
    </Message>
    </MessageBox>
 
--  **问题 12：** 你如何平衡你的生活和工作，以及保持你对开源的热情呢？
+- **问题 12：** 你如何平衡你的生活和工作，以及保持你对开源的热情呢？
 
    <MessageBox>
    <Message name="Daniel" github="djl11">
@@ -195,7 +195,7 @@ figcaption {
    </Message>
    </MessageBox>
 
--  **问题 13：** 英国的人工智能环境怎么样？是否会有官方活动之类的？
+- **问题 13：** 英国的人工智能环境怎么样？是否会有官方活动之类的？
 
    <MessageBox>
    <Message name="Daniel" github="djl11">
@@ -207,7 +207,7 @@ figcaption {
 
 ### Part-2： PaConvert （部分）
 
--  **问题 1 ：** PaConvert 是否是根据 AST 转换模型的？
+- **问题 1 ：** PaConvert 是否是根据 AST 转换模型的？
 
    <MessageBox>
    <Message name="RedContritio" github="RedContritio">
@@ -215,7 +215,7 @@ figcaption {
    </Message>
    </MessageBox>
 
--  **问题 2 ：** 是否有中间表示？还是直接将 PyTorch 代码转换成 Paddle ？
+- **问题 2 ：** 是否有中间表示？还是直接将 PyTorch 代码转换成 Paddle ？
 
    <MessageBox>
    <Message name="RedContritio" github="RedContritio">
