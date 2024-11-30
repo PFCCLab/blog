@@ -24,7 +24,7 @@ author:
 | 赛题六：基于 PINN 的 CFD 离散网格优化        | PaddleScience | 杭电飞碟 团队       | 杭州电子科技大学 | 二等奖   | 代码开源地址：https://atomgit.com/guagua/paddle_hangdian <br/>PR 链接：https://atomgit.com/paddlepaddle/PaddleScience/change/13                                                                     |
 | 赛题六：基于 PINN 的 CFD 离散网格优化        | PaddleScience | BUAAC503 团队       | 北京航空航天大学 | 三等奖   | 代码开源地址：https://atomgit.com/generic/sensitivity-PaddleScience <br/>PR 链接：https://atomgit.com/paddlepaddle/PaddleScience/change/1                                                           |
 
-- 新闻稿件：https://gongyi.cctv.com/2023/12/16/ARTImsV56UJOMQm80Fe9mQik231216.shtml?spm=C74732.Pj8CR3j1HiY5.EYvPQRqpeJWP.2 （上央视啦）
+-  新闻稿件：https://gongyi.cctv.com/2023/12/16/ARTImsV56UJOMQm80Fe9mQik231216.shtml?spm=C74732.Pj8CR3j1HiY5.EYvPQRqpeJWP.2 （上央视啦）
 
 ![competition-roadshow](../images/wuxi-kaifangyuanzi/competition-roadshow.jpeg)
 
@@ -40,7 +40,7 @@ author:
 
 ![group-photo](../images/wuxi-kaifangyuanzi/group-photo.jpeg)
 
-- 新闻稿件：https://mp.weixin.qq.com/s/tNo1iAJGuB4Er0nReKyzBw
+-  新闻稿件：https://mp.weixin.qq.com/s/tNo1iAJGuB4Er0nReKyzBw
 
 ## 开放原子开发者大会 - 开发者之夜 🌠
 
@@ -54,7 +54,7 @@ author:
 
 ![OS-Contributors-03](../images/wuxi-kaifangyuanzi/OS-Contributors-03.jpeg)
 
-- 新闻稿件：https://mp.weixin.qq.com/s/ktN-8_hWADIgBm89UFA5jw
+-  新闻稿件：https://mp.weixin.qq.com/s/ktN-8_hWADIgBm89UFA5jw
 
 最后展示一个大合照 🏆 ~ 2023 收获满满，2024 一定会更好！提前给大家拜个早年 🧧🧨
 
