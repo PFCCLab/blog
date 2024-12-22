@@ -1,4 +1,6 @@
 // https://docs.renovatebot.com/configuration-options/
 {
   extends: ["github>SigureMo/renovate-config"],
+  // Ignore prettier 3.4 update until https://github.com/prettier/prettier/issues/16936 is resolved
+  ignoreDeps: ["prettier"],
 }
