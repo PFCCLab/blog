@@ -22,7 +22,9 @@ function main() {
   for (const filename of postFilenames) {
     const filepath = resolve(POST_DIR, `${filename}.md`)
     if (!isKebabCase(filename)) {
-      const errorMesssage = `Filename "${filename}" is not in kebab-case, suggest: "${suggestKebabCase(filename)}"`
+      const errorMesssage = `Filename "${filename}" is not in kebab-case, suggest: "${suggestKebabCase(
+        filename
+      )}"`
       if (IN_GITHUB_ACTIONS) {
         console.log(`::error file=${filepath}::${errorMesssage}`)
       }

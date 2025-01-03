@@ -7,7 +7,6 @@ author:
 co_authors:
    - name: 杨国浩
      github: yangguohao
-pinned: true
 ---
 
 “圣安东尼奥这个地方太无聊了，我更想去纽约那样的大城市看看。”一位与杨国浩同堂上课的本科生说道。而此时，刚刚跨越半个地球来到 University of Texas 攻读 PhD 的杨国浩，却在这片陌生的土地上，开启了他新的探索旅程。
