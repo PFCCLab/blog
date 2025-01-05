@@ -1,5 +1,6 @@
 import { defineConfigWithTheme } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
+import tailwindcss from '@tailwindcss/vite'
 import { genFeed } from './genFeed.js'
 
 interface ThemeConfig {
@@ -78,6 +79,9 @@ export default withPwa(
       ],
     ],
     srcExclude: ['eggs/**/*.md'],
+    vite: {
+      plugins: [tailwindcss()],
+    },
     pwa: {
       outDir: '.vitepress/dist',
       registerType: 'autoUpdate',
