@@ -15,10 +15,10 @@ pinned: true
 
 ## 1. 飞桨开源数据一览
 
--  在 [GitHub PaddlePaddle 组织](https://github.com/PaddlePaddle)下，有 90+ 个开源的代码仓库。
--  累计 Commits 超过 93 万次，PR & ISSUE 的贡献者超过 18000 人。
--  飞桨框架位列 GitHub 中国项目活跃度榜首。（[2022 中国开源年度报告](https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd)）
--  全球开源项目中，开源动力指数位列前 30。（[2023 年 10 月份，Linux 基金会旗下的云原生计算基金会统计](https://github.com/cncf/velocity#current-reports)）
+- 在 [GitHub PaddlePaddle 组织](https://github.com/PaddlePaddle)下，有 90+ 个开源的代码仓库。
+- 累计 Commits 超过 93 万次，PR & ISSUE 的贡献者超过 18000 人。
+- 飞桨框架位列 GitHub 中国项目活跃度榜首。（[2022 中国开源年度报告](https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd)）
+- 全球开源项目中，开源动力指数位列前 30。（[2023 年 10 月份，Linux 基金会旗下的云原生计算基金会统计](https://github.com/cncf/velocity#current-reports)）
 
 ## 2. 整体飞桨平台的情况
 
@@ -64,20 +64,20 @@ IDC 发布的 2022 年中国深度学习框架和平台市场份额报告显示�
 
 **技术实力与开源影响力提升**
 
--  飞桨社区开源项目覆盖深度学习框架、模型、应用全领域，你想提升的技术，这里全都有；
--  与飞桨产研团队紧密沟通协作，和飞桨共同成长；
--  开源贡献行为全部公开可查，飞桨社区丰富的开源贡献活动助你树立个人开源影响力；
--  鼓励社区孵化项目，你可以在这里找到志同道合的小伙伴，把想法变成现实。
+- 飞桨社区开源项目覆盖深度学习框架、模型、应用全领域，你想提升的技术，这里全都有；
+- 与飞桨产研团队紧密沟通协作，和飞桨共同成长；
+- 开源贡献行为全部公开可查，飞桨社区丰富的开源贡献活动助你树立个人开源影响力；
+- 鼓励社区孵化项目，你可以在这里找到志同道合的小伙伴，把想法变成现实。
 
 **荣誉证书、现金激励与工作机会**
 
--  颁发开源贡献证书、社区曝光度、奖状徽章等，致敬每一位贡献者；
--  举办丰富社区赛事，提供奖金/奖品激励与权威机构认证；
--  开源社区贡献者在招聘中会被优先考虑。
+- 颁发开源贡献证书、社区曝光度、奖状徽章等，致敬每一位贡献者；
+- 举办丰富社区赛事，提供奖金/奖品激励与权威机构认证；
+- 开源社区贡献者在招聘中会被优先考虑。
 
 **硬件支持**
 
--  提供线上 V100 开发环境，随时可以开发与编译。
+- 提供线上 V100 开发环境，随时可以开发与编译。
 
 ![honours](../images/2023-os-report/5-1-honours.jpg)
 
@@ -145,9 +145,9 @@ bug 发现了不能不修，怎么修呢？我们把目光放到了开源社区�
 
 **「快乐开源活动」** 旨在鼓励更多的开发者参与到飞桨社区的开源建设中，帮助社区修复 bug 或贡献 feature，加入开源、共建飞桨。如果你是刚接触飞桨 or 开源社区的小白，我们十分推荐你从打卡任务开始：
 
--  **任务一：修改飞桨文档**，完成你的第一个 PR，练习 git 操作，熟悉 GitHub 开源协作方式
--  **任务二：拉取 Paddle 代码，完成本地编译**，让你对 Paddle 代码有更深入的理解，便于参与后续的框架开发任务
--  **任务三：在 PaddleMIX 中跑通 Stable-Diffusion 训练推理**，你会快速掌握飞桨开发套件的使用，便于参与后续的套件开发任务
+- **任务一：修改飞桨文档**，完成你的第一个 PR，练习 git 操作，熟悉 GitHub 开源协作方式
+- **任务二：拉取 Paddle 代码，完成本地编译**，让你对 Paddle 代码有更深入的理解，便于参与后续的框架开发任务
+- **任务三：在 PaddleMIX 中跑通 Stable-Diffusion 训练推理**，你会快速掌握飞桨开发套件的使用，便于参与后续的套件开发任务
 
 详情可查看 issue：https://github.com/PaddlePaddle/Paddle/issues/56689
 
@@ -161,9 +161,9 @@ bug 发现了不能不修，怎么修呢？我们把目光放到了开源社区�
 
 第五期黑客松活动火热进行中，详情可查看 issue：
 
--  开源贡献个人挑战赛：https://github.com/PaddlePaddle/Paddle/issues/57262
--  大模型应用与创意赛：https://github.com/PaddlePaddle/Paddle/issues/57585
--  飞桨护航计划集训营：https://github.com/PaddlePaddle/Paddle/issues/57264
+- 开源贡献个人挑战赛：https://github.com/PaddlePaddle/Paddle/issues/57262
+- 大模型应用与创意赛：https://github.com/PaddlePaddle/Paddle/issues/57585
+- 飞桨护航计划集训营：https://github.com/PaddlePaddle/Paddle/issues/57264
 
 ### 社区组织
 
