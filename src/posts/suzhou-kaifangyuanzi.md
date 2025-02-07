@@ -20,16 +20,16 @@ BTW，在 4 月 14 日 我们飞桨开源社区的工作人员也顺路来到杭
 
 赛题有一定难度，但同时奖金也颇为丰厚🤩：
 
--  赛题一：OCR 端到端识别任务
-   -  一等奖：1 支队伍，每支队伍奖金 15 万元
-   -  二等奖：1 支队伍，每支队伍奖金 4 万元
-   -  三等奖：1 支队伍，每支队伍奖金 1 万元
-   -  开源贡献奖：7 支队伍，荣誉证书
--  赛题二：通用表格识别任务
-   -  一等奖：1 支队伍，每支队伍奖金 7 万元
-   -  二等奖：1 支队伍，每支队伍奖金 2 万元
-   -  三等奖：1 支队伍，每支队伍奖金 1 万元
-   -  开源贡献奖：7 支队伍，荣誉证书
+- 赛题一：OCR 端到端识别任务
+   - 一等奖：1 支队伍，每支队伍奖金 15 万元
+   - 二等奖：1 支队伍，每支队伍奖金 4 万元
+   - 三等奖：1 支队伍，每支队伍奖金 1 万元
+   - 开源贡献奖：7 支队伍，荣誉证书
+- 赛题二：通用表格识别任务
+   - 一等奖：1 支队伍，每支队伍奖金 7 万元
+   - 二等奖：1 支队伍，每支队伍奖金 2 万元
+   - 三等奖：1 支队伍，每支队伍奖金 1 万元
+   - 开源贡献奖：7 支队伍，荣誉证书
 
 ## 赛程回顾
 
@@ -108,7 +108,7 @@ BTW，在 4 月 14 日 我们飞桨开源社区的工作人员也顺路来到杭
 
 > 以下为痛失真名现场
 >
-> -  第一排（从左往右）：马贺达 [@WintersMontagne10335](https://github.com/WintersMontagne10335)、尤江彬 [@Harryoung](https://github.com/Harryoung)、张军 [@jzhang533](https://github.com/jzhang533)、骆涛 [@luotao123](https://github.com/luotao123)、董黄莹 [@1want2sleep](https://github.com/1want2sleep)、吴奕琳 [@WoWYoYLoL](https://github.com/WoWYoYLoL)、方国勇 [@ooooo-create](https://github.com/ooooo-create)、杨昌辉 [@Yang-Changhui](https://github.com/Yang-Changhui)、刘佳新家属
-> -  第二排（从左往右）：汪昕 [@GreatV](https://github.com/GreatV)、吴荣飞 [@lknt](https://github.com/lknt)、刘益斌 [@YibinLiu666](https://github.com/YibinLiu666)、孙钟恺 [@sunzhongkai588](https://github.com/sunzhongkai588)、王海涛 [@yulangz](https://github.com/yulangz)、叶柯 [@cocoshe](https://github.com/cocoshe)、周高威 [@Eacient](https://github.com/Eacient)、杨泽群 [@idontkonwher](https://github.com/idontkonwher)、刘佳新 [@Marshalldteach](https://github.com/Marshalldteach)
+> - 第一排（从左往右）：马贺达 [@WintersMontagne10335](https://github.com/WintersMontagne10335)、尤江彬 [@Harryoung](https://github.com/Harryoung)、张军 [@jzhang533](https://github.com/jzhang533)、骆涛 [@luotao123](https://github.com/luotao123)、董黄莹 [@1want2sleep](https://github.com/1want2sleep)、吴奕琳 [@WoWYoYLoL](https://github.com/WoWYoYLoL)、方国勇 [@ooooo-create](https://github.com/ooooo-create)、杨昌辉 [@Yang-Changhui](https://github.com/Yang-Changhui)、刘佳新家属
+> - 第二排（从左往右）：汪昕 [@GreatV](https://github.com/GreatV)、吴荣飞 [@lknt](https://github.com/lknt)、刘益斌 [@YibinLiu666](https://github.com/YibinLiu666)、孙钟恺 [@sunzhongkai588](https://github.com/sunzhongkai588)、王海涛 [@yulangz](https://github.com/yulangz)、叶柯 [@cocoshe](https://github.com/cocoshe)、周高威 [@Eacient](https://github.com/Eacient)、杨泽群 [@idontkonwher](https://github.com/idontkonwher)、刘佳新 [@Marshalldteach](https://github.com/Marshalldteach)
 
 ![meetup-2](../images/suzhou-kaifangyuanzi/meetup-2.jpg)
