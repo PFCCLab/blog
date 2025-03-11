@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "license": "CC0-1.0",
-  "packageManager": "pnpm@10.5.2",
+  "packageManager": "pnpm@10.6.2",
   "scripts": {
     "postinstall": "simple-git-hooks",
     "dev": "vitepress dev src",
