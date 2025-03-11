@@ -1,3 +1,10 @@
+---
+title: 多模态推理模型开源相关工作综述
+date: 2024-03-11
+author:
+   name: 李志军
+   github: ZhijunLStudio
+---
 
 
 当前的多模态模型通常缺乏**推理能力（reasoning）**，为了提升其推理能力，研究主要集中在以下三个方向：  
