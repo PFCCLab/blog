@@ -1,6 +1,6 @@
 ---
 title: 多模态推理模型开源相关工作综述
-date: 2024-03-11
+date: 2025-03-11
 author:
    name: 李志军
    github: ZhijunLStudio
