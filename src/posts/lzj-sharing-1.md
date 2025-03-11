@@ -1,10 +1,4 @@
----
-title: 探索多模态推理模型的开源实践
-date: 2025-03-10
-author:
-   name: 李志军
-   github: ZhijunLStudio
----
+
 
 当前的多模态模型通常缺乏**推理能力（reasoning）**，为了提升其推理能力，研究主要集中在以下三个方向：  
 
@@ -24,7 +18,7 @@ author:
 
 #### ① 介绍  
 R1-V 是多模态推理模型的早期代表之一。  
-- **训练环境**：8 个 A100 GPU，时长 30 分钟，训练成本 2.62 USD（200步）。  
+- **训练环境**：8 个 A100 GPU，时长 30 分钟，训练成本 2.62 USD（ 200 步）。  
 
 #### ② 训练流程  
 - **训练启动**：使用 `torchrun` 运行 GRPO 脚本，并结合 `deepspeed`、`flash_attn`、`wandb` 等工具（代码结构简单）。  
@@ -61,12 +55,12 @@ R1-V 是多模态推理模型的早期代表之一。
 - **奖励函数难以设置**（当前代码中使用的是最简单的实现方案）。  
 - **显存 OOM**：详见 [Issue #107](https://github.com/Deep-Agent/R1-V/issues/107)。  
 - **损失值经常为 0**：详见 [Huggingface Open-R1 Issue #239](https://github.com/huggingface/open-r1/issues/239)。  
-现在GRPO实现中策略都是单步更新，导致新旧策略是一样的，所以重要性采样系数是1，然后优势函数A是一个组当中每个reward的标准化，那么对优势函数A求期望自然也就是0了。所以GRPO的loss实际上就是新旧策略的KL散度项再乘一个系数beta，这也就是为什么训练过程中loss曲线和KL散度曲线分布如此相似，因为只差了一个系数beta。
-![Image](../images/lzj-sharing/lzj-3.png)
+现在GRPO实现中策略都是单步更新，导致新旧策略是一样的，所以重要性采样系数是 1 ，然后优势函数A是一个组当中每个reward的标准化，那么对优势函数A求期望自然也就是 0 了。所以GRPO的loss实际上就是新旧策略的KL散度项再乘一个系数beta，这也就是为什么训练过程中loss曲线和KL散度曲线分布如此相似，因为只差了一个系数beta。
+
 ---
 
 ### ⑤ 是否可以去掉 KL 约束？  
-![Image](../images/lzj-sharing/lzj-4.png)
+![Image](../images/lzj-sharing/lzj-3.png)
 
 **去除 KL 约束的影响：**  
 - 不需要 `ref-model`，减少显存占用和前向计算成本。  
@@ -95,6 +89,7 @@ R1-V 是多模态推理模型的早期代表之一。
   - **open-r1-multimodal**：逐个生成再拼接（更灵活，但成本更高）。  
 
 ![Image](../images/lzj-sharing/lzj-5.png)
+
 ---
 
 ### 1.3 VisualThinker-R1-Zero  
@@ -184,7 +179,7 @@ Vision-Language Input → DeepSeek2-VL MoE → GRPO Reward Optimization → Reas
 
 #### ① 介绍  
 - **基于强化学习优化的视觉推理模型**，专注于提升多模态任务的推理能力。  
-- **采用类 R1-V 训练架构，acc奖励改为iou+cls奖励（对比VLM-R1为iou奖励）**。  
+- **采用类 R1-V 训练架构，acc奖励改为iou+cls奖励（对比 VLM-R1 为 iou 奖励）**。  
 
 ![Image](../images/lzj-sharing/lzj-13.png)
 
@@ -341,28 +336,29 @@ Vision-Language Input → DeepSeek2-VL MoE → GRPO Reward Optimization → Reas
 - **开源地址**：[Huggingface - PKU-Alignment/Align-DS-V](https://huggingface.co/PKU-Alignment/Align-DS-V)  
 - **团队**：北京大学、香港科技大学  
 
-### ① 介绍  
+#### ① 介绍  
 Align-DS-V 基于自研全模态对齐框架 **Align-Anything**，将 DeepSeek-R1 系列模型拓展至多模态推理能力，推出多模态推理模型 **Align-DS-V**。  
 
-### ② 方法  
+#### ② 方法  
 - Align-DS-V 通过对 **视觉编码器** 进行优化，使其能够更好地理解和处理图文混合的信息。  
 - 借鉴 **LLaVA** 训练思路，将 **视觉信息投射到语言表示空间**，实现图像与文本的深度结合。  
 
-### ③ 性能  
+#### ③ 性能  
 - **多模态性能齐平 GPT-4o**，并且推理能力不降反增。  
 - 通过 Align-Anything 框架，提升多模态任务的理解和推理能力。 
 
+
 ![Image](../images/lzj-sharing/lzj-18.png)
 
-### ④ Align-Anything 框架架构  
+#### ④ Align-Anything 框架架构  
 Align-Anything 是一个通用的多模态对齐框架，可以用于优化不同模态（文本、图像、语音等）之间的融合能力。  
 
 ![Image](../images/lzj-sharing/lzj-19.png)
 
-### ⑤ 意外发现  
+#### ⑤ 意外发现  
 - 将 **DeepSeek-R1-Distill-Llama-8B** 扩展到视觉模态后，Align-DS-R1 在原始文本模态推理能力上也取得了显著提高。  
 
-### ⑥ 开源贡献  
+#### ⑥ 开源贡献  
 - **开源了模型**：[`PKU-Alignment/Align-DS-V`](https://huggingface.co/PKU-Alignment/Align-DS-V)  
 - **开源了多个数据集**：  
   - [`PKU-Alignment/align-anything`](https://huggingface.co/datasets/PKU-Alignment/align-anything)  
