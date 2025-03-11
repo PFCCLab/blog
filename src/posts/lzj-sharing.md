@@ -179,7 +179,7 @@ Vision-Language Input → DeepSeek2-VL MoE → GRPO Reward Optimization → Reas
 
 #### ① 介绍  
 - **基于强化学习优化的视觉推理模型**，专注于提升多模态任务的推理能力。  
-- **采用类 R1-V 训练架构，acc奖励改为iou+cls奖励（对比 VLM-R1 为 iou 奖励）**。  
+- **采用类 R1-V 训练架构，acc奖励改为 iou + cls 奖励（对比 VLM-R1 为 iou 奖励）**。  
 
 ![Image](../images/lzj-sharing/lzj-13.png)
 
