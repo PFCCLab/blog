@@ -62,7 +62,7 @@ R1-V 是多模态推理模型的早期代表之一。
 - **奖励函数难以设置**（当前代码中使用的是最简单的实现方案）。  
 - **显存 OOM**：详见 [Issue #107](https://github.com/Deep-Agent/R1-V/issues/107)。  
 - **损失值经常为 0**：详见 [Huggingface Open-R1 Issue #239](https://github.com/huggingface/open-r1/issues/239)。  
-现在GRPO实现中策略都是单步更新，导致新旧策略是一样的，所以重要性采样系数是 1 ，然后优势函数A是一个组当中每个reward的标准化，那么对优势函数A求期望自然也就是 0 了。所以GRPO的loss实际上就是新旧策略的KL散度项再乘一个系数beta，这也就是为什么训练过程中loss曲线和KL散度曲线分布如此相似，因为只差了一个系数beta。
+现在 GRPO 实现中策略都是单步更新，导致新旧策略是一样的，所以重要性采样系数是 1 ，然后优势函数A是一个组当中每个 reward 的标准化，那么对优势函数A求期望自然也就是 0 了。所以 GRPO 的 loss 实际上就是新旧策略的KL散度项再乘一个系数 beta ，这也就是为什么训练过程中 loss 曲线和 KL 散度曲线分布如此相似，因为只差了一个系数 beta 。
 
 ---
 
@@ -186,7 +186,7 @@ Vision-Language Input → DeepSeek2-VL MoE → GRPO Reward Optimization → Reas
 
 #### ① 介绍  
 - **基于强化学习优化的视觉推理模型**，专注于提升多模态任务的推理能力。  
-- **采用类 R1-V 训练架构，acc奖励改为 iou + cls 奖励（对比 VLM-R1 为 iou 奖励）**。  
+- **采用类 R1-V 训练架构， acc 奖励改为 iou + cls 奖励（对比 VLM-R1 为 iou 奖励）**。  
 
 ![Image](../images/lzj-sharing/lzj-13.png)
 
