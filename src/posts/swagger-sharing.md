@@ -69,10 +69,11 @@ DeepSeek-R1-Zero 探索了大型语言模型在没有任何监督数据的情况
     </figure>
 </div>
 PPO（Proximal Policy Optimization）是一种常用的强化学习算法，能够在策略优化中保持稳定性和效率。特别地，在大语言模型场景下，它通过最大化以下目标来优化LLMs：
-<div align="center">
 
-![](../images/swagger-sharing/ppo.png)
-
+<div style="display: flex; justify-content: center">
+    <figure style="width: 100%;">
+        <img src="../images//swagger-sharing/ppo.png"/>
+    </figure>
 </div>
 
 不要看公式复杂，这里是想让优势 $A$ 越大越好的同时约束新的参数 $\theta$ 和旧的参数 $\theta_{\text{old}}$ 不要相差太远。其中 $\text{clip} = \max(\min(\frac{\pi_{\theta}}{\pi_{\theta_{\text{old}}}}, 1+\epsilon), 1-\epsilon)$，即把 $\frac{\pi_{\theta}}{\pi_{\theta_{\text{old}}}}$ 的值限制在 $1-\epsilon$ 和 $1+\epsilon$ 之间。如果 $A$ 为正，那么说明当前动作价值高于平均，最大化式子会增大 $\frac{\pi_{\theta}}{\pi_{\theta_{\text{old}}}}$，但是不会超过 $1+\epsilon$，如果 $A$ 为负，说明当前动作价值低于平均，最大化式子会减小 $\frac{\pi_{\theta}}{\pi_{\theta_{\text{old}}}}$，但是不会超过 $1-\epsilon$。下面是李宏毅老师[3]的讲解视频中的截图，可以参考：
@@ -100,11 +101,19 @@ PPO 在大语言模型中的整体流程包括以下几个关键组件：
 
 因此在 **GRPO（Group Relative Policy Optimization）** 中直接去除了 Value Model，这对应的带来了另一个问题：如何评估未来的奖励？GRPO 的做法是利用多次采样取平均 reward 的方式实现这个效果。GRPO 从旧策略 $\pi_{\theta_{\text{old}}}$ 中采样一组输出 $\{o_1, o_2, \ldots, o_G\}$，然后通过最大化以下目标来优化策略模型 $\pi_{\theta}$。
 
-![](../images/swagger-sharing/grpo_formula.png)
+<div style="display: flex; justify-content: center">
+    <figure style="width: 100%;">
+        <img src="../images//swagger-sharing/grpo_formula.png"/>
+    </figure>
+</div>
 
 其中 $\epsilon$ 和 $\beta$ 是超参数，$A_i$ 是优势，使用一组奖励 $\{r_1, r_2, \ldots, r_G\}$ 计算得出，这些奖励对应于每组内的输出：
 
-![](../images/swagger-sharing/advantage.png)
+<div style="display: flex; justify-content: center">
+    <figure style="width: 100%;">
+        <img src="../images//swagger-sharing/advantage.png"/>
+    </figure>
+</div>
 
 $A_i$随着 Value Model 的消失，计算方式也变得更为简单，就是简单的均值方差计算。
 
@@ -130,14 +139,12 @@ $A_i$随着 Value Model 的消失，计算方式也变得更为简单，就是�
 
 数据构造的重点是数据的形式和构造方式，《DeepSeek-R1》使用了下面的训练模板（Training Template）作为 prompt 构造数据，不过具体用的哪个模型生成没有说。在 DeepSeek-R1-Zero 阶段，用来生成 Long CoT 的都是有明确答案的 reasoning data。
 
-
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
         <img src="../images//swagger-sharing/training_template.png"/>
         <figcaption style="text-align: center;">图 5：训练模板</figcaption>
     </figure>
 </div>
-
 
 #### 2.1.3 有趣的实验现象
 
