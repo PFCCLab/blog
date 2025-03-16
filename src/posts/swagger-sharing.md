@@ -72,7 +72,7 @@ PPO（Proximal Policy Optimization）是一种常用的强化学习算法，能�
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/ppo.png"/>
+        <img src="../images//swagger-sharing/PPO.png"/>
     </figure>
 </div>
 
