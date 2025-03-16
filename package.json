@@ -33,7 +33,8 @@
     "@types/node": "^22.9.0",
     "prettier": "^3.4.2",
     "sharp": "^0.33.5",
-    "simple-git-hooks": "^2.11.1"
+    "simple-git-hooks": "^2.11.1",
+    "markdown-it-mathjax3": "^4.3.2"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm run fmt"

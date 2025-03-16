@@ -2,6 +2,7 @@ import { defineConfigWithTheme } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 import tailwindcss from '@tailwindcss/vite'
 import { genFeed } from './genFeed.js'
+import mathjax3 from 'markdown-it-mathjax3'
 
 interface ThemeConfig {
   postsPerPage?: number
@@ -23,6 +24,12 @@ export default withPwa(
     description: metaInfo.description,
     lang: 'zh-CN',
     cleanUrls: true,
+    markdown: {
+      math: true,
+      config: (md) => {
+        md.use(mathjax3)
+      },
+    },
     head: [
       [
         'link',

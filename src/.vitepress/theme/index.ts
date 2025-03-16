@@ -1,4 +1,5 @@
 import './style.css'
+import './mathjax3.css'
 import { h } from 'vue'
 
 import Layout from './Layout.vue'
