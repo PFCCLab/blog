@@ -1,5 +1,5 @@
 ---
-title: DeepSeek-R1论文解读及相关技术杂谈
+title: DeepSeek-R1 论文解读及相关技术杂谈
 date: 2025-03-16
 author:
    name: swagger
