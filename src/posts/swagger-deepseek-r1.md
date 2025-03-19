@@ -53,7 +53,7 @@ DeepSeek-R1-Zero 探索了大型语言模型在没有任何监督数据的情况
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/deepseek-r1-zero.png"/>
+        <img src="../images//swagger-deepseek-r1/deepseek-r1-zero.png"/>
         <figcaption style="text-align: center;">图1：DeepSeek-R1-Zero的训练流程, 基础模型直接通过强化学习进行训练</figcaption>
     </figure>
 </div>
@@ -64,7 +64,7 @@ DeepSeek-R1-Zero 探索了大型语言模型在没有任何监督数据的情况
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/grpo.png"/>
+        <img src="../images//swagger-deepseek-r1/grpo.png"/>
         <figcaption style="text-align: center;">图2：PPO和GRPO对比图[4]</figcaption>
     </figure>
 </div>
@@ -72,7 +72,7 @@ PPO（Proximal Policy Optimization）是一种常用的强化学习算法，能�
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/PPO.png"/>
+        <img src="../images//swagger-deepseek-r1/PPO.png"/>
     </figure>
 </div>
 
@@ -80,7 +80,7 @@ PPO（Proximal Policy Optimization）是一种常用的强化学习算法，能�
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/ppo_clip.png"/>
+        <img src="../images//swagger-deepseek-r1/ppo_clip.png"/>
         <figcaption style="text-align: center;">图3：PPO clip值范围示意图[3]</figcaption>
     </figure>
 </div>
@@ -103,7 +103,7 @@ PPO 在大语言模型中的整体流程包括以下几个关键组件：
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/grpo_formula.png"/>
+        <img src="../images//swagger-deepseek-r1/grpo_formula.png"/>
     </figure>
 </div>
 
@@ -111,7 +111,7 @@ PPO 在大语言模型中的整体流程包括以下几个关键组件：
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/advantage.png"/>
+        <img src="../images//swagger-deepseek-r1/advantage.png"/>
     </figure>
 </div>
 
@@ -130,7 +130,7 @@ $A_i$随着 Value Model 的消失，计算方式也变得更为简单，就是�
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/opm.png"/>
+        <img src="../images//swagger-deepseek-r1/opm.png"/>
         <figcaption style="text-align: center;">图 4：ORM 和 PRM 示意图[1]</figcaption>
     </figure>
 </div>
@@ -141,7 +141,7 @@ $A_i$随着 Value Model 的消失，计算方式也变得更为简单，就是�
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/training_template.png"/>
+        <img src="../images//swagger-deepseek-r1/training_template.png"/>
         <figcaption style="text-align: center;">图 5：训练模板</figcaption>
     </figure>
 </div>
@@ -156,7 +156,7 @@ $A_i$随着 Value Model 的消失，计算方式也变得更为简单，就是�
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/r1-zero_exp4.png"/>
+        <img src="../images//swagger-deepseek-r1/r1-zero_exp4.png"/>
         <figcaption style="text-align: center;">图6：Aha Moment</figcaption>
     </figure>
 </div>
@@ -167,7 +167,7 @@ $A_i$随着 Value Model 的消失，计算方式也变得更为简单，就是�
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/r1-zero_exp3.png"/>
+        <img src="../images//swagger-deepseek-r1/r1-zero_exp3.png"/>
         <figcaption style="text-align: center;">图7：在RL过程中，DeepSeek-R1-Zero在训练集上的平均响应长度。DeepSeek-R1-Zero自然地学会了用更多的思考时间来解决推理任务。</figcaption>
     </figure>
 </div>
@@ -178,7 +178,7 @@ $A_i$随着 Value Model 的消失，计算方式也变得更为简单，就是�
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/r1-zero_exp1.png"/>
+        <img src="../images//swagger-deepseek-r1/r1-zero_exp1.png"/>
         <figcaption style="text-align: center;">图8：DeepSeek-R1-Zero和OpenAI o1模型在推理相关基准上的比较</figcaption>
     </figure>
 </div>
@@ -187,7 +187,7 @@ $A_i$随着 Value Model 的消失，计算方式也变得更为简单，就是�
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/r1-zero_exp2.png"/>
+        <img src="../images//swagger-deepseek-r1/r1-zero_exp2.png"/>
         <figcaption style="text-align: center;"> 图9：训练过程中DeepSeek-R1-Zero在AIME上的准确率。对于每个问题，抽样了16个答案，并计算了总体平均准确率，以确保评估的稳定性。</figcaption>
     </figure>
 </div>
@@ -209,7 +209,7 @@ DeepSeek-R1 主要探索了两个问题：
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/deepseek-r1.png"/>
+        <img src="../images//swagger-deepseek-r1/deepseek-r1.png"/>
         <figcaption style="text-align: center;">图10：DeepSeek-R1训练pipeline</figcaption>
     </figure>
 </div>
@@ -255,7 +255,7 @@ DeepSeek-R1 主要探索了两个问题：
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/distillation.png"/>
+        <img src="../images//swagger-deepseek-r1/distillation.png"/>
         <figcaption style="text-align: center;">图11：蒸馏流程</figcaption>
     </figure>
 </div>
@@ -283,7 +283,7 @@ DeepSeek-R1 主要探索了两个问题：
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/exp1.png"/>
+        <img src="../images//swagger-deepseek-r1/exp1.png"/>
         <figcaption style="text-align: center;">图12：DeepSeek-R1实验结果</figcaption>
     </figure>
 </div>
@@ -298,7 +298,7 @@ DeepSeek-R1 主要探索了两个问题：
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/exp2.png"/>
+        <img src="../images//swagger-deepseek-r1/exp2.png"/>
         <figcaption style="text-align: center;">图13：蒸馏模型实验结果</figcaption>
     </figure>
 </div>
@@ -315,7 +315,7 @@ DeepSeek-R1 主要探索了两个问题：
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
-        <img src="../images//swagger-sharing/ex3.png"/>
+        <img src="../images//swagger-deepseek-r1/ex3.png"/>
         <figcaption style="text-align: center;">图14：蒸馏 vs 强化学习 实验结果</figcaption>
     </figure>
 </div>
