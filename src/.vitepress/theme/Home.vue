@@ -17,33 +17,36 @@ const activeCategory = ref('all')
 
 const filteredPosts = computed(() => {
   if (activeCategory.value === 'all') {
-    return posts;
+    return posts
   }
-  return posts.filter(post => post.category === activeCategory.value);
+  return posts.filter((post) => post.category === activeCategory.value)
 })
 
 // 从URL参数中恢复分类状态
 onMounted(() => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const categoryParam = urlParams.get('category');
-  if (categoryParam && ['all', 'community-activity', 'developer-story', 'insights'].includes(categoryParam)) {
-    activeCategory.value = categoryParam;
+  const urlParams = new URLSearchParams(window.location.search)
+  const categoryParam = urlParams.get('category')
+  if (
+    categoryParam &&
+    ['all', 'community-activity', 'developer-story', 'insights'].includes(categoryParam)
+  ) {
+    activeCategory.value = categoryParam
   }
-});
+})
 
 // 修改分类切换函数，加入URL参数
 const changeCategory = (category) => {
-  activeCategory.value = category;
-  
+  activeCategory.value = category
+
   // 更新URL参数，不刷新页面
-  const url = new URL(window.location.href);
-  url.searchParams.set('category', category);
-  window.history.pushState({}, '', url);
-  
+  const url = new URL(window.location.href)
+  url.searchParams.set('category', category)
+  window.history.pushState({}, '', url)
+
   // 如果不在首页，跳转回首页
   if (route.path !== '/') {
-    router.go('/');
-  } 
+    router.go('/')
+  }
 }
 
 const pageIndex = computed(() => {
@@ -68,7 +71,7 @@ const postsInPage = computed(() => {
       <p class="text-lg leading-7 text-gray-500 dark:text-white">
         {{ frontmatter.subtext || site.description }}
       </p>
-      
+
       <!-- 添加分类选项组件 -->
       <BlogCategories :active-category="activeCategory" :on-change="changeCategory" />
     </div>
