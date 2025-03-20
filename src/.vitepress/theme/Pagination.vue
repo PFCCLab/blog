@@ -35,7 +35,7 @@ const categoryParam = computed(() => {
 function getPageUrl(pageNum: number) {
   // 基础URL
   const basePath = pageNum === 1 ? '/index.html' : `/pages/${pageNum}.html`
-  
+
   // 如果有分类且不是'all'，添加到URL
   const category = categoryParam.value
   return category && category !== 'all'

@@ -12,8 +12,8 @@ function goToHomePage(event) {
   // 仅在客户端环境执行
   if (typeof window !== 'undefined') {
     // 总是导航到不带任何参数的首页
-    window.location.href = withBase('/');
-    event.preventDefault();
+    window.location.href = withBase('/')
+    event.preventDefault()
   }
 }
 </script>

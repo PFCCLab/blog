@@ -42,7 +42,7 @@ const changeCategory = (category) => {
   activeCategory.value = category
 
   // 仅在客户端环境执行URL操作
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') return
 
   // 获取基础路径
   const baseUrl = withBase('/')
