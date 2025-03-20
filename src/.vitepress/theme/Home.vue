@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
-import { useData, useRoute, useRouter } from 'vitepress'
+import { useData, useRoute, useRouter, withBase } from 'vitepress'
 import { data as postsData } from './loaders/posts.data.js'
 import Date from './Date.vue'
 import Pagination from './Pagination.vue'
@@ -22,15 +22,18 @@ const filteredPosts = computed(() => {
   return posts.filter((post) => post.category === activeCategory.value)
 })
 
-// 从URL参数中恢复分类状态
+// 从URL参数中恢复分类状态 - 兼容SSR
 onMounted(() => {
-  const urlParams = new URLSearchParams(window.location.search)
-  const categoryParam = urlParams.get('category')
-  if (
-    categoryParam &&
-    ['all', 'community-activity', 'developer-story', 'insights'].includes(categoryParam)
-  ) {
-    activeCategory.value = categoryParam
+  // 仅在客户端环境中执行
+  if (typeof window !== 'undefined') {
+    const urlParams = new URLSearchParams(window.location.search)
+    const categoryParam = urlParams.get('category')
+    if (
+      categoryParam &&
+      ['all', 'community-activity', 'developer-story', 'insights'].includes(categoryParam)
+    ) {
+      activeCategory.value = categoryParam
+    }
   }
 })
 
@@ -38,24 +41,31 @@ onMounted(() => {
 const changeCategory = (category) => {
   activeCategory.value = category
 
+  // 仅在客户端环境执行URL操作
+  if (typeof window === 'undefined') return;
+
+  // 获取基础路径
+  const baseUrl = withBase('/')
+
   // 检查是否在首页
   if (route.path !== '/') {
-    // 不在首页，需要导航到首页，并且首页的URL不带上all参数
+    // 不在首页，需要导航到首页
     if (category === 'all') {
-      router.go('/')
+      // 修复：导航到纯首页，不带参数
+      router.go(baseUrl)
     } else {
-      router.go(`/?category=${category}`)
+      // 带分类参数导航到首页
+      router.go(`${baseUrl}?category=${category}`)
     }
   } else {
-    // 已经在首页，切换时需要更新URL参数，同时不刷新页面
-    let newUrl
+    // 已经在首页，只更新URL参数，不刷新页面
     if (category === 'all') {
-      newUrl = new URL('/', window.location.origin)
+      // 纯首页URL，不带参数
+      window.history.pushState({}, '', baseUrl)
     } else {
-      newUrl = new URL('/', window.location.origin)
-      newUrl.searchParams.set('category', category)
+      // 带分类参数的首页
+      window.history.pushState({}, '', `${baseUrl}?category=${category}`)
     }
-    window.history.pushState({}, '', newUrl)
   }
 }
 
@@ -68,6 +78,8 @@ const postsInPage = computed(() => {
   const end = start + postsPerPage
   return filteredPosts.value.slice(start, end)
 })
+
+// 注意：移除了自定义的 withBase 函数，因为我们直接从 vitepress 导入
 </script>
 
 <template>

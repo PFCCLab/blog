@@ -1,19 +1,28 @@
 <script setup lang="ts">
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import Home from './Home.vue'
 import Article from './Article.vue'
 import NotFound from './NotFound.vue'
 import About from './About.vue'
 
 const { page, frontmatter, site } = useData()
+
+// 添加一个函数来处理回到首页的点击事件
+function goToHomePage(event) {
+  // 仅在客户端环境执行
+  if (typeof window !== 'undefined') {
+    // 总是导航到不带任何参数的首页
+    window.location.href = withBase('/');
+    event.preventDefault();
+  }
+}
 </script>
 
 <template>
   <div class="antialiased dark:bg-neutral-900 min-h-screen">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
       <nav class="flex justify-between items-center py-10 font-bold">
-        <a class="text-xl" href="/" :aria-label="site.title">
-          <!-- TODO(SigureMo): Update this logo -->
+        <a class="text-xl" :href="withBase('/')" :aria-label="site.title" @click="goToHomePage">
           <img class="inline-block mr-2" style="width: 120px" alt="logo" src="/logo.png" />
           <span v-if="!frontmatter.index" class="hidden md:inline dark:text-white">{{
             site.title
