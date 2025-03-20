@@ -7,7 +7,7 @@ import Pagination from './Pagination.vue'
 import BlogCategories from './BlogCategories.vue'
 
 const route = useRoute()
-const router = useRouter() // 添加这一行，引入router
+const router = useRouter() 
 const { posts, postsPerPage, numPages } = postsData
 
 const { frontmatter, site } = useData()
@@ -34,18 +34,28 @@ onMounted(() => {
   }
 })
 
-// 修改分类切换函数，加入URL参数
+// 分类切换函数
 const changeCategory = (category) => {
   activeCategory.value = category
-
-  // 更新URL参数，不刷新页面
-  const url = new URL(window.location.href)
-  url.searchParams.set('category', category)
-  window.history.pushState({}, '', url)
-
-  // 如果不在首页，跳转回首页
+  
+  // 检查是否在首页
   if (route.path !== '/') {
-    router.go('/')
+    // 不在首页，需要导航到首页，并且首页的URL不带上all参数
+    if (category === 'all') {
+      router.go('/') 
+    } else {
+      router.go(`/?category=${category}`)
+    }
+  } else {
+    // 已经在首页，切换时需要更新URL参数，同时不刷新页面
+    let newUrl
+    if (category === 'all') {
+      newUrl = new URL('/', window.location.origin)
+    } else {
+      newUrl = new URL('/', window.location.origin)
+      newUrl.searchParams.set('category', category)
+    }
+    window.history.pushState({}, '', newUrl)
   }
 }
 
