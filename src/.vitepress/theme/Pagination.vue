@@ -14,12 +14,12 @@ function getPageUrl(pageNum: number) {
   // 从当前URL获取分类参数
   const urlParams = new URLSearchParams(window.location.search)
   const category = urlParams.get('category')
-  
+
   // 基础URL
   const basePath = pageNum === 1 ? '/index.html' : `/pages/${pageNum}.html`
-  
+
   // 如果有分类且不是'all'，添加到URL
-  return category && category !== 'all' 
+  return category && category !== 'all'
     ? withBase(`${basePath}?category=${category}`)
     : withBase(basePath)
 }

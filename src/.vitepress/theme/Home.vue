@@ -7,7 +7,7 @@ import Pagination from './Pagination.vue'
 import BlogCategories from './BlogCategories.vue'
 
 const route = useRoute()
-const router = useRouter() 
+const router = useRouter()
 const { posts, postsPerPage, numPages } = postsData
 
 const { frontmatter, site } = useData()
@@ -37,12 +37,12 @@ onMounted(() => {
 // 分类切换函数
 const changeCategory = (category) => {
   activeCategory.value = category
-  
+
   // 检查是否在首页
   if (route.path !== '/') {
     // 不在首页，需要导航到首页，并且首页的URL不带上all参数
     if (category === 'all') {
-      router.go('/') 
+      router.go('/')
     } else {
       router.go(`/?category=${category}`)
     }
