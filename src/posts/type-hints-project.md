@@ -4,6 +4,7 @@ date: 2024-09-01
 author:
    name: 顺师傅
    github: megemini
+category: community-activity
 ---
 
 【为 Paddle 框架 API 添加类型提示（Type Hints）】的项目总结。

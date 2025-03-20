@@ -5,6 +5,7 @@ author:
    name: 孙钟恺
    github: sunzhongkai588
 pinned: true
+category: community-activity
 ---
 
 2024 年已悄然落幕。这一年，飞桨开源社区在挑战与机遇中不断成长与突破。在这新年伊始，我们为大家呈上一份 2024 年度报告，以此致敬每一位开发者的努力与贡献。

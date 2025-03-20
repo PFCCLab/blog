@@ -9,6 +9,7 @@ co_authors:
      github: wenxiaohahaha
    - name: 黄济懿（黄师傅）
      github: huangjiyi
+category: developer-story
 ---
 
 从积极参与社区开源任务，到加入飞桨成为 ~~（练习生）~~ 实习生，到最终正式成为飞桨研发团队的一员。以兴趣为起点， **黄济懿师傅** 将我们展示了一条通往职业的道路，希望他的故事能够激励所有对开源充满热情的开发者们。接下来，原神启动 🚀！

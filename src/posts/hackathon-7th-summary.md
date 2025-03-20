@@ -4,6 +4,7 @@ date: 2025-01-26
 author:
    name: 孙钟恺
    github: sunzhongkai588
+category: community-activity
 ---
 
 飞桨黑客马拉松第七期，老赛制，新赛题，熟悉的配方，不一样的味道！
