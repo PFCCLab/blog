@@ -39,12 +39,12 @@ onMounted(() => {
 // 修改分类切换函数
 const changeCategory = (category) => {
   activeCategory.value = category
-  
+
   // 确保Node.js构建时不执行
   if (typeof window !== 'undefined') {
     // 更新URL参数，不刷新页面
     const url = new URL(window.location.href)
-    
+
     if (category === 'all') {
       // 如果选择"all"，则移除category参数
       url.searchParams.delete('category')
@@ -52,7 +52,7 @@ const changeCategory = (category) => {
       // 否则设置category参数
       url.searchParams.set('category', category)
     }
-    
+
     window.history.pushState({}, '', url)
 
     // 如果不在首页，跳转回首页
