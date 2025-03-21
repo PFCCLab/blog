@@ -50,15 +50,3 @@ figcaption {
 
 容芯致远 CTO 石旭，介绍了一种新的计算机架构，以 GPU 为核心（AGC，AI computer system with the GPU at its Core）。基于这种架构，能过实现 8U20 卡、4U10 卡的单机配置。这一全新的理念引起了包括主持人在内的质疑，观众追问是 PPT 阶段还是有真的产品，石旭很有信心地表达 4 月会召开产品发布会。所以，到底是 PPT，还是跨时代的创新，我们拭目以待！
 ![会议议程](../images/newhardware-2nd-event/04.jpg)
-
-Footer
-© 2025 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact
-Manage cookies
-Do not share my personal information
