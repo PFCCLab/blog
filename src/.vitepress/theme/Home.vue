@@ -7,7 +7,7 @@ import Pagination from './Pagination.vue'
 import BlogCategories from './BlogCategories.vue'
 
 const route = useRoute()
-const router = useRouter() // 添加这一行，引入router
+const router = useRouter()
 const { posts, postsPerPage, numPages } = postsData
 
 const { frontmatter, site } = useData()
@@ -22,30 +22,48 @@ const filteredPosts = computed(() => {
   return posts.filter((post) => post.category === activeCategory.value)
 })
 
-// 从URL参数中恢复分类状态
 onMounted(() => {
-  const urlParams = new URLSearchParams(window.location.search)
-  const categoryParam = urlParams.get('category')
-  if (
-    categoryParam &&
-    ['all', 'community-activity', 'developer-story', 'insights'].includes(categoryParam)
-  ) {
-    activeCategory.value = categoryParam
+  // 确保Node.js构建时不执行
+  if (typeof window !== 'undefined') {
+    const urlParams = new URLSearchParams(window.location.search)
+    const categoryParam = urlParams.get('category')
+    if (
+      categoryParam &&
+      ['all', 'community-activity', 'developer-story', 'insights'].includes(categoryParam)
+    ) {
+      activeCategory.value = categoryParam
+    }
   }
 })
 
-// 修改分类切换函数，加入URL参数
+// 修改分类切换函数
 const changeCategory = (category) => {
   activeCategory.value = category
+  
+  // 确保Node.js构建时不执行
+  if (typeof window !== 'undefined') {
+    // 更新URL参数，不刷新页面
+    const url = new URL(window.location.href)
+    
+    if (category === 'all') {
+      // 如果选择"all"，则移除category参数
+      url.searchParams.delete('category')
+    } else {
+      // 否则设置category参数
+      url.searchParams.set('category', category)
+    }
+    
+    window.history.pushState({}, '', url)
 
-  // 更新URL参数，不刷新页面
-  const url = new URL(window.location.href)
-  url.searchParams.set('category', category)
-  window.history.pushState({}, '', url)
-
-  // 如果不在首页，跳转回首页
-  if (route.path !== '/') {
-    router.go('/')
+    // 如果不在首页，跳转回首页
+    if (route.path !== '/') {
+      // 使用带参数的URL跳转
+      if (category === 'all') {
+        window.location.href = '/'
+      } else {
+        window.location.href = `/?category=${category}`
+      }
+    }
   }
 }
 
