@@ -9,6 +9,7 @@ co_authors:
      github: sunzhongkai588
    - name: 散步（小散）
      github: sanbuphy
+category: developer-story
 ---
 
 “负暄檐宇下，散步池塘曲”，本期我们邀请到了热情好学的散步 🚶‍♀️ 师傅！你想知道他的人生理想么？你想了解他的学习历程么？你想知道他的日常生活么？你想得到他的真挚祝福么？点击此篇博客，让我们一起走进小散的浪漫人生～

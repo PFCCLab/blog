@@ -7,6 +7,7 @@ author:
 co_authors:
    - name: 杰师傅
      github: Aurelius84
+category: community-activity
 ---
 
 ## 飞桨开源社区走进北京大学课堂

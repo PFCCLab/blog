@@ -4,7 +4,7 @@ date: 2023-11-02
 author:
    name: 孙师傅
    github: sunzhongkai588
-   # avatar:
+category: community-activity # avatar:
 ---
 
 2023 年 10 月 28 日、29 日参加开源社举办的「第八届中国开源年会」的精彩瞬间，以及与咱 Paddle 社区成都开发者们的线下见面～

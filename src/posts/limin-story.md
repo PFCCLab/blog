@@ -9,6 +9,7 @@ co_authors:
      github: wenxiaohahaha
    - name: 李敏（敏师傅）
      github: enkilee
+category: developer-story
 ---
 
 从对 Git 一窍不通到如今能够丝滑完成黑客松赛题，从曾经历鬼门关的生死挣扎到现在能够轻松跑几公里不喘气，从毕业于武大国软学的有志青年到佛系养生的新时代躺平中年，**敏师傅** 的人生经历就像是那瓶经年陈酿的老酒，醇厚细腻、回味无穷。

@@ -9,6 +9,7 @@ co_authors:
      github: wenxiaohahaha
    - name: 黄锦源（黄瓜大帝）
      github: Berniehuang2008
+category: developer-story
 ---
 
 他来了，他来了，他带着满满的故事，迈着自信的步伐向我们走来了！虽然刚满 15 岁，但**小小黄瓜**的开源史却已有好几年！学校趣事？开源经历？迷人帅照？成山作业？你都能在本篇博客看到！

@@ -56,6 +56,41 @@ pnpm dev
 
 文件名统一使用 kebab-case，如 `hello-world.md`。
 
+1. 博客置顶
+
+   若有置顶某篇博客的需求，需要确保该博客文章在 frontmatter 中包含 `pinned: true` 字段。例如：
+
+   ```
+   ---
+   title: 2024 年飞桨开源社区年度报告
+   date: 2025-02-07
+   ...
+   pinned: true
+   ---
+
+   文章内容...
+   ```
+
+2. 博客分类
+
+   需要确保每篇博客文章在 frontmatter 中包含 `category` 字段，以便实现博客的分类展示。例如：
+
+   ```
+   ---
+   title: 文章标题
+   date: 2025-04-01
+   category: community-activity
+   ---
+
+   文章内容...
+   ```
+
+   | category 字段      | 含义                           |
+   | ------------------ | ------------------------------ |
+   | community-activity | 飞桨开源社区动态、活动进展     |
+   | developer-story    | 飞桨社区开发者访谈、开发者故事 |
+   | insights           | 前沿洞察、技术分享             |
+
 ### 图片文件
 
 图片文件统一放置在 [`src/images`](./src/images) 目录下，每篇博客对应一个子目录，子目录名即为博客的文件名，比如 `hello-world.md` 对应的图片目录为 `src/images/hello-world`。

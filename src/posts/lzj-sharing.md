@@ -4,6 +4,7 @@ date: 2025-03-11
 author:
    name: 李志军
    github: ZhijunLStudio
+category: insights
 ---
 
 当前的多模态模型通常缺乏**推理能力（reasoning）**，为了提升其推理能力，研究主要集中在以下三个方向：

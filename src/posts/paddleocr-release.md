@@ -4,6 +4,7 @@ date: 2024-07-08
 author:
    name: 尤师傅
    github: Harryoung
+category: community-activity
 ---
 
 在开源社区的热烈期待与共同努力下，PaddleOCR 迎来了里程碑式的版本更新——v2.8.0！本次更新不仅**引入了前沿的 OCR 技术成果**，还**对项目结构进行了深度优化**，**解决了若干历史疑难问题**，旨在为广大开发者提供更加高效、便捷的 OCR 解决方案。让我们一同探索 PaddleOCR v2.8.0 带来的全新体验与无限可能！
