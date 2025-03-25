@@ -4,6 +4,7 @@ date: 2024-12-26
 author:
    name: Jun
    github: jzhang533
+category: community-activity
 ---
 
 借着 2024 年 12 月 26 日，在上海张江科学会堂举办文心大模型生态大会的机会，非常开心能在上海跟飞桨开源社区的大家线下见面。

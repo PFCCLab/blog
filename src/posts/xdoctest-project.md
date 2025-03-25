@@ -7,6 +7,7 @@ author:
 co_authors:
    - name: 顺师傅
      github: megemini
+category: community-activity
 ---
 
 【将 xdoctest 引入飞桨工作流】的项目总结。

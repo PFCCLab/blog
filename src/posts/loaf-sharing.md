@@ -4,6 +4,7 @@ date: 2023-12-18
 author:
    name: 孙钟恺
    github: sunzhongkai588
+category: insights
 ---
 
 本篇博客文章的内容，来源于作者在「第八届中国开源年会」上分享的一次主题为 **「如何在开源社区摸 🐟」** 的闪电演讲，以下的部分为演讲的具体内容。

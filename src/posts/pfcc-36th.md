@@ -9,6 +9,7 @@ co_authors:
      github: djl11
    - name: 莱师傅
      github: RedContritio
+category: community-activity
 ---
 
 在第 36 次 PFCC 会议上，我们有幸邀请了 Ivy 社区的英国小哥 Daniel（[@djl11](https://github.com/djl11)）和 Paddle 社区开发者莱师傅（[@RedContritio](https://github.com/tink2123)）分别分享了代码转换工具 Ivy、PaConvert。

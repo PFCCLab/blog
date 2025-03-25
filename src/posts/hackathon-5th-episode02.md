@@ -7,6 +7,7 @@ author:
 co_authors:
    - name: 花花
      github: Tulip-hua
+category: community-activity
 ---
 
 向大家快速介绍飞桨黑客松第五期开展以来的进展（11.4-12.1）

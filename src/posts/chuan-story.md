@@ -9,6 +9,7 @@ co_authors:
      github: wenxiaohahaha
    - name: 田川（川川）
      github: gouzil
+category: developer-story
 ---
 
 “桨声川水悠悠过，长路漫漫风光留”，这次我们要采访的是小伙伴们都熟悉的励志富哥儿——**川川师傅**✨
