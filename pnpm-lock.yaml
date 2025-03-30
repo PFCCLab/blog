@@ -15,8 +15,8 @@ importers:
         specifier: ^4.0.4
         version: 4.0.15(vite@5.4.14(@types/node@22.13.13)(lightningcss@1.29.2)(terser@5.39.0))
       '@vite-pwa/vitepress':
-        specifier: ^0.5.3
-        version: 0.5.3(vite-plugin-pwa@0.21.2(vite@5.4.14(@types/node@22.13.13)(lightningcss@1.29.2)(terser@5.39.0))(workbox-build@7.1.1)(workbox-window@7.3.0))
+        specifier: ^1.0.0
+        version: 1.0.0(vite-plugin-pwa@0.21.2(vite@5.4.14(@types/node@22.13.13)(lightningcss@1.29.2)(terser@5.39.0))(workbox-build@7.1.1)(workbox-window@7.3.0))
       feed:
         specifier: ^4.2.2
         version: 4.2.2
@@ -1564,11 +1564,11 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  '@vite-pwa/vitepress@0.5.3':
-    resolution: {integrity: sha512-ZNtBxZhS5Enp66z01gKuovTQzSorIpc6o9FEVwOk7kNivzuc4Q5RB04fcbBI1qqHE67rDmm+XqVQw0nj801gmw==}
+  '@vite-pwa/vitepress@1.0.0':
+    resolution: {integrity: sha512-i5RFah4urA6tZycYlGyBslVx8cVzbZBcARJLDg5rWMfAkRmyLtpRU6usGfVOwyN9kjJ2Bkm+gBHXF1hhr7HptQ==}
     peerDependencies:
-      '@vite-pwa/assets-generator': ^0.2.6
-      vite-plugin-pwa: '>=0.20.5 <1'
+      '@vite-pwa/assets-generator': ^1.0.0
+      vite-plugin-pwa: ^1.0.0
     peerDependenciesMeta:
       '@vite-pwa/assets-generator':
         optional: true
@@ -5963,7 +5963,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vite-pwa/vitepress@0.5.3(vite-plugin-pwa@0.21.2(vite@5.4.14(@types/node@22.13.13)(lightningcss@1.29.2)(terser@5.39.0))(workbox-build@7.1.1)(workbox-window@7.3.0))':
+  '@vite-pwa/vitepress@1.0.0(vite-plugin-pwa@0.21.2(vite@5.4.14(@types/node@22.13.13)(lightningcss@1.29.2)(terser@5.39.0))(workbox-build@7.1.1)(workbox-window@7.3.0))':
     dependencies:
       vite-plugin-pwa: 0.21.2(vite@5.4.14(@types/node@22.13.13)(lightningcss@1.29.2)(terser@5.39.0))(workbox-build@7.1.1)(workbox-window@7.3.0)
 
