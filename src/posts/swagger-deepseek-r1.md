@@ -4,6 +4,7 @@ date: 2025-03-16
 author:
    name: swagger
    github: swagger-coder
+category: insights
 ---
 
 本篇博客旨在讲解论文 **《DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning》** ，如有错误，欢迎指正。

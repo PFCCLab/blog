@@ -1,22 +1,80 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useData, useRoute } from 'vitepress'
+import { computed, ref, onMounted } from 'vue'
+import { useData, useRoute, useRouter } from 'vitepress'
 import { data as postsData } from './loaders/posts.data.js'
 import Date from './Date.vue'
 import Pagination from './Pagination.vue'
+import BlogCategories from './BlogCategories.vue'
 
 const route = useRoute()
+const router = useRouter()
 const { posts, postsPerPage, numPages } = postsData
 
 const { frontmatter, site } = useData()
 
+// 博客分类相关功能
+const activeCategory = ref('all')
+
+const filteredPosts = computed(() => {
+  if (activeCategory.value === 'all') {
+    return posts
+  }
+  return posts.filter((post) => post.category === activeCategory.value)
+})
+
+onMounted(() => {
+  // 确保Node.js构建时不执行
+  if (typeof window !== 'undefined') {
+    const urlParams = new URLSearchParams(window.location.search)
+    const categoryParam = urlParams.get('category')
+    if (
+      categoryParam &&
+      ['all', 'community-activity', 'developer-story', 'insights'].includes(categoryParam)
+    ) {
+      activeCategory.value = categoryParam
+    }
+  }
+})
+
+// 修改分类切换函数
+const changeCategory = (category) => {
+  activeCategory.value = category
+
+  // 确保Node.js构建时不执行
+  if (typeof window !== 'undefined') {
+    // 更新URL参数，不刷新页面
+    const url = new URL(window.location.href)
+
+    if (category === 'all') {
+      // 如果选择"all"，则移除category参数
+      url.searchParams.delete('category')
+    } else {
+      // 否则设置category参数
+      url.searchParams.set('category', category)
+    }
+
+    window.history.pushState({}, '', url)
+
+    // 如果不在首页，跳转回首页
+    if (route.path !== '/') {
+      // 使用带参数的URL跳转
+      if (category === 'all') {
+        window.location.href = '/'
+      } else {
+        window.location.href = `/?category=${category}`
+      }
+    }
+  }
+}
+
 const pageIndex = computed(() => {
   return route.path === '/' ? 1 : Number(route.path.split('/')[2])
 })
+
 const postsInPage = computed(() => {
   const start = (pageIndex.value - 1) * postsPerPage
   const end = start + postsPerPage
-  return posts.slice(start, end)
+  return filteredPosts.value.slice(start, end)
 })
 </script>
 
@@ -31,6 +89,9 @@ const postsInPage = computed(() => {
       <p class="text-lg leading-7 text-gray-500 dark:text-white">
         {{ frontmatter.subtext || site.description }}
       </p>
+
+      <!-- 添加分类选项组件 -->
+      <BlogCategories :active-category="activeCategory" :on-change="changeCategory" />
     </div>
     <ul class="divide-y divide-gray-200 dark:divide-slate-200/5">
       <li class="py-12" v-for="{ title, url, date, excerpt, pinned } of postsInPage">
@@ -56,9 +117,9 @@ const postsInPage = computed(() => {
       </li>
     </ul>
     <Pagination
-      :num-pages="numPages"
+      :num-pages="Math.ceil(filteredPosts.length / postsPerPage)"
       :page-index="pageIndex"
-      v-if="postsInPage.length !== posts.length"
+      v-if="filteredPosts.length > postsPerPage"
     />
   </div>
 </template>

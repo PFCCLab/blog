@@ -9,6 +9,7 @@ co_authors:
      github: sunzhongkai588
    - name: 郑必城（郑师傅）
      github: Zheng-Bicheng
+category: developer-story
 ---
 
 ​集百家之阴阳，合一家之糟粕。好消息！好消息！自称 Paddle 社区“最想当 PM 的程序员” 、“Paddle 首席阴阳家”—— Zheng-bicheng，闪亮登场 🥳🎉🎉🎉。你想掌握最前沿的阴阳技巧么？你想成为和他一样优秀的开发者吗？你想和他一样眼神 👀 中透露着睿智的光芒，小脑袋瓜里装满各种各样的知识么？那就快来看看这篇博客吧！🌹
