@@ -1,12 +1,12 @@
 ---
-title: PaddlePaddle社区新人手册：从零开始的开源之旅
+title: PaddlePaddle 社区新人手册：从零开始的开源之旅
 date: 2025-04-08
 author:
    name: 刘卓鑫
    github: mattheliu
 ---
 
-无论你是深度学习领域的新手，还是经验丰富的开发者，飞桨开源社区都欢迎你的加入！在这里，你可以学习最前沿的AI技术，结交志同道合的朋友，并为开源社区贡献自己的力量。
+无论你是深度学习领域的新手，还是经验丰富的开发者，飞桨开源社区都欢迎你的加入！在这里，你可以学习最前沿的 AI 技术，结交志同道合的朋友，并为开源社区贡献自己的力量。
 
 <!-- more -->
 
@@ -24,18 +24,18 @@ figcaption {
 </style>
 
 ---
-## 👋 欢迎来到飞桨社区！
-#### 亲爱的开发者朋友：
-#### 无论你是深度学习领域的新手，还是经验丰富的开发者，飞桨开源社区都欢迎你的加入！在这里，你可以学习最前沿的AI技术，结交志同道合的朋友，并为开源社区贡献自己的力量。
-#### 这份手册将指引你如何根据自己的时间和能力，找到最适合自己的参与方式。无论你是全职投入还是碎片化时间参与，是刚入门的新手还是技术大牛，我们都为你准备了合适的参与路径！
+## 👋 欢迎来到飞桨社区!
+#### 亲爱的开发者朋友:
+#### 无论你是深度学习领域的新手，还是经验丰富的开发者，飞桨开源社区都欢迎你的加入！在这里，你可以学习最前沿的 AI 技术，结交志同道合的朋友，并为开源社区贡献自己的力量.
+#### 这份手册将指引你如何根据自己的时间和能力，找到最适合自己的参与方式。无论你是全职投入还是碎片化时间参与，是刚入门的新手还是技术大牛，我们都为你准备了合适的参与路径!
 ## 🧭 如何使用这份手册
-### 本手册按照不同场景和问题提供指引，你可以根据自己的情况选择适合的参与方式：
+### 本手册按照不同场景和问题提供指引，你可以根据自己的情况选择适合的参与方式:
 * 技术基础薄弱？ 👉 查看学习资源指南
 * 想全方位参与社区？ 👉 参考完整参与路径
 * 可以进行非代码贡献吗？ 👉 我们鼓励多种形式的贡献
 ## 🔍 了解飞桨社区
-### 飞桨（PaddlePaddle）是百度开源的深度学习平台，拥有丰富的生态系统，包括：
-* PaddlePaddle核心框架：深度学习基础框架
+### 飞桨（PaddlePaddle）是百度开源的深度学习平台，拥有丰富的生态系统，包括:
+* PaddlePaddle 核心框架：深度学习基础框架
 * PaddleOCR：文字识别工具集
 * PaddleNLP：自然语言处理工具库
 * PaddleSpeech：语音技术工具库
@@ -43,8 +43,8 @@ figcaption {
 * PaddleX：低代码开发工具
 * PaddleScience：科学计算套件
 ## 🎯 了解你在社区中的位置
-### 飞桨社区采用五层成长模型，每个人都可以根据自己的兴趣和能力，选择合适的参与路径：
-```
+### 飞桨社区采用五层成长模型，每个人都可以根据自己的兴趣和能力，选择合适的参与路径:
+```bash
                                   -------------
                                  /             \
 SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导项目方向，带领新成员成长
@@ -78,7 +78,7 @@ SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导
 * ⏳ 有一定空闲（3-5 小时/周） → 定期贡献（代码 PR、社区运营）
 * 🔥 充裕时间（> 5 小时/周） → 深度参与（SIG 组、项目开发、赛事）
 ## 🎉 我们鼓励多种形式的贡献
-### 📚 文档贡献(可参考[https://github.com/PaddlePaddle/docs/pulls](https://github.com/PaddlePaddle/docs/pulls)的pr贡献）
+### 📚 文档贡献(可参考 [https://github.com/PaddlePaddle/docs/pulls](https://github.com/PaddlePaddle/docs/pulls) 的 pr 贡献）
 * 改进用户指南
 * 编写教程和示例
 * 翻译文档
@@ -87,7 +87,7 @@ SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导
 * 改进测试用例
 * 验证修复结果
 ### 🙋 社区支持
-* 在论坛回答问题(以PaddleOCR为例，可在[https://github.com/PaddlePaddle/PaddleOCR/discussions](https://github.com/PaddlePaddle/PaddleOCR/discussions)回答问题）
+* 在论坛回答问题(以 PaddleOCR 为例，可在 [https://github.com/PaddlePaddle/PaddleOCR/discussions](https://github.com/PaddlePaddle/PaddleOCR/discussions) 回答问题）
 * 帮助新手上手
 * 参与技术讨论
 ### 📣 内容创作
@@ -247,7 +247,7 @@ SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导
 * 技术峰会参与机会
 * 社区领导者身份
 ### 📞 联系我们
-* 进群联系:<img src="../images/Newcomer's-Manual/QR.jpg" alt="入群二维码" width="100px" />
+* 进群联系:<img src="../images/Newcomers-Manual/QR.jpg" alt="入群二维码" width="100px" />
 * GitHub: [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle)
 * 飞桨主页: [飞桨官网](https://www.paddlepaddle.org.cn)
 * 星河社区: [AI Studio星河社区](https://aistudio.baidu.com/community)
