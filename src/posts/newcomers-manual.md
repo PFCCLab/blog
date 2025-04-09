@@ -27,31 +27,31 @@ figcaption {
 
 ## 👋 欢迎来到飞桨社区
 
-#### 亲爱的开发者朋友
+**亲爱的开发者朋友**
 
-#### 无论你是深度学习领域的新手，还是经验丰富的开发者，飞桨开源社区都欢迎你的加入！在这里，你可以学习最前沿的 AI 技术，结交志同道合的朋友，并为开源社区贡献自己的力量
+**无论你是深度学习领域的新手，还是经验丰富的开发者，飞桨开源社区都欢迎你的加入！在这里，你可以学习最前沿的 AI 技术，结交志同道合的朋友，并为开源社区贡献自己的力量**
 
-#### 这份手册将指引你如何根据自己的时间和能力，找到最适合自己的参与方式。无论你是全职投入还是碎片化时间参与，是刚入门的新手还是技术大牛，我们都为你准备了合适的参与路径
+**这份手册将指引你如何根据自己的时间和能力，找到最适合自己的参与方式。无论你是全职投入还是碎片化时间参与，是刚入门的新手还是技术大牛，我们都为你准备了合适的参与路径**
 
 ## 🧭 如何使用这份手册
 
 ### 本手册按照不同场景和问题提供指引，你可以根据自己的情况选择适合的参与方式
 
-- 技术基础薄弱？ 👉 查看学习资源指南
-- 想全方位参与社区？ 👉 参考完整参与路径
-- 可以进行非代码贡献吗？ 👉 我们鼓励多种形式的贡献
+- 技术基础薄弱？ 👉 查看[学习资源指南](#learning-resources)
+- 想全方位参与社区？ 👉 参考[完整参与路径](#full-participation-path)
+- 可以进行非代码贡献吗？ 👉 [我们鼓励多种形式的贡献](#various-contributions)
 
 ## 🔍 了解飞桨社区
 
 ### 飞桨（PaddlePaddle）是百度开源的深度学习平台，拥有丰富的生态系统，包括
 
-- PaddlePaddle 核心框架：深度学习基础框架
-- PaddleOCR：文字识别工具集
-- PaddleNLP：自然语言处理工具库
-- PaddleSpeech：语音技术工具库
-- PaddleMIX：多模态大模型开发套件
-- PaddleX：低代码开发工具
-- PaddleScience：科学计算套件
+- [PaddlePaddle 核心框架](https://github.com/PaddlePaddle/Paddle)：深度学习基础框架
+- [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)：文字识别工具集
+- [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)：自然语言处理工具库
+- [PaddleSpeech](https://github.com/PaddlePaddle/PaddleSpeech)：语音技术工具库
+- [PaddleMIX](https://github.com/PaddlePaddle/PaddleMIX)：多模态大模型开发套件
+- [PaddleX](https://github.com/PaddlePaddle/PaddleX)：低代码开发工具
+- [PaddleScience](https://github.com/PaddlePaddle/PaddleScience)：科学计算套件
 
 ## 🎯 了解你在社区中的位置
 
@@ -60,7 +60,7 @@ figcaption {
 ```bash
                                   -------------
                                  /             \
-SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导项目方向，带领新成员成长
+SIG 负责人、技术布道官 →           /   引领层 👑    \ → 指导项目方向，带领新成员成长
                                /                  \
                               ----------------------
                               /                     \
@@ -96,15 +96,15 @@ SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导
 - ⏳ 有一定空闲（3-5 小时/周） → 定期贡献（代码 PR、社区运营）
 - 🔥 充裕时间（> 5 小时/周） → 深度参与（SIG 组、项目开发、赛事）
 
-## 🎉 我们鼓励多种形式的贡献
+## 🎉 <span id="various-contributions">我们鼓励多种形式的贡献</span>
 
-### 📚 文档贡献(可参考 [https://github.com/PaddlePaddle/docs/pulls](https://github.com/PaddlePaddle/docs/pulls) 的 pr 贡献）
+### 📚 文档贡献(可参考 [docs](https://github.com/PaddlePaddle/docs/pulls) 仓库的 pr 贡献）
 
 - 改进用户指南
 - 编写教程和示例
 - 翻译文档
 
-### 🔍 质量保障（我们鼓励直接沟通，请直接给我们提 issue ！）
+### 🔍 质量保障（我们鼓励直接沟通，请直接给我们提 issue！）
 
 - 测试功能并反馈 bug
 - 改进测试用例
@@ -112,17 +112,17 @@ SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导
 
 ### 🙋 社区支持
 
-- 在论坛回答问题(以 PaddleOCR 为例，可在 [https://github.com/PaddlePaddle/PaddleOCR/discussions](https://github.com/PaddlePaddle/PaddleOCR/discussions) 回答问题）
+- 在论坛回答问题(以 PaddleOCR 为例，可在 [discussions](https://github.com/PaddlePaddle/PaddleOCR/discussions) 回答问题）
 - 帮助新手上手
 - 参与技术讨论
 
 ### 📣 内容创作
 
-- 撰写博客文章(博客官网：[https://pfcc.blog](https://pfcc.blog)）
+- 撰写博客文章（博客官网：[https://pfcc.blog](https://pfcc.blog)）
 - 制作教学视频
 - 分享使用经验（我们鼓励大家在任何第三方平台分享在学习、贡献等等的过程中分享自己的经验～）
 
-## 🌈 完整参与路径
+## 🌈 <span id="full-participation-path">完整参与路径</span>
 
 ### 第一步：认知与兴趣阶段 🌱
 
@@ -151,7 +151,7 @@ SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导
 
 #### 2. 尝试简单贡献
 
-- 参与 [启航计划中的快乐开源](https://github.com/PaddlePaddle/Paddle/issues/71491) 新手任务
+- 参与[启航计划中的快乐开源](https://github.com/PaddlePaddle/Paddle/issues/71491) 新手任务
 - 修复文档中的错误
 - 提交简单的 bug 修复
 
@@ -181,7 +181,7 @@ SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导
 - 撰写技术博客
 - 制作教程视频
 - 提出功能改进建议
-- 贡献 aistudio 精品项目（不限于可执行代码、心得文章等贡献我们强烈欢迎～）
+- 贡献 AI Studio 精品项目（不限于可执行代码、心得文章等贡献我们强烈欢迎～）
 
 ### 第五步：成为社区领导者 🌟
 
@@ -197,7 +197,7 @@ SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导
 - 主导重要功能开发
 - 指导新成员成长
 
-## 📚 学习资源指南
+## 📚 <span id="learning-resources">学习资源指南</span>
 
 不同水平的开发者可以选择不同的学习路径：
 
@@ -339,7 +339,7 @@ SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导
 
 ### 📞 联系我们
 
-- 进群联系:<img src="../images/Newcomers-Manual/QR.jpg" alt="入群二维码" width="100px" />
+- 进群联系:<img src="../images/Newcomers-Manual/QR.jpg" alt="入群二维码"/>
 - GitHub: [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle)
 - 飞桨主页: [飞桨官网](https://www.paddlepaddle.org.cn)
 - 星河社区: [AI Studio 星河社区](https://aistudio.baidu.com/community)
@@ -352,11 +352,11 @@ SIG负责人、技术布道官 →            /   引领层 👑    \ → 指导
 
 ### 📌 附录：实用资源 & 常见问题（FAQ）
 
-- Q：我没时间长期参与，可以做什么？A：可以参与 答疑、翻译、内容创作，每周 1-2 小时也能有贡献！
-- Q：如何快速找到适合我的任务？A：根据你的技能和时间，从 good first issue 或 快乐开源 开始。
+- Q：我没时间长期参与，可以做什么？A：可以参与答疑、翻译、内容创作，每周 1-2 小时也能有贡献！
+- Q：如何快速找到适合我的任务？A：根据你的技能和时间，从[启航计划中的快乐开源](https://github.com/PaddlePaddle/Paddle/issues/71491)开始。
 - Q：贡献后如何被认可？A：提交 PR、完成任务后，我们会记录你的贡献，达到标准后可获得开源小礼品。
 
 #### 本手册由飞桨社区团队编写，持续更新中
 
 - PS:也可以一起参与本手册共建哦～
-- 致谢文中引用的 aistudio 项目贡献用户：魔术师、IvanAXu、yanggh、恭喜发财
+- 致谢文中引用的 AI Studio 项目贡献用户：魔术师、IvanAXu、yanggh、恭喜发财
