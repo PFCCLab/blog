@@ -5,6 +5,8 @@ import { data as postsData } from './loaders/posts.data.js'
 import Date from './Date.vue'
 import Pagination from './Pagination.vue'
 import BlogCategories from './BlogCategories.vue'
+import { getCurrentCategory, updateCategoryInUrl, navigateToCategory } from './utils/categoryUtils.client.js'
+
 
 const route = useRoute()
 const router = useRouter()
@@ -23,16 +25,12 @@ const filteredPosts = computed(() => {
 })
 
 onMounted(() => {
-  // 确保Node.js构建时不执行
-  if (typeof window !== 'undefined') {
-    const urlParams = new URLSearchParams(window.location.search)
-    const categoryParam = urlParams.get('category')
-    if (
-      categoryParam &&
-      ['all', 'community-activity', 'developer-story', 'insights'].includes(categoryParam)
-    ) {
-      activeCategory.value = categoryParam
-    }
+  const categoryParam = getCurrentCategory()
+  if (
+    categoryParam &&
+    ['all', 'community-activity', 'developer-story', 'insights'].includes(categoryParam)
+  ) {
+    activeCategory.value = categoryParam
   }
 })
 
@@ -40,30 +38,12 @@ onMounted(() => {
 const changeCategory = (category) => {
   activeCategory.value = category
 
-  // 确保Node.js构建时不执行
-  if (typeof window !== 'undefined') {
-    // 更新URL参数，不刷新页面
-    const url = new URL(window.location.href)
+  // 更新URL参数，不刷新页面
+  updateCategoryInUrl(category)
 
-    if (category === 'all') {
-      // 如果选择"all"，则移除category参数
-      url.searchParams.delete('category')
-    } else {
-      // 否则设置category参数
-      url.searchParams.set('category', category)
-    }
-
-    window.history.pushState({}, '', url)
-
-    // 如果不在首页，跳转回首页
-    if (route.path !== '/') {
-      // 使用带参数的URL跳转
-      if (category === 'all') {
-        window.location.href = '/'
-      } else {
-        window.location.href = `/?category=${category}`
-      }
-    }
+  // 如果不在首页，跳转回首页
+  if (route.path !== '/') {
+    navigateToCategory(category)
   }
 }
 
