@@ -9,6 +9,7 @@ co_authors:
      github: sunzhongkai588
    - name: 汪昕（汪师傅）
      github: GreatV
+category: developer-story
 ---
 
 无论是工作还是生活，他都认真对待！无论是开源世界还是家庭亲情他都怀抱深沉热爱！从一开始提修改文档 PR 的边缘者到如今横扫各大开源任务的 Paddle 扫地僧！汪师傅一直在开源界默默努力💪深耕～今天，就让我们一起揭开这位神秘大佬的面纱，探寻他的故事吧！✨✨✨

@@ -5,6 +5,7 @@ author:
    name: Jun
    github: jzhang533
    # avatar: https://avatars.githubusercontent.com/u/29231
+category: community-activity
 ---
 
 在中国计算机学会组织的中国软件开源创新大赛上，飞桨开源社区的全部比赛已经完成。恭喜以下获奖的同学：

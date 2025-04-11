@@ -7,6 +7,7 @@ author:
 co_authors:
    - name: 梦师傅
      github: Ligoml
+category: developer-story
 ---
 
 **All over the place was six pence, but he looked up at the moon.**

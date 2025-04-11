@@ -4,6 +4,7 @@ date: 2025-2-20
 author:
    name: Jun
    github: jzhang533
+category: insights
 ---
 
 Visualized deepseek technologies.

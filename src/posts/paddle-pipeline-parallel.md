@@ -5,6 +5,7 @@ author:
    name: 卢畅
    github: andsonder
 theme: 'vitesse-light'
+category: insights
 ---
 
 paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 Paddle 中的静态图流水并行。大家也可以去翻一翻我的[个人博客](https://space.keter.top/)，里面有很多好康的（X）

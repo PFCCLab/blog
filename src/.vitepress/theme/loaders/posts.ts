@@ -12,6 +12,7 @@ export interface Post {
   }
   excerpt: string | undefined
   pinned?: boolean
+  category?: string
 }
 
 export interface PostsData {
@@ -80,6 +81,7 @@ export default function createPostsLoader(getPostsPerPage: () => number) {
           excerpt,
           date: formatDate(frontmatter.date),
           pinned: frontmatter.pinned === true,
+          category: frontmatter.category || 'all',
         }))
         .sort((a, b) => {
           if (a.pinned && !b.pinned) {

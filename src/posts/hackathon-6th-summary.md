@@ -4,6 +4,7 @@ date: 2024-08-23
 author:
    name: 孙钟恺
    github: sunzhongkai588
+category: community-activity
 ---
 
 飞桨黑客马拉松第六期，新赛制，新玩法，难度更深，挑战更大！
