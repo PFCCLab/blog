@@ -9,9 +9,8 @@ const { page, frontmatter, site } = useData()
 
 // 添加重置分类的函数，确保回到首页时不带all参数
 function resetCategory() {
-    window.location.href = window.location.origin
-  }
-
+  window.location.href = window.location.origin
+}
 </script>
 
 <template>

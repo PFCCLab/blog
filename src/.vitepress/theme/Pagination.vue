@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress'
 import { useRoute } from 'vitepress'
-import { ref, onMounted } from 'vue'  
+import { ref, onMounted } from 'vue'
 import { getCurrentCategory } from './utils/categoryUtils.client.js'
 
 const route = useRoute()
@@ -19,11 +19,11 @@ onMounted(() => {
 
 function getPageLink(pageNum) {
   const basePath = pageNum === 1 ? '/' : `/pages/${pageNum}`
-  
+
   if (currentCategory.value) {
     return withBase(`${basePath}?category=${currentCategory.value}`)
   }
-  
+
   return withBase(basePath)
 }
 </script>

@@ -13,7 +13,7 @@ export function getCurrentCategory() {
  */
 export function updateCategoryInUrl(category) {
   const url = new URL(window.location.href)
-  
+
   if (category === 'all') {
     // 如果选择"all"，则移除category参数
     url.searchParams.delete('category')
@@ -21,7 +21,7 @@ export function updateCategoryInUrl(category) {
     // 否则设置category参数
     url.searchParams.set('category', category)
   }
-  
+
   window.history.pushState({}, '', url)
 }
 

@@ -5,8 +5,11 @@ import { data as postsData } from './loaders/posts.data.js'
 import Date from './Date.vue'
 import Pagination from './Pagination.vue'
 import BlogCategories from './BlogCategories.vue'
-import { getCurrentCategory, updateCategoryInUrl, navigateToCategory } from './utils/categoryUtils.client.js'
-
+import {
+  getCurrentCategory,
+  updateCategoryInUrl,
+  navigateToCategory,
+} from './utils/categoryUtils.client.js'
 
 const route = useRoute()
 const router = useRouter()
