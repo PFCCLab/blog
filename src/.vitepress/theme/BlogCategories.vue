@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 const props = defineProps<{
   activeCategory: string
   onChange: (category: string) => void

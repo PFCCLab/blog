@@ -2,7 +2,7 @@
  * 从URL获取当前分类参数
  * @returns {string|null} 分类参数值或null
  */
-export function getCurrentCategory() {
+export function getCurrentCategory(): string | null {
   const urlParams = new URLSearchParams(window.location.search)
   return urlParams.get('category')
 }
@@ -11,7 +11,7 @@ export function getCurrentCategory() {
  * 更新URL中的分类参数但不刷新页面
  * @param {string} category 分类名称
  */
-export function updateCategoryInUrl(category) {
+export function updateCategoryInUrl(category: string): void {
   const url = new URL(window.location.href)
 
   if (category === 'all') {
@@ -29,7 +29,7 @@ export function updateCategoryInUrl(category) {
  * 导航到指定分类的首页
  * @param {string} category 分类名称
  */
-export function navigateToCategory(category) {
+export function navigateToCategory(category: string): void {
   if (category === 'all') {
     window.location.href = '/'
   } else {

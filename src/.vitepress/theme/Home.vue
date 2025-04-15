@@ -12,8 +12,7 @@ import {
 } from './utils/categoryUtils.client.js'
 
 const route = useRoute()
-const router = useRouter()
-const { posts, postsPerPage, numPages } = postsData
+const { posts, postsPerPage } = postsData
 
 const { frontmatter, site } = useData()
 
@@ -38,7 +37,7 @@ onMounted(() => {
 })
 
 // 修改分类切换函数
-const changeCategory = (category) => {
+const changeCategory = (category: string) => {
   activeCategory.value = category
 
   // 更新URL参数，不刷新页面
