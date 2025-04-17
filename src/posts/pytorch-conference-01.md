@@ -7,6 +7,7 @@ author:
 co_authors:
    - name: 散步（小散）
      github: sanbuphy
+category: insights
 ---
 
 本文是对 PyTorch Conference 2023 中的《[State of PyTorch](https://www.youtube.com/watch?v=dR0lHxt3Tjo&t=83s)》部分进行了精准的中文翻译和详细的文字总结，旨在向读者介绍 **PyTorch 社区的 2023 年动态**。同时也特别参考了[散步](https://github.com/sanbuphy)大佬的《[PyTorch Conference 2023 翻译系列文章](https://www.aispacewalk.cn/docs/ai/framework/pytorch/PytorchConference2023/State_of_PyTorch)》，在此基础上，进行了细致的校对和优化，确保翻译准确无误。对散步大佬之前的辛勤翻译和对开源社区的贡献，表示衷心的感谢和敬意。

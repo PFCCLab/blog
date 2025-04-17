@@ -5,6 +5,7 @@ author:
    name: 梦师傅
    github: Ligoml
 pinned: true
+category: community-activity
 ---
 
 什么是开源项目和开源社区？国内活跃度 Top 的开源社区，都有哪些有趣的人和事？开源社区之于开源项目有何重要意义？

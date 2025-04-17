@@ -4,6 +4,7 @@ date: 2024-04-17
 author:
    name: 尤师傅
    github: Harryoung
+category: community-activity
 ---
 
 2024 年 4 月 12 日，[开放原子开源大赛 PaddleOCR 算法模型挑战赛](https://competition.atomgit.com/competitionInfo?id=d25e62a0d7f27876a8c4219bfc0be90e) 决赛路演在苏州工业园区人工智能产业园 G1 栋 3 楼会议中心顺利举行，并取得圆满成功！🎉价值 15 万元的大奖花落谁家？选手们的技术方案有多硬核？快来看看吧~

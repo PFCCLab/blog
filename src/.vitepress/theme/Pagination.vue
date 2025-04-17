@@ -1,10 +1,31 @@
 <script setup lang="ts">
-import { withBase } from 'vitepress'
+import { withBase, useRoute } from 'vitepress'
+import { ref, onMounted } from 'vue'
+import type { Ref } from 'vue'
+import { getCurrentCategory } from './utils/categoryUtils.client.js'
+
+const route = useRoute()
 
 const { numPages, pageIndex } = defineProps<{
   numPages: number
   pageIndex: number
 }>()
+
+const currentCategory: Ref<string | null> = ref(null)
+
+onMounted(() => {
+  currentCategory.value = getCurrentCategory()
+})
+
+function getPageLink(pageNum: number) {
+  const basePath = pageNum === 1 ? '/' : `/pages/${pageNum}`
+
+  if (currentCategory.value) {
+    return withBase(`${basePath}?category=${currentCategory.value}`)
+  }
+
+  return withBase(basePath)
+}
 </script>
 
 <template>
@@ -17,7 +38,7 @@ const { numPages, pageIndex } = defineProps<{
       }"
       v-for="i in numPages"
       :key="i"
-      :href="withBase(i === 1 ? '/index.html' : `/pages/${i}.html`)"
+      :href="getPageLink(i)"
       >{{ i }}</a
     >
   </div>
