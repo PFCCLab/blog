@@ -19,7 +19,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "@tailwindcss/vite": "^4.0.4",
     "@vite-pwa/vitepress": "^1.0.0",
-    "feed": "^4.2.2",
+    "feed": "^5.0.0",
     "tailwindcss": "^4.0.4",
     "tsx": "^4.19.2",
     "vite-plugin-pwa": "^1.0.0",
