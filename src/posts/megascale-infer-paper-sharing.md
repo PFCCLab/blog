@@ -63,31 +63,23 @@ batch size不能无限增大：时延要求，显存限制 (KV)，MP带来通信
 
 形成上述流水线的约束： 
 
-1. $T_a\approx T_e$ 计算时间平衡，减少空闲
-2. $T_c<T_f, T_f = \max\{T_a, T_e\}$ 计算时间大于通信时间
-3. $m \times T_f \geq 2 \times (T_f + T_c) $ global-batch经过Attention/FFN层的时间要大于micro batch经过两者的时间之和，否则有空闲，要求micro-batch 数量足够多
+<img src="../images/megascale-infer-paper-sharing/math0.JPG" alt="alt text" style="zoom:50%;" />
 
-micro-batch时延：
-$$
-\left(T_{a} + T_{e} + 2 T_{c}\right) + m T_{f}(L - 1) \leq T_{\text{iter}} \leq m T_{f} L
-$$
-global-batch时延：
-$$
-T_{\text{total}} = \left(T_{a} + T_{e} + 2 T_{c}\right) + T_{f}(m L - 1)
-$$
+1. 计算时间平衡，减少空闲
+2. 计算时间大于通信时间
+3. global-batch经过Attention/FFN层的时间要大于micro batch经过两者的时间之和，否则有空闲，要求micro-batch 数量足够多
+
 设计流水线需要确定一些超参，设计了一个超参数搜索的算法，其搜索空间包括 Attention Node和Expert Node的张量并行度大小，micro-batch数量（m），单位成本的吞吐量作为优化目标。
 
 ![alt text](../images/megascale-infer-paper-sharing/searching.JPG)
 
 时延要求和KV显存限制：
-$$
-T_{\text{iter}} \leq \text{SLO}, \\
-4 m b_{a} s h L / g + 2 P_{a}< t p_{a} C_{a}.
-$$
+
+<img src="../images/megascale-infer-paper-sharing/math1.JPG" alt="alt text" style="zoom:50%;" />
+
 目标：
-$$
-\frac{B / T_{\text{total}}}{t p_{a} n_{a} \text{Cost}_{a} + t p_{e} E \text{Cost}_{e}}
-$$
+
+<img src="../images/megascale-infer-paper-sharing/math2.JPG" alt="alt text" style="zoom:50%;" />
 
 ## M2N 通信库
 
