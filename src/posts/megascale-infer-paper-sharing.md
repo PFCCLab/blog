@@ -19,13 +19,13 @@ MOE: 将 Dense 模型的 FFN 层替换为门控网络和众多专家。token 不
 
 专家并行：将专家分布到不同的 GPU 上来降低计算和显存压力，每一层引入了两次 all2all 通信。
 
-![alt text](../images/megascale-infer-paper-sharing/background.JPG)
+![alt text](../images/megascale-infer-paper-sharing/background.jpg)
 
 MOE 模型非常适合模型参数增大这个趋势，其计算量随着专家数量的增多和模型参数的增多次线性增长。虽然计算量少了，但 MOE 的计算方式使得 GPU 利用率低，导致没有充分降低计算成本。
 
 **利用率低？**
 
-![alt text](../images/megascale-infer-paper-sharing/utilization.JPG)
+![alt text](../images/megascale-infer-paper-sharing/utilization.jpg)
 
 对 Dense model 来说
 
@@ -40,14 +40,14 @@ batch size 不能无限增大：时延要求，显存限制 (KV)，MP 带来通�
 
 将 Attention 和 FFN 放在一起限制了 batch size 的增大，所以**分离 Attention 层和 FFN 层到不同的机器上。Attnention 采用 DP+TP，FFN 采用 EP+TP。**
 
-![alt text](../images/megascale-infer-paper-sharing/architecture.JPG)
+![alt text](../images/megascale-infer-paper-sharing/architecture.jpg)
 
 好处
 
 1. 增大 FFN 的 batch size
 2. 各自选择硬件，Attention 选择 IO 更好的硬件，FFN 选择计算更好的硬件
 
-![alt text](../images/megascale-infer-paper-sharing/hardware.JPG)
+![alt text](../images/megascale-infer-paper-sharing/hardware.jpg)
 
 挑战
 
@@ -60,7 +60,7 @@ batch size 不能无限增大：时延要求，显存限制 (KV)，MP 带来通�
 
 **数字代表 micro-batch id，颜色代表 layer**
 
-![alt text](../images/megascale-infer-paper-sharing/pipeline.JPG)
+![alt text](../images/megascale-infer-paper-sharing/pipeline.jpg)
 
 形成上述流水线的约束：
 
@@ -77,7 +77,7 @@ batch size 不能无限增大：时延要求，显存限制 (KV)，MP 带来通�
 
 设计流水线需要确定一些超参，设计了一个**超参数搜索**的算法，其搜索空间包括 Attention Node 和 Expert Node 的张量并行度大小，micro-batch 数量（m），单位成本的吞吐量作为优化目标。
 
-![alt text](../images/megascale-infer-paper-sharing/searching.JPG)
+![alt text](../images/megascale-infer-paper-sharing/searching.jpg)
 
 时延要求和 KV 显存限制：
 
@@ -99,7 +99,7 @@ $$
 
 all2all、M2N 都是由⼀系列 send 和 receive 通信组成
 
-![alt text](../images/megascale-infer-paper-sharing/benchmark.JPG)
+![alt text](../images/megascale-infer-paper-sharing/benchmark.jpg)
 
 NCCL 的不足：
 
@@ -116,7 +116,7 @@ NCCL 的不足：
 
 M2N 的优化: 减少不必要的拷贝、同步、初始化
 
-![alt text](../images/megascale-infer-paper-sharing/sender_receiver.JPG)
+![alt text](../images/megascale-infer-paper-sharing/sender_receiver.jpg)
 
 sender
 
@@ -136,9 +136,9 @@ baseline:
 1. vLLM: tp+pp
 2. TensorRT-LLM: tp+ep+pp
 
-![alt text](../images/megascale-infer-paper-sharing/throughput.JPG)
-![alt text](../images/megascale-infer-paper-sharing/latency-data.JPG)
-![alt text](../images/megascale-infer-paper-sharing/latency-num.JPG)
+![alt text](../images/megascale-infer-paper-sharing/throughput.jpg)
+![alt text](../images/megascale-infer-paper-sharing/latency-data.jpg)
+![alt text](../images/megascale-infer-paper-sharing/latency-num.jpg)
 
 ## 核心观点和 Feature
 
