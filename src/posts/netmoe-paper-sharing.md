@@ -1,9 +1,10 @@
 ---
-title: 【论文分享】｜MoE模型训练中专家热度不均带来的影响以及优化方案
+title: 【论文分享】｜MoE 模型训练中专家热度不均带来的影响以及优化方案
 date: 2025-06-05
 author:
    name: 聂云涛
    github: GITD245
+category: insights
 ---
 
 论文链接：**[ICLR 2025] [NETMOE: ACCELERATING MOE TRAINING THROUGH DYNAMIC SAMPLE PLACEMENT](https://openreview.net/pdf?id=1qP3lsatCR)**
