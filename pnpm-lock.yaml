@@ -13,10 +13,10 @@ importers:
         version: 0.5.16(tailwindcss@4.1.11)
       '@tailwindcss/vite':
         specifier: ^4.0.4
-        version: 4.1.11(vite@5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1))
+        version: 4.1.11(vite@5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1))
       '@vite-pwa/vitepress':
         specifier: ^1.0.0
-        version: 1.0.0(vite-plugin-pwa@1.0.0(vite@5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1))(workbox-build@7.1.1)(workbox-window@7.3.0))
+        version: 1.0.0(vite-plugin-pwa@1.0.0(vite@5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1))(workbox-build@7.1.1)(workbox-window@7.3.0))
       feed:
         specifier: ^5.0.0
         version: 5.1.0
@@ -28,10 +28,10 @@ importers:
         version: 4.20.3
       vite-plugin-pwa:
         specifier: ^1.0.0
-        version: 1.0.0(vite@5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1))(workbox-build@7.1.1)(workbox-window@7.3.0)
+        version: 1.0.0(vite@5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1))(workbox-build@7.1.1)(workbox-window@7.3.0)
       vitepress:
         specifier: ^1.6.3
-        version: 1.6.3(@algolia/client-search@5.20.0)(@types/node@22.15.33)(lightningcss@1.30.1)(markdown-it-mathjax3@4.3.2)(postcss@8.5.6)(search-insights@2.15.0)(terser@5.43.1)(typescript@5.5.3)
+        version: 1.6.3(@algolia/client-search@5.20.0)(@types/node@22.15.34)(lightningcss@1.30.1)(markdown-it-mathjax3@4.3.2)(postcss@8.5.6)(search-insights@2.15.0)(terser@5.43.1)(typescript@5.5.3)
       vue:
         specifier: ^3.5.12
         version: 3.5.17(typescript@5.5.3)
@@ -47,7 +47,7 @@ importers:
         version: 14.1.2
       '@types/node':
         specifier: ^22.9.0
-        version: 22.15.33
+        version: 22.15.34
       markdown-it-mathjax3:
         specifier: ^4.3.2
         version: 4.3.2
@@ -1165,6 +1165,9 @@ packages:
     resolution: {integrity: sha512-imAbBGkb+ebQyxKgzv5Hu2nmROxoDOXHh80evxdoXNOrvAnVx7zimzc1Oo5h9RlfV4vPXaE2iM5pOFbvOCClWA==}
     engines: {node: '>=6.0.0'}
 
+  '@jridgewell/gen-mapping@0.3.9':
+    resolution: {integrity: sha512-xpz6C/vXOegF9VEtlMBlkNNIjHrLhKaFBsO4lmQGr00x5BHp7p+oliR6i7LwIcM5cZU2VjLSwm2R+/zj5IjPWg==}
+
   '@jridgewell/resolve-uri@3.1.2':
     resolution: {integrity: sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==}
     engines: {node: '>=6.0.0'}
@@ -1173,14 +1176,20 @@ packages:
     resolution: {integrity: sha512-R8gLRTZeyp03ymzP/6Lil/28tGeGEzhx1q2k703KGWRAI1VdvPIXdG70VJc2pAMw3NA6JKL5hhFu1sJX0Mnn/A==}
     engines: {node: '>=6.0.0'}
 
-  '@jridgewell/source-map@0.3.6':
-    resolution: {integrity: sha512-1ZJTZebgqllO79ue2bm3rIGud/bOe0pP5BjSRCRxxYkEZS8STV7zN84UBbiYu7jy+eCKSnVIUgoWWE/tt+shMQ==}
+  '@jridgewell/source-map@0.3.7':
+    resolution: {integrity: sha512-maArE+jvYbj06DXh2iFlXSSDjTWXODlPTQHdDRQdGoYw7KvT4SfYCnPHfCyww8Z3JqFsW0BBjPLj8A2fwAvv7Q==}
 
   '@jridgewell/sourcemap-codec@1.5.0':
     resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
 
+  '@jridgewell/sourcemap-codec@1.5.1':
+    resolution: {integrity: sha512-mBLKRHc7Ffw/hObYb9+cunuGNjshQk+vZdwZBJoqiysK/mW3Jq0UXosq8aIhMnLevANhR9yoYfdUEOHg6M9y0g==}
+
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@jridgewell/trace-mapping@0.3.26':
+    resolution: {integrity: sha512-Z9rjt4BUVEbLFpw0qjCklVxxf421wrmcbP4w+LmBUxYCyJTYYSclgJD0YsCgGqQCtCIPiz7kjbYYJiAKhjJ3kA==}
 
   '@lint-md/cli@2.0.0':
     resolution: {integrity: sha512-swOuQMtrEtQJpbecIQYk7bXyAvLCNO/UZBsRQTGLOggIm+fpoow5QnDY1F34Fe0lUthvxucIRpHjLzKXlk3u2Q==}
@@ -1510,8 +1519,8 @@ packages:
   '@types/ms@0.7.34':
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
 
-  '@types/node@22.15.33':
-    resolution: {integrity: sha512-wzoocdnnpSxZ+6CjW4ADCK1jVmd1S/J3ArNWfn8FDDQtRm8dkDg7TA+mvek2wNrfCgwuZxqEOiB9B1XCJ6+dbw==}
+  '@types/node@22.15.34':
+    resolution: {integrity: sha512-8Y6E5WUupYy1Dd0II32BsWAx5MWdcnRd8L84Oys3veg1YrYtNtzgO4CFhiBg6MDSjk7Ay36HYOnU7/tuOzIzcw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -4688,8 +4697,8 @@ snapshots:
     dependencies:
       '@babel/parser': 7.27.7
       '@babel/types': 7.27.7
-      '@jridgewell/gen-mapping': 0.3.8
-      '@jridgewell/trace-mapping': 0.3.25
+      '@jridgewell/gen-mapping': 0.3.9
+      '@jridgewell/trace-mapping': 0.3.26
       jsesc: 3.1.0
 
   '@babel/helper-annotate-as-pure@7.27.3':
@@ -5620,21 +5629,33 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.0
       '@jridgewell/trace-mapping': 0.3.25
 
+  '@jridgewell/gen-mapping@0.3.9':
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.1
+      '@jridgewell/trace-mapping': 0.3.26
+
   '@jridgewell/resolve-uri@3.1.2': {}
 
   '@jridgewell/set-array@1.2.1': {}
 
-  '@jridgewell/source-map@0.3.6':
+  '@jridgewell/source-map@0.3.7':
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.8
-      '@jridgewell/trace-mapping': 0.3.25
+      '@jridgewell/gen-mapping': 0.3.9
+      '@jridgewell/trace-mapping': 0.3.26
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
+
+  '@jridgewell/sourcemap-codec@1.5.1': {}
 
   '@jridgewell/trace-mapping@0.3.25':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  '@jridgewell/trace-mapping@0.3.26':
+    dependencies:
+      '@jridgewell/resolve-uri': 3.1.2
+      '@jridgewell/sourcemap-codec': 1.5.1
 
   '@lint-md/cli@2.0.0(eslint@9.6.0)(typescript@5.5.3)':
     dependencies:
@@ -5909,12 +5930,12 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.1.11
 
-  '@tailwindcss/vite@4.1.11(vite@5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1))':
+  '@tailwindcss/vite@4.1.11(vite@5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1))':
     dependencies:
       '@tailwindcss/node': 4.1.11
       '@tailwindcss/oxide': 4.1.11
       tailwindcss: 4.1.11
-      vite: 5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1)
+      vite: 5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1)
 
   '@types/debug@4.1.12':
     dependencies:
@@ -5955,7 +5976,7 @@ snapshots:
 
   '@types/ms@0.7.34': {}
 
-  '@types/node@22.15.33':
+  '@types/node@22.15.34':
     dependencies:
       undici-types: 6.21.0
 
@@ -6059,13 +6080,13 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vite-pwa/vitepress@1.0.0(vite-plugin-pwa@1.0.0(vite@5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1))(workbox-build@7.1.1)(workbox-window@7.3.0))':
+  '@vite-pwa/vitepress@1.0.0(vite-plugin-pwa@1.0.0(vite@5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1))(workbox-build@7.1.1)(workbox-window@7.3.0))':
     dependencies:
-      vite-plugin-pwa: 1.0.0(vite@5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1))(workbox-build@7.1.1)(workbox-window@7.3.0)
+      vite-plugin-pwa: 1.0.0(vite@5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1))(workbox-build@7.1.1)(workbox-window@7.3.0)
 
-  '@vitejs/plugin-vue@5.2.1(vite@5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1))(vue@3.5.17(typescript@5.5.3))':
+  '@vitejs/plugin-vue@5.2.1(vite@5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1))(vue@3.5.17(typescript@5.5.3))':
     dependencies:
-      vite: 5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1)
+      vite: 5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1)
       vue: 3.5.17(typescript@5.5.3)
 
   '@vue/compiler-core@3.5.17':
@@ -9152,7 +9173,7 @@ snapshots:
 
   terser@5.43.1:
     dependencies:
-      '@jridgewell/source-map': 0.3.6
+      '@jridgewell/source-map': 0.3.7
       acorn: 8.15.0
       commander: 2.20.3
       source-map-support: 0.5.21
@@ -9419,29 +9440,29 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite-plugin-pwa@1.0.0(vite@5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1))(workbox-build@7.1.1)(workbox-window@7.3.0):
+  vite-plugin-pwa@1.0.0(vite@5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1))(workbox-build@7.1.1)(workbox-window@7.3.0):
     dependencies:
       debug: 4.4.0
       pretty-bytes: 6.1.1
       tinyglobby: 0.2.12
-      vite: 5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1)
+      vite: 5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1)
       workbox-build: 7.1.1
       workbox-window: 7.3.0
     transitivePeerDependencies:
       - supports-color
 
-  vite@5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1):
+  vite@5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.5.6
       rollup: 4.24.4
     optionalDependencies:
-      '@types/node': 22.15.33
+      '@types/node': 22.15.34
       fsevents: 2.3.3
       lightningcss: 1.30.1
       terser: 5.43.1
 
-  vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.15.33)(lightningcss@1.30.1)(markdown-it-mathjax3@4.3.2)(postcss@8.5.6)(search-insights@2.15.0)(terser@5.43.1)(typescript@5.5.3):
+  vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.15.34)(lightningcss@1.30.1)(markdown-it-mathjax3@4.3.2)(postcss@8.5.6)(search-insights@2.15.0)(terser@5.43.1)(typescript@5.5.3):
     dependencies:
       '@docsearch/css': 3.8.2
       '@docsearch/js': 3.8.2(@algolia/client-search@5.20.0)(search-insights@2.15.0)
@@ -9450,7 +9471,7 @@ snapshots:
       '@shikijs/transformers': 2.1.0
       '@shikijs/types': 2.1.0
       '@types/markdown-it': 14.1.2
-      '@vitejs/plugin-vue': 5.2.1(vite@5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1))(vue@3.5.17(typescript@5.5.3))
+      '@vitejs/plugin-vue': 5.2.1(vite@5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1))(vue@3.5.17(typescript@5.5.3))
       '@vue/devtools-api': 7.7.1
       '@vue/shared': 3.5.13
       '@vueuse/core': 12.5.0(typescript@5.5.3)
@@ -9459,7 +9480,7 @@ snapshots:
       mark.js: 8.11.1
       minisearch: 7.1.1
       shiki: 2.1.0
-      vite: 5.4.14(@types/node@22.15.33)(lightningcss@1.30.1)(terser@5.43.1)
+      vite: 5.4.14(@types/node@22.15.34)(lightningcss@1.30.1)(terser@5.43.1)
       vue: 3.5.17(typescript@5.5.3)
     optionalDependencies:
       markdown-it-mathjax3: 4.3.2
