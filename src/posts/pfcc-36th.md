@@ -39,7 +39,6 @@ figcaption {
 ## 会议议程
 
 1. 如何通过 [Ivy](https://github.com/unifyai/ivy) 将 PyTorch 和 TensorFlow 模型进行转换，并直接在 Paddle 项目中使用。（35 min） [@djl11](https://github.com/djl11)
-
    - demo：[How To Convert Models from PyTorch to PaddlePaddle](https://unify.ai/docs/ivy/demos/examples_and_demos/dinov2_to_paddle.html)
    - QA 环节
 
@@ -52,7 +51,6 @@ figcaption {
    </div>
 
 2. [@RedContritio](https://github.com/tink2123) [PaConvert](https://github.com/PaddlePaddle/PaConvert) 代码转换工具介绍 （10 ～ 20min）
-
    - PaConvert 介绍
    - QA 环节
 
