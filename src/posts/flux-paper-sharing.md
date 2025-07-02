@@ -97,7 +97,7 @@ Flux 将相关的通信和/或等待逻辑融合到一个 GEMM 内核中，只�
 
 - Prologue（前奏）：做准备工作，比如加载常量、分配寄存器、设置指针等。
 - Mainloop（主循环）：进行核心的分块矩阵乘法（tile-based multiply-accumulate），不断把 A、B 的 tile 搬到寄存器/共享内存，做乘加，累加到 accumulator（acc）。
-- Epilogue（尾声）： 把累加器（acc）里的结果做最后处理（如加 bias、激活、量化、归一化、通信等），并写回输出矩阵 C
+- Epilogue（尾声）： 把累加器（acc）里的结果做最后处理（如加 bias、激活、量化、归一化、通信等），并写回输出矩阵 C。
 
 ### (2) ReduceScatter 重叠
 
