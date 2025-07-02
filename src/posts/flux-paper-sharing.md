@@ -29,33 +29,33 @@ category: insights
 
 ## 一、背景
 
-### **(1) AllReduce 算子实现**
+### (1) AllReduce 算子实现
 
 AllReduce 是集合通信中常见的分布式计算操作，用于多个设备（比如多个 GPU）之间聚合数据的场景，可以包含 Sum、Min、Max 等操作。对于常见的基于 Ring 的 AllReduce 实现中，通常可以把 AllReduce 操作看成为一个 ReduceScatter 和一个 AllGather 操作，如下图所示：具体的 ReduceScatter 操作如下，每个设备（GPU）发送一部分数据给下一个设备，同时接收上一个设备的数据并累加。这个过程进行 K-1 步（假设有 K 个设备），ReduceScatter 后每个设备都包含一部分数据的 Sum：
 
-![](../images/flux-paper-sharing/ReduceScatter.png)
+![ReduceScatter](../images/flux-paper-sharing/ReduceScatter.png)
 
 具体的 AllGather 操作如下，每个设备将其持有的部分结果发送给下一个设备，同时接收上一个设备的部分结果，逐步汇集完整的结果，同样需要 K-1 步。AllGather 后，每个设备都包含全量的数据：
 
-![](../images/flux-paper-sharing/AllGather.png)
+![AllGather](../images/flux-paper-sharing/AllGather.png)
 
-### **(2) ReduceScatter 算子实现**
+### (2) ReduceScatter 算子实现
 
 如下图所示为 Ring ReduceScatter 的优化，可以等效为一个 All2All 操作实现数据的重排，然后在 Local 进行 Reduce 操作。此过程只有一个 All2All 的整体通信操作，虽然实际上与 Ring 实现的方式的通信量和计算量没有变化，但可以避免 K-1 个 Ring Step 的同步，进而可以有效降低时延。
 
-![](../images/flux-paper-sharing/ring_ReduceScatter.png)
+![ring_ReduceScatter](../images/flux-paper-sharing/ring_ReduceScatter.png)
 
-### **(3) 通信具有较高占比**
+### (3) 通信具有较高占比
 
 相比于流水线并行提高吞吐量，张量并行可以缩短延迟，这对于推理至关重要。由于张量并行将层划分到多个设备上，可能需要跨设备进行额外的数据通信，以便收集或重新分配正确的数据，特别是当连续的层采用不同的划分策略或跨分区消耗数据时。下图显示了在训练和推理中应用张量并行时，通信时间在总体运行时间中占据的显著部分，表明了减少通信时间暴露的动机和强烈需求。
 
 - 可以看出，在 PCIe 设备中通信占比很高；而 H800 NVL 相比 A100 NVL 的算力提升更多，通信带宽提升较少，也就导致通信占比更高。在 PCIe 设备中 TP 通信占比甚至达到 40%-60%。
 
-![](../images/flux-paper-sharing/communication_time.png)
+![communication_time](../images/flux-paper-sharing/communication_time.png)
 
 图 2 展示了 MLP 示例在前向传播中的常见通信分区模式。第一个 GEMM 操作沿行方向分片权重（W1），并在 GEMM 之前沿列方向全收集（AllGather）分片的输入激活；第二个 GEMM 操作沿列方向分片权重（W2），并沿列方向归约分散（ReduceScatter）输出激活。在反向传播中，AllGather 和 ReduceScatter 操作顺序互换。图中显示，这两个 GEMM 操作的维度取决于张量并行的程度（N）。
 
-![](../images/flux-paper-sharing/propagation.png)
+![propagation](../images/flux-paper-sharing/propagation.png)
 
 ## 二、Motivation
 
@@ -69,7 +69,7 @@ AllReduce 是集合通信中常见的分布式计算操作，用于多个设备�
 - **切分来做 overlap 带来了额外的同步**：ReduceScatter 重叠通常需要在 GEMM 操作之间执行额外的计算操作（如图 3 中的加法操作），这会产生数据依赖，阻止通过 GPU 多路复用并发执行多个 GEMM 内核。虽然可以进一步将加法操作与通信融合，但仍阻止多个 GEMM 内核的并发执行。
 - **切分来做 overlap 导致无法打满 GPU**：将一个大型 GEMM 内核拆分为多个小型 GEMM 内核，即使分区数量与设备数量相同，也很可能导致 GPU 流处理器（SMs）未被充分利用，特别是在张量并行扩展时。
 
-![](../images/flux-paper-sharing/gemm_overlap.png)
+![gemm_overlap](../images/flux-paper-sharing/gemm_overlap.png)
 
 ### (2) 对比指标
 
@@ -114,7 +114,7 @@ ReduceScatter 被实现为 GEMM 内核的尾部融合。具体来说，ReduceSca
 
 把 ReduceScatter/AlltoAll 通信融合进 GEMM 的 epilogue，即 GEMM 每算完一块 tile，就立刻发起通信，而不是等整个 GEMM 结束，主循环继续算下一个 tile。ReduceScatter 操作可以进一步分解为 AlltoAll 操作和一个归约操作。因此，将 AlltoAll（写入分支）融合到 GEMM 尾部通常足以重叠通信，而归约融合（归约分支）仅提供边际性能提升。
 
-![](../images/flux-paper-sharing/gemm_reducescatter_kernel.png)
+![gemm_reducescatter_kernel](../images/flux-paper-sharing/gemm_reducescatter_kernel.png)
 
 ### (3) AllGather 重叠
 
@@ -127,7 +127,7 @@ ReduceScatter 被实现为 GEMM 内核的尾部融合。具体来说，ReduceSca
 - WaitSignal(signal)：GEMM kernel 在计算本 tile 前，先等待对应的信号变为 true（即数据已到位）。
 - standard GEMM：信号满足后，正常做 GEMM 计算。
 
-![](../images/flux-paper-sharing/allgather_gemm_kernel.png)
+![allgather_gemm_kernel](../images/flux-paper-sharing/allgather_gemm_kernel.png)
 
 host 端（无论是拉取还是推送）执行 tile 通信操作（DataTransfer）并异步设置相应的信号（SetSignal）为 true。基于 pull 的方法通过 GetRemotePtr 函数和 GetLocalPtr 函数从远程设备 pulling tiles，从 tiles A 矩阵列表（A_list）和聚合矩阵缓冲区列表（Aagg_list）中选择正确的指针，然后设置本地信号，信号由 GetSignalHost 依据通信分块索引从信号集合（signal_list）中选取。另一方面，push 方法通过将 tiles 推送到远程设备然后设置远程信号。注意，拉取版本中的 signal_list 仅包含本地信号，而推送版本中的 signal_list 包含远程设备的信号。这两种变体的选择被视为一个调优选项
 
@@ -139,19 +139,19 @@ host 端（无论是拉取还是推送）执行 tile 通信操作（DataTransfer
 
 在 AllGather 方法中，作者将通信的等待逻辑融合到 GEMM Kernel 中，而非整个通信操作。因此，AllGather 并不必然依赖 P2P 通信。同时，在 AllGather 中，通信的分块策略（tilescomm）与 GEMM 计算的分块策略相互解耦。这一设计提供了一种灵活的权衡方式，能够在不损害 GEMM 效率的前提下，选择 Overlap 机会与通信效率之间的最佳平衡。
 
-![](../images/flux-paper-sharing/host_allgather_gemm.png)
+![host_allgather_gemm](../images/flux-paper-sharing/host_allgather_gemm.png)
 
 ### (4) 不同重叠技术的主要差异
 
 ReduceScatter 中：
 
-![](../images/flux-paper-sharing/overlap_methods.png)
+![overlap_methods](../images/flux-paper-sharing/overlap_methods.png)
 
 然现有的重叠方法 T_m 可能比原始的粗粒度方法 T_c 更快，但通常仍然比原始 GEMM 时间 T_g 慢。主要原因是将一个 GEMM 内核分解为多个较小的 GEMM 内核会降低 GPU 的 GEMM 效率。GEMM 通常需要足够大的矩阵以充分利用 GPU 的计算能力。数据依赖性使得这些较小的 GEMM 操作无法通过 GPU 多路复用并发运行，因而张量并行度越高，GEMM 效率越低
 
 Flux 的 T_f 可以以几乎与原始 GEMM 操作 T_g 相同的速度执行，且开销很小。其细粒度的分解策略与现代 GPU 设计的特性完美契合，能够在上下文切换 warp 和 SMs 中数百个并发活跃 warp 之间隐藏延迟，如底部放大的视图所示。最终，作者的方法仅在执行的尾部暴露出少量通信，而不影响 GEMM 计算效率。
 
-![](../images/flux-paper-sharing/overlap_difference.png)
+![overlap_difference](../images/flux-paper-sharing/overlap_difference.png)
 
 AllGather 中不同重叠技术的主要差异。同样，现有的重叠方法 T_m 可能比原始的粗粒度方法 T_c 更快，但由于 GPU GEMM 效率较低，仍然比原始 GEMM 时间 T_g 慢。AllGather 中的长延迟指令来自等待信号，这发生在每个 warp 的开始，因为 WaitSignal 被融合在前置部分。其延迟取决于对应数据传输的到达时间。对于数据已经到达的 tile，延迟接近于零。对于数据未准备好的 tile，warp 之间的上下文切换可以隐藏延迟。值得一提的是，本地 tile 的信号总是预设为 true，因此总有一些 warp 不需要等待信号。最终，作者的方法仅在执行的头部暴露出少量通信，而不影响 GEMM 计算效率。
 
@@ -163,14 +163,14 @@ AllGather 中不同重叠技术的主要差异。同样，现有的重叠方法 
 
 - 在融合的 GEMM-ReduceScatter 中，tile 坐标与设备 rank 索引一起偏移，以避免不同设备上运行的内核产生写请求冲突，从而最大限度地减少每个设备上内存控制器的可能争用。
 
-![](../images/flux-paper-sharing/memory_contention.png)
+![memory_contention](../images/flux-paper-sharing/memory_contention.png)
 
 - 融合的 AllGather-GEMM，以最小化线程块等待，从而减少整体延迟。融合的 AllGather-GEMM 需要 tile 坐标 swizzling（TileCoord）与信号到达顺序对齐，该顺序由主机端的通信顺序决定（由算法 3 中的 tilescomm 控制）。在实现中，这两种顺序根据网络拓扑一起选择，以最小化整体延迟
    - host 侧通信（tilescomm）决定了数据到达的顺序。
    - kernel 侧 TileCoord swizzling 让线程块优先等那些最早到的数据。
    - 这样，kernel 线程块不会因为 tile 分配顺序不合理而长时间 idle。
 
-![](../images/flux-paper-sharing/tile_performance.png)
+![tile_performance](../images/flux-paper-sharing/tile_performance.png)
 
 ### (2) ReduceScatter 的实现细节
 
@@ -202,7 +202,7 @@ AllGather 中不同重叠技术的主要差异。同样，现有的重叠方法 
 
 在 AllGather 中，通信 tiling 与 GEMM 计算 tiling 分离，以避免干扰 GEMM 的 tiling，因为 GEMM 性能对 tiling 敏感。独立调整通信 tiling 使作者能够在重叠机会和通信效率之间找到最佳平衡，最小化有效通信时间。在调优过程中，作者从中等粒度分区的 tiling 大小开始（如图 10 中的 chunksize 所示），即 tiling 大小等于 m 除以张量并行度，然后不断除以二直到等于 GEMM 的 tile 大小。图 10 显示通信 tile 大小确实影响整体性能。然而，由于没有明显的趋势表明一种大小总是优于其他，因此应用自动调优来选择最佳的 tiling 因子。
 
-![](../images/flux-paper-sharing/tile_size_performance.png)
+![tile_size_performance](../images/flux-paper-sharing/tile_size_performance.png)
 
 **(d) tile 间的通信顺序：**
 
@@ -228,15 +228,15 @@ Flux 使用 CUTLASS 3.4.1 和 NVSHMEM 2.10.1 实现，评估使用 bfloat16 在�
 
 Flux 在 A100 PCIe 上可提供 1.20x 到 3.25x 的加速，在 A100 NVLink 上为 1.01x 到 1.33x，在 H800 NVLink 上为 1.10x 到 1.51x。就重叠效率而言，Flux 在 A100 PCIe 上可提供 41% 到 57%，在 A100 NVLink 上为 36% 到 96%，在 H800 NVLink 上为 37% 到 93%，而 TransformerEngine 在 A100 PCIe 上为-125% 到 36%，在 A100 NVLink 上为-99% 到 74%，在 H800 NVLink 上为-40% 到 80%。负的重叠效率意味着性能比非重叠基线更差。
 
-![](../images/flux-paper-sharing/a100_pcie.png)
+![a100_pcie](../images/flux-paper-sharing/a100_pcie.png)
 
-![](../images/flux-paper-sharing/a100_nvlink.png)
+![a100_nvlink](../images/flux-paper-sharing/a100_nvlink.png)
 
-![](../images/flux-paper-sharing/h800_nvlink.png)
+![h800_nvlink](../images/flux-paper-sharing/h800_nvlink.png)
 
 对于更小 m 尺寸：m 为 64 和 512 的小规模工作负载以模拟解码阶段。在这些评估尺寸下，Flux 在 A100 PCIe 上可提供 1.45x 到 3.21x 的加速，在 A100 NVLink 上为 1.33x 到 4.68x，在 H800 NVLink 上从 0.95x 减速到 1.03x 加速。就重叠效率而言，Flux 在 A100 PCIe 上为-2% 到 41%，在 A100 NVLink 上为 14% 到 88%，在 H800 NVLink 上为-165% 到-82%，而 TransformerEngine 在 A100 PCIe 上为-213% 到-36%，在 A100 NVLink 上为-325% 到-49%，在 H800 NVLink 上为-142% 到-93%。
 
-![](../images/flux-paper-sharing/m_sizes_performance.png)
+![m_sizes_performance](../images/flux-paper-sharing/m_sizes_performance.png)
 
 ### (3) 测试训推
 
@@ -245,7 +245,7 @@ Flux 在 A100 PCIe 上可提供 1.20x 到 3.25x 的加速，在 A100 NVLink 上�
 - 相比 TransformerEngine，Flux 在 A100 PCIe 上可提供高达 1.37 倍的训练加速、2.06 倍的预填充加速和 1.69 倍的解码加速；在 A100 NVLink 上为 1.04 倍的训练加速、1.14 倍的预填充加速和 2.10 倍的解码加速；在 H800 NVLink 上为 1.05 倍的训练加速、1.18 倍的预填充加速和 1.76 倍的解码加速。
 - 相比 Megatron-LM 和 vLLM 基线，Flux 在 A100 PCIe 上可提供高达 1.24 倍的训练加速、1.46 倍的预填充加速和 1.28 倍的解码加速；在 A100 NVLink 上为 1.05 倍的训练加速、1.45 倍的预填充加速和 1.30 倍的解码加速；在 H800 NVLink 上为 1.10 倍的训练加速、1.66 倍的预填充加速，但解码阶段没有加速。
 
-![](../images/flux-paper-sharing/end2end_results.png)
+![end2end_results](../images/flux-paper-sharing/end2end_results.png)
 
 ## 六、思考
 
