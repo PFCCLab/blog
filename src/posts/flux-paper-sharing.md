@@ -108,7 +108,6 @@ ReduceScatter 被实现为 GEMM 内核的尾部融合。具体来说，ReduceSca
 - TileCoord：根据线程块 id 和 rank_id，决定当前线程块负责输出矩阵 C 的哪一块（tile）
 - GetOutput：在多卡并行时，输出 C 不再是单一指针，而是一个指针数组（每个卡一个），根据 tile 位置和 rank_id 选出本 tile 的目标输出
 - Reduce/Write：
-
    - 如果是 ReduceScatter，先做 AlltoAll 通信再本地 Reduce（Reduce 分支）。
    - 如果只是 AlltoAll，直接 Write（Write 分支）。
 
