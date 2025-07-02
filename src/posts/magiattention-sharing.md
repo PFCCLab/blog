@@ -28,7 +28,7 @@ Attention 计算和 FlashAttention-2
 
 ![](../images/magiattention-sharing/magi_2.png)
 
-Ring Attention 可以理解为分布式版本的 Flash Attention。设 Q、K、V 的尺寸均为 $(N, d)$，其中 N 表示序列长度 seq_len, d 为隐藏维度（hidden_size）。在分布式场景下，假设 Q、K、V 都顺序切分成了 4 个块，每块大小为 $(C, d)$（其中 C = N/4），每个 GPU 或设备各自保存一份 Q、K、V 的分块。 在具体计算时，例如对于第一个 Q 分块（假定为 $Q_0$），会依次与 4 个 K、V 分块对应计算打分和 softmax 加权和，即先算 $S_{00}$，再是 $S_{01}$、$S_{02}$、$S_{03}$，并按照同样的顺序对对应的输出 $O_0$ 进行在线（online）更新。实际上，这个更新顺序可以是任意的——只要每次合成输出时都能够获得当前分块的输出 $O_0$，以及累计的最大值（max）和归一化累积和（sum）等辅助信息，最终的结果不会受到顺序的影响。这一性质本质上源自 softmax 归一化的数学定义以及 online 累加的加性与稳定性。
+Ring Attention 可以理解为分布式版本的 Flash Attention。设 Q、K、V 的尺寸均为 $(N, d)$，其中 N 表示序列长度 seq*len, d 为隐藏维度（hidden_size）。在分布式场景下，假设 Q、K、V 都顺序切分成了 4 个块，每块大小为 $(C, d)$（其中 C = N/4），每个 GPU 或设备各自保存一份 Q、K、V 的分块。 在具体计算时，例如对于第一个 Q 分块（假定为 $Q_0$），会依次与 4 个 K、V 分块对应计算打分和 softmax 加权和，即先算 $S*{00}$，再是 $S_{01}$、$S_{02}$、$S_{03}$，并按照同样的顺序对对应的输出 $O_0$ 进行在线（online）更新。实际上，这个更新顺序可以是任意的——只要每次合成输出时都能够获得当前分块的输出 $O_0$，以及累计的最大值（max）和归一化累积和（sum）等辅助信息，最终的结果不会受到顺序的影响。这一性质本质上源自 softmax 归一化的数学定义以及 online 累加的加性与稳定性。
 
 ![](../images/magiattention-sharing/magi_3.png)
 
@@ -49,7 +49,7 @@ Ring Attention 的核心思想，是每个设备分别持有自己的 Q、K、V 
 ![](../images/magiattention-sharing/magi_5.png)
 ![](../images/magiattention-sharing/magi_6.png)
 
-对于这样计算量不均衡的问题，stripped ring attention 的做法是，将计算量划分成条带状，本质上就是将原来的一个大 block size 切得更细，然后通过 permutation 进行混合，也就是说，stripped ring attention 将一些本来处在序列位置靠后的 Q，放在了序号靠前的 GPU 上进行计算，反之亦然。从而，使得每个 GPU 计算的 Attention 的计算量大致均衡（体现在每个 GPU 持有的 Attention mask 是均衡的）。比如，第 0 段分配 token 0、4、8、…，第 1 段分配 1、5、9、…，以此类推。这样在每个 attention step 中，各卡都能同时处理足够多的分块，减少前期或后期的极端负载。本质上是在更细粒度进行了切分，以此来方便做更细粒度的均衡。
+对于这样计算量不均衡的问题，stripped ring attention 的做法是，将计算量划分成条带状，本质上就是将原来的一个大 block size 切得更细，然后通过 permutation 进行混合，也就是说，stripped ring attention 将一些本来处在序列位置靠后的 Q，放在了序号靠前的 GPU 上进行计算，反之亦然。从而，使得每个 GPU 计算的 Attention 的计算量大致均衡（体现在每个 GPU 持有的 Attention mask 是均衡的）。比如，第 0 段分配 token 0、4、8、……，第 1 段分配 1、5、9、……，以此类推。这样在每个 attention step 中，各卡都能同时处理足够多的分块，减少前期或后期的极端负载。本质上是在更细粒度进行了切分，以此来方便做更细粒度的均衡。
 
 ![](../images/magiattention-sharing/magi_7.png)
 ![](../images/magiattention-sharing/magi_8.png)
@@ -70,7 +70,7 @@ Ring Attention 的核心思想，是每个设备分别持有自己的 Q、K、V 
 
 关键的基础发现：
 
-- 能量函数：Tree Attention 的核心数学基础是将标准注意力计算重新表述为一个能量函数的梯度。对于单个查询向量 _q_ 和分布在多个设备上的键/值对 $(k_a, v_a)$，其能量函数定义为：$F(ζ) = log ∑_a exp(q ⋅ k_a^T + ζ ⋅ v_a^T)$。其中 _ζ_ 是一个辅助的源向量。Tree Attention 的关键观察是，标准注意力的输出（即值向量的加权和）恰好等于该能量函数在 *ζ = 0* 处的梯度 $z = ∂F(ζ)/∂ζ |_{ζ=0} = ∑_a softmax(q ⋅ k_a^T) v_a$。
+- 能量函数：Tree Attention 的核心数学基础是将标准注意力计算重新表述为一个能量函数的梯度。对于单个查询向量 _q_ 和分布在多个设备上的键/值对 $(k_a, v_a)$，其能量函数定义为：$F(ζ) = log ∑_a exp(q ⋅ k_a^T + ζ ⋅ v_a^T)$。其中 _ζ_ 是一个辅助的源向量。Tree Attention 的关键观察是，标准注意力的输出（即值向量的加权和）恰好等于该能量函数在 _ζ = 0_ 处的梯度 $z = ∂F(ζ)/∂ζ |_{ζ=0} = ∑_a softmax(q ⋅ k_a^T) v_a$。
 - Softmax 通过迭代来进行计算：$s*i^{(j)} = \exp(q_j \cdot k_i), \quad n_i^{(j)} = n*{i-1}^{(j)} + v*i s_i^{(j)}, \quad d_i^{(j)} = d*{i-1}^{(j)} + s_i^{(j)}$
 - logsumexp 和 max 操作具备结合律：$\text{logsumexp}_a(\{T_a, \text{logsumexp}_a(\{R_a, S_a\})\}) = \text{logsumexp}_a(\{T_a, R_a, S_a\})$
 
@@ -94,7 +94,7 @@ FlexAttention 主要针对 FlashAttention-2 不能完全的应对全部的注意
 
 ![](../images/magiattention-sharing/magi_12.png)
 
-```
+```plain
 Q, K, V: Tensor[batch_size, num_heads, sequence_length, head_dim]
 score: Tensor[batch_size, num_heads, sequence_length, sequence_length] **=** (Q **@** K) **/** sqrt(head_dim)
 probabilities **=** softmax(score, dim**=-**1)
@@ -105,7 +105,7 @@ output: Tensor[batch_size, num_heads, sequence_length, head_dim] **=** probabili
 
 ![](../images/magiattention-sharing/magi_13.png)
 
-```
+```plain
 Q, K, V: Tensor[batch_size, num_heads, sequence_length, head_dim]
 score: Tensor[batch_size, num_heads, sequence_length, sequence_length] **=** (Q **@** K) **/** sqrt(head_dim)
 modified_scores: Tensor[batch_size, num_heads, sequence_length, sequence_length] **=** score_mod(score)
