@@ -7,6 +7,7 @@ author:
 co_authors:
    - name: 散步（小散）
      github: sanbuphy
+category: insights
 ---
 
 本文是对 PyTorch Conference 2023 中的《[State of PyTorch](https://www.youtube.com/watch?v=dR0lHxt3Tjo&t=83s)》部分进行了精准的中文翻译和详细的文字总结，旨在向读者介绍 **PyTorch 社区的 2023 年动态**。同时也特别参考了[散步](https://github.com/sanbuphy)大佬的《[PyTorch Conference 2023 翻译系列文章](https://www.aispacewalk.cn/docs/ai/framework/pytorch/PytorchConference2023/State_of_PyTorch)》，在此基础上，进行了细致的校对和优化，确保翻译准确无误。对散步大佬之前的辛勤翻译和对开源社区的贡献，表示衷心的感谢和敬意。
@@ -33,13 +34,13 @@ co_authors:
 
 ### 1. PyTorch 2.0
 
-> -  20M+ downloads
-> -  Adds:
->    -  torch.compile
->    -  MPS backend for Apple M1/M2
->    -  torch.func
->    -  set_default_device
->    -  Better transformer
+> - 20M+ downloads
+> - Adds:
+>    - torch.compile
+>    - MPS backend for Apple M1/M2
+>    - torch.func
+>    - set_default_device
+>    - Better transformer
 
 第一个重要的 PyTorch 里程碑是：**今年（2023 年）年初发布了 PyTorch 2.0 版本**。它在所有平台上下载超过 2000 万次，所以对我们来说，这是一个相当重要的发版。并且，下载数量仍在增加。它添加了一系列非常重要的功能：
 
@@ -53,10 +54,10 @@ co_authors:
 
 ### 2. Spring Docathon
 
-> -  27 active partipants
-> -  5 new tutorials & examples
-> -  45+ PRs merged
-> -  53+ issues closed
+> - 27 active partipants
+> - 5 new tutorials & examples
+> - 45+ PRs merged
+> - 53+ issues closed
 
 另一个值得一提的重要里程碑是：**今年（2023 年）发起的 Spring Docathon 活动**。该活动共吸引了 27 位开发者参与，成功合入了超过 45 个 PR（Pull Request），解决了 53 个 Issues。非常有效地促进了我们 [tutorials 仓库](https://github.com/pytorch/tutorials)的改进，不仅提高了教程的质量，还增加了新的教程内容，确保我们的教程始终保持最新。
 
@@ -64,9 +65,9 @@ co_authors:
 
 ### 3. First Year of the Foundation
 
-> -  Open to new membership June 2023
-> -  New premier members (IBM, Intel, Hugging-facing)
-> -  New general members (Graphcore)
+> - Open to new membership June 2023
+> - New premier members (IBM, Intel, Hugging-facing)
+> - New general members (Graphcore)
 
 最后，正如 Joe 和 Ibrahim 所提到的，今年（2023）是基金会成立的第一年。并且在今年六月，基金会向新成员敞开了大门。面对当前的发展，我们感到无比兴奋。
 
@@ -88,14 +89,14 @@ co_authors:
 
 ### 2. The pytorch/pytorch top contributors
 
-> -  1128 Contributors this year (+10% more than last year)
-> -  Top OSS Contributors
->    -  [@peterbell10](https://github.com/peterbell10)
->    -  [@nkaretnikov](https://github.com/nkaretnikov)
->    -  [@XiaobingSuper](https://github.com/XiaobingSuper)
->    -  [@cyyever](https://github.com/cyyever)
->    -  [@lezcano](https://github.com/lezcano)
->    -  [@BowenBao](https://github.com/BowenBao)
+> - 1128 Contributors this year (+10% more than last year)
+> - Top OSS Contributors
+>    - [@peterbell10](https://github.com/peterbell10)
+>    - [@nkaretnikov](https://github.com/nkaretnikov)
+>    - [@XiaobingSuper](https://github.com/XiaobingSuper)
+>    - [@cyyever](https://github.com/cyyever)
+>    - [@lezcano](https://github.com/lezcano)
+>    - [@BowenBao](https://github.com/BowenBao)
 
 所有的开源贡献增长都离不开我们每一位贡献者的共同努力。今年，我们共有 1,128 名贡献者对代码库作出了贡献，相较去年增长了 10%。看到这么多人投身于 PyTorch 的开源工作，实在是让人感到非常振奋。
 
@@ -113,9 +114,9 @@ co_authors:
 
 ### 4. Powering the AI indusry
 
-> -  65K+ PyTorch professionals(on LinkedIn)
->    -  50%+ YOY increase
-> -  3K new jobs requiring PyTorch
+> - 65K+ PyTorch professionals(on LinkedIn)
+>    - 50%+ YOY increase
+> - 3K new jobs requiring PyTorch
 
 如今，PyTorch 在工业界的发展也取得了显著进步，正在迅速弥补之前的落后处境。以 LinkedIn 的统计数据为例，我们观察到将 PyTorch 作为核心技能的求职者每年增长率达到 50%，同时，越来越多的职位也开始要求应聘者掌握 PyTorch。
 
@@ -145,10 +146,10 @@ co_authors:
 
 ### 3. Code contributions
 
-> -  Reproduce and investigate issues
-> -  Bugfix/FeaturePullReguests
-> -  Review/maintain
-> -  Documentationch
+> - Reproduce and investigate issues
+> - Bugfix/FeaturePullReguests
+> - Review/maintain
+> - Documentationch
 
 当然，众所周知，**代码贡献**自然也是非常重要的。这里我认为第一点（Reproduce and investigate issues）特别有趣，这可能不是每个人都会想到的贡献方式，但帮助复现和调查 issues 是非常非常有价值的一件事情，即使这并不是在“编写代码”，并且也比较耗时。多年前，当我开始为 PyTorch 做贡献时，我做的第一件事就是 debugging issues，并在论坛上回答问题。这不仅有趣，也非常有帮助，因为一旦我们明确了问题所在，接下来的修复 bug 和增加新功能的工作就会变得更加简单。在 PyTorch 社区，提交 bug 修复或新功能的 PR 往往是解决问题过程中最迅速的一步。找到问题所在，弄清楚需要做什么，实际上才是最关键的的。
 
@@ -162,7 +163,7 @@ co_authors:
 
 ## 编者最后的碎碎念
 
--  PyTorch 生态力量非常强大，是目前 Paddle 或者国内任何一个深度学习框架都无法企及的一个高度。
--  Paddle 本身的社区治理结构、运作方式，其实是带有一定国内特色的。
--  翻译会议真的很花时间，比单纯的翻译文章累多了，散步能翻译到 30 篇后（总共 60 多篇） 的会议内容真的太强了。目前散步在和 Linux 基金会取得联系，可能会有专门的团队进行翻译，有兴趣加入的也可以联系他。
--  散步做的一个英文转录翻译的工具，可以看看：https://github.com/sanbuphy/WhisperTranslator
+- PyTorch 生态力量非常强大，是目前 Paddle 或者国内任何一个深度学习框架都无法企及的一个高度。
+- Paddle 本身的社区治理结构、运作方式，其实是带有一定国内特色的。
+- 翻译会议真的很花时间，比单纯的翻译文章累多了，散步能翻译到 30 篇后（总共 60 多篇） 的会议内容真的太强了。目前散步在和 Linux 基金会取得联系，可能会有专门的团队进行翻译，有兴趣加入的也可以联系他。
+- 散步做的一个英文转录翻译的工具，可以看看：https://github.com/sanbuphy/WhisperTranslator

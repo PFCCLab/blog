@@ -9,6 +9,7 @@ co_authors:
      github: sunzhongkai588
    - name: 骆涛（涛姐）
      github: luotao1
+category: developer-story
 ---
 
 嘿，你知道飞桨社区里的 DDL 战士是谁么？嘿，你知道大家心中的 Paddle 社区妈妈是谁么？那你又知道谁是（~~仓库管理员~~）飞桨仓库的实际控制人？谁是飞桨仓库的守护者？谁是飞桨从闭源到开源的见证者？是的，本期要采访的就是我们 Paddle 的资深研发女神——涛姐！

@@ -6,13 +6,19 @@ import NotFound from './NotFound.vue'
 import About from './About.vue'
 
 const { page, frontmatter, site } = useData()
+
+// 添加重置分类的函数，确保回到首页时不带all参数
+function resetCategory() {
+  window.location.href = window.location.origin
+}
 </script>
 
 <template>
   <div class="antialiased dark:bg-neutral-900 min-h-screen">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
       <nav class="flex justify-between items-center py-10 font-bold">
-        <a class="text-xl" href="/" :aria-label="site.title">
+        <!-- 修改首页链接，添加 @click 事件 处理器 -->
+        <a class="text-xl" href="/" @click="resetCategory" :aria-label="site.title">
           <!-- TODO(SigureMo): Update this logo -->
           <img class="inline-block mr-2" style="width: 120px" alt="logo" src="/logo.png" />
           <span v-if="!frontmatter.index" class="hidden md:inline dark:text-white">{{

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "license": "CC0-1.0",
-  "packageManager": "pnpm@8.9.2",
+  "packageManager": "pnpm@10.12.4",
   "scripts": {
     "postinstall": "simple-git-hooks",
     "dev": "vitepress dev src",
@@ -12,25 +12,29 @@
     "serve": "vitepress serve src",
     "fmt": "lint-md src/**/*.md --fix && prettier --write .",
     "fmt:check": "lint-md src/**/*.md && prettier --check .",
-    "img:compress": "tsx scripts/compress-image.mts"
+    "img:compress": "tsx scripts/compress-image.mts",
+    "lint:filename": "tsx scripts/check-filename.mts"
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.11",
-    "@vite-pwa/vitepress": "^0.4.0",
-    "tailwindcss": "^3.4.2",
-    "tsx": "^4.7.1",
-    "vite-plugin-pwa": "^0.19.7",
-    "vitepress": "1.0.1",
-    "vue": "^3.4.21",
-    "workbox-window": "^7.0.0"
+    "@tailwindcss/typography": "^0.5.15",
+    "@tailwindcss/vite": "^4.0.4",
+    "@vite-pwa/vitepress": "^1.0.0",
+    "feed": "^5.0.0",
+    "tailwindcss": "^4.0.4",
+    "tsx": "^4.19.2",
+    "vite-plugin-pwa": "^1.0.0",
+    "vitepress": "^1.6.3",
+    "vue": "^3.5.12",
+    "workbox-window": "^7.3.0"
   },
   "devDependencies": {
     "@lint-md/cli": "^2.0.0",
-    "@types/markdown-it": "^13.0.7",
-    "@types/node": "^20.11.30",
-    "prettier": "^3.2.5",
-    "sharp": "^0.33.3",
-    "simple-git-hooks": "^2.11.1"
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^22.9.0",
+    "prettier": "^3.4.2",
+    "sharp": "^0.34.0",
+    "simple-git-hooks": "^2.11.1",
+    "markdown-it-mathjax3": "^4.3.2"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm run fmt"

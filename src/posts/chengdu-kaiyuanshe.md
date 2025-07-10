@@ -4,7 +4,7 @@ date: 2023-11-02
 author:
    name: 孙师傅
    github: sunzhongkai588
-   # avatar:
+category: community-activity # avatar:
 ---
 
 2023 年 10 月 28 日、29 日参加开源社举办的「第八届中国开源年会」的精彩瞬间，以及与咱 Paddle 社区成都开发者们的线下见面～
@@ -33,7 +33,7 @@ author:
 
 在 29 日，我们还相约飞桨社区成都的开发者们线下面基，以下是痛失真名的成都开发者（~~网友~~）：
 
--  卢畅（左一） [@AndSonder](https://github.com/AndSonder)；陈思州（左二） [@jjyaoao](https://github.com/jjyaoao)；王龙志（左四） [@Wanglongzhi2001](https://github.com/Wanglongzhi2001)；谢浚霖（左五）[@PommesPeter](https://github.com/PommesPeter)
+- 卢畅（左一） [@AndSonder](https://github.com/AndSonder)；陈思州（左二） [@jjyaoao](https://github.com/jjyaoao)；王龙志（左四） [@Wanglongzhi2001](https://github.com/Wanglongzhi2001)；谢浚霖（左五）[@PommesPeter](https://github.com/PommesPeter)
 
 ![图片4](../images/chengdu-kaiyuanshe/chengdu-kaiyuanshe-04.jpg)
 
