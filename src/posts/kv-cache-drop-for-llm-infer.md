@@ -1,9 +1,10 @@
 ---
-title: 基于驱逐机制的 KV 缓存压缩技术在大模型推理中的应用
+title: 【论文分享】| 基于驱逐机制的 KV 缓存压缩技术在大模型推理中的应用
 date: 2025-07-09
 author:
    name: 卢畅
    github: AndSonder
+category: insights
 ---
 
 ## 1. 引言：KV Cache 的压缩与优化挑战
@@ -28,14 +29,20 @@ Transformer 模型之所以需要缓存大量 KV，是为了支持每一个新 t
 ## 3. 基于 KV Drop 的压缩方案当前面临的挑战
 
 1. 准确识别“无关”KV 仍然困难
-   1. 虽然历史 attention 分布可以作为参考，但未来 query 是未知的（生成是逐步发生的），prefill 时无法准确预测解码阶段的关注对象；
-   2. attention 权重具有一定的非线性影响，低权重并不等于对输出影响为零
+
+虽然历史 attention 分布可以作为参考，但未来 query 是未知的（生成是逐步发生的），prefill 时无法准确预测解码阶段的关注对象，attention 权重具有一定的非线性影响，低权重并不等于对输出影响为零。
+
 2. KV Drop 易引发输出偏移
-   1. 删除的 KV 一旦涉及关键信息，会引发输出偏移
+
+删除的 KV 一旦涉及关键信息，会引发输出偏移
+
 3. Drop 策略与多头、多层结构的协同设计复杂
-   1. 在不同 head / layer 间如何分配“保留预算”？
-   2. 不同 layer 的 KV 冗余率差异大，统一策略效率低；
-   3. 不同 head 关注不同位置，单 head 基础上做 drop 容易信息割裂
+
+在不同 head / layer 间如何分配“保留预算”？
+
+不同 layer 的 KV 冗余率差异大，统一策略效率低；
+
+不同 head 关注不同位置，单 head 基础上做 drop 容易信息割裂
 
 接下来，我们梳理一下主流驱逐机制的演进策略与代表工作。
 
@@ -112,14 +119,16 @@ snapkv 的做法：利用 prefill 阶段最后一个 observation window 的 atte
 
 最开始的时候我们提到过，Drop 策略与多头、多层结构的协同设计是 KV Drop 领域一块难啃的骨头，Cake 提出了一套效果很好的方案。
 
-![picture 5]![picture 3](../images/kv-cache-drop-for-llm-infer/cake-1.png)
+![picture 3](../images/kv-cache-drop-for-llm-infer/cake-1.png)
 
 图中分别展示了注意力在 空间（spatial）维度 与 时间（temporal）维度 的差异特征。
 
 (a) High Dispersion：注意力分布分散，关注多个 token，代表更偏全局的层
-(b) Low Dispersion：注意力高度集中，仅关注少量 token，代表更偏局部的层
-空间分散度决定了该层需要保留多少历史 token 才能保持上下文完整性
+
+(b) Low Dispersion：注意力高度集中，仅关注少量 token，代表更偏局部的层: 空间分散度决定了该层需要保留多少历史 token 才能保持上下文完整性
+
 (c) High Shift：token 被关注位置随时间变化很大，说明该层具有高时序敏感性；
+
 (d) Low Shift：注意力稳定集中于同一 token，不随生成进度大幅波动；
 
 时间 shift 越高，意味着需要更多历史 token 缓存以避免语义漂移误差。
@@ -141,11 +150,15 @@ P=H^{1 / \tau_1} \cdot V^{1 / \tau_2}
 $$
 
 P：偏好评分，表示该层“想要”分配到多少缓存空间
+
 H：该层注意力的空间离散度，通过注意力行向量的熵值（Entropy）计算，衡量每个 token 的关注是否分散
+
 V：该层注意力的时间变化度（Shift），通过注意力列向量的方差（Variance）计算，衡量对某 token 的关注是否在时间上波动剧烈
 
 直觉解释：
+
 如果一个层的注意力很分散（高熵），它在一个时刻可能需要引用很多位置的 KV
+
 如果一个层的注意力波动性高（高方差），说明它在不同时间步使用的 KV 不稳定，也值得保留更多 KV Cache 以应对动态变化
 
 CAKE 实际流程:
@@ -178,14 +191,25 @@ $$
 Step3: 计算时间变化度$V_l$：衡量注意力是否波动
 
 对于每一列 $A[:, j]$ ，表示其他 token 对第 $j$ 个 token 的关注程度。
+
 对列向量计算时间上的方差：
-$$V_j=\operatorname{Var}(A[:, j])$$
+
+$$
+V_j=\operatorname{Var}(A[:, j])
+$$
+
 Step4: 计算偏好评分$P_l$：组合两个因素
+
 $$P_l=H_l^{1 / \tau_1} \cdot V_l^{1 / \tau_2}$$
+
 $\tau_1, \tau_2$ 是两个可调温度系数，控制$H$和$V$的权重。
+
 Step5: 分配缓存预算（Cache Budget Allocation）
+
 将每一层的偏好评分归一化：
+
 $$B_l=\frac{P_l}{\sum_{k=1}^L P_k} \cdot B_{\text {total }}$$
+
 整个流程非常像是在为每一层做“特征感知的资源优化”，而非盲目的平均切分。这种设计不仅更灵活，也能适应不同输入上下文下的注意力动态变化。
 
 **与 KV Cache 量化算法结合**
@@ -201,8 +225,13 @@ KV Cache 驱逐机制已经从早期的“暴力裁剪”发展到如今能够�
 ## 参考文献
 
 [1] Zirui Liu, Jiayi Yuan, Hongye Jin, Shaochen Zhong, Zhaozhuo Xu, Vladimir Braverman, Beidi Chen, and Xia Hu. Kivi: A tuning-free asymmetric 2bit quantization for kv cache. arXiv preprint arXiv:2402.02750, 2024e.
+
 [2] Huiqiang Jiang, Yucheng Li, Chengruidong Zhang, Qianhui Wu, Xufang Luo, Surin Ahn, Zhenhua Han, Amir H. Abdi, Dongsheng Li, Chin‑Yew Lin, Yuqing Yang, and Lili Qiu. MInference 1.0: Accelerating Pre-filling for Long-Context LLMs via Dynamic Sparse Attention. Spotlight paper at NeurIPS 2024.
+
 [3] Guangxuan Xiao, Yuandong Tian, Beidi Chen, Song Han, and Mike Lewis. Efficient Streaming Language Models with Attention Sinks (StreamingLLM). arXiv preprint arXiv:2309.17453, 2023; accepted to ICLR 2024.
+
 [4] Zhenyu Zhang, Ying Sheng, Tianyi Zhou, Tianlong Chen, Lianmin Zheng, Ruisi Cai, Zhao Song, Yuandong Tian, Christopher Ré, Clark Barrett, Zhangyang Wang, and Beidi Chen. H₂O: Heavy‑Hitter Oracle for Efficient Generative Inference of Large Language Models. NeurIPS 2023 (spotlight/oral), arXiv preprint arXiv:2306.14048.
+
 [5] Yuhong Li, Yingbing Huang, Bowen Yang, Bharat Venkitesh, Acyr Locatelli, Hanchen Ye, Tianle Cai, Patrick Lewis, and Deming Chen. SnapKV: LLM Knows What You are Looking for Before Generation. arXiv preprint arXiv:2404.14469, 2024; also accepted at NeurIPS 2024 Main Conference
+
 [6] Ziran Qin, Yuchen Cao, Mingbao Lin, Wen Hu, Shixuan Fan, Ke Cheng, Weiyao Lin, and Jianguo Li. CAKE: Cascading and Adaptive KV Cache Eviction with Layer Preferences. arXiv preprint arXiv:2503.12491, 2025; presented at ICLR 2025.
