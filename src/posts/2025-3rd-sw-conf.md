@@ -28,7 +28,7 @@ figcaption {
 
    <div style="display: flex; justify-content: space-between">
       <figure>
-         <img src="../images/2025_3rd_sw_conf/wutian.png" alt="wutian" />
+         <img src="../images/2025-3rd-sw-conf/wutian.png" alt="wutian" />
          <figcaption>吴甜在大会主论坛发表演讲</figcaption>
       </figure>
    </div>
@@ -49,7 +49,7 @@ figcaption {
 
    <div style="display: flex; justify-content: space-between">
       <figure>
-         <img src="../images/2025_3rd_sw_conf/startup.png" alt="startup" />
+         <img src="../images/2025-3rd-sw-conf/startup.png" alt="startup" />
          <figcaption>《央国企开源实操指南》编制启动仪式现场</figcaption>
       </figure>
    </div>
@@ -58,7 +58,7 @@ figcaption {
 
 百度在线网络技术(北京)有限公司高级产品经理张晶，现场分享了《**产业级深度学习平台飞桨的开源实践**》，从飞桨框架的演进历程、开发者社区建设、教育生态、企业生态等多个视角，系统拆解了飞桨开源的成功之道。
 
-![alex](../images/2025_3rd_sw_conf/alex.jpg)
+![alex](../images/2025-3rd-sw-conf/alex.jpg)
 
 他介绍，今年 4 月，飞桨框架迎来重大更新，发布[飞桨框架 3.0](https://mp.weixin.qq.com/s/MAdo7fZ6dfeGcCQUtRP2ag)正式版。飞桨框架 3.0 具备动**静统一自动并行、大模型训推一体、科学计算高阶微分、神经网络编译器、异构多芯适配**五大新特性，为开发者打造了一站式、高性能的深度学习开发体验。
 
