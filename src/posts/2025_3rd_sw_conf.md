@@ -1,11 +1,11 @@
+---
 title: 第三届软件创新发展大会：大模型时代下，飞桨如何构建开发者友好型深度学习生态？
 date: 2025-07-17
 author:
    name: 张晶
    github: openvino-book
-pinned: true
 category: community-activity
-
+---
 
 2025年6月13日，第三届软件创新发展大会在武汉光谷顺利召开。大会聚焦大模型时代下基础软件的创新与发展，吸引了众多行业专家和企业代表参与。
 
