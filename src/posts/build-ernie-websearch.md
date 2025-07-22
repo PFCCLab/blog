@@ -41,15 +41,15 @@ figcaption {
 
 **快速体验**：本项目已部署于[HuggingFace Spaces](https://huggingface.co/spaces/baidu/web_search_demo)，用户可通过 Web UI 体验智能联网问答。
 
-## 💡 2. ERNIE Web Search项目设计亮点
+## 💡 2. ERNIE Web Search 项目设计亮点
 
-与传统LLM问答相比，本项目实现了四大创新亮点：
+与传统 LLM 问答相比，本项目实现了四大创新亮点：
 |功能模块|技术实现|用户价值|
 |-|-|-|
-|智能检索决策|动态判断联网需求|减少80%无效搜索，响应提速40%|
-|问题语义改写|Query扩展与优化|搜索相关性提升65%|
-|权威内容融合|高质量源优先策略|答案权威性达89%|
-|流式多轮对话|异步生成技术|等待时间减少70%|
+|智能检索决策|动态判断联网需求|减少 80%无效搜索，响应提速 40%|
+|问题语义改写|Query 扩展与优化|搜索相关性提升 65%|
+|权威内容融合|高质量源优先策略|答案权威性达 89%|
+|流式多轮对话|异步生成技术|等待时间减少 70%|
 
 本项目处理流程如下：
 
@@ -61,11 +61,11 @@ figcaption {
    </div>
 
 本项目使用的大模型简介：
-[ERNIE 4.5](https://github.com/paddlepaddle/ernie)是百度于2025年6月30日最新开源的**多模态大模型家族**，包含10种不同规模的模型，其中：
+[ERNIE 4.5](https://github.com/paddlepaddle/ernie)是百度于 2025 年 6 月 30 日最新开源的**多模态大模型家族**，包含 10 种不同规模的模型，其中：
 
-- 最大的MoE架构的VLMs模型ERNIE-4.5-VL-424B-A47B，拥有**424B**总参数和**47B**激活参数
-- 最大的MoE架构的LLMs模型ERNIE-4.5-300B-A47B，拥有**300B**总参数和**47B**激活参数
-- 还包括0.3B参数的Dense架构模型ERNIE-4.5-0.3B
+- 最大的 MoE 架构的 VLMs 模型 ERNIE-4.5-VL-424B-A47B，拥有**424B**总参数和**47B**激活参数
+- 最大的 MoE 架构的 LLMs 模型 ERNIE-4.5-300B-A47B，拥有**300B**总参数和**47B**激活参数
+- 还包括 0.3B 参数的 Dense 架构模型 ERNIE-4.5-0.3B
 
 ## 🛠️ 3. 关键实现细节与代码解析
 
@@ -155,7 +155,7 @@ for chunk in bot_client.process_stream(model_name, req_data):
 
 ## 🎬 4. 项目效果展示
 
-当输入“2025年中国AI行业最新政策有哪些？”后，系统自动判断需联网检索，改写为“2025年中国AI政策解读”“中国AI行业最新法规2025”等，然后检索并融合权威新闻、政府官网、行业报告内容，生成带编号的专业答案。请到[Web Search Demo](https://huggingface.co/spaces/baidu/web_search_demo)体验。
+当输入“2025 年中国 AI 行业最新政策有哪些？”后，系统自动判断需联网检索，改写为“2025 年中国 AI 政策解读”“中国 AI 行业最新法规 2025”等，然后检索并融合权威新闻、政府官网、行业报告内容，生成带编号的专业答案。请到[Web Search Demo](https://huggingface.co/spaces/baidu/web_search_demo)体验。
 
    <div style="display: flex; justify-content: space-between">
       <figure>
@@ -166,7 +166,7 @@ for chunk in bot_client.process_stream(model_name, req_data):
 
 ## 🚀 5. 更多应用场景
 
-ERINE 4.5+Web Search的核心应用场景如下：
+ERINE 4.5+Web Search 的核心应用场景如下：
 
 - 🏥**医疗问答系统**：实时检索最新医学指南
 - ⚖️**法律咨询助手**：同步更新法规库
@@ -179,15 +179,15 @@ ERINE 4.5+Web Search的核心应用场景如下：
 
 ## 📈 6. 总结与展望
 
-本项目展示了 ERNIE 4.5 结合 Web Search 的强大能力，解决了 LLM 在实际场景中的知识孤岛问题。欢迎开发者 fork、提交Issue、二次开发，共同推动大模型应用落地。
+本项目展示了 ERNIE 4.5 结合 Web Search 的强大能力，解决了 LLM 在实际场景中的知识孤岛问题。欢迎开发者 fork、提交 Issue、二次开发，共同推动大模型应用落地。
 
 ## 📚 7. 参考资料
 
 - [ERNIE Github Repo](https://github.com/PaddlePaddle/ERNIE)
-- [ERNIE 4.5技术白皮书](https://yiyan.baidu.com/blog/publication/ERNIE_Technical_Report.pdf)
-- [HuggingFace Spaces部署指南](https://huggingface.co/docs/hub/spaces)
+- [ERNIE 4.5 技术白皮书](https://yiyan.baidu.com/blog/publication/ERNIE_Technical_Report.pdf)
+- [HuggingFace Spaces 部署指南](https://huggingface.co/docs/hub/spaces)
 
-> **声明**：本项目严格遵守robots.txt协议，搜索结果仅用于技术演示，请勿用于商业爬虫用途。
+> **声明**：本项目严格遵守 robots.txt 协议，搜索结果仅用于技术演示，请勿用于商业爬虫用途。
 
 ---
 
