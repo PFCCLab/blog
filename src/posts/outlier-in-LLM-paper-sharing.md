@@ -1,5 +1,5 @@
 ---
-title: 【论文分享】| LLM中变量离群性的探索
+title: 【论文分享】| LLM 中变量离群性的探索
 date: 2025-07-15
 author:
    name: 孙研
@@ -14,6 +14,7 @@ category: insights
 ## 2. 激活值中的离群值
 
 ### 2.1 巨幅激活值（Massive Activations）
+
 巨幅激活，是前向过程中稳定出现的远超平均水平线的激活值分布，现有的研究基本都对已经训练完成的模型进行了基于性能级的探索。
 例如 [1] 在100个4096token的样本推理时统计了每层输出的前三个大的激活值以及对应最大值的位置分布，这些值普遍稳定且贯穿在激活值中，
 
@@ -25,7 +26,7 @@ category: insights
 （2）参与attn和ffn的计算并没有完全线性加剧激活值，换句话说，中间层的输出其实是相对平滑的
 
 [1] 的观测猜想与解决思路:
-      
+
 在 massive activations 出现之后，attention logits 普遍趋于负值；
 
 这些 logits 通常由 query 与不含 massive activations 的 key token 的内积计算而得；
@@ -43,7 +44,6 @@ $$
 [1] 可以拓展的方向:
 这个实验有趣的点在于，它最终成功将softmax输出的更大的关注度转移到v'向量上，换句话说，k'在训练过程中，会主动保持与需要被关注的token的同向性，它的结果是其他token在互相关注时，不再需要保持概率为1，而时小于等于1，它提供了更多的token的聚合能力。
 
-
 ### 2.2 通道离群值（Channel-wise Outlier）
 
 [2] 进一步探索了通道离群性，是前向过程中稳定出现的特定channel（维度）出现的离群性，一般表示为每个token中某些固定维度经常性出现较大的值，如下图（右）所示：
@@ -51,9 +51,11 @@ $$
 ![picture 2](../images/outlier-in-LLM-paper-sharing/channel_wise_outlier.png)
 
 通道离群通常出现在归一化层后，并且隐形伴随在整个网络的激活值分布中。目前对这一分布形成的原因，大致认为是归一化过程中的超参数引起的相变。例如，对于层归一化（RMSNorm同理），
+
 $$
 \text{LayerNorm}(x)=\gamma\cdot \frac{x-\mu}{\sigma} + \beta
 $$
+
 其中$\gamma,\beta\in\mathbb{R}^d$ 属于token embedding维度的归一化，对于$\gamma,\beta$的某些维度出现了很大的值，从而引起归一化过程中某个维度的绝对值一直很大，从而造成了普遍的通道离群性。
 
 除此之外，[2] 给出了一个新的探索结论，即 Massive Activation 首次出现在第一层FFN的激活层后（LLaMA/Qwen 的y6以及GPT的y4）
@@ -73,7 +75,6 @@ $$
 
 [2] 的可以拓展的方向：
 $\gamma$的本质是可学习的参数，因此可以直接对归一化的参数进行额外的正则监督（l1正则或者其他度量形式）
-
 
 ## 3. 权重中的离群值
 
