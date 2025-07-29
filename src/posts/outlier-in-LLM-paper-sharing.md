@@ -18,8 +18,8 @@ category: insights
 巨幅激活，是前向过程中稳定出现的远超平均水平线的激活值分布，现有的研究基本都对已经训练完成的模型进行了基于性能级的探索。
 例如 [1] 在 100 个 4096token 的样本推理时统计了每层输出的前三个大的激活值以及对应最大值的位置分布，这些值普遍稳定且贯穿在激活值中，
 
-![picture 0](../images/outlier-in-LLM-paper-sharing/massive_activation_1.png)
-![picture 1](../images/outlier-in-LLM-paper-sharing/massive_activation_2.png)
+![picture 0](../images/outlier-in-llm-paper-sharing/massive_activation_1.png)
+![picture 1](../images/outlier-in-llm-paper-sharing/massive_activation_2.png)
 
 这个现象说明了以下几个行为：
 
@@ -50,7 +50,7 @@ $$
 
 [2] 进一步探索了通道离群性，是前向过程中稳定出现的特定 channel（维度）出现的离群性，一般表示为每个 token 中某些固定维度经常性出现较大的值，如下图（右）所示：
 
-![picture 2](../images/outlier-in-LLM-paper-sharing/channel_wise_outlier.png)
+![picture 2](../images/outlier-in-llm-paper-sharing/channel_wise_outlier.png)
 
 通道离群通常出现在归一化层后，并且隐形伴随在整个网络的激活值分布中。目前对这一分布形成的原因，大致认为是归一化过程中的超参数引起的相变。例如，对于层归一化（RMSNorm 同理），
 
@@ -62,7 +62,7 @@ $$
 
 除此之外，[2] 给出了一个新的探索结论，即 Massive Activation 首次出现在第一层 FFN 的激活层后（LLaMA/Qwen 的 y6 以及 GPT 的 y4）
 
-![picture 3](../images/outlier-in-LLM-paper-sharing/outlier_location.png)
+![picture 3](../images/outlier-in-llm-paper-sharing/outlier_location.png)
 
 所以 $y_4\odot y_5$ 中出现了巨幅激活，即 $W_a$或 $W_b$ 中出现了超级权重。
 
@@ -82,13 +82,13 @@ $\gamma$的本质是可学习的参数，因此可以直接对归一化的参数
 
 许多研究都证实了权重离群值的重要性，显示出只需保留少量幅值最大的离群值，就对模型质量至关重要。这一比例可以低至 0.01%，但对于拥有数十亿参数的大模型来说，0.01% 也意味着仍包含几十万个权重。[3] 进一步探索了这个超级权重对模型质量至关重要，一旦将其移除，其对模型的影响远远超出其他权重。没有该超级权重，LLM 将无法生成有效文本，产生的响应在定性上。
 
-![picture 4](../images/outlier-in-LLM-paper-sharing/weight_outlier.png)
+![picture 4](../images/outlier-in-llm-paper-sharing/weight_outlier.png)
 
 上图是一组简单的测试，在参与统计的 7000 个最大值中，删除关键离群值后网络性能将发生崩溃(SW)，而保留关键值，删除 7000 个中其他值影响微弱(Non-SW)，即使手动恢复激活值中的离群值也仅能部分恢复网络的原始性能(SW+SA)。
 
 [3] 还探索了一个有趣的现象，巨幅激活值与超级权重在相同的位置出现，而且首次出现在超级权重所在层对应的输出层。
 
-![picture 5](../images/outlier-in-LLM-paper-sharing/weight_outlier_coordinate.png)
+![picture 5](../images/outlier-in-llm-paper-sharing/weight_outlier_coordinate.png)
 
 超级权重的作用：
 
@@ -96,11 +96,11 @@ $\gamma$的本质是可学习的参数，因此可以直接对归一化的参数
 
 （2）抑制停止词的生成概率（超级权重移除后"the" "and" "."的生成概率将显著性提高）
 
-![picture 6](../images/outlier-in-LLM-paper-sharing/prob_shift.png)
+![picture 6](../images/outlier-in-llm-paper-sharing/prob_shift.png)
 
 适当增大超级权重可以提高结果：
 
-![picture 7](../images/outlier-in-LLM-paper-sharing/outlier_scaling.png)
+![picture 7](../images/outlier-in-llm-paper-sharing/outlier_scaling.png)
 
 ## 4. 总结
 
