@@ -47,7 +47,7 @@ figcaption {
 最终，当 GLCC 的赛题放出时，陆琦毫不犹豫地选择了“足够硬核”的飞桨赛题，开启了自己的挑战之旅。
 
 <figure style="text-align: center;">
-   <img src="../images/glcc-luqi/luqi1.png" alt="在浙大" style="max-width: 750px;">
+   <img src="../images/glcc-luqi/luqi1.jpg" alt="在浙大" style="max-width: 750px;">
    <figcaption>在浙大</figcaption>
 </figure>
 ﻿
@@ -82,7 +82,7 @@ figcaption {
 “从硬实力到软实力，再到一个宝贵的机会，这就是 GLCC 带给我的。”
 
 <figure style="text-align: center;">
-   <img src="../images/glcc-luqi/luqi2.png" alt="骑行" style="max-width: 750px;">
+   <img src="../images/glcc-luqi/luqi2.jpg" alt="骑行" style="max-width: 750px;">
    <figcaption>骑行</figcaption>
 </figure>
 
@@ -109,7 +109,7 @@ GLCC，成为了他职业生涯一个闪亮的起点。
 - **对于飞桨新手：** 多看官方文档，多和开源社区的大佬们交流，**大胆提 PR，大胆提 Issue！**
 
 <figure style="text-align: center;">
-   <img src="../images/glcc-luqi/luqi3.png" alt="陆琦" style="max-width: 750px;">
+   <img src="../images/glcc-luqi/luqi3.jpg" alt="陆琦" style="max-width: 750px;">
    <figcaption>陆琦</figcaption>
 </figure>
 
