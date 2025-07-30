@@ -2,8 +2,8 @@
 title: GLCC明日之星陆琦：从开源新人到飞桨核心框架贡献者的技术进阶之路
 date: 2025-07-30
 author:
-  name: leonliuzx
-  github: mattheliu
+   name: leonliuzx
+   github: mattheliu
 category: developer-story
 ---
 
@@ -67,8 +67,6 @@ figcaption {
 
 “我和 Mentor 的沟通几乎没有 gap，非常顺畅和高效，体验感很好！”陆琦感叹道。
 
-
-
 ## 超越预期，技术与软实力的双重蜕变
 
 如果用三个关键词总结这次参赛体验，陆琦给出了他的答案：**技术挑战、团队协作、开源机遇。**
@@ -97,8 +95,6 @@ figcaption {
 陆琦的开源之路越走越宽。他深度参与了飞桨静态图新**IR 核心机制的完善、分布式相关技术支持**等核心工作，对整个深度学习框架技术有了更全面、更深刻的认识。
 
 GLCC，成为了他职业生涯一个闪亮的起点。
-
-
 
 ## 写给未来的你，“参赛通关指南”
 
