@@ -7,8 +7,8 @@ author:
 co_authors:
    - name: 陆琦
      github: MarioLulab
-   -  name: 小莹莹
-      github: E-Pudding
+   - name: 小莹莹
+     github: E-Pudding
 category: developer-story
 ---
 
