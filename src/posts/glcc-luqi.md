@@ -18,31 +18,23 @@ figcaption {
    color: #999;
    padding: 2px;
 }
-  .audio-container:hover .audio-title {
-    opacity: 1; /* 鼠标悬浮时显示标题 */
-  }
-
-  .audio-container:active .audio-title {
-    background-color: rgba(0, 0, 0, 0.8); /* 点击时背景加深 */
-    font-size: 18px;
-  }
 </style>
 
-“我之前以为 GLCC 就是大厂开放一些边角料课题给在校生练练手，但参与之后发现，飞桨的赛题足够硬核，它的难度、复杂度、完备度都远超我的预期。最终，它给我的收获也远超预期。”
+> “我之前以为 GLCC 就是大厂开放一些边角料课题给在校生练练手，但参与之后发现，飞桨的赛题足够硬核，它的难度、复杂度、完备度都远超我的预期。最终，它给我的收获也远超预期。”
 
 <!-- more -->
 
-<div class="audio-container" style="position: relative; display: inline-block; margin: 20px;">
-  <audio controls style="width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-    <source src="../images/glcc-luqi/glcc-luqi.wav" type="audio/wav">
-    Your browser does not support the audio element.
-  </audio>
-  <div class="audio-title" style="position: absolute; bottom: 10px; left: 10px; color: white; background-color: rgba(0, 0, 0, 0.6); padding: 5px 10px; border-radius: 5px; font-size: 16px; font-weight: bold; opacity: 0; transition: opacity 0.3s ease;">
-    播客标题：GLCC明日之星陆琦：从开源新人到飞桨核心框架贡献者的技术进阶之路
-  </div>
+<div style="background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 20px; margin: 2em 0;">
+<h3 style="margin-top: 0; margin-bottom: 12px; font-size: 1.4em;">本期播客</h3>
+<p style="font-size: 1.1em; font-weight: bold; margin-bottom: 8px;">GLCC明日之星陆琦：从开源新人到飞桨核心框架贡献者的技术进阶之路</p>
+<p style="font-size: 1em; color: #6c757d; margin-bottom: 15px;">
+在本期节目中，我们与 2023 届 GLCC 明日之星陆琦深入对话。他将分享自己是如何从一名对开源世界充满好奇的新人，通过挑战飞桨的硬核技术赛题，一步步攻克源码，最终成长为飞桨核心框架的贡献者心路历程与宝贵经验。
+</p>
+<audio controls style="width: 100%;">
+<source src="../images/glcc-luqi/glcc-luqi.wav" type="audio/wav">
+您的浏览器不支持音频播放。
+</audio>
 </div>
-
-> “我之前以为 GLCC 就是大厂开放一些边角料课题给在校生练练手，但参与之后发现，飞桨的赛题足够硬核，它的难度、复杂度、完备度都远超我的预期。最终，它给我的收获也远超预期。”
 
 说出这番话的，是 2023 届 GLCC 明日之星——陆琦。
 
@@ -140,5 +132,4 @@ GLCC，成为了他职业生涯一个闪亮的起点。
 > “GLCC 的课题覆盖面很广，从简到难都有。它既给了新手一个接触和感受工业界真实问题的绝佳机会，也为有一定基础、想要进阶的同学提供了在技术点上深度打磨的舞台。无论你是谁，都能在这里找到适合自己的挑战和成长。”
 
 往期推荐：
-[GLCC 往期优秀选手故事] (待补充)
-[飞桨开源社区介绍文章] (https://pfcc.blog)
+[【开源江湖闲聊录】](https://pfcc.blog/?category=developer-story)
