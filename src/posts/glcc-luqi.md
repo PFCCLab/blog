@@ -18,16 +18,31 @@ figcaption {
    color: #999;
    padding: 2px;
 }
+  .audio-container:hover .audio-title {
+    opacity: 1; /* 鼠标悬浮时显示标题 */
+  }
+
+  .audio-container:active .audio-title {
+    background-color: rgba(0, 0, 0, 0.8); /* 点击时背景加深 */
+    font-size: 18px;
+  }
 </style>
 
-> “我之前以为 GLCC 就是大厂开放一些边角料课题给在校生练练手，但参与之后发现，飞桨的赛题足够硬核，它的难度、复杂度、完备度都远超我的预期。最终，它给我的收获也远超预期。”
+“我之前以为 GLCC 就是大厂开放一些边角料课题给在校生练练手，但参与之后发现，飞桨的赛题足够硬核，它的难度、复杂度、完备度都远超我的预期。最终，它给我的收获也远超预期。”
 
 <!-- more -->
 
-<audio controls>
-  <source src="../images/glcc-luqi/glcc-luqi.wav" type="audio/wav">
-  Your browser does not support the audio element.
-</audio>
+<div class="audio-container" style="position: relative; display: inline-block; margin: 20px;">
+  <audio controls style="width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <source src="../images/glcc-luqi/glcc-luqi.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+  <div class="audio-title" style="position: absolute; bottom: 10px; left: 10px; color: white; background-color: rgba(0, 0, 0, 0.6); padding: 5px 10px; border-radius: 5px; font-size: 16px; font-weight: bold; opacity: 0; transition: opacity 0.3s ease;">
+    播客标题：GLCC明日之星陆琦：从开源新人到飞桨核心框架贡献者的技术进阶之路
+  </div>
+</div>
+
+> “我之前以为 GLCC 就是大厂开放一些边角料课题给在校生练练手，但参与之后发现，飞桨的赛题足够硬核，它的难度、复杂度、完备度都远超我的预期。最终，它给我的收获也远超预期。”
 
 说出这番话的，是 2023 届 GLCC 明日之星——陆琦。
 
