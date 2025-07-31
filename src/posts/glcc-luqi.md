@@ -4,6 +4,11 @@ date: 2025-07-30
 author:
    name: leonliuzx
    github: mattheliu
+co_authors:
+   - name: 陆琦
+     github: MarioLulab
+   -  name: 小莹莹
+      github: E-Pudding
 category: developer-story
 ---
 
@@ -29,6 +34,13 @@ figcaption {
 <p style="font-size: 1.1em; font-weight: bold; margin-bottom: 8px;">GLCC明日之星陆琦：从开源新人到飞桨核心框架贡献者的技术进阶之路</p>
 <p style="font-size: 1em; color: #6c757d; margin-bottom: 15px;">
 在本期节目中，我们与 2023 届 GLCC 明日之星陆琦深入对话。他将分享自己是如何从一名对开源世界充满好奇的新人，通过挑战飞桨的硬核技术赛题，一步步攻克源码，最终成长为飞桨核心框架的贡献者心路历程与宝贵经验。
+</p>
+<p style="font-size: 1em; color: #6c757d; margin-bottom: 15px;">
+采访嘉宾：小莹莹（百度飞桨星河社区运营）<br>
+leonliuzx（百度飞桨星河社区运营）<br>
+采访对象：陆琦（GLCC 2023 届明日之星，飞桨核心框架贡献者）<br>
+音频制作：ai播客@MOSS-TTSD<br>
+音频时长：约 9 分钟
 </p>
 <audio controls style="width: 100%;">
 <source src="../images/glcc-luqi/glcc-luqi.wav" type="audio/wav">
