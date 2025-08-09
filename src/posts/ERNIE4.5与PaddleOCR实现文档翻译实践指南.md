@@ -198,7 +198,8 @@ print(f"翻译完成，结果保存在：{output_path}")
 - 📚 查阅完整文档：[PaddleOCR官方文档](https://github.com/PaddlePaddle/PaddleOCR)
 - 💻 运行示例代码：[Document Translation Practice Based on ERNIE 4.5 and PaddleOCR](https://github.com/PaddlePaddle/ERNIE/blob/develop/cookbook/notebook/document_translation_tutorial_en.ipynb)
 - 🐞 报告问题或提出建议：[PaddleOCR GitHub Issues](https://github.com/PaddlePaddle/PaddleOCR/issues)
-- 🤝 欢迎贡献代码：[PaddleOCR贡献指南](https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/community/community_contribution.md))
+- 🤝 欢迎贡献代码：[PaddleOCR贡献指南](https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/community/community_contribution.md)
+
 
 
 
