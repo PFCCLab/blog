@@ -1,3 +1,25 @@
+---
+title: 用 ERNIE 4.5 与 PaddleOCR 3.0 实现文档翻译实践指南
+date: 2025-08-09
+author:
+   name: 张晶
+   github: openvino-book
+category: community-activity
+---
+
+<style>
+figure {
+   text-align: center;
+}
+figcaption {
+   color: orange;
+   border-bottom: 1px solid #d9d9d9;
+   display: inline-block;
+   color: #999;
+   padding: 2px;
+}
+</style>
+
 # 用 ERNIE 4.5 与 PaddleOCR 3.0 实现文档翻译实践指南
 
 ## 一、文档翻译的挑战
@@ -177,5 +199,6 @@ print(f"翻译完成，结果保存在：{output_path}")
 - 💻 运行示例代码：[Document Translation Practice Based on ERNIE 4.5 and PaddleOCR](https://github.com/PaddlePaddle/ERNIE/blob/develop/cookbook/notebook/document_translation_tutorial_en.ipynb)
 - 🐞 报告问题或提出建议：[PaddleOCR GitHub Issues](https://github.com/PaddlePaddle/PaddleOCR/issues)
 - 🤝 欢迎贡献代码：[PaddleOCR贡献指南](https://github.com/PaddlePaddle/PaddleOCR/blob/main/CONTRIBUTING.md)
+
 
 
