@@ -20,8 +20,6 @@ figcaption {
 }
 </style>
 
-# 用 ERNIE 4.5 与 PaddleOCR 3.0 实现文档翻译实践指南
-
 ## 一、文档翻译的挑战
 
 在全球化背景下，跨语言沟通需求日益增长，文档翻译的重要性愈发凸显。尤其是随着数字化进程加速，文档图像翻译的需求持续上升，但这一任务面临着独特的挑战：
@@ -41,7 +39,6 @@ PaddleOCR 3.0是业界领先、可直接部署的 OCR 与文档智能引擎，�
 ### ERNIE 4.5
 
 ERNIE 4.5是百度发布的开源多模态和大语言系列，含10种版本，最大达424B参数，采用创新MoE架构，支持跨模态共享与专用参数，在文本与多模态任务中表现领先。**通过结合PP-StructureV3的文档分析能力和ERNIE 4.5的翻译能力，我们可以构建一个端到端的高质量文档翻译解决方案。**
-
 
 ## 三、解决方案概述
 
@@ -156,7 +153,9 @@ for tgt_md_info in tgt_md_info_list:
 
 print(f"翻译完成，结果保存在：{output_path}")
 ```
+
 完成代码范例，请参见[Document Translation Practice Based on ERNIE 4.5 and PaddleOCR](https://github.com/PaddlePaddle/ERNIE/blob/develop/cookbook/notebook/document_translation_tutorial_en.ipynb)。
+
 ## 五、运行示例翻译结果
 
 下图展示了翻译效果示例（左侧为原始英文PDF论文图像，右侧为翻译后的中文Markdown文件）：
@@ -170,15 +169,19 @@ print(f"翻译完成，结果保存在：{output_path}")
 ### 常见问题
 
 1. **Q**: 安装PaddlePaddle时遇到CUDA版本不匹配问题？
+
    **A**: 请确保CUDA版本与PaddlePaddle版本兼容。可以参考[PaddlePaddle官方安装指南](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html)选择合适的版本。
 
 2. **Q**: 调用ERNIE服务时出现连接超时？
+
    **A**: 检查ERNIE服务是否正常运行，网络连接是否畅通。可以尝试重启服务或增加超时设置。
 
 3. **Q**: 文档解析结果中表格格式丢失？
+
    **A**: 确保`use_table_recognition`参数设置为`True`。对于复杂表格，可能需要调整表格识别模型的参数。
 
 4. **Q**: 翻译结果质量不高？
+
    **A**: 尝试调整`chunk_size`参数，确保文本块大小合适。对于专业领域文档，可以提供领域词汇表作为提示的一部分。
 
 ### 调试技巧
@@ -188,10 +191,9 @@ print(f"翻译完成，结果保存在：{output_path}")
 3. **版本兼容**：确保PaddlePaddle、PaddleOCR和其他依赖库的版本兼容
 4. **可视化检查**：利用`save_to_img`功能保存解析过程中的图像，直观检查问题所在
 
-## 六、总结
+## 七、总结
 
 通过本文介绍的方法，你可以快速构建一个高质量的文档翻译系统，满足不同场景下的文档翻译需求。无论是学术论文、技术文档还是商业报告，都能得到准确、流畅的翻译结果。该系统能够处理复杂的文档结构，如表格、图表等，同时保持翻译质量。
-
 
 ## 下一步与资源
 
@@ -199,8 +201,3 @@ print(f"翻译完成，结果保存在：{output_path}")
 - 💻 运行示例代码：[Document Translation Practice Based on ERNIE 4.5 and PaddleOCR](https://github.com/PaddlePaddle/ERNIE/blob/develop/cookbook/notebook/document_translation_tutorial_en.ipynb)
 - 🐞 报告问题或提出建议：[PaddleOCR GitHub Issues](https://github.com/PaddlePaddle/PaddleOCR/issues)
 - 🤝 欢迎贡献代码：[PaddleOCR贡献指南](https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/community/community_contribution.md)
-
-
-
-
-
