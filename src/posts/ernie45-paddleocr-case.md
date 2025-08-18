@@ -24,29 +24,29 @@ figcaption {
 
 在全球化背景下，跨语言沟通需求日益增长，文档翻译的重要性愈发凸显。尤其是随着数字化进程加速，文档图像翻译的需求持续上升，但这一任务面临着独特的挑战：
 
-- **复杂布局解析**：文档图像常包含文本、图表、表格等多种元素，传统OCR技术在处理复杂布局时难以准确提取文本并保留原始格式
+- **复杂布局解析**：文档图像常包含文本、图表、表格等多种元素，传统 OCR 技术在处理复杂布局时难以准确提取文本并保留原始格式
 - **多语言翻译质量**：不同语言间存在语法、词汇和文化背景差异，长句和上下文依赖翻译任务对传统工具而言颇具难度
 - **格式保留**：翻译过程中如何保持文档的原始结构和格式，是用户面临的另一大痛点
 
 你是否曾因这些问题而困扰？本文将介绍如何利用[PaddleOCR 3.0](https://www.github.com/paddlepaddle/paddleocr)和[ERNIE 4.5](https://github.com/PaddlePaddle/ERNIE)实现高质量的文档翻译解决方案。
 
-## 二、PaddleOCR 3.0与ERNIE 4.5简介
+## 二、PaddleOCR 3.0 与 ERNIE 4.5 简介
 
 ### PaddleOCR 3.0
 
-PaddleOCR 3.0是业界领先、可直接部署的 OCR 与文档智能引擎，提供从文本识别到文档理解的全流程解决方案，提供了全场景文字识别模型PP-OCRv5、复杂文档解析PP-StructureV3和智能信息抽取PP-ChatOCRv4，其中PP-StructureV3在布局区域检测、表格识别和公式识别方面能力尤为突出，还增加了图表理解、恢复多列阅读顺序以及将结果转换为Markdown文件的功能。
+PaddleOCR 3.0 是业界领先、可直接部署的 OCR 与文档智能引擎，提供从文本识别到文档理解的全流程解决方案，提供了全场景文字识别模型 PP-OCRv5、复杂文档解析 PP-StructureV3 和智能信息抽取 PP-ChatOCRv4，其中 PP-StructureV3 在布局区域检测、表格识别和公式识别方面能力尤为突出，还增加了图表理解、恢复多列阅读顺序以及将结果转换为 Markdown 文件的功能。
 
 ### ERNIE 4.5
 
-ERNIE 4.5是百度发布的开源多模态和大语言系列，含10种版本，最大达424B参数，采用创新MoE架构，支持跨模态共享与专用参数，在文本与多模态任务中表现领先。**通过结合PP-StructureV3的文档分析能力和ERNIE 4.5的翻译能力，我们可以构建一个端到端的高质量文档翻译解决方案。**
+ERNIE 4.5 是百度发布的开源多模态和大语言系列，含 10 种版本，最大达 424B 参数，采用创新 MoE 架构，支持跨模态共享与专用参数，在文本与多模态任务中表现领先。**通过结合 PP-StructureV3 的文档分析能力和 ERNIE 4.5 的翻译能力，我们可以构建一个端到端的高质量文档翻译解决方案。**
 
 ## 三、解决方案概述
 
 本文介绍的文档翻译方案基于以下核心流程：
 
-1. 使用PP-StructureV3分析文档内容，获取结构化数据表示
-2. 将结构化数据处理为Markdown格式的文档文件
-3. 利用提示工程构建提示，调用ERNIE 4.5翻译文档内容
+1. 使用 PP-StructureV3 分析文档内容，获取结构化数据表示
+2. 将结构化数据处理为 Markdown 格式的文档文件
+3. 利用提示工程构建提示，调用 ERNIE 4.5 翻译文档内容
 
 这种方法不仅能准确识别和分析复杂文档布局，还能实现高质量的多语言翻译服务，满足用户在不同语言环境下的文档翻译需求。
 
@@ -56,9 +56,9 @@ ERNIE 4.5是百度发布的开源多模态和大语言系列，含10种版本，
 
 ## 四、快速上手
 
-### 步骤1：环境准备
+### 步骤 1：环境准备
 
-首先需要安装PaddlePaddle框架和PaddleOCR：
+首先需要安装 PaddlePaddle 框架和 PaddleOCR：
 
 ```bash
 # 安装PaddlePaddle GPU版本
@@ -71,9 +71,9 @@ pip install paddleocr
 pip install openai
 ```
 
-### 步骤2：部署ERNIE 4.5服务
+### 步骤 2：部署 ERNIE 4.5 服务
 
-ERNIE大语言模型通过服务请求访问，需要部署为本地服务。可以使用FastDeploy工具部署ERNIE模型。部署完成后，测试服务可用性：
+ERNIE 大语言模型通过服务请求访问，需要部署为本地服务。可以使用 FastDeploy 工具部署 ERNIE 模型。部署完成后，测试服务可用性：
 
 ```python
 # 测试ERNIE服务可用性
@@ -94,7 +94,7 @@ except Exception as e:
     print(f"测试失败！错误信息：\n{e}")
 ```
 
-### 步骤3：文档解析与翻译
+### 步骤 3：文档解析与翻译
 
 ```python
 # 文档翻译示例代码
@@ -158,7 +158,7 @@ print(f"翻译完成，结果保存在：{output_path}")
 
 ## 五、运行示例翻译结果
 
-下图展示了翻译效果示例（左侧为原始英文PDF论文图像，右侧为翻译后的中文Markdown文件）：
+下图展示了翻译效果示例（左侧为原始英文 PDF 论文图像，右侧为翻译后的中文 Markdown 文件）：
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/cuicheng01/PaddleX_doc_images/main/images/pipelines/doc_translation/PP-DocTranslation_demo.jpg" width="800"/>
@@ -168,13 +168,13 @@ print(f"翻译完成，结果保存在：{output_path}")
 
 ### 常见问题
 
-1. **Q**: 安装PaddlePaddle时遇到CUDA版本不匹配问题？
+1. **Q**: 安装 PaddlePaddle 时遇到 CUDA 版本不匹配问题？
 
-   **A**: 请确保CUDA版本与PaddlePaddle版本兼容。可以参考[PaddlePaddle官方安装指南](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html)选择合适的版本。
+   **A**: 请确保 CUDA 版本与 PaddlePaddle 版本兼容。可以参考[PaddlePaddle 官方安装指南](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html)选择合适的版本。
 
-2. **Q**: 调用ERNIE服务时出现连接超时？
+2. **Q**: 调用 ERNIE 服务时出现连接超时？
 
-   **A**: 检查ERNIE服务是否正常运行，网络连接是否畅通。可以尝试重启服务或增加超时设置。
+   **A**: 检查 ERNIE 服务是否正常运行，网络连接是否畅通。可以尝试重启服务或增加超时设置。
 
 3. **Q**: 文档解析结果中表格格式丢失？
 
@@ -188,7 +188,7 @@ print(f"翻译完成，结果保存在：{output_path}")
 
 1. **逐步验证**：从单页简单文档开始测试，确认每个步骤正常工作后再处理复杂文档
 2. **日志输出**：在关键步骤添加日志，记录处理时间和结果状态
-3. **版本兼容**：确保PaddlePaddle、PaddleOCR和其他依赖库的版本兼容
+3. **版本兼容**：确保 PaddlePaddle、PaddleOCR 和其他依赖库的版本兼容
 4. **可视化检查**：利用`save_to_img`功能保存解析过程中的图像，直观检查问题所在
 
 ## 七、总结
@@ -197,7 +197,7 @@ print(f"翻译完成，结果保存在：{output_path}")
 
 ## 下一步与资源
 
-- 📚 查阅完整文档：[PaddleOCR官方文档](https://github.com/PaddlePaddle/PaddleOCR)
+- 📚 查阅完整文档：[PaddleOCR 官方文档](https://github.com/PaddlePaddle/PaddleOCR)
 - 💻 运行示例代码：[Document Translation Practice Based on ERNIE 4.5 and PaddleOCR](https://github.com/PaddlePaddle/ERNIE/blob/develop/cookbook/notebook/document_translation_tutorial_en.ipynb)
 - 🐞 报告问题或提出建议：[PaddleOCR GitHub Issues](https://github.com/PaddlePaddle/PaddleOCR/issues)
-- 🤝 欢迎贡献代码：[PaddleOCR贡献指南](https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/community/community_contribution.md)
+- 🤝 欢迎贡献代码：[PaddleOCR 贡献指南](https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/community/community_contribution.md)
