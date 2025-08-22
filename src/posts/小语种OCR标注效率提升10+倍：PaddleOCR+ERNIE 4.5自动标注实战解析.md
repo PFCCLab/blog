@@ -1,3 +1,25 @@
+---
+title: 小语种OCR标注效率提升10+倍：PaddleOCR+ERNIE 4.5自动标注实战解析
+date: 2025-08-22
+author:
+   name: 张晶
+   github: openvino-book
+category: community-activity
+---
+
+<style>
+figure {
+   text-align: center;
+}
+figcaption {
+   color: orange;
+   border-bottom: 1px solid #d9d9d9;
+   display: inline-block;
+   color: #999;
+   padding: 2px;
+}
+</style>
+
 # 小语种OCR标注效率提升10+倍：PaddleOCR+ERNIE 4.5自动标注实战解析
 
 > **摘要**：小语种OCR研发的核心瓶颈在于高质量标注数据的稀缺与高昂成本。本文介绍一种创新的自动化标注方案，利用 **PaddleOCR** 进行文本检测与裁剪，并调用 **ERNIE 4.5** 大模型进行双重预测与一致性校验，实现高精度、低成本的小语种OCR训练数据生成。该方案将数据准备周期**从数周缩短至数小时**，为小语种模型的快速迭代与冷启动提供了全新范式
@@ -340,8 +362,10 @@ python PaddleOCR/tools/export_model.py \
 
 ## 附录
 
-- **完整代码与示例**：[Practice of Minor Language Text Recognition R&D](https://github.com/PaddlePaddle/ERNIE/blob/develop/cookbook/notebook/text_recognition_tutorial_en.ipynb)
-- **PaddleOCR 官方文档**：[https://github.com/PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
-- **ERNIE 官方文档**：[https://github.com/PaddlePaddle/ERNIE](https://github.com/PaddlePaddle/ERNIE)
+- 💻 **完整代码与示例**：[Practice of Minor Language Text Recognition R&D Based on ERNIE 4.5 and PaddleOCR](https://github.com/PaddlePaddle/ERNIE/blob/develop/cookbook/notebook/text_recognition_tutorial_en.ipynb)
+- 📚 **PaddleOCR 官方文档**：[https://github.com/PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
+- 📚 **ERNIE 官方文档**：[https://github.com/PaddlePaddle/ERNIE](https://github.com/PaddlePaddle/ERNIE)
+- 🤝 **欢迎贡献代码**：[PaddleOCR贡献指南](https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/community/community_contribution.md)
+
 
 **结语**：在大模型时代，AI的研发方式正在发生根本性变革。利用大模型作为“智能代理”来自动化处理传统AI研发中的繁琐任务，将是提升研发效率、降低技术门槛的关键。本方案为小语种OCR乃至更广泛的多模态任务，提供了一个极具启发性的实践范例。
