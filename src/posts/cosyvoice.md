@@ -3,6 +3,7 @@ title: '【论文分享】｜ cosyvoice语音合成论文分享'
 date: 2025-08-12
 author:
    name: 张靖鸿
+   github: supotato6
 category: insights
 ---
 ## CosyVoice: A Scalable Multilingual Zero-shot Text-to-speech Synthesizer based on Supervised Semantic Tokens
