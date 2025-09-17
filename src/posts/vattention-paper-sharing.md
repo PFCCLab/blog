@@ -1,5 +1,5 @@
 ---
-title: 【论文分享】| vAttention: Dynamic Memory Management for Serving LLMs without PagedAttention
+title: '【论文分享】| vAttention: Dynamic Memory Management for Serving LLMs without PagedAttention'
 date: 2025-09-02
 author:
    name: 陈煜彦
@@ -9,14 +9,14 @@ category: insights
 
 - 论文链接：[vAttention: Dynamic Memory Management for Serving LLMs without PagedAttention | Proceedings of the 30th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 1](https://dl.acm.org/doi/10.1145/3669940.3707256)
 - 关键词：KV cache, CUDA
-  
-  <!-- more -->
+
+<!-- more -->
 
 ---
 
-# 背景
+## 背景
 
-## KV cache
+### KV cache
 
 推理过程分为两部分：prefill阶段，处理所有的输入，生成一个token；decode阶段，输入上次迭代生成的token，输出一个新token，不断重复这个过程，直到生成结束符
 
@@ -29,11 +29,12 @@ KV的大小：
 $$
 2*N*(B*L*H*D*P)
 $$
+
 上面的字母分别对应层数、batch size、context length、head num、dim、sizeof(dtype)
 
-## KV管理的演进
+### KV管理的演进
 
-### 连续预分配
+#### 连续预分配
 
 Orca和FasterTransformer 为所有的请求分配maximum context length大小的KV（Yi-34B model supports context length of up to 200K）。这有两个问题：
 
@@ -43,7 +44,7 @@ Orca和FasterTransformer 为所有的请求分配maximum context length大小的
 
 这两个因素限制了batch size，进而限制了吞吐。
 
-### 不连续按需分配
+#### 不连续按需分配
 
 PagedAttention按需分配显存，成为目前推理系统的事实标准。
 
@@ -65,21 +66,20 @@ PagedAttention按需分配显存，导致KV cache的虚拟地址不连续，不�
 
 4. cpu开销：需要将映射表传给Attention kernel，占decode阶段10%的时间
 
-# vAttention
+---
 
-## 设计
+## vAttention
+
+### 设计
 
 vAttention在按需分配显存的同时，保障了虚拟地址的连续性，达到PagedAttention的目的，去掉了缺点。做法和操作系统是一样的。
 
 ![alt text](../images/vattention-paper-sharing/mapping.jpg)
 
 1. 一开始就连续分配足够大的虚拟空间
-   
-   1. ﻿$2*N*(B*L*H*D*P)$﻿
-   
-   2. 层数、maximum batch size、maximum context length、head num、dim、sizeof(dtype)
-   
-   3. 括号里的代表一个虚拟tensor的大小，是虚拟空间的分配单元，即内部是连续的
+   - $2*N*(B*L*H*D*P)$
+   - 层数、maximum batch size、maximum context length、head num、dim、sizeof(dtype)
+   - 括号里的代表一个虚拟tensor的大小，是虚拟空间的分配单元，即内部是连续的
 
 2. 显存按需分配：CUDA virtual memory management APIs允许单独分配虚拟空间和物理空间，物理空间分配单位是page-group(数个物理页)
 
@@ -95,9 +95,9 @@ vAttention在按需分配显存的同时，保障了虚拟地址的连续性，�
 
 ![alt text](../images/vattention-paper-sharing/inference1.jpg)
 
-## 性能上的优化
+### 性能上的优化
 
-### 时延
+#### 时延
 
 在运行时进行map延迟比较高，每次迭代每个请求都可能需要增加物理空间
 
@@ -109,13 +109,13 @@ decode：decode阶段每次只会生成一个token，所以可以判断下个迭
 
 prefill：采用延迟unmap，可以把推理结束的tensor给新请求复用。为虚拟tensor中的一个空闲请求预分配一定的物理空间
 
-### 显存碎片
+#### 显存碎片
 
 原生API显存分配粒度比较大（2MB），导致碎片较多
 
 修改了开源CUDA驱动，支持64KB, 128KB and 256KB分配粒度
 
-# 实验
+## 实验
 
 推理框架：vLLM v0.2.7
 
@@ -129,7 +129,7 @@ decode 吞吐量：每秒生成的token数量
 
 ![alt text](../images/vattention-paper-sharing/setup.jpg)
 
-## prefill 吞吐量
+### prefill 吞吐量
 
 当 context length==192K 时，FA2_vAttention 吞吐量是 FA2_Paged 的 1.24×, 1.26×, 1.24× 倍
 
@@ -137,31 +137,31 @@ decode 吞吐量：每秒生成的token数量
 
 ![alt text](../images/vattention-paper-sharing/prefill1.jpg)
 
-## decode 吞吐量
+### decode 吞吐量
 
 对 Yi-6B，当batch size==12 时，FA2_vAttention 吞吐量是 FI_Paged 的 1.23× 倍。相比FA2_Paged，提升较小。因为decode阶段是memory bound，PagedAttention额外的计算开销被 memory stalls 隐藏
 
 ![alt text](../images/vattention-paper-sharing/decode.jpg)
 
-## offline
+### offline
 
 FA2_vAttention 吞吐量是 FA2_Paged 的 1.18×, 1.15× and 1.13×倍，是 FI_Paged 的 1.19×, 1.23×, and 1.14×倍
 
 ![alt text](../images/vattention-paper-sharing/offline.jpg)
 
-## online
+### online
 
 FA2_vAttention 请求时延的中位数比 FA2_Paged 减少 42%(QPS 0.25)
 
 ![alt text](../images/vattention-paper-sharing/online.jpg)
 
-## 可移植性
+### 可移植性
 
 FA3还未支持PagedAttention，vAttention不需要修改就可使用
 
 ![alt text](../images/vattention-paper-sharing/fa3.jpg)
 
-## 缺点
+### 缺点
 
 只有特定版本的CUDA驱动开源，如果设置不了物理显存分配粒度，2MB造成较多显存碎片，限制了batch size
 
