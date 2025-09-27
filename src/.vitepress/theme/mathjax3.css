@@ -1,8 +1,36 @@
 mjx-container {
   display: inline-block;
   margin: auto 2px -2px;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
+
+mjx-container[jax='CHTML'][display='true'] {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0;
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc mjx-container[jax='CHTML'][display='true'] > svg {
+  margin: 0;
+}
+
 mjx-container > svg {
-  margin: auto;
   display: inline-block;
+  margin: auto;
+}
+
+mjx-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+mjx-container::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--vp-c-text-2) 30%, transparent);
+  border-radius: 999px;
 }
