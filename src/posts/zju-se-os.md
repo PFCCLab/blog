@@ -84,3 +84,7 @@ figcaption {
 活动最后，大家合影留念，记录这段难忘的开源之旅。
 
 ![合影留念](../images/zju-se-os/group_photo.jpg)
+
+BTW，浙大软院的宁波校区真的很漂亮！
+
+![宁波校区](../images/zju-se-os/zju.jpg)
