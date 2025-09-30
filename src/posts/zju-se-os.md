@@ -7,6 +7,19 @@ author:
 category: community-activity
 ---
 
+<style>
+figure {
+   text-align: center;
+}
+figcaption {
+   color: orange;
+   border-bottom: 1px solid #d9d9d9;
+   display: inline-block;
+   color: #999;
+   padding: 2px;
+}
+</style>
+
 9 月 23 日，飞桨团队携手文心大模型走进浙江大学软件学院，带来一场特别的开源分享活动——“OpenSource in Paddle：浙大限定的开源大冒险”。
 
 活动邀请多位飞桨资深工程师与产品经理，与浙大软院师生面对面交流，分享前沿的开源实践与大模型应用。现场气氛热烈，技术与创意交织，激发了关于开源的深度思考。
@@ -56,7 +69,7 @@ category: community-activity
 
 百度飞桨产品经理孙钟恺分享“飞桨 & 文心开源之旅”，讲述飞桨与文心大模型的开源故事，展现开放生态的无限可能。
 
-![产品经理孙钟恺](../images/zju-se-os/sunzhongkai.JPG)
+![产品经理孙钟恺](../images/zju-se-os/sunzhongkai.jpg)
 
 ### 8. Workshop：基于 ERNIE 大模型快速构建 RAG 知识库问答系统
 
@@ -70,4 +83,4 @@ category: community-activity
 
 活动最后，大家合影留念，记录这段难忘的开源之旅。
 
-![合影留念](../images/zju-se-os/group_photo.JPG)
+![合影留念](../images/zju-se-os/group_photo.jpg)
