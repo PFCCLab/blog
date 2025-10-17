@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "license": "CC0-1.0",
-  "packageManager": "pnpm@10.17.1",
+  "packageManager": "pnpm@10.18.2",
   "scripts": {
     "postinstall": "simple-git-hooks",
     "dev": "vitepress dev src",
@@ -34,7 +34,7 @@
     "prettier": "^3.4.2",
     "sharp": "^0.34.0",
     "simple-git-hooks": "^2.11.1",
-    "markdown-it-mathjax3": "^4.3.2"
+    "markdown-it-mathjax3": "^5.2.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm run fmt"
