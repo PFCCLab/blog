@@ -51,7 +51,7 @@ figcaption {
 
 他的幽默与自信让现场气氛迅速升温。
 
-![唐汉霖演讲](../images/pfcc-lightning/tanghanlin.jpg)
+![唐汉霖演讲](../images/lightning-talks/tanghanlin.jpg)
 
 ---
 
@@ -65,7 +65,7 @@ figcaption {
 
 台下响起阵阵掌声，这位即将升入硕士的年轻开发者，用行动诠释了“成长型贡献者”的样子。
 
-![聂宇旋演讲](../images/pfcc-lightning/nieyuxuan.jpg)
+![聂宇旋演讲](../images/lightning-talks/nieyuxuan.jpg)
 
 ---
 
@@ -75,7 +75,7 @@ figcaption {
 
 > “在开源社区，要敢于尝试，先出发再修正。”
 
-![郑天宇演讲](../images/pfcc-lightning/zhengtianyu.jpg)
+![郑天宇演讲](../images/lightning-talks/zhengtianyu.jpg)
 
 ---
 
@@ -85,7 +85,7 @@ figcaption {
 
 > “从修 Typo 开始的深度学习+开发生活。”
 
-![张一乔演讲](../images/pfcc-lightning/zhangyiqiao.jpg)
+![张一乔演讲](../images/lightning-talks/zhangyiqiao.jpg)
 
 ---
 
@@ -96,7 +96,7 @@ figcaption {
 
 > “飞桨开源社区对于新手非常友好，社区氛围也温馨友善。”
 
-![邱睿桥演讲](../images/pfcc-lightning/qiuruiqiao.jpg)
+![邱睿桥演讲](../images/lightning-talks/qiuruiqiao.jpg)
 
 ---
 
@@ -113,7 +113,7 @@ figcaption {
 
 > “我希望今年有机会的话可以再参与到百度其他的项目中”
 
-![社区开发者A张磊演讲](../images/pfcc-lightning/ContributorA.jpg)
+![社区开发者A张磊演讲](../images/lightning-talks/ContributorA.jpg)
 
 ### 社区开发者 B：被引路者
 
@@ -122,7 +122,7 @@ figcaption {
 
 > “感谢我认识的每一个百度人”
 
-![社区开发者B演讲](../images/pfcc-lightning/ContributorB.jpg)
+![社区开发者B演讲](../images/lightning-talks/ContributorB.jpg)
 
 现场掌声不断，主持人不断以鼓励的语气带动氛围：“**这就是开源精神，说上就上！**”
 
@@ -139,11 +139,11 @@ Lightning Talks 的最后，主持人感谢所有登台的分享者，也邀请�
 ## 📸 活动现场
 
 热烈的掌声、闪光的创意、自由的交流——这一刻属于飞桨贡献者。  
-![活动现场](../images/pfcc-lightning/stage.jpg)
+![活动现场](../images/lightning-talks/stage.jpg)
 
 合影定格的瞬间，也记录了开源社区的温度与连接。
 
-![合影留念](../images/pfcc-lightning/group.jpg)
+![合影留念](../images/lightning-talks/group.jpg)
 
 ---
 
