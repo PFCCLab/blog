@@ -115,7 +115,7 @@ figcaption {
 
 ![社区开发者A张磊演讲](../images/pfcc-lightning/ContributorA.jpg)
 
-### 社区开发者B：被引路者：
+### 社区开发者B：被引路者
 
 第二位上台的是一位年轻的社区成员。
 他分享了自己被一位“引路人”带入AI领域的经历。
