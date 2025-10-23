@@ -53,8 +53,8 @@ figcaption {
 
 <figure style="text-align: center;">
   <img src="../images/lightning-talks/tanghanlin.jpg" alt="唐汉霖演讲" 
-       style="display: block; margin: 0 auto; max-width: 350px; max-height: 500px; object-fit: contain;">
-  <figcaption>在浙大</figcaption>
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
+  <figcaption>唐汉霖演讲</figcaption>
 </figure>
 
 ---
@@ -71,7 +71,7 @@ figcaption {
 
 <figure style="text-align: center;">
   <img src="../images/lightning-talks/nieyuxuan.jpg" alt="聂宇旋演讲" 
-       style="display: block; margin: 0 auto; max-width: 350px; max-height: 500px; object-fit: contain;">
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
   <figcaption>聂宇旋演讲</figcaption>
 </figure>
 
@@ -85,7 +85,7 @@ figcaption {
 
 <figure style="text-align: center;">
   <img src="../images/lightning-talks/zhengtianyu.jpg" alt="郑天宇演讲" 
-       style="display: block; margin: 0 auto; max-width: 350px; max-height: 500px; object-fit: contain;">
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
   <figcaption>郑天宇演讲</figcaption>
 </figure>
 
@@ -99,7 +99,7 @@ figcaption {
 
 <figure style="text-align: center;">
   <img src="../images/lightning-talks/zhangyiqiao.jpg" alt="张一乔演讲" 
-       style="display: block; margin: 0 auto; max-width: 350px; max-height: 500px; object-fit: contain;">
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
   <figcaption>张一乔演讲</figcaption>
 </figure>
 
@@ -114,7 +114,7 @@ figcaption {
 
 <figure style="text-align: center;">
   <img src="../images/lightning-talks/qiuruiqiao.jpg" alt="邱睿桥演讲" 
-       style="display: block; margin: 0 auto; max-width: 350px; max-height: 500px; object-fit: contain;">
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
   <figcaption>邱睿桥演讲</figcaption>
 </figure>
 
@@ -135,7 +135,7 @@ figcaption {
 
 <figure style="text-align: center;">
   <img src="../images/lightning-talks/ContributorA.jpg" alt="社区开发者A张磊演讲" 
-       style="display: block; margin: 0 auto; max-width: 350px; max-height: 500px; object-fit: contain;">
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
   <figcaption>社区开发者A张磊演讲</figcaption>
 </figure>
 
@@ -148,7 +148,7 @@ figcaption {
 
 <figure style="text-align: center;">
   <img src="../images/lightning-talks/ContributorB.jpg" alt="社区开发者B演讲" 
-       style="display: block; margin: 0 auto; max-width: 350px; max-height: 500px; object-fit: contain;">
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
   <figcaption>社区开发者B演讲</figcaption>
 </figure>
 
@@ -170,7 +170,7 @@ Lightning Talks 的最后，主持人感谢所有登台的分享者，也邀请�
 
 <figure style="text-align: center;">
   <img src="../images/lightning-talks/stage.jpg" alt="活动现场" 
-       style="display: block; margin: 0 auto; max-width: 350px; max-height: 500px; object-fit: contain;">
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
   <figcaption>活动现场</figcaption>
 </figure>
 
@@ -178,7 +178,7 @@ Lightning Talks 的最后，主持人感谢所有登台的分享者，也邀请�
 
 <figure style="text-align: center;">
   <img src="../images/lightning-talks/group.jpg" alt="合影留念" 
-       style="display: block; margin: 0 auto; max-width: 350px; max-height: 500px; object-fit: contain;">
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
   <figcaption>合影留念</figcaption>
 </figure>
 
