@@ -166,7 +166,7 @@ Lightning Talks 的最后，主持人感谢所有登台的分享者，也邀请�
 
 ## 📸 活动现场
 
-热烈的掌声、闪光的创意、自由的交流——这一刻属于飞桨贡献者。  
+热烈的掌声、闪光的创意、自由的交流——这一刻属于飞桨贡献者。
 
 <figure style="text-align: center;">
   <img src="../images/lightning-talks/stage.jpg" alt="活动现场" 
