@@ -3,7 +3,7 @@ title: ⚡️PaddlePaddle Contributor Lightning Talks 回顾：闪电之上，�
 date: 2025-10-23
 author:
    name: 刘卓鑫
-   github: leonliuzx
+   github: mattheliu
 category: community-activity
 ---
 
