@@ -17,4 +17,4 @@ category: community-activity
 
 ## 课程材料在线观看
 
-这次课程分享的 Slides，可以在这里浏览：[飞桨 & 文心开源高校行之北大](../images/pku-course-2025/飞桨&文心开源走进北大.pdf)
+这次课程分享的 Slides，可以在这里浏览：[飞桨 & 文心开源高校行之北大](https://github.com/PFCCLab/blog/blob/main/src/images/pku-course-2025/飞桨%26文心开源走进北大.pdf)

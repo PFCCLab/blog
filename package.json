@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "license": "CC0-1.0",
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.20.0",
   "scripts": {
     "postinstall": "simple-git-hooks",
     "dev": "vitepress dev src",
@@ -30,7 +30,7 @@
   "devDependencies": {
     "@lint-md/cli": "^2.0.0",
     "@types/markdown-it": "^14.1.2",
-    "@types/node": "^22.9.0",
+    "@types/node": "^24.0.0",
     "prettier": "^3.4.2",
     "sharp": "^0.34.0",
     "simple-git-hooks": "^2.11.1",
