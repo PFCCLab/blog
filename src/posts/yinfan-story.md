@@ -38,7 +38,7 @@ figcaption {
 
 在进行这次采访的五月，🦩哥还是北京邮电大学的学生，研究方向主要集中在 AI 编译器与 CUDA 编程，并对大语言模型有着浓厚的兴趣。
 
-在 Paddle 开源社区中，他多次为 Paddle、PaddleSpeech、PaddleNLP、PaddleMIX 等项目贡献代码，提交过多项与编译器和框架算子相关的 PR，为Paddle 社区的发展做出了积极贡献。
+在 Paddle 开源社区中，他多次为 Paddle、PaddleSpeech、PaddleNLP、PaddleMIX 等项目贡献代码，提交过多项与编译器和框架算子相关的 PR，为 Paddle 社区的发展做出了积极贡献。
 
 如今，他已经毕业，现就职于某互联网大厂担任框架工程师，但依然保持着对开源的热情——在业余时间，他持续为 SGLang 社区贡献力量，成为其中活跃的核心开发者之一。
 
@@ -166,7 +166,7 @@ figcaption {
     </figure>
 </div>
 
-> 编者注✍️：🦩哥在飞桨公众号发的文章《[飞桨开源贡献：基于PaddleMIX实现InternVL2多模态模型推理](https://mp.weixin.qq.com/s/mUjycyk6kSQroWOf6F6C8A)》
+> 编者注✍️：🦩哥在飞桨公众号发的文章《[飞桨开源贡献：基于 PaddleMIX 实现 InternVL2 多模态模型推理](https://mp.weixin.qq.com/s/mUjycyk6kSQroWOf6F6C8A)》
 
 8. **除了飞桨，你还活跃于哪些开源社区？在这些社区中，你主要参与哪些项目或活动？**
 
