@@ -7,7 +7,12 @@
         <p v-if="subtitle" class="podcast-desc">{{ subtitle }}</p>
       </div>
     </div>
-    <audio class="podcast-audio" controls preload="none">
+    <audio
+      class="podcast-audio"
+      controls
+      preload="none"
+      :aria-label="`播客音频：${title}`"
+    >
       <source :src="src" type="audio/mpeg" />
       您的浏览器暂不支持音频播放，可以
       <a :href="src">点击下载</a>
@@ -21,29 +26,14 @@
   </div>
 </template>
 
-<script setup>
-defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  subtitle: {
-    type: String,
-    default: '',
-  },
-  src: {
-    type: String,
-    required: true,
-  },
-  duration: {
-    type: String,
-    default: '',
-  },
-  note: {
-    type: String,
-    default: '',
-  },
-})
+<script setup lang="ts">
+defineProps<{
+  title: string
+  subtitle?: string
+  src: string
+  duration?: string
+  note?: string
+}>()
 </script>
 
 <style scoped>
@@ -79,7 +69,7 @@ defineProps({
 }
 .podcast-desc {
   margin: 0.3rem 0 0;
-  color: #4a5568;
+  color: var(--vp-c-text-2);
   font-size: 0.94rem;
 }
 .podcast-audio {
@@ -87,8 +77,15 @@ defineProps({
 }
 .podcast-note {
   margin: 0;
-  color: #5f6b7c;
+  color: var(--vp-c-text-3);
   font-size: 0.87rem;
+}
+:global(.dark) .podcast-player {
+  background: rgba(59, 130, 246, 0.18);
+  border-color: rgba(96, 165, 250, 0.35);
+}
+:global(.dark) .podcast-badge {
+  background: rgba(59, 130, 246, 0.28);
 }
 @media (max-width: 640px) {
   .podcast-player {
