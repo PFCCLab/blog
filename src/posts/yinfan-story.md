@@ -30,7 +30,7 @@ import Message from '../.vitepress/components/Message.vue'
 import MessageBox from '../.vitepress/components/MessageBox.vue'
 import PodcastPlayer from '../.vitepress/components/PodcastPlayer.vue'
 </script>
-<!-- 导入聊天框功能 -->
+<!-- 导入聊天框、播客播放器功能 -->
 
 <style>
 figure {
