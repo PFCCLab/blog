@@ -19,7 +19,7 @@ category: developer-story
 <PodcastPlayer
    title="赛博播客：《开源路上的企鹅火烈鸟》访谈“虚”录"
    subtitle="让 AI 主理人小桨捧读这一段江湖故事，边走边听，也能和我们一起感受🦩的热情。"
-   src="../images/yinfan-story/yinfan-story.mp3"
+   :src="PodcastAudio"
    duration="15 分钟"
    note="支持倍速播放"
 />
@@ -28,6 +28,7 @@ category: developer-story
 <script setup>
 import Message from '../.vitepress/components/Message.vue'
 import MessageBox from '../.vitepress/components/MessageBox.vue'
+import PodcastAudio from '../images/yinfan-story/yinfan-story.mp3'
 import PodcastPlayer from '../.vitepress/components/PodcastPlayer.vue'
 </script>
 <!-- 导入聊天框、播客播放器功能 -->
