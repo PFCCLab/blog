@@ -1,5 +1,5 @@
 ---
-title: 【开源江湖闲聊录】从 Paddle 到 SGLang：神秘的企鹅火烈鸟
+title: 【开源江湖闲聊录】开源路上的企鹅火烈鸟：一段始于 Paddle 的旅程
 date: 2025-11-03
 author:
    name: 孙钟恺
