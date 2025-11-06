@@ -7,12 +7,7 @@
         <p v-if="subtitle" class="podcast-desc">{{ subtitle }}</p>
       </div>
     </div>
-    <audio
-      class="podcast-audio"
-      controls
-      preload="none"
-      :aria-label="`播客音频：${title}`"
-    >
+    <audio class="podcast-audio" controls preload="none" :aria-label="`播客音频：${title}`">
       <source :src="src" type="audio/mpeg" />
       您的浏览器暂不支持音频播放，可以
       <a :href="src">点击下载</a>
