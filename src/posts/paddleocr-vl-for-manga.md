@@ -1,5 +1,5 @@
 ---
-title: "Fine-tuning PaddleOCR-VL for Manga"
+title: 'Fine-tuning PaddleOCR-VL for Manga'
 date: 2025-11-12
 author:
    name: Jun
@@ -50,12 +50,12 @@ You can upload your favorite manga images and see the results here : [PaddleOCR-
 
 ## Project Overview
 
-- **Model**: [PaddleOCR-VL-For-Manga](https://huggingface.co/jzhang533/PaddleOCR-VL-For-Manga)  
+- **Model**: [PaddleOCR-VL-For-Manga](https://huggingface.co/jzhang533/PaddleOCR-VL-For-Manga)
 - **Base Model**: [PaddlePaddle/PaddleOCR-VL](https://huggingface.co/PaddlePaddle/PaddleOCR-VL)
-- **Dataset Example in This Tutorial**: [manga-synthetic](https://huggingface.co/datasets/jzhang533/manga-synthetic) (58,196 training + 6,467 validation samples)  
-- **Training Code**: [GitHub Repository](https://github.com/jzhang533/PaddleOCR-VL-For-Manga) (Open Source!)  
-- **Task**: Fine-tune a vision-language model for accurate manga OCR  
-- **Best Use Case**: **Manga text crops** (individual text bubbles/regions, not full pages)  
+- **Dataset Example in This Tutorial**: [manga-synthetic](https://huggingface.co/datasets/jzhang533/manga-synthetic) (58,196 training + 6,467 validation samples)
+- **Training Code**: [GitHub Repository](https://github.com/jzhang533/PaddleOCR-VL-For-Manga) (Open Source!)
+- **Task**: Fine-tune a vision-language model for accurate manga OCR
+- **Best Use Case**: **Manga text crops** (individual text bubbles/regions, not full pages)
 - **Key Achievement**: **#3 on HuggingFace's Trending Leaderboard** (Image-Text-to-Text category)
 
 > **Note:** In this tutorial, I use the synthetic manga-synthetic dataset as an example for demonstration. For full training details and scripts, please refer to the [GitHub repository](https://github.com/jzhang533/PaddleOCR-VL-For-Manga).
@@ -184,7 +184,7 @@ def collate_fn(examples, processor, pad_to_multiple_of=8):
     # Mask padding tokens with -100 (ignored in loss computation)
     # We don't want the model to learn from padding tokens
     labels[batch["attention_mask"] == 0] = -100
-    
+
     # Find where "Assistant: " starts in the tokenized sequence
     response_template = "Assistant: "
     response_ids = processor.tokenizer.encode(
@@ -404,9 +404,9 @@ import numpy as np
 from datasets import load_dataset
 from tqdm import tqdm
 
-def evaluate_on_validation_split(model_path, dataset_name="jzhang533/manga-synthetic", max_samples=None):    
+def evaluate_on_validation_split(model_path, dataset_name="jzhang533/manga-synthetic", max_samples=None):
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-    
+
     # Load model and processor
     print(f"Loading model from {model_path}...")
     model = (
@@ -419,36 +419,36 @@ def evaluate_on_validation_split(model_path, dataset_name="jzhang533/manga-synth
         .to(DEVICE)
         .eval()
     )
-    
+
     processor = AutoProcessor.from_pretrained(
-        model_path, 
-        trust_remote_code=True, 
+        model_path,
+        trust_remote_code=True,
         use_fast=True
     )
-    
+
     # Load validation dataset
     print(f"Loading dataset {dataset_name}...")
     dataset = load_dataset(dataset_name)
     val_dataset = dataset["validation"]
-    
+
     # Limit samples if specified
     if max_samples:
         val_dataset = val_dataset.select(range(min(max_samples, len(val_dataset))))
-    
+
     print(f"Evaluating on {len(val_dataset)} validation samples...")
-    
+
     predictions = []
     references = []
-    
+
     # Process each sample
     for idx in tqdm(range(len(val_dataset)), desc="Running inference"):
         sample = val_dataset[idx]
-        
+
         # Extract image and ground truth
         image = sample["images"][0]  # Get first image from list
         reference_text = sample["completion"][0]["content"]  # Ground truth
         prompt_text = sample["prompt"][0]["content"]  # Should be "OCR:"
-        
+
         # Prepare messages for inference
         messages = [
             {
@@ -459,19 +459,19 @@ def evaluate_on_validation_split(model_path, dataset_name="jzhang533/manga-synth
                 ],
             }
         ]
-        
+
         # Apply chat template
         text = processor.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True
         )
-        
+
         # Prepare inputs
         inputs = processor(text=[text], images=[image], return_tensors="pt")
         inputs = {
             k: (v.to(DEVICE) if isinstance(v, torch.Tensor) else v)
             for k, v in inputs.items()
         }
-        
+
         # Generate prediction
         with torch.inference_mode():
             generated = model.generate(
@@ -480,16 +480,16 @@ def evaluate_on_validation_split(model_path, dataset_name="jzhang533/manga-synth
                 do_sample=False,
                 use_cache=True,
             )
-        
+
         # Decode only the generated tokens (exclude input prompt)
         input_length = inputs["input_ids"].shape[1]
         generated_tokens = generated[:, input_length:]
         prediction = processor.batch_decode(generated_tokens, skip_special_tokens=True)[0]
-        
+
         # Collect results
         predictions.append(prediction)
         references.append(reference_text)
-    
+
     print(f"\nCollected {len(predictions)} predictions and {len(references)} references")
     return predictions, references
 ```
@@ -503,7 +503,7 @@ def compute_metrics(predictions, references):
     """Compute CER and accuracy from generated predictions."""
     import evaluate
     import numpy as np
-    
+
     cer_metric = evaluate.load("cer")
 
     # Remove whitespace for fair comparison
@@ -512,7 +512,7 @@ def compute_metrics(predictions, references):
 
     # Compute CER
     cer = cer_metric.compute(
-        predictions=predictions_clean, 
+        predictions=predictions_clean,
         references=references_clean
     )
 
@@ -522,8 +522,8 @@ def compute_metrics(predictions, references):
     accuracy = (predictions_array == references_array).mean()
 
     return {
-        "cer": cer, 
-        "accuracy": accuracy, 
+        "cer": cer,
+        "accuracy": accuracy,
         "num_samples": len(predictions)
     }
 ```
@@ -587,4 +587,4 @@ Feel free to try [PaddleOCR-VL-For-Manga](https://huggingface.co/jzhang533/Paddl
 
 ---
 
-*Have questions or suggestions? Open an issue on the model repository or reach out on HuggingFace!*
+_Have questions or suggestions? Open an issue on the model repository or reach out on HuggingFace!_
