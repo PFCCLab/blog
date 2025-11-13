@@ -26,6 +26,17 @@ export default withPwa(
     cleanUrls: true,
     markdown: {
       math: true,
+      theme: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+      codeTransformers: [
+        {
+          postprocess(code) {
+            return code
+          },
+        },
+      ],
       config: (md) => {
         md.use(mathjax3)
       },

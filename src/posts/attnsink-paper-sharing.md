@@ -30,6 +30,7 @@ Github 仓库：[https://github.com/sail-sg/Attention-Sink](https://github.com/s
 因此$h_1^l$以及相应的 Q、K、V 可以视为直接从 word embedding 得到的 MLP 输出。
 
 - 计算特性：$h_1^l$以及相应的 Q、K、V 可以视为直接从 word embedding 得到的 MLP 输出。
+
    - 首 token 和其他后续的 token 计算有一个显著不同：第一个 hidden state 的计算不涉及 self-attention$h_1^l = \text{FFN}(\text{LN}(o_1^l + h_1^{l-1})) + o_1^l + h_1^{l-1}$，$o_1^l = \text{LN}(h_1^{l-1})[W^{l,1} \quad W^{l,2} \quad \dots \quad W^{l,H}]W_O^l$。
 
 - 数值特性：从特定层开始，$h_1^l$的$\mathcal{l}_2$范数会显著大于其他 token $h_{t\neq 1}^l$。
@@ -104,6 +105,7 @@ Fix token(StreamingLLM)：在序列中添加一个 global learnable token，作�
 ## 损失函数对 Attention Sink 的影响
 
 - weight decay 会促进 attention sink 的出现。
+
    - 即便不用 weight decay，attention sink 仍然会出现，但是增大后 attention sink 会更加明显。
 
 - 采用 Prefix-LM 时，attention sink 出现在**prefix token 中，而不仅仅是第一个 token**。
@@ -116,6 +118,7 @@ Fix token(StreamingLLM)：在序列中添加一个 global learnable token，作�
 ## 模型结构对 Attention Sink 的影响
 
 - 位置编码的种类：
+
    - 测试了多种位置编码方式（包括无位置编码 NoPE、绝对位置编码、可学习位置编码、ALiBi 和 RoPE），结果显示，所有采用这些编码方式的语言模型，甚至那些没有明确位置编码的模型，都出现了 attention sink 。
 
 - Pre-Norm vs Post-Norm

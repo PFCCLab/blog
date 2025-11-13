@@ -28,6 +28,7 @@ FlashOverlap 所关注和聚焦的具体重叠场景是：一个计算操作后�
 **一、基于张量分解的方法**
 
 1. 思路：将依赖的计算和通信分为多个子操作，将子操作流水化执行
+
    - 例如：矩阵乘法产生张量 T
       - 分解为 N 个子矩阵相乘，得到 N 个子张量 T₁ ~ Tₙ，将一次对 T 的通信分解为对 N 个子张量的 N 次子通信
       - 然后第 K 个矩阵乘法和第 K-1 个通信操作进行 Overlap
@@ -40,6 +41,7 @@ FlashOverlap 所关注和聚焦的具体重叠场景是：一个计算操作后�
 **二、基于算子融合的方法**
 
 1. 思路：
+
    - 将计算和通信融合为一个算子，挖掘 tile 之间的依赖
    - 在 kernel 内部实现细粒度的通信和计算 overlap
 
@@ -105,9 +107,11 @@ FlashOverlap 所关注和聚焦的具体重叠场景是：一个计算操作后�
 - 矩阵乘法也存在这种 wave 现象：每一个 wave 中包含的 tile 和 swizzling 算法相关。
   ![alt text](../images/flashoverlap-paper-sharing/matrix.png)
 - 针对一个矩阵乘法进行观察结果如下图，横坐标是 block id，纵坐标是 block 完成时间：可以发现一个 wave 里的 block 的完成时间基本差不多，给选取 tile 组提供了事实依据。
+
    - 选取同一个 Wave 的 Tile 作为一个组是一个非常不错的选择。这是由于同一个 Wave 内的 Tile 基本能整整齐齐的结束，很显然选择他们作为一个 Group，一起发一次通信效果会更好。
    - 事实上是：当给定一个矩阵乘法和 GPU 之后，**很容易提前得出 Block 的发射顺序从而获得 Wave 信息**
      ![alt text](../images/flashoverlap-paper-sharing/wave.png)
+
       - 根据 gemm 的参数（tile 大小，swizzling 模式）提前生成 map table，记录 tile 到 wave 的关系（也就是提前知道了某个 tile 属于哪一个 wave）
 
       - 上图是 RTX4090 上观察 wave 现象的结果图，C 矩阵有 512 个 tile，SM 数量 128 -> 512 / 128 = 4 个 wave
@@ -116,6 +120,7 @@ FlashOverlap 所关注和聚焦的具体重叠场景是：一个计算操作后�
 5. 选一个 wave 作为 tile group 是不是最优选择
 
 - 否，存在调优空间
+
    - 一方面：希望一次通信数据要多，这样通信效率高，一个 group 尽量包含可能多的 tile；
    - 另一方面：希望切分的要碎，算完就传，通信启动的越早越好，这样一个 group 尽量包含少的 tile。
 

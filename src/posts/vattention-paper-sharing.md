@@ -77,6 +77,7 @@ vAttention 在按需分配显存的同时，保障了虚拟地址的连续性，
 ![alt text](../images/vattention-paper-sharing/mapping.jpg)
 
 1. 一开始就连续分配足够大的虚拟空间
+
    - $2*N*(B*L*H*D*P)$
    - 层数、maximum batch size、maximum context length、head num、dim、sizeof(dtype)
    - 括号里的代表一个虚拟 tensor 的大小，是虚拟空间的分配单元，即内部是连续的
