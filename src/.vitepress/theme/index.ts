@@ -52,16 +52,23 @@ function addCopyButtons() {
     button.addEventListener('click', async () => {
       const code = block.querySelector('code')
       if (code) {
-        const text = code.textContent || ''
-        await navigator.clipboard.writeText(text)
-        button.innerHTML = checkIcon
-        button.classList.add('copied')
-        button.setAttribute('data-tooltip', 'copied!')
-        setTimeout(() => {
-          button.innerHTML = copyIcon
-          button.classList.remove('copied')
-          button.setAttribute('data-tooltip', 'copy')
-        }, 2000)
+        try {
+          const text = code.textContent || ''
+          await navigator.clipboard.writeText(text)
+          button.innerHTML = checkIcon
+          button.classList.add('copied')
+          button.setAttribute('data-tooltip', 'copied!')
+          setTimeout(() => {
+            button.innerHTML = copyIcon
+            button.classList.remove('copied')
+            button.setAttribute('data-tooltip', 'copy')
+          }, 2000)
+        } catch (err) {
+          button.setAttribute('data-tooltip', 'failed')
+          setTimeout(() => {
+            button.setAttribute('data-tooltip', 'copy')
+          }, 2000)
+        }
       }
     })
 
