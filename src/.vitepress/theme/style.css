@@ -7,20 +7,32 @@
   color: var(--shiki-light, inherit);
 }
 
-/* Force light theme for code blocks */
-.vp-code,
-div[class*='language-'],
-pre[class*='language-'] {
-  background-color: var(--shiki-light-bg, #f6f8fa) !important;
-  color: #24292e !important;
+/* Theme-aware code block styling */
+html:not(.dark) .vp-code,
+html:not(.dark) div[class*='language-'],
+html:not(.dark) pre[class*='language-'] {
+  background-color: var(--shiki-light-bg, #f6f8fa);
+  color: #24292e;
 }
 
-.vp-code code,
-div[class*='language-'] code,
-pre[class*='language-'] code {
-  color: #24292e !important;
+html:not(.dark) .vp-code code,
+html:not(.dark) div[class*='language-'] code,
+html:not(.dark) pre[class*='language-'] code {
+  color: #24292e;
 }
 
+html.dark .vp-code,
+html.dark div[class*='language-'],
+html.dark pre[class*='language-'] {
+  background-color: var(--shiki-dark-bg, #0d1117);
+  color: var(--shiki-dark, #c9d1d9);
+}
+
+html.dark .vp-code code,
+html.dark div[class*='language-'] code,
+html.dark pre[class*='language-'] code {
+  color: var(--shiki-dark, #c9d1d9);
+}
 :root {
   --c-brand: #3eaf7c;
   --c-brand-light: #4abf8a;
