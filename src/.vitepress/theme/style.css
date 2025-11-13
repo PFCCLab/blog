@@ -7,6 +7,10 @@
   color: var(--shiki-light, inherit);
 }
 
+html.dark .vp-code span {
+  color: var(--shiki-dark, inherit);
+}
+
 /* Theme-aware code block styling */
 html:not(.dark) .vp-code,
 html:not(.dark) div[class*='language-'],
@@ -24,14 +28,14 @@ html:not(.dark) pre[class*='language-'] code {
 html.dark .vp-code,
 html.dark div[class*='language-'],
 html.dark pre[class*='language-'] {
-  background-color: var(--shiki-dark-bg, #0d1117);
-  color: var(--shiki-dark, #c9d1d9);
+  background-color: var(--shiki-dark-bg, #161b22);
+  color: #e6edf3;
 }
 
 html.dark .vp-code code,
 html.dark div[class*='language-'] code,
 html.dark pre[class*='language-'] code {
-  color: var(--shiki-dark, #c9d1d9);
+  color: #e6edf3;
 }
 :root {
   --c-brand: #3eaf7c;
@@ -48,6 +52,58 @@ p img {
 
 .prose hr {
   border-top: 1px solid #e5e7eb;
+}
+
+.dark .prose hr {
+  border-top: 1px solid #374151;
+}
+
+/* Improve dark mode text readability */
+.dark .prose {
+  color: #e6edf3;
+}
+
+.dark .prose p,
+.dark .prose li,
+.dark .prose td,
+.dark .prose th {
+  color: #e6edf3;
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6 {
+  color: #f0f6fc;
+}
+
+.dark .prose strong {
+  color: #f0f6fc;
+}
+
+.dark .prose code {
+  color: #ff7b72;
+  background-color: rgba(110, 118, 129, 0.2);
+}
+
+.dark .prose a {
+  color: #58a6ff;
+}
+
+.dark .prose a:hover {
+  color: #79c0ff;
+}
+
+.dark .prose pre {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+}
+
+.dark .prose pre code {
+  color: #e6edf3;
+  background-color: transparent;
 }
 
 /* HuggingFace-style blockquotes */
@@ -219,6 +275,20 @@ button.copy.copied {
   opacity: 1;
 }
 
+/* Dark mode copy button styles */
+.dark button.copy {
+  color: #94a3b8;
+}
+
+.dark button.copy:hover {
+  background-color: rgba(148, 163, 184, 0.15);
+  color: #cbd5e1;
+}
+
+.dark button.copy.copied {
+  color: #34d399;
+}
+
 button.copy::after {
   content: attr(data-tooltip);
   position: absolute;
@@ -247,6 +317,16 @@ button.copy:hover::after {
 button.copy.copied::after {
   opacity: 1;
   background-color: #000;
+}
+
+/* Dark mode tooltip styles */
+.dark button.copy::after {
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+
+.dark button.copy.copied::after {
+  background-color: #1e293b;
 }
 
 /* Ensure code blocks have relative positioning for button placement */
@@ -282,4 +362,18 @@ span.lang {
 }
 .custom-block.tip:before {
   color: #42b883;
+}
+
+/* Dark mode custom block styles */
+.dark .custom-block {
+  color: #e2e8f0;
+  background-color: #1e293b;
+}
+
+.dark .custom-block.tip {
+  border-color: #4abf8a;
+}
+
+.dark .custom-block.tip:before {
+  color: #4abf8a;
 }
