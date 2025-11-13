@@ -31,10 +31,10 @@
     "@lint-md/cli": "^2.0.0",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.0.0",
-    "prettier": "^3.4.2",
+    "markdown-it-mathjax3": "^5.2.0",
+    "prettier": "^3.6.2",
     "sharp": "^0.34.0",
-    "simple-git-hooks": "^2.11.1",
-    "markdown-it-mathjax3": "^5.2.0"
+    "simple-git-hooks": "^2.11.1"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm run fmt"
