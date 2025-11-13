@@ -694,15 +694,12 @@ RL 并不是万能地“直接提高模型的能力”，是把有限的交互�
 以下是一些关于 LLM 后训练的先进研究：
 
 1. **《[Cognitive Behaviors that Enable Self-Improving Reasoners, or, Four Habits of Highly Effective STaRs](https://arxiv.org/abs/2503.01307)》 (20250303)**
-
    - 同样的 RL 训练，一个模型（Qwen-2.5）提升特别明显，另一个（Llama-3.2）基本没变化。这可以推断，一个模型本身有没有认知行为的能力，决定了它能不能从 RL 中学到东西。
 
 2. **《[SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training](https://arxiv.org/abs/2501.17161)》 (20250128)**
-
    - SFT 擅长记忆、RL 擅长推理。RL 的分布外泛化能力强，SFT 分布内记忆能力强。RL 通过奖励机制和迭代验证，能学习到通用规则，进而提升分布外泛化能力。
 
 3. **《[Understanding the Effects of RLHF on LLM Generalisation and Diversity](https://arxiv.org/abs/2310.06452)》 (20231012)**
-
    - RLHF 相比 SFT 能显著提升模型对分布外数据的泛化能力，但会导致输出的 diversity 下降。
 
 4. **《[RLAIF vs. RLHF: Scaling Reinforcement Learning from Human Feedback with AI Feedback](https://arxiv.org/abs/2309.00267)》 (20230901)**
