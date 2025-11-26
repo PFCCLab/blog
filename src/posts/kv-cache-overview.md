@@ -20,22 +20,22 @@ KV Cache 压缩/驱逐技术旨在通过识别和保留高重要性的 KV 条目
 - **Prefill/Prompt 阶段压缩**：针对输入提示的 KV Cache 进行压缩，减少初始内存占用。
 - **Decoding 阶段压缩**：在生成过程中动态驱逐或选择 KV 条目，提高效率。
 
-这些方法利用注意力模式的稀疏性、层级差异和查询相关性，实现内存节省和吞吐提升。根据KV Cache Compression for Inference Efficiency in LLMs，常见trade-off 包括压缩率与性能损失的平衡，以及是否需要微调模型。
+这些方法利用注意力模式的稀疏性、层级差异和查询相关性，实现内存节省和吞吐提升。根据 KV Cache Compression for Inference Efficiency in LLMs，常见 trade-off 包括压缩率与性能损失的平衡，以及是否需要微调模型。
 
 ## 代表性工作
 
 ### 1. H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models
 
-- **论文链接**：https://arxiv.org/abs/2306.14048﻿
+- **论文链接**：https://arxiv.org/abs/2306.14048
 - **针对阶段**：Decoding
 - **核心思想**：尽管 LLMs 是稠密训练的，但注意力分数矩阵高度稀疏（所有层稀疏度 >95%）。这表明在生成下一个 token 时，无需访问所有历史 KV，注意力模块的稀疏性说明生成下一个 token 时访问此前所有的 key 和 value 的 embedding 是没有必要的，只需保留“重击者”（Heavy Hitters, H₂）——那些贡献大部分注意力分数的 token。
-- **方法**：将 KV 驱逐建模为动态子模优化问题。驱逐策略：基于累积注意力分数，驱逐分数最低的 token，同时保留最近 token 和部分 H₂ token（例如 20%）。这利用了 token 共现的自然模式，确保驱逐低贡献token不会显著影响性能。
+- **方法**：将 KV 驱逐建模为动态子模优化问题。驱逐策略：基于累积注意力分数，驱逐分数最低的 token，同时保留最近 token 和部分 H₂ token（例如 20%）。这利用了 token 共现的自然模式，确保驱逐低贡献 token 不会显著影响性能。
 - **性能**：在 OPT、LLaMA 和 GPT-NeoX 模型上，吞吐提升高达 29x（相比 DeepSpeed Zero-Inference），延迟降低 1.9x。理论上证明了驱逐算法的保证。
 - **理解**：H2O 是早期 KV 驱逐的典范，强调动态性和稀疏利用。它简单高效，但可能忽略层级差异，导致在复杂长上下文任务中性能波动。适用于长内容生成如对话系统。
 
 ### 2. PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling
 
-- **论文链接**：https://arxiv.org/abs/2406.02069﻿
+- **论文链接**：https://arxiv.org/abs/2406.02069
 - **针对阶段**：Prefill/Decoding
 - **核心思想**：传统方法对所有 Transformer 层统一压缩 KV Cache，“一视同仁”地用相同的压缩设置，压缩到同样的长度，忽略了层级注意力模式的差异。研究 Llama 模型进行多文档问答的逐层注意力图，观察到“金字塔型信息汇聚”：底层注意力稠密（均匀分布），中间层局部聚焦，上层极度稀疏（Attention Sink 和 Massive Activation）。结论：**可能在较高层的稀疏注意力中保留许多不重要的 tokens，而忽略较低层密集注意力中的许多重要的 tokens**。
 - **方法**：层级动态分配 KV 预算——底层分配更多缓存，上层减少。确定预算后，根据注意力分数选择 KV token，始终保留 instruction token（类似窗口模式）。这避免了在高层保留过多无关 token，并在底层保留关键全局信息。
@@ -44,26 +44,26 @@ KV Cache 压缩/驱逐技术旨在通过识别和保留高重要性的 KV 条目
 
 ### 3. SnapKV: LLM Knows What You are Looking for Before Generation
 
-- **论文链接**：https://arxiv.org/abs/2404.14469﻿
+- **论文链接**：https://arxiv.org/abs/2404.14469
 - **针对阶段**：Prefill
 - **核心思想**：在生成过程中，注意力头一致关注提示中的特定位置。这可以通过提示末尾的“观察窗口”（Observation Window）捕捉。
 - **方法**：两步过程：1) 基于观察窗口（e.g., 最后 16 token）的注意力分布，通过投票算法选出重要 KV 位置（对 softmax 后分数求和，选择 top-k）；2) 将选出 KV（L_prefix）与观察窗口拼接，形成压缩 KV Cache。针对 Prefill 阶段压缩提示 KV。
-   - 假设Prompt序列长度为1000，Observation Window大小为16，我们希望将KV缓存压缩至256。SnapKV首先基于最后16个Token的注意力分布，通过Voting算法选出最重要的240个位置。然后将这240个位置对应的Key和Value与Observation Window拼接，形成大小为256的新KV缓存。这样,后续的生成过程就只需在显著缩减的KV缓存上进行注意力计算，从而大幅提升了效率。
+   - 假设 Prompt 序列长度为 1000，Observation Window 大小为 16，我们希望将 KV 缓存压缩至 256。SnapKV 首先基于最后 16 个 Token 的注意力分布，通过 Voting 算法选出最重要的 240 个位置。然后将这 240 个位置对应的 Key 和 Value 与 Observation Window 拼接，形成大小为 256 的新 KV 缓存。这样,后续的生成过程就只需在显著缩减的 KV 缓存上进行注意力计算，从而大幅提升了效率。
 - **性能**：对于 16K token 输入，生成速度提升 3.6x，内存效率 8.2x。在 16 个长序列数据集上性能相当，可处理 380K 上下文（A100 GPU）。
 - **理解**：SnapKV 无需微调，简单高效，专注于提示压缩。它假设注意力模式稳定，但可能在动态变化的上下文中（如交互式生成）效果减弱。
 
 ### 4. Quest: Query-Aware Sparsity for Efficient Long-Context LLM Inference
 
-- **论文链接**：https://arxiv.org/abs/2406.10774﻿
+- **论文链接**：https://arxiv.org/abs/2406.10774
 - **针对阶段**：Decoding
-- **核心思想**：token 重要性高度依赖当前查询/最新的Q（Query）。前两层注意力重要，后层稀疏度高。Quest 针对 Decoding 阶段，不压缩 Prefill KV，而是动态选择相关 KV。
+- **核心思想**：token 重要性高度依赖当前查询/最新的 Q（Query）。前两层注意力重要，后层稀疏度高。Quest 针对 Decoding 阶段，不压缩 Prefill KV，而是动态选择相关 KV。
 - **方法**：块级处理：将 KV Cache 分块（pages），跟踪每个块的 min/max Key 值。与当前 Query 逐元素乘积，计算块分数（sum of max elements），选择 top-k 块进行注意力计算。前两层保持稠密计算。
 - **性能**：自注意力加速 2.23x，总推理延迟降低 7.03x。在长依赖任务上准确率损失 negligible。
 - **理解**：Quest 的查询感知性使其在动态生成中出色，避免了静态压缩的局限。但块级计算增加少量开销，早层处理确保基础信息完整。适用于长上下文推理如总结或 QA。
 
 ### 5. Can LLMs Maintain Fundamental Abilities under KV Cache Compression?
 
-- **论文链接**：https://arxiv.org/abs/2502.01941﻿
+- **论文链接**：https://arxiv.org/abs/2502.01941
 - **针对阶段**：Prefill/Decoding
 - **核心思想**：现有压缩方法（如 SnapKV、PyramidKV）在长上下文基准上表现好，但对模型基础能力（如世界知识、常识推理、数学、代码生成、安全和长上下文理解）的影响未充分研究。
 - **方法**：引入 KVFundaBench 基准，评估压缩对基础能力的任务依赖降解。发现：任务依赖、模型类型鲁棒性、提示长度脆弱性、块级优越性、提示增益敏感性和长上下文生成敏感性。提出 ShotKV 方法：分开处理 Prefill 和 Decoding，保持 shot-level 语义一致。
@@ -72,10 +72,10 @@ KV Cache 压缩/驱逐技术旨在通过识别和保留高重要性的 KV 条目
 
 ### 6. ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference
 
-- **论文链接**：https://arxiv.org/abs/2502.00299﻿
+- **论文链接**：https://arxiv.org/abs/2502.00299
 - **针对阶段**：Prefill
 - **核心思想**：针对 Prefill 阶段，传统 token-level 压缩可能破坏语义。使用语义块（chunks）作为单位，保留完整语言结构。
-- **方法**：Chunk-based：流程和snapkv差不多，基于最后 w token 的 Query 计算 score，按 chunksize c 分块，求和选 top-k 块保存 KV。Decoding 时替换最后的 w KV。Layer-Wise Index Reuse：每 N_reuse 层共享压缩索引，减少计算。（算法：if l % N_reuse == 0，就由这层来计算压缩的KV索引，剩下的N_reuse - 1层共用相同的kv索引。）
+- **方法**：Chunk-based：流程和 snapkv 差不多，基于最后 w token 的 Query 计算 score，按 chunksize c 分块，求和选 top-k 块保存 KV。Decoding 时替换最后的 w KV。Layer-Wise Index Reuse：每 N_reuse 层共享压缩索引，减少计算。（算法：if l % N_reuse == 0，就由这层来计算压缩的 KV 索引，剩下的 N_reuse - 1 层共用相同的 kv 索引。）
    - Target：提高吞吐、小幅度降低精度。
 - **性能**：比 SnapKV、PyramidKV 精度高 8.7%，吞吐提升 26.5%。在 LongBench 等基准上优异。
 - **理解**：ChunkKV 强调语义保存，避免碎片化上下文。层级复用平衡延迟和吞吐，效果微降。适合需要语义完整性的任务，如长上下文生成。
