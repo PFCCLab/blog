@@ -32,7 +32,7 @@ https://arxiv.org/abs/2406.10774
 
 此外，作者也发现在模型中不同层也会表现出不同的稀疏度。可以以此设计 layer-wise 的稀疏策略，在这篇文章中只对第二层以后的 layer 进行了稀疏处理。
 
-![img2](../images/decocde-sparse-attention-method/image-2.png)
+![img2](../images/decode-sparse-attention-method/image-2.png)
 
 ### 方法
 
