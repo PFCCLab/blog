@@ -1,6 +1,6 @@
 ---
 title: "【论文分享】| Medusa: Accelerating Serverless LLM Inference with Materialization (ASPLOS '25)"
-date: 2025-9-18
+date: 2025-09-18
 author:
    name: 陶思睿
    github: Siritao

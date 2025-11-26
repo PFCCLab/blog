@@ -28,15 +28,15 @@ https://arxiv.org/abs/2406.10774
 
 论文在观察到注意力的稀疏性的同时进一步指出了这么一个关键现象：一个 token 的注意力分数是动态变化的，并且依赖于当前的 query 。换言之，对于不同的查询 token，其关注的上下文重点（即关键的 KV 缓存部分）是不同的。因此，简单地保留一组静态的或基于历史注意力得分的“重要”token 是不够优的。
 
-![img1](../images/deocde-sparse-attention-method/image-1.png)
+![img1](../images/decode-sparse-attention-method/image-1.png)
 
 此外，作者也发现在模型中不同层也会表现出不同的稀疏度。可以以此设计 layer-wise 的稀疏策略，在这篇文章中只对第二层以后的 layer 进行了稀疏处理。
 
-![img2](../images/deocde-sparse-attention-method/image-2.png)
+![img2](../images/decocde-sparse-attention-method/image-2.png)
 
 ### 方法
 
-![img3](../images/deocde-sparse-attention-method/image-3.png)
+![img3](../images/decode-sparse-attention-method/image-3.png)
 
 **阶段一：关键性评估 (Criticality Estimation)**
 
@@ -52,15 +52,15 @@ https://arxiv.org/abs/2406.10774
 
 #### Longbench 评估得分
 
-![img4](../images/deocde-sparse-attention-method/image-4.png)
+![img4](../images/decode-sparse-attention-method/image-4.png)
 
 #### 注意力计算阶段加速(vs flashinfer)
 
-![img5](../images/deocde-sparse-attention-method/image-5.png)
+![img5](../images/decode-sparse-attention-method/image-5.png)
 
 #### 端到端加速(vs flashinfer，time per out token)
 
-![img6](../images/deocde-sparse-attention-method/image-6.png)
+![img6](../images/decode-sparse-attention-method/image-6.png)
 
 ## Twilight: Adaptive Attention Sparsity with Hierarchical Top-p Pruning
 
@@ -70,21 +70,21 @@ https://arxiv.org/abs/2502.02770
 
 注意力稀疏度是动态变化的,对不同的输入序列，在模型的不同层上，注意力分数的分布模式和稀疏程度都不同。使用 top-k 策略选取 k v 对时，由于固定的 k 的取值，设置的 k 值如果较小，会让保留的上下文信息不足，导致准确率损失。而过大的 k 值会提高内存访问和计算的开销。而这个问题可以使用大模型采样阶段所使用的 top-p 采样来解决。
 
-![img7](../images/deocde-sparse-attention-method/image-7.png)
+![img7](../images/decode-sparse-attention-method/image-7.png)
 
 ### 方法
 
-![img8](../images/deocde-sparse-attention-method/image-8.png)
+![img8](../images/decode-sparse-attention-method/image-8.png)
 
 1. **第一步：粗选（Token Selector）**：首先，利用一个已有的基于 top-k 的基础稀疏注意力算法，并为其设定一个相对宽松、保守的预算，来初步筛选出一个可能包含所有重要 token 的较大候选集。进行这一步是由于 top-k 策略只关心数值的大小，对精度的要求没有 top-p 高，可以使用更为激进的量化策略。
 
-![img9](../images/deocde-sparse-attention-method/image-9.png)
+![img9](../images/decode-sparse-attention-method/image-9.png)
 
 2. **第二步：精筛（Twilight Pruner）**：接着，Twilight Pruner 对这个候选子集进行二次剪枝。它会计算候选集内 token 的注意力分数，并应用 top-p 筛选方法 来进行筛选，这里维护了一个额外的 int4 量化后的 key cache。只保留那些累积概率和达到预设 p 值的最核心的 token。
 
 在这一步中，作者实现了一个较传统 top-p 算法并行度更高的 top-p 选择策略。不同于传统的排序按降序对元素进行排序，并将其累加，直到总和达到阈值的选择方法，这篇文章中，作者把问题转变为求解一个概率阈值 l，满足所有大于 l 的元素之和与 p 值误差小于误差阈值的问题，并设计了一个二分查找的思路，以便于并行计算。
 
-![img10](../images/deocde-sparse-attention-method/image-10.png)
+![img10](../images/decode-sparse-attention-method/image-10.png)
 
 3. **第三步：执行稀疏注意力计算**：最后，将经过 top-p 精筛后的 token 索引传递给稀疏注意力计算核心（Sparse Attention Kernel），执行最终的注意力计算。
 
@@ -92,19 +92,19 @@ https://arxiv.org/abs/2502.02770
 
 #### longbench 得分
 
-![img11](../images/deocde-sparse-attention-method/image-11.png)
+![img11](../images/decode-sparse-attention-method/image-11.png)
 
 #### ruler 得分
 
-![img12](../images/deocde-sparse-attention-method/image-12.png)
+![img12](../images/decode-sparse-attention-method/image-12.png)
 
 #### 注意力计算阶段加速
 
-![img13](../images/deocde-sparse-attention-method/image-13.png)
+![img13](../images/decode-sparse-attention-method/image-13.png)
 
 #### 端到端加速(tpot)
 
-![img14](../images/deocde-sparse-attention-method/image-14.png)
+![img14](../images/decode-sparse-attention-method/image-14.png)
 
 ## vAttention: Verified Sparse Attention
 
@@ -117,7 +117,7 @@ https://arxiv.org/abs/2510.05688
 - 当注意力分数分布主要由少数几个关键的 token 主导时，Top-k 方法表现出色。
 - 当注意力分数分布各个 token 的重要性相对均匀时，随机采样则能提供更准确的估计。
 
-![img15](../images/deocde-sparse-attention-method/image-15.png)
+![img15](../images/decode-sparse-attention-method/image-15.png)
 
 ### 方法
 
