@@ -11,36 +11,126 @@ tags:
 
 # 构建基于百度文心 ERNIE 与 Milvus 的高精度多文档分析与问答系统
 
-## 项目介绍
+## 引言
 
 在大型语言模型（LLM）的应用落地中，RAG（检索增强生成）是解决模型幻觉和知识时效性的关键技术。然而，面对复杂的 PDF 文档和专业领域的查询，简单的“分块+向量检索”往往难以满足精度要求。
 
-本文将介绍一个基于 Python 开发的多文档智能分析与问答系统。该系统集成了 **在线 OCR 解析**、**Milvus 混合检索（向量+关键词）** 以及 **多维度的重排序（Reranker）** 策略，旨在提升低资源环境下的检索准确率。
-
-## 🔗 项目资源
-
-- 🐙 GitHub 代码仓库：[点击访问](https://github.com/LiaoYFBH/Paddle-ERNIE-RAG)
-
-- 🚀 星河社区在线应用：[立即体验]()
-
-- 📓 星河社区 Notebook：[在线运行]()
+本博客将介绍对基于 Python 开发的多文档高精度智能分析与问答系统的关键技术进行说明介绍。该系统集成了 **在线 OCR 解析**、**Milvus 混合检索（向量+关键词）** 以及 **多维度的重排序（Reranker）** 策略，旨在提升低资源环境下的检索准确率。
 
 ## 1. 系统架构概览
 
 本项目的系统主要由四个核心模块组成：
 
-1. **数据摄入层**：使用在线 OCR API 进行高精度的文档布局分析（Layout Parsing）。
+1. **数据提取层**：使用在线 OCR API 进行高精度的文档布局分析（Layout Parsing）。
 2. **存储层**：利用 Milvus 向量数据库存储 Dense Embedding，同时维护倒排索引以支持关键词检索。
-3. **检索层**：实现向量检索与关键词检索的加权融合（RRF）。
-4. **应用层**：基于 Gradio 构建交互界面，集成ERNIE大模型API接口生成回答。
+3. **检索与问答层**：实现向量检索与关键词检索的加权融合（RRF），集成 ERNIE 大模型 API 接口生成回答。
+4. **应用层**：基于 Gradio 构建交互界面。
+<div style="display: flex; justify-content: center;">
+  <img src="../images/high-precision-rag-system/flow.png" alt="Fig 2" style="width: 80%;">
+</div>
 
-![Fig 1](../images/high-precision-rag-system/flow.png)
+### 🔗 项目资源
+
+- 🐙 GitHub 代码仓库：[点击访问](https://github.com/LiaoYFBH/Paddle-ERNIE-RAG)
+
+- 🚀 星河社区在线应用：[立即体验](https://aistudio.baidu.com/application/detail/107183)
+
+- 📓 星河社区 Notebook：[在线运行](https://aistudio.baidu.com/project/edit/9812333)
 
 ## 2. 关键技术实现
 
-### 2.1 Milvus 向量库与混合检索策略
+### 2.1 PP-StructureV3 文档解析
 
-#### 知识库命名的工程化处理
+针对科研论文中常见的双栏排版、公式混排及图表嵌入问题，传统的 PyPDF2 等纯文本提取工具往往力不从心（容易导致段落乱序、表格崩坏）。
+
+为此，本项目在 backend.py 中封装了 OnlinePDFParser 类，直接集成 PP-StructureV3 在线 API 进行高精度的文档布局分析（Layout Parsing）。
+
+该方案具备三大核心优势：
+
+    结构化输出：直接返回 Markdown 格式（自动识别标题层级、段落边界）。
+
+    图表提取：在解析文本的同时，自动提取文档中的图片并转存，为后续的“多模态问答”提供素材。
+
+    上下文保留：基于滑动窗口进行切分，防止关键信息在切片边界丢失。
+
+#### 2.1.1 核心解析逻辑
+
+在 backend.py 中，我们构建了 API 请求，将 PDF 文件流发送至服务端，并解析返回的 layoutParsingResults，提取出清洗后的 Markdown 文本和图片资源。
+
+```python
+# backend.py (OnlinePDFParser 类核心逻辑摘要)
+def predict(self, file_path):
+    # 1. 文件转 Base64
+    with open(file_path, "rb") as file:
+        file_data = base64.b64encode(file.read()).decode("ascii")
+
+    # 2. 构造请求 Payload
+    payload = {
+        "file": file_data,
+        "fileType": 1, # PDF 类型
+        "useChartRecognition": False, # 根据需求配置
+        "useDocOrientationClassify": False
+    }
+
+    # 3. 发送请求获取 Layout Parsing 结果
+    response = requests.post(self.api_url, json=payload, headers=headers)
+    res_json = response.json()
+
+    # 4. 提取 Markdown 文本与图片
+    parsing_results = res_json.get("result", {}).get("layoutParsingResults", [])
+    mock_outputs = []
+    for item in parsing_results:
+        md_text = item.get("markdown", {}).get("text", "")
+        images = item.get("markdown", {}).get("images", {})
+        # ... (后续图片下载与文本清洗逻辑)
+        mock_outputs.append(MockResult(md_text, images))
+
+    return mock_outputs, "Success"
+```
+
+#### 2.1.2
+
+滑动窗口文本分块
+
+拿到结构化的 Markdown 文本后，为了避免语义被生硬切断（例如一句话跨了两个 chunk），我们实现了一个带有 overlap（重叠区）的滑动窗口分块策略。
+
+```python
+# backend.py
+def split_text_into_chunks(text: str, chunk_size: int = 300, overlap: int = 120) -> list:
+    """基于滑动窗口的文本分块，保留 overlap 长度的重叠上下文"""
+    if not text: return []
+    lines = [line.strip() for line in text.split("\n") if line.strip()]
+    chunks = []
+    current_chunk = []
+    current_length = 0
+
+    for line in lines:
+        while len(line) > chunk_size:
+            # 处理超长单行
+            part = line[:chunk_size]
+            line = line[chunk_size:]
+            current_chunk.append(part)
+            # ... (切分逻辑) ...
+
+        current_chunk.append(line)
+        current_length += len(line)
+
+        # 当累积长度超过阈值，生成一个 chunk
+        if current_length > chunk_size:
+            chunks.append("\n".join(current_chunk))
+            # 回退：保留最后 overlap 长度的文本作为下一个 chunk 的开头
+            overlap_text = current_chunk[-1][-overlap:] if current_chunk else ""
+            current_chunk = [overlap_text] if overlap_text else []
+            current_length = len(overlap_text)
+
+    if current_chunk:
+        chunks.append("\n".join(current_chunk).strip())
+    return chunks
+```
+
+### 2.2 Milvus 向量库与混合检索策略
+
+#### 2.2.1 知识库命名的工程化处理
 
 在实际部署中，Milvus 等向量数据库对集合名称（Collection Name）通常有严格的命名限制。为了解决这一问题，我们在后端代码中实现了一套透明的编解码机制。
 
@@ -73,12 +163,54 @@ def decode_name(real_name):
     return real_name
 ```
 
-#### 混合检索策略
+#### 2.2.2 向量化入库与元数据绑定
 
-检索前，系统首先利用LLM 生成的问题的双语翻译，避免中文问题询问英文文档，使得关键词不匹配，以最大化语义覆盖。随后并行执行两路检索：
+在 OCR 解析并将长文本切分为 Chunks 后，系统并非简单地将文本存入数据库，而是执行了**“向量化 + 元数据绑定”**的关键步骤。
+
+为了支持后续的精确溯源（Citation）和多模态问答，我们在设计 Milvus Schema 时，除了存储 384 维的 Dense Vector 外，还强制绑定了 filename（文件名）、page（页码）和 chunk_id（切片ID）等标量字段。
+
+这一过程在 vector_store.py 中通过 insert_documents 方法实现，采用批量 Embedding 策略以减少网络开销：
+
+```python
+# vector_store.py
+def insert_documents(self, documents):
+    """批量向量化并写入 Milvus"""
+    if not documents: return
+
+    # 1. 提取纯文本列表，批量请求 Embedding 模型
+    texts = [doc['content'] for doc in documents]
+    embeddings = self.get_embeddings(texts)
+
+    # 2. 数据清洗：过滤掉 Embedding 失败的坏数据
+    valid_docs, valid_vectors = [], []
+    for i, emb in enumerate(embeddings):
+        if emb and len(emb) == 384: # 确保向量维度正确
+            valid_docs.append(documents[i])
+            valid_vectors.append(emb)
+
+    # 3. 组装列式数据 (Columnar Format)
+    # Milvus insert 接口要求各字段数据以列表形式传入
+    data = [
+        [doc['filename'] for doc in valid_docs],  # Scalar: 文件名
+        [doc['page'] for doc in valid_docs],      # Scalar: 页码 (用于溯源)
+        [doc['chunk_id'] for doc in valid_docs],  # Scalar: 切片ID
+        [doc['content'] for doc in valid_docs],   # Scalar: 原始内容 (用于关键词检索)
+        valid_vectors                             # Vector: 语义向量
+    ]
+
+    # 4. 执行插入与持久化
+    self.collection.insert(data)
+    self.collection.flush()
+```
+
+#### 2.1.2 混合检索策略
+
+检索前，系统首先利用 LLM 生成的问题的双语翻译，避免中文问题询问英文文档，使得关键词不匹配，以最大化语义覆盖。随后并行执行两路检索：
 
 1. **Dense (向量检索)**：捕捉语义相似度（例如“简谐振子”与“弹簧振子”的语义关联）。
 2. **Sparse (关键词检索)**：弥补向量模型对专有名词或精确数字匹配的不足（例如精确匹配公式中的变量名）。
+
+向量检索容易因语义泛化而召回错误概念（如“弹簧振子”与“简谐振子”），而高权重的关键词检索能确保专有名词的精确命中，从而大幅提升准确率。
 
 然后执行：
 
@@ -121,21 +253,31 @@ def search(self, query: str, top_k: int = 10, \*\*kwargs):
 
 ```
 
-### 2.2 鲁棒的重排序算法 (Robust Reranking)
+### 2.3 鲁棒的重排序算法 (Robust Reranking)
 
 检索回来的片段（Chunks）需要进一步精排。在 `reranker_v2.py` 中，设计了一套综合打分算法。
 评分维度包括：
 
 1. **模糊匹配（Fuzzy Score）**：使用 `fuzzywuzzy` 计算 Query 与 Content 的字面重合度。
-2. **关键词覆盖率（Keyword Coverage）**：计算 Query 中的核心词在文档片段中的出现比例。
-3. **语义相似度**：来自 Milvus 的原始向量距离。
-4. **长度惩罚与位置偏置**：对过短的片段进行惩罚，对排名靠前的片段给予位置奖励。
 
-这种基于规则与语义结合的重排序策略，在无训练数据的情况下，比纯黑盒模型更具可解释性和鲁棒性。
+2. **关键词覆盖率（Keyword Coverage）**：计算 Query 中的核心词在文档片段中的出现比例。
+
+3. **语义相似度**：来自 Milvus 的原始向量距离。
+
+4. **长度惩罚与位置偏置**：对过短的片段进行惩罚，对Milvus 召回的排名靠前的片段给予位置奖励。
+
+5. **专有名词**：
+   - **英文（看“大小写”特征）：** 使用正则 `\b[A-Z][a-z]+\b|[A-Z]{2,}`，专门匹配**首字母大写**的单词（如 "Milvus"）或**全大写**的缩写（如 "RAG"），因为在英文中这些通常代表专有名词。
+
+   - **中文（看“连续性”特征）：** 由于中文没有大小写，策略变成了**“切分+长度”**：使用非中文字符作为分隔符切断句子，保留所有**连续出现 2 个及以上**的汉字片段（如“简谐振子”），将其视为潜在实体。
+
+具体的分数占比见下图：
 
 <div style="display: flex; justify-content: center;">
-  <img src="../images/high-precision-rag-system/占比.png" alt="Fig 2" style="width: 50%;">
+   <img src="../images/high-precision-rag-system/占比.png" alt="Fig 2" style="width: 100%;">
 </div>
+
+这种基于规则与语义结合的重排序策略，在无训练数据的情况下，比纯黑盒模型更具可解释性和鲁棒性。
 
 ```python
 # reranker_v2.py
@@ -170,56 +312,17 @@ content = chunk.get('content', '')
         milvus_similarity * 0.35 +
         length_score * 0.15
     )
+	# 位置权重
+    position_bonus = 0
+    if 'milvus_rank' in chunk:
+        rank = chunk['milvus_rank']
+        position_bonus = max(0, 20 - rank)
 
     # 专有名词额外加分 (Bonus)
     proper_noun_bonus = 30 if self._check_proper_nouns(query, content) else 0
 
     return base_score + proper_noun_bonus
 
-```
-
-### 2.3 PP-StructureV3文档解析
-
-为了处理包含复杂排版和图表的文档，本项目在 `backend.py` 中集成了在线PP-StructureV3的API进行文档解析。
-
-与传统 PyPDF2 等库不同，PP-StructureV3不仅能提取文本，还能：
-
-- 识别 Markdown 结构（标题、段落）。
-- 提取文档中的图片并保存，便于后续多模态扩展。
-- 通过 `split_text_into_chunks` 实现基于滑动窗口的文本分块，保留上下文重叠（Overlap）。
-
-```python
-# backend.py
-def split_text_into_chunks(text: str, chunk_size: int = 300, overlap: int = 120) -> list:
-    """基于滑动窗口的文本分块，保留 overlap 长度的重叠上下文"""
-    if not text: return []
-    lines = [line.strip() for line in text.split("\n") if line.strip()]
-    chunks = []
-    current_chunk = []
-    current_length = 0
-
-    for line in lines:
-        while len(line) > chunk_size:
-            # 处理超长单行
-            part = line[:chunk_size]
-            line = line[chunk_size:]
-            current_chunk.append(part)
-            # ... (切分逻辑) ...
-
-        current_chunk.append(line)
-        current_length += len(line)
-
-        # 当累积长度超过阈值，生成一个 chunk
-        if current_length > chunk_size:
-            chunks.append("\n".join(current_chunk))
-            # 回退：保留最后 overlap 长度的文本作为下一个 chunk 的开头
-            overlap_text = current_chunk[-1][-overlap:] if current_chunk else ""
-            current_chunk = [overlap_text] if overlap_text else []
-            current_length = len(overlap_text)
-
-    if current_chunk:
-        chunks.append("\n".join(current_chunk).strip())
-    return chunks
 ```
 
 ### 2.4 API 速率限制与自适应保护
@@ -232,16 +335,43 @@ if is_rate_limit:
     self._adaptive_slow_down() # 永久增加请求间隔
     wait_time = (2 ** attempt) + random.uniform(1.0, 3.0) # 指数退避
     time.sleep(wait_time)
+
+def _adaptive_slow_down(self):
+    """触发自适应降级：遇到限流时，永久增加全局请求间隔"""
+    self.current_delay = min(self.current_delay * 2.0, 15.0)
+    logger.warning(f"📉 触发速率限制(429)，系统自动降速: 新间隔 {self.current_delay:.2f}s")
 ```
 
 这保证了系统在大批量文档入库时的稳定性。
 
-## 2.5 多模态问答
+### 2.5 多模态问答
 
 针对科研文档中包含大量关键图表（如实验数据、模型架构）的特点，本系统实现了“图表锁定”问答功能。核心技术实现包含以下三个维度：
 
 1. **上下文增强 Prompt**
    后端在构建请求时，不仅发送图片本身，还检索该图片所在页面的 OCR 文本作为背景信息（Context）。Prompt 结构动态拼装了“图片元数据 + 背景文本 + 用户问题”，有效提升了模型对图表细节与上下文关联的理解能力。
+
+   ```python
+   # backend.py - 多模态问答核心逻辑
+
+   # 1. 检索当前页面的 OCR 文本作为背景 (Context)
+   # 系统根据文件名和页码，从 Milvus 中拉取该图所在的完整页面文本
+   # page_num 来自前端图片文件名的解析 (e.g., "p3_figure.jpg" -> Page 3)
+   page_text_context = milvus_store.get_page_content(doc_name, page_num)[:800]
+
+   # 2. 动态拼装 Context-Enhanced Prompt
+   # 关键点：将"视觉信息"与"文本背景"强制对齐，防止模型看图说话产生幻觉
+   final_prompt = f"""
+   【任务】结合图片和背景信息回答问题。
+   【图片元数据】来源：{doc_name} (P{page_num})
+   【背景文本】{page_text_context} ... (此处省略长文本)
+   【用户问题】{user_question}
+   """
+
+   # 3. 发送多模态请求 (Vision API)
+   # 底层会将图片转为 Base64，与 final_prompt 一起发给 ERNIE-VL 模型
+   answer = ernie_client.chat_with_image(query=final_prompt, image_path=img_path)
+   ```
 
 2. **Vision 接口封装**
    底层客户端（`ernie_client.py`）实现了 OpenAI 兼容的视觉协议。系统自动读取本地图片并转换为 Base64 编码，通过 `image_url` 格式构建多模态消息体，实现了图像数据与文本指令的联合推理。
@@ -287,7 +417,7 @@ if is_rate_limit:
 
 ## 3. 界面交互与效果
 
-前端基于 Gradio 搭建（`main.py`），采用自定义 CSS (`modern_css`) 搭建了美观的UI界面。
+前端基于 Gradio 搭建（`main.py`），采用自定义 CSS (`modern_css`) 搭建了美观的 UI 界面。
 
 ```python
 /* main.py - modern_css 片段 */
@@ -309,7 +439,7 @@ if is_rate_limit:
 }
 ```
 
-为了保证公式在UI界面上能正常渲染出来，首先定义一套完整的 LaTeX 识别规则，涵盖行内与行间公式：
+为了保证公式在 UI 界面上能正常渲染出来，首先定义一套完整的 LaTeX 识别规则，涵盖行内与行间公式：
 
 ```python
 # main.py 配置 LaTeX 规则
@@ -340,12 +470,12 @@ doc_summary = gr.Markdown(
 
 功能亮点：
 
-- **高精度问答**：集成 百度文心一言（ERNIE Bot） 大模型API，利用ERNIE大模型卓越的语义理解与生成能力，配合“向量+关键词”双路混合检索与 RRF 重排序算法，确保回答的精准度与鲁棒性。
+- **高精度问答**：集成 百度文心一言（ERNIE Bot） 大模型 API，利用 ERNIE 大模型卓越的语义理解与生成能力，配合“向量+关键词”双路混合检索与 RRF 重排序算法，确保回答的精准度与鲁棒性。
 - **多知识库管理**：支持动态创建、切换和删除知识库。
 - **召回率自测**：内置 `test_self_recall` 函数，自动从库中抽取样本验证检索准确率。
 - **实时反馈**：上传大文件时，通过进度条实时显示 OCR 解析与 Embedding 入库进度。
 
-实现的UI界面效果如下：
+实现的 UI 界面效果如下：
 ![图4：摘要和图表](../images//high-precision-rag-system/系统UI-1-1.png)
 ![图5：选择图表问答](../images//high-precision-rag-system/系统UI-1-2.png)
 ![图6：全部文档检索](../images//high-precision-rag-system/系统UI-1-3.png)
@@ -365,6 +495,6 @@ doc_summary = gr.Markdown(
 
 感谢杨有志老师在星河社区部署上线过程中的大力支持。
 
-感谢李成龙老师在Milvus向量检索方面提出的建议。
+感谢李成龙老师在 Milvus 向量检索方面提出的建议。
 
-很荣幸参与启航计划（第6期），未来我将持续深耕，为开源社区贡献更多力量。
+很荣幸参与启航计划（第 6 期），未来我将持续深耕，为开源社区贡献更多力量。
