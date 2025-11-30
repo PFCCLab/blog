@@ -13,9 +13,7 @@ tags:
 
 ## 引言
 
-在大型语言模型（LLM）的应用落地中，RAG（检索增强生成）是解决模型幻觉和知识时效性的关键技术。然而，面对复杂的 PDF 文档和专业领域的查询，简单的“分块+向量检索”往往难以满足精度要求。
-
-本博客将介绍对基于 Python 开发的多文档高精度智能分析与问答系统的关键技术进行说明介绍。该系统集成了 **在线 OCR 解析**、**Milvus 混合检索（向量+关键词）** 以及 **多维度的重排序（Reranker）** 策略，旨在提升低资源环境下的检索准确率。
+在大型语言模型（LLM）的应用落地中，RAG（检索增强生成）是解决模型幻觉和知识时效性的关键技术。本博客将对本多文档高精度智能分析与问答系统的关键技术进行说明介绍。该系统集成了 **在线 OCR 解析**、**Milvus 混合检索（向量+关键词）** 以及 **多维度的重排序（Reranker）** 策略，旨在提升低资源环境下的检索准确率，以实现高精度多文档分析与问答。
 
 ## 1. 系统架构概览
 
@@ -201,7 +199,7 @@ def insert_documents(self, documents):
     self.collection.flush()
 ```
 
-#### 2.1.2 混合检索策略
+#### 2.2.3 混合检索策略
 
 检索前，系统首先利用 LLM 生成的问题的双语翻译，避免中文问题询问英文文档，使得关键词不匹配，以最大化语义覆盖。随后并行执行两路检索：
 
@@ -251,7 +249,7 @@ def search(self, query: str, top_k: int = 10, \*\*kwargs):
 
 ```
 
-### 2.3 鲁棒的重排序算法 (Robust Reranking)
+### 2.3 综合重排序算法
 
 检索回来的片段（Chunks）需要进一步精排。在 `reranker_v2.py` 中，设计了一套综合打分算法。
 评分维度包括：
@@ -267,7 +265,7 @@ def search(self, query: str, top_k: int = 10, \*\*kwargs):
 5. **专有名词**：
    - **英文（看“大小写”特征）：** 使用正则 `\b[A-Z][a-z]+\b|[A-Z]{2,}`，专门匹配**首字母大写**的单词（如 "Milvus"）或**全大写**的缩写（如 "RAG"），因为在英文中这些通常代表专有名词。
 
-   - **中文（看“连续性”特征）：** 由于中文没有大小写，策略变成了**“切分+长度”**：使用非中文字符作为分隔符切断句子，保留所有**连续出现 2 个及以上**的汉字片段（如“简谐振子”），将其视为潜在实体。
+   - **中文（看“连续性”特征）：** 由于中文没有大小写，策略变成了 **“切分+长度”**：使用非中文字符作为分隔符切断句子，保留所有连续出现 2 个及以上\*\*的汉字片段（如“简谐振子”），将其视为潜在实体。
 
 具体的分数占比见下图：
 
@@ -351,12 +349,12 @@ def _adaptive_slow_down(self):
 
    ```python
    # backend.py - 多模态问答核心逻辑
-
+   
    # 1. 检索当前页面的 OCR 文本作为背景 (Context)
    # 系统根据文件名和页码，从 Milvus 中拉取该图所在的完整页面文本
    # page_num 来自前端图片文件名的解析 (e.g., "p3_figure.jpg" -> Page 3)
    page_text_context = milvus_store.get_page_content(doc_name, page_num)[:800]
-
+   
    # 2. 动态拼装 Context-Enhanced Prompt
    # 关键点：将"视觉信息"与"文本背景"强制对齐，防止模型看图说话产生幻觉
    final_prompt = f"""
@@ -365,7 +363,7 @@ def _adaptive_slow_down(self):
    【背景文本】{page_text_context} ... (此处省略长文本)
    【用户问题】{user_question}
    """
-
+   
    # 3. 发送多模态请求 (Vision API)
    # 底层会将图片转为 Base64，与 final_prompt 一起发给 ERNIE-VL 模型
    answer = ernie_client.chat_with_image(query=final_prompt, image_path=img_path)
@@ -376,10 +374,10 @@ def _adaptive_slow_down(self):
 
    ```python
    # ernie_client.py
-
+   
    def chat_with_image(self, query: str, image_path: str):
       base64_image = self._encode_image(image_path)
-
+   
       # 构造 Vision 消息格式
       messages = [
          {
@@ -403,7 +401,7 @@ def _adaptive_slow_down(self):
 
    ```python
    # backend.py 中的降级逻辑
-
+   
    try:
       answer = ernie.chat_with_image(final_prompt, img_path)
       # ...
@@ -415,7 +413,9 @@ def _adaptive_slow_down(self):
 
 ## 3. 界面交互与效果
 
-前端基于 Gradio 搭建（`main.py`），采用自定义 CSS (`modern_css`) 搭建了美观的 UI 界面。
+### 3.1 深度 CSS 定制
+
+前端基于 Gradio 搭建（`main.py`），采用自定义 CSS (`modern_css`) 搭建了美观的 UI 界面。重点改进了输入区域的视觉层级：将默认的灰色背景改为白底圆角卡片，并为发送按钮添加了渐变色与悬浮阴影，使其在视觉上更加现代与聚焦。
 
 ```python
 /* main.py - modern_css 片段 */
@@ -437,7 +437,9 @@ def _adaptive_slow_down(self):
 }
 ```
 
-为了保证公式在 UI 界面上能正常渲染出来，首先定义一套完整的 LaTeX 识别规则，涵盖行内与行间公式：
+### 3.2 LaTeX 公式渲染
+
+为了保证公式在 UI 界面上能正常渲染出来，首先定义一套完整的 LaTeX 识别规则，涵盖行内与行间公式.这套配置被同时配置到对话框（Chatbot）和摘要区（Markdown），确保无论是模型的回答还是文档的摘要，公式都能被渲染：
 
 ```python
 # main.py 配置 LaTeX 规则
@@ -466,14 +468,34 @@ doc_summary = gr.Markdown(
 )
 ```
 
-功能亮点：
+### 3.3 可解释性设计
 
-- **高精度问答**：集成 百度文心一言（ERNIE Bot） 大模型 API，利用 ERNIE 大模型卓越的语义理解与生成能力，配合“向量+关键词”双路混合检索与 RRF 重排序算法，确保回答的精准度与鲁棒性。
-- **多知识库管理**：支持动态创建、切换和删除知识库。
-- **召回率自测**：内置 `test_self_recall` 函数，自动从库中抽取样本验证检索准确率。
-- **实时反馈**：上传大文件时，通过进度条实时显示 OCR 解析与 Embedding 入库进度。
+在实际体验中，为了打破 RAG 系统的“黑盒”属性，本应用在界面中设计了两个维度的评价指标，分别对应微观与宏观视角：
 
-实现的 UI 界面效果如下：
+- **相关性 (Relevance)**：出现在聊天框的【参考来源】列表中。这是一个**微观指标**，它直接展示了 `Reranker` 给每一个具体文档切片打出的 `composite_score`（基于向量+关键词+规则的综合得分）。它的作用是告诉用户：_“为什么系统引用了第 3 页这段话，而不是第 5 页那段？”_
+
+```python
+# backend.py - 构建参考来源列表
+sources = "\n\n📚 **参考来源:**\n"
+for c in final:
+    # ... (去重逻辑) ...
+    # 直接透传 Reranker 计算出的单片得分
+    sources += f"- {key} [相关性:{c.get('composite_score',0):.0f}%]\n"
+```
+
+- **置信度 (Confidence)**：展示在【分析详情】面板中。这是一个**宏观指标**，系统提取 **Top-1 切片**的得分并进行归一化（Capped at 100%）作为本次问答的整体评分。它的作用是预警：_“系统对自己生成的答案有多大把握？”_ 如果置信度低于 60%，即便模型生成的文字再通顺，用户也应警惕可能存在的“幻觉”风险。
+
+```python
+# backend.py - 计算整体置信度
+# 1. 获取重排序后的 Top-1 片段
+final = processed[:22]
+top_score = final[0].get('composite_score', 0) if final else 0
+
+# 2. 归一化处理 (封顶 100%)，作为本次问答的"置信度"
+metric = f"{min(100, top_score):.1f}%"
+```
+
+实现的 UI 界面效果如下，在回答中显示了相应来源向量的页数和相关性：
 ![图4：摘要和图表](../images//high-precision-rag-system/系统UI-1-1.png)
 ![图5：选择图表问答](../images//high-precision-rag-system/系统UI-1-2.png)
 ![图6：全部文档检索](../images//high-precision-rag-system/系统UI-1-3.png)
@@ -481,6 +503,15 @@ doc_summary = gr.Markdown(
 ![图7：系统配置](../images//high-precision-rag-system/系统UI-3.png)
 
 ## 4. 总结
+
+### 4.1 功能亮点
+
+- **高精度问答**：集成 百度文心一言（ERNIE Bot） 大模型 API，利用 ERNIE 大模型卓越的语义理解与生成能力，配合“向量+关键词”双路混合检索与 RRF 重排序算法，确保回答的精准度与鲁棒性。
+- **多知识库管理**：支持动态创建、切换和删除知识库。
+- **召回率自测**：内置 `test_self_recall` 函数，自动从库中抽取样本验证检索准确率。
+- **实时反馈**：上传大文件时，通过进度条实时显示 OCR 解析与 Embedding 入库进度。
+
+### 4.2 未来改进
 
 通过结合 Milvus 的向量能力与传统的关键词匹配技术，并辅以细粒度的重排序策略，本系统在低成本下实现了较高精度的文档问答。未来的优化方向将集中在：
 
