@@ -349,12 +349,12 @@ def _adaptive_slow_down(self):
 
    ```python
    # backend.py - 多模态问答核心逻辑
-   
+
    # 1. 检索当前页面的 OCR 文本作为背景 (Context)
    # 系统根据文件名和页码，从 Milvus 中拉取该图所在的完整页面文本
    # page_num 来自前端图片文件名的解析 (e.g., "p3_figure.jpg" -> Page 3)
    page_text_context = milvus_store.get_page_content(doc_name, page_num)[:800]
-   
+
    # 2. 动态拼装 Context-Enhanced Prompt
    # 关键点：将"视觉信息"与"文本背景"强制对齐，防止模型看图说话产生幻觉
    final_prompt = f"""
@@ -363,7 +363,7 @@ def _adaptive_slow_down(self):
    【背景文本】{page_text_context} ... (此处省略长文本)
    【用户问题】{user_question}
    """
-   
+
    # 3. 发送多模态请求 (Vision API)
    # 底层会将图片转为 Base64，与 final_prompt 一起发给 ERNIE-VL 模型
    answer = ernie_client.chat_with_image(query=final_prompt, image_path=img_path)
@@ -374,10 +374,10 @@ def _adaptive_slow_down(self):
 
    ```python
    # ernie_client.py
-   
+
    def chat_with_image(self, query: str, image_path: str):
       base64_image = self._encode_image(image_path)
-   
+
       # 构造 Vision 消息格式
       messages = [
          {
@@ -401,7 +401,7 @@ def _adaptive_slow_down(self):
 
    ```python
    # backend.py 中的降级逻辑
-   
+
    try:
       answer = ernie.chat_with_image(final_prompt, img_path)
       # ...
