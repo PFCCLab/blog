@@ -31,7 +31,7 @@
     "@lint-md/cli": "^2.0.0",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.10.1",
-    "markdown-it-mathjax3": "^4.3.2",
+    "markdown-it-mathjax3": "^5.0.0",
     "prettier": "^3.7.3",
     "sharp": "^0.34.5",
     "simple-git-hooks": "^2.13.1"
