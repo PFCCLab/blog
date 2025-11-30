@@ -88,9 +88,7 @@ def predict(self, file_path):
     return mock_outputs, "Success"
 ```
 
-#### 2.1.2
-
-滑动窗口文本分块
+#### 2.1.2 滑动窗口文本分块
 
 拿到结构化的 Markdown 文本后，为了避免语义被生硬切断（例如一句话跨了两个 chunk），我们实现了一个带有 overlap（重叠区）的滑动窗口分块策略。
 
