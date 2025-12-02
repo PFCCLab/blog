@@ -24,7 +24,7 @@ tags:
 3. **检索与问答层**：实现向量检索与关键词检索的加权融合（RRF），集成 ERNIE 大模型 API 接口生成回答。
 4. **应用层**：基于 Gradio 构建交互界面。
 <div style="display: flex; justify-content: center;">
-  <img src="../images/high-precision-rag-system/flow.png" alt="Fig 2" style="width: 80%;">
+  <img src="../images/high-precision-rag-system/flow.jpg" alt="Fig 2" style="width: 80%;">
 </div>
 
 ### 🔗 项目资源
@@ -213,7 +213,7 @@ def insert_documents(self, documents):
 - **RRF (倒排融合)**：系统内部使用倒排秩融合算法 (Reciprocal Rank Fusion) 将两路结果合并，确保多样性。
 
 <div style="display: flex; justify-content: center;">
-  <img src="../images/high-precision-rag-system/RRF融合.png" alt="Fig 2" style="width: 50%;">
+  <img src="../images/high-precision-rag-system/RRF融合.jpg" alt="Fig 2" style="width: 50%;">
 </div>
 
 ```python
@@ -270,7 +270,7 @@ def search(self, query: str, top_k: int = 10, \*\*kwargs):
 具体的分数占比见下图：
 
 <div style="display: flex; justify-content: center;">
-   <img src="../images/high-precision-rag-system/占比.png" alt="Fig 2" style="width: 100%;">
+   <img src="../images/high-precision-rag-system/占比.jpg" alt="Fig 2" style="width: 80%;">
 </div>
 
 这种基于规则与语义结合的重排序策略，在无训练数据的情况下，比纯黑盒模型更具可解释性。
@@ -496,11 +496,11 @@ metric = f"{min(100, top_score):.1f}%"
 ```
 
 实现的 UI 界面效果如下，在回答中显示了相应来源向量的页数和相关性：
-![图4：摘要和图表](../images//high-precision-rag-system/系统UI-1-1.png)
-![图5：选择图表问答](../images//high-precision-rag-system/系统UI-1-2.png)
-![图6：全部文档检索](../images//high-precision-rag-system/系统UI-1-3.png)
-![图7：知识库管理](../images//high-precision-rag-system/系统UI-2.png)
-![图7：系统配置](../images//high-precision-rag-system/系统UI-3.png)
+![图4：摘要和图表](../images//high-precision-rag-system/系统UI-1-1.jpg)
+![图5：选择图表问答](../images//high-precision-rag-system/系统UI-1-2.jpg)
+![图6：全部文档检索](../images//high-precision-rag-system/系统UI-1-3.jpg)
+![图7：知识库管理](../images//high-precision-rag-system/系统UI-2.jpg)
+![图7：系统配置](../images//high-precision-rag-system/系统UI-3.jpg)
 
 ## 4. 总结
 
