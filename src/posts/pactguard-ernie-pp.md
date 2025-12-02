@@ -1,3 +1,11 @@
+---
+title: 再也不靠人肉找合同"坑"：我的智能合同风险审查全流程落地实录
+date: 2025-12-01
+author:
+   name: 刘京宗
+   github: tjujingzong
+category: community-activity
+---
 
 # 再也不靠人肉找合同“坑”：我的智能合同风险审查全流程落地实录
 
