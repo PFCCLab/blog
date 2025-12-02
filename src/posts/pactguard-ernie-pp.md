@@ -89,7 +89,7 @@ category: community-activity
 在整个系统里，**工作流引擎 `contract_workflow.py` 是真正的“中枢神经”**。
 可以把它理解为一条从「原始合同」到「结构化风险报告」的流水线：
 
-![流程图](../images/pactguard-erine-pp/architecture-com.png)
+![流程图](../images/pactguard-erine-pp/flowwork-compress2.png)
 ```python
 class ContractWorkflow:
     def run(self, contract_path: str) -> Dict[str, Any]:
