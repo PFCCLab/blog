@@ -47,7 +47,7 @@ category: community-activity
 * 🚀 星河社区在线应用：[立即体验](https://aistudio.baidu.com/application/detail/104781)
 * 📓 星河社区 Notebook：[在线运行](https://aistudio.baidu.com/project/edit/9779934)
 
-![系统演示](pics/demo.png)
+![系统演示](../images/pactguard-erine-pp/demo-com.png)
 
 ---
 
@@ -55,7 +55,7 @@ category: community-activity
 
 ### 整体架构图
 
-![架构图](pics/architecture.png)
+![架构图](../images/pactguard-erine-pp/architecture-com.png)
 
 从工程视角看，PactGuard-ERNIE-PP 本质上是一套「**分层 + 解耦 + 可替换**」的 LLM 应用架构。
 
@@ -89,7 +89,7 @@ category: community-activity
 在整个系统里，**工作流引擎 `contract_workflow.py` 是真正的“中枢神经”**。
 可以把它理解为一条从「原始合同」到「结构化风险报告」的流水线：
 
-![流程图](pics/flowwork.png)
+![流程图](../images/pactguard-erine-pp/architecture-com.png)
 ```python
 class ContractWorkflow:
     def run(self, contract_path: str) -> Dict[str, Any]:
