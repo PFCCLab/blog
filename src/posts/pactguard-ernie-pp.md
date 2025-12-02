@@ -312,6 +312,7 @@ def _parse_model_json(self, content: str, context: str) -> Optional[Any]:
     except Exception as e:
         logger.error(f"使用 json_repair 解析 {context} 结果失败: {str(e)}; 原始内容片段: {cleaned[:200]}")
         return None
+```
 
 这样设计带来的好处：
 
