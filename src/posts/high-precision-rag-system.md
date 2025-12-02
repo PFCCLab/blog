@@ -273,7 +273,7 @@ def search(self, query: str, top_k: int = 10, \*\*kwargs):
    <img src="../images/high-precision-rag-system/占比.png" alt="Fig 2" style="width: 100%;">
 </div>
 
-这种基于规则与语义结合的重排序策略，在无训练数据的情况下，比纯黑盒模型更具可解释性和鲁棒性。
+这种基于规则与语义结合的重排序策略，在无训练数据的情况下，比纯黑盒模型更具可解释性。
 
 ```python
 # reranker_v2.py
