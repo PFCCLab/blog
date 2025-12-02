@@ -334,7 +334,7 @@ def calc_file_hash(file_path: str, chunk_size: int = 1024 * 1024) -> str:
     """对文件内容做哈希，保证同内容同哈希、不同内容必然不同"""
     import hashlib
 
-    h = hashlib.md5()
+    h = hashlib.sha256()
     with open(file_path, "rb") as f:
         while True:
             chunk = f.read(chunk_size)
