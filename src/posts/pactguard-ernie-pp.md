@@ -83,12 +83,13 @@ category: community-activity
    * 支持缓存、重试、降级：出问题时尽量“自动兜底”，而不是让用户直面报错。
 
 ---
-![流程图](pics/flowwork.png)
+
 ## 合同处理主流程：从上传到结果落盘
 
 在整个系统里，**工作流引擎 `contract_workflow.py` 是真正的“中枢神经”**。
 可以把它理解为一条从「原始合同」到「结构化风险报告」的流水线：
 
+![流程图](pics/flowwork.png)
 ```python
 class ContractWorkflow:
     def run(self, contract_path: str) -> Dict[str, Any]:
