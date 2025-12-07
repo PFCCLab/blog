@@ -206,7 +206,7 @@ def insert_documents(self, documents):
 1. **Dense (向量检索)**：捕捉语义相似度（例如“简谐振子”与“弹簧振子”的语义关联）。
 2. **Sparse (关键词检索)**：弥补向量模型对专有名词或精确数字匹配的不足（例如精确匹配公式中的变量名）。
 
-向量检索容易因语义泛化而召回错误概念（如“弹簧振子”与“简谐振子”），而高权重的关键词检索能确保专有名词的精确命中，从而大幅提升准确率。
+向量检索容易因语义泛化而召回错误概念（如“弹簧振子”与“简谐振子”），而关键词检索能确保专有名词的精确命中，从而大幅提升准确率。
 
 然后执行：
 
@@ -240,8 +240,8 @@ def search(self, query: str, top_k: int = 10, \*\*kwargs):
             # RRF 核心公式
             rank_dict[doc_id]["score"] += weight * (1.0 / (k + rank))
 
-    apply_rrf(dense_results, weight=1.0)
-    apply_rrf(keyword_results, weight=3.0)  # 关键词路权重更高
+    apply_rrf(dense_results, weight=4.0)
+    apply_rrf(keyword_results, weight=1.0)
 
     # 4. 排序输出
     sorted_docs = sorted(rank_dict.values(), key=lambda x: x['score'], reverse=True)
