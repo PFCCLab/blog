@@ -4,8 +4,10 @@ import Home from './Home.vue'
 import Article from './Article.vue'
 import NotFound from './NotFound.vue'
 import About from './About.vue'
+import { useCopyCode } from './composables/useCopyCode'
 
 const { page, frontmatter, site } = useData()
+useCopyCode()
 
 // 添加重置分类的函数，确保回到首页时不带all参数
 function resetCategory() {

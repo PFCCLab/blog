@@ -4,9 +4,39 @@
 /* TODO(SigureMo): Update colors */
 
 .vp-code span {
+  color: var(--shiki-light, inherit);
+}
+
+html.dark .vp-code span {
   color: var(--shiki-dark, inherit);
 }
 
+/* Theme-aware code block styling */
+html:not(.dark) .vp-code,
+html:not(.dark) div[class*='language-'],
+html:not(.dark) pre[class*='language-'] {
+  background-color: var(--shiki-light-bg, #f6f8fa);
+  color: #24292e;
+}
+
+html:not(.dark) .vp-code code,
+html:not(.dark) div[class*='language-'] code,
+html:not(.dark) pre[class*='language-'] code {
+  color: #24292e;
+}
+
+html.dark .vp-code,
+html.dark div[class*='language-'],
+html.dark pre[class*='language-'] {
+  background-color: var(--shiki-dark-bg, #161b22);
+  color: #e6edf3;
+}
+
+html.dark .vp-code code,
+html.dark div[class*='language-'] code,
+html.dark pre[class*='language-'] code {
+  color: #e6edf3;
+}
 :root {
   --c-brand: #3eaf7c;
   --c-brand-light: #4abf8a;
@@ -22,6 +52,98 @@ p img {
 
 .prose hr {
   border-top: 1px solid #e5e7eb;
+}
+
+.dark .prose hr {
+  border-top: 1px solid #374151;
+}
+
+/* Improve dark mode text readability */
+.dark .prose {
+  color: #e6edf3;
+}
+
+.dark .prose p,
+.dark .prose li,
+.dark .prose td,
+.dark .prose th {
+  color: #e6edf3;
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6 {
+  color: #f0f6fc;
+}
+
+.dark .prose strong {
+  color: #f0f6fc;
+}
+
+.dark .prose code {
+  color: #ff7b72;
+  background-color: rgba(110, 118, 129, 0.2);
+}
+
+.dark .prose a {
+  color: #58a6ff;
+}
+
+.dark .prose a:hover {
+  color: #79c0ff;
+}
+
+.dark .prose pre {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+}
+
+.dark .prose pre code {
+  color: #e6edf3;
+  background-color: transparent;
+}
+
+/* HuggingFace-style blockquotes */
+.prose blockquote {
+  background-color: #f0f7ff;
+  border-left: 4px solid #3b82f6;
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-size: 0.95em;
+  color: #1e293b;
+  font-style: normal;
+  quotes: none;
+}
+
+.prose blockquote::before,
+.prose blockquote::after {
+  content: none;
+}
+
+.prose blockquote p {
+  margin: 0;
+  line-height: 1.6;
+  font-style: normal;
+}
+
+.prose blockquote strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Dark mode blockquotes */
+.dark .prose blockquote {
+  background-color: #1e3a5f;
+  border-left-color: #60a5fa;
+  color: #e2e8f0;
+}
+
+.dark .prose blockquote strong {
+  color: #f1f5f9;
 }
 
 .link {
@@ -117,18 +239,104 @@ p img {
   color: #67cdcc;
 }
 
+/* Enable and style copy button - HuggingFace inspired */
 button.copy {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  border: none;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-size: 16px;
+  padding: 0;
+  opacity: 0;
 }
 
-span.lang {
+div[class*='language-']:hover button.copy {
+  opacity: 1;
+}
+
+button.copy:hover {
+  background-color: rgba(100, 116, 139, 0.1);
+  color: #475569;
+}
+
+button.copy.copied {
+  color: #10b981;
+  opacity: 1;
+}
+
+/* Dark mode copy button styles */
+.dark button.copy {
+  color: #94a3b8;
+}
+
+.dark button.copy:hover {
+  background-color: rgba(148, 163, 184, 0.15);
+  color: #cbd5e1;
+}
+
+.dark button.copy.copied {
+  color: #34d399;
+}
+
+button.copy::after {
+  content: attr(data-tooltip);
   position: absolute;
-  right: 0.5em;
-  font-size: 0.75em;
-  color: #999;
-  font-family:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  background-color: #000;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+button.copy:hover::after {
+  opacity: 1;
+}
+
+button.copy.copied::after {
+  opacity: 1;
+  background-color: #000;
+}
+
+/* Dark mode tooltip styles */
+.dark button.copy::after {
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+
+.dark button.copy.copied::after {
+  background-color: #1e293b;
+}
+
+/* Ensure code blocks have relative positioning for button placement */
+div[class*='language-'] {
+  position: relative;
+}
+
+/* Hide language label */
+span.lang {
+  display: none;
 }
 
 .custom-block {
@@ -154,4 +362,18 @@ span.lang {
 }
 .custom-block.tip:before {
   color: #42b883;
+}
+
+/* Dark mode custom block styles */
+.dark .custom-block {
+  color: #e2e8f0;
+  background-color: #1e293b;
+}
+
+.dark .custom-block.tip {
+  border-color: #4abf8a;
+}
+
+.dark .custom-block.tip:before {
+  color: #4abf8a;
 }

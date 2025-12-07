@@ -5,6 +5,7 @@
   "trailingComma": "es5",
   "semi": false,
   "arrowParens": "always",
+  "endOfLine": "lf",
   "overrides": [
     {
       "files": "*.md",
