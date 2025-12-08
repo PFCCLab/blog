@@ -272,7 +272,7 @@ def find_text_positions_in_json(
 
 为了解决这个问题，我在 `contract_workflow.py` 里给模型返回结果加了一层 **自动修复的“缓冲层”**：
 
-````python
+```python
 def _parse_model_json(self, content: str, context: str) -> Optional[Any]:
     """尝试解析模型返回的 JSON，失败时使用 json_repair 做容错"""
     if not content:
