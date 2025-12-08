@@ -498,11 +498,11 @@ metric = f"{min(100, top_score):.1f}%"
 ```
 
 实现的 UI 界面效果如下，在回答中显示了相应来源向量的页数和相关性：
-![Fig 4：摘要和图表](../images//high-precision-rag-system/sys-UI-1-1.jpg)
-![Fig 5：选择图表问答](../images//high-precision-rag-system/sys-UI-1-2.jpg)
-![Fig 6：全部文档检索](../images//high-precision-rag-system/sys-UI-1-3.jpg)
-![Fig 7：知识库管理](../images//high-precision-rag-system/sys-UI-2.jpg)
-![Fig 8：系统配置](../images//high-precision-rag-system/sys-UI-3.jpg)
+![Fig 4：摘要和图表](../images/high-precision-rag-system/sys-UI-1-1.jpg)
+![Fig 5：选择图表问答](../images/high-precision-rag-system/sys-UI-1-2.jpg)
+![Fig 6：全部文档检索](../images/high-precision-rag-system/sys-UI-1-3.jpg)
+![Fig 7：知识库管理](../images/high-precision-rag-system/sys-UI-2.jpg)
+![Fig 8：系统配置](../images/high-precision-rag-system/sys-UI-3.jpg)
 
 ## 4. 总结
 
