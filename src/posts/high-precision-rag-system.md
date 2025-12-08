@@ -1,15 +1,16 @@
 ---
 title: 构建基于ERNIE与Milvus的多文档高精度分析与问答系统
-date: 2025-11-30
-author: Liao Yufei
+date: 2025-12-01
+author:
+   name: 廖雨菲
+   github: LiaoYFBH
 tags:
    - RAG
    - Milvus
    - NLP
    - Python
+category: community-activity
 ---
-
-# 构建基于百度文心 ERNIE 与 Milvus 的高精度多文档分析与问答系统
 
 ## 引言
 
@@ -161,7 +162,7 @@ def decode_name(real_name):
 
 #### 2.2.2 向量化入库与元数据绑定
 
-在 OCR 解析并将长文本切分为 Chunks 后，系统并非简单地将文本存入数据库，而是执行了**“向量化 + 元数据绑定”**的关键步骤。
+在 OCR 解析并将长文本切分为 Chunks 后，系统并非简单地将文本存入数据库，而是执行了 **“向量化 + 元数据绑定”** 的关键步骤。
 
 为了支持后续的精确溯源（Citation）和多模态问答，我们在设计 Milvus Schema 时，除了存储 384 维的 Dense Vector 外，还强制绑定了 filename（文件名）、page（页码）和 chunk_id（切片 ID）等标量字段。
 
@@ -213,13 +214,13 @@ def insert_documents(self, documents):
 - **RRF (倒排融合)**：系统内部使用倒排秩融合算法 (Reciprocal Rank Fusion) 将两路结果合并，确保多样性。
 
 <div style="display: flex; justify-content: center;">
-  <img src="../images/high-precision-rag-system/RRF融合.jpg" alt="Fig 2" style="width: 50%;">
+  <img src="../images/high-precision-rag-system/RRF_flow.jpg" alt="Fig 2" style="width: 50%;">
 </div>
 
 ```python
 # vector_store.py 中的检索逻辑摘要
 
-def search(self, query: str, top_k: int = 10, \*\*kwargs):
+def search(self, query: str, top_k: int = 10, **kwargs):
    '''向量检索(Dense+Keyword)+RRF 融合'''
    # 1. 向量检索 (Dense)
    dense_results = []
@@ -265,12 +266,12 @@ def search(self, query: str, top_k: int = 10, \*\*kwargs):
 5. **专有名词**：
    - **英文（看“大小写”特征）：** 使用正则 `\b[A-Z][a-z]+\b|[A-Z]{2,}`，专门匹配**首字母大写**的单词（如 "Milvus"）或**全大写**的缩写（如 "RAG"），因为在英文中这些通常代表专有名词。
 
-   - **中文（看“连续性”特征）：** 由于中文没有大小写，策略变成了 **“切分+长度”**：使用非中文字符作为分隔符切断句子，保留所有连续出现 2 个及以上\*\*的汉字片段（如“简谐振子”），将其视为潜在实体。
+   - **中文（看“连续性”特征）：** 由于中文没有大小写，策略变成了 **“切分+长度”**：使用非中文字符作为分隔符切断句子，保留所有连续出现 2 个及以上的汉字片段（如“简谐振子”），将其视为潜在实体。
 
 具体的分数占比见下图：
 
 <div style="display: flex; justify-content: center;">
-   <img src="../images/high-precision-rag-system/占比.jpg" alt="Fig 2" style="width: 80%;">
+   <img src="../images/high-precision-rag-system/pp-rule-rk.jpg" alt="Fig 2" style="width: 80%;">
 </div>
 
 这种基于规则与语义结合的重排序策略，在无训练数据的情况下，比纯黑盒模型更具可解释性。
@@ -279,7 +280,7 @@ def search(self, query: str, top_k: int = 10, \*\*kwargs):
 # reranker_v2.py
 
 def _calculate_composite_score(self, query: str, chunk: Dict[str, Any]) -> float:
-content = chunk.get('content', '')
+    content = chunk.get('content', '')
 
     # 1. 字面重合度 (FuzzyWuzzy)
     fuzzy_score = fuzz.partial_ratio(query, content)
@@ -308,7 +309,8 @@ content = chunk.get('content', '')
         milvus_similarity * 0.35 +
         length_score * 0.15
     )
-	# 位置权重
+
+    # 位置权重
     position_bonus = 0
     if 'milvus_rank' in chunk:
         rank = chunk['milvus_rank']
@@ -417,23 +419,23 @@ def _adaptive_slow_down(self):
 
 前端基于 Gradio 搭建（`main.py`），采用自定义 CSS (`modern_css`) 搭建了美观的 UI 界面。重点改进了输入区域的视觉层级：将默认的灰色背景改为白底圆角卡片，并为发送按钮添加了渐变色与悬浮阴影，使其在视觉上更加现代与聚焦。
 
-```python
+```css
 /* main.py - modern_css 片段 */
 
 /* 强制输入框白底圆角，模拟现代 Chat APP */
 .custom-textbox textarea {
-    background-color: #ffffff !important;
-    border: 1px solid #e5e7eb !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
-    padding: 14px !important;
+   background-color: #ffffff !important;
+   border: 1px solid #e5e7eb !important;
+   border-radius: 12px !important;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+   padding: 14px !important;
 }
 
 /* 渐变色发送按钮 */
 .send-btn {
-    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
-    color: white !important;
-    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3) !important;
+   background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+   color: white !important;
+   box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3) !important;
 }
 ```
 
@@ -479,7 +481,7 @@ doc_summary = gr.Markdown(
 sources = "\n\n📚 **参考来源:**\n"
 for c in final:
     # ... (去重逻辑) ...
-    # 直接透传 Reranker 计算出的单片得分
+    # 直接 Reranker 计算出的单片得分
     sources += f"- {key} [相关性:{c.get('composite_score',0):.0f}%]\n"
 ```
 
@@ -496,11 +498,11 @@ metric = f"{min(100, top_score):.1f}%"
 ```
 
 实现的 UI 界面效果如下，在回答中显示了相应来源向量的页数和相关性：
-![图4：摘要和图表](../images//high-precision-rag-system/系统UI-1-1.jpg)
-![图5：选择图表问答](../images//high-precision-rag-system/系统UI-1-2.jpg)
-![图6：全部文档检索](../images//high-precision-rag-system/系统UI-1-3.jpg)
-![图7：知识库管理](../images//high-precision-rag-system/系统UI-2.jpg)
-![图7：系统配置](../images//high-precision-rag-system/系统UI-3.jpg)
+![Fig 4：摘要和图表](../images//high-precision-rag-system/sys-UI-1-1.jpg)
+![Fig 5：选择图表问答](../images//high-precision-rag-system/sys-UI-1-2.jpg)
+![Fig 6：全部文档检索](../images//high-precision-rag-system/sys-UI-1-3.jpg)
+![Fig 7：知识库管理](../images//high-precision-rag-system/sys-UI-2.jpg)
+![Fig 8：系统配置](../images//high-precision-rag-system/sys-UI-3.jpg)
 
 ## 4. 总结
 
