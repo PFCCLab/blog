@@ -4,17 +4,12 @@ date: 2025-12-01
 author:
    name: 廖雨菲
    github: LiaoYFBH
-tags:
-   - RAG
-   - Milvus
-   - NLP
-   - Python
 category: community-activity
 ---
 
-## 引言
-
 在大型语言模型（LLM）的应用落地中，RAG（检索增强生成）是解决模型幻觉和知识时效性的关键技术。本博客将对本多文档高精度智能分析与问答系统的关键技术进行说明介绍。该系统集成了 **在线 OCR 解析**、**Milvus 混合检索（向量+关键词）** 以及 **多维度的重排序（Reranker）** 策略，旨在提升低资源环境下的检索准确率，以实现高精度多文档分析与问答。
+
+<!-- more -->
 
 ## 1. 系统架构概览
 
@@ -498,10 +493,15 @@ metric = f"{min(100, top_score):.1f}%"
 ```
 
 实现的 UI 界面效果如下，在回答中显示了相应来源向量的页数和相关性：
+
 ![Fig 4：摘要和图表](../images/high-precision-rag-system/sys-UI-1-1.jpg)
+
 ![Fig 5：选择图表问答](../images/high-precision-rag-system/sys-UI-1-2.jpg)
+
 ![Fig 6：全部文档检索](../images/high-precision-rag-system/sys-UI-1-3.jpg)
+
 ![Fig 7：知识库管理](../images/high-precision-rag-system/sys-UI-2.jpg)
+
 ![Fig 8：系统配置](../images/high-precision-rag-system/sys-UI-3.jpg)
 
 ## 4. 总结
