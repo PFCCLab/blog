@@ -7,9 +7,9 @@ author:
 category: community-activity
 ---
 
-
 还在为了一份几十页的合同，熬夜逐条对照、担心漏掉关键条款吗？
 在大模型时代，这件事不该再靠人力硬扛。
+
 <!-- more -->
 
 **PactGuard-ERNIE-PP** 是我在实践中打造的一套「**智能合同审查与风险分析系统**」。它并不是一个简单的“问问大模型就完了”的 Demo，而是一个真正能落地、能跑在生产环境里的**工程级解决方案**：
@@ -272,7 +272,7 @@ def find_text_positions_in_json(
 
 为了解决这个问题，我在 `contract_workflow.py` 里给模型返回结果加了一层 **自动修复的“缓冲层”**：
 
-```python
+````python
 def _parse_model_json(self, content: str, context: str) -> Optional[Any]:
     """尝试解析模型返回的 JSON，失败时使用 json_repair 做容错"""
     if not content:
