@@ -42,23 +42,43 @@ figcaption {
 
 飞桨开源社区孙钟恺分享了飞桨和文心开源之旅，介绍了飞桨开源社区的生态建设和文心大模型的开源实践。
 
-![百度飞桨产品经理孙钟恺](../images/xdu-xjtu-os/sunzhongkai.jpg)
+<figure style="text-align: center;">
+  <img src="../images/xdu-xjtu-os/sunzhongkai.jpg" alt="百度飞桨产品经理孙钟恺" 
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
+  <figcaption>百度飞桨产品经理孙钟恺</figcaption>
+</figure>
 
 飞桨开源社区詹荣瑞分享了“我的开源之路：从参与到成长”，讲述了他在飞桨开源社区的成长经历和开源对职业发展的影响。
 
-![百度飞桨工程师詹荣瑞](../images/xdu-xjtu-os/zhanrongrui.jpg)
+<figure style="text-align: center;">
+  <img src="../images/xdu-xjtu-os/zhanrongrui.jpg" alt="百度飞桨工程师詹荣瑞" 
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
+  <figcaption>百度飞桨工程师詹荣瑞</figcaption>
+</figure>
 
 飞桨开源社区郑恩嵘分享了“GraphNet & ai4c —— 下一代 AI Infra 机床计划”，介绍了 GraphNet 数据集和 AI 编译器的最新进展。
 
-![百度飞桨工程师郑恩嵘](../images/xdu-xjtu-os/zhengenrong.jpg)
+<figure style="text-align: center;">
+  <img src="../images/xdu-xjtu-os/zhengenrong.jpg" alt="百度飞桨工程师郑恩嵘" 
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
+  <figcaption>百度飞桨工程师郑恩嵘</figcaption>
+</figure>
 
 西电开源社区 ZeroAurora 分享了漫谈开源大模型，介绍了大模型开源的现状和未来趋势。
 
-![西电开源社区ZeroAurora](../images/xdu-xjtu-os/zero.jpg)
+<figure style="text-align: center;">
+  <img src="../images/xdu-xjtu-os/zero.jpg" alt="西电开源社区ZeroAurora" 
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
+  <figcaption>西电开源社区ZeroAurora</figcaption>
+</figure>
 
 西电开源社区钱锦一分享了包管理与构建系统：从混沌到秩序，讲述了包管理和构建系统的发展历程和挑战。
 
-![西电开源社区钱锦一](../images/xdu-xjtu-os/qianjinyi.jpg)
+<figure style="text-align: center;">
+  <img src="../images/xdu-xjtu-os/qianjinyi.jpg" alt="西电开源社区钱锦一" 
+       style="display: block; margin: 0 auto; max-width: 450px; max-height: 500px; object-fit: contain;">
+  <figcaption>西电开源社区钱锦一</figcaption>
+</figure>
 
 ### 2. 西电圆桌开源热情，Open Source in Paddle: Hello，异世界的开发者！
 
@@ -74,9 +94,16 @@ figcaption {
 
 不管是飞桨的开发者还是西电的开源人，都毫不保留地分享了自己的故事。这种零距离的提问与解答，让大家找到了在代码世界中并肩作战的共鸣。这证明了我们最初的理念：有“人味”的交流，比任何精美的 PPT 都更有力量。
 
-![圆桌交流](../images/xdu-xjtu-os/yuanzhuo1.jpg)
+<figure style="text-align: center;">  <img src="../images/xdu-xjtu-os/yuanzhuo1.jpg" alt="西电圆桌交流"
+       style="display: block; margin: 0 auto; max-width: 600px; max-height: 400px; object-fit: contain;">
+  <figcaption>西电圆桌交流</figcaption>
+</figure>
 
-![圆桌交流](../images/xdu-xjtu-os/yuanzhuo2.jpg)
+<figure style="text-align: center;">
+  <img src="../images/xdu-xjtu-os/yuanzhuo2.jpg" alt="西电圆桌交流"
+       style="display: block; margin: 0 auto; max-width: 600px; max-height: 400px; object-fit: contain;">
+  <figcaption>西电圆桌交流</figcaption>
+</figure>
 
 ## 西交侧记：教室里的深度私聊
 
@@ -88,23 +115,43 @@ figcaption {
 
 西交的同学们同样展现出了极大的热情，积极参与讨论，提出了许多有深度的问题。飞桨团队也耐心地解答了大家的疑问，分享了许多实用的经验和技巧，让大家受益匪浅。
 
-![西交活动现场](../images/xdu-xjtu-os/xjtu1.jpg)
+<figure style="text-align: center;">
+  <img src="../images/xdu-xjtu-os/xjtu1.jpg" alt="西交活动现场"
+       style="display: block; margin: 0 auto; max-width: 600px; max-height: 400px; object-fit: contain;">
+  <figcaption>西交活动现场</figcaption>
+</figure>
 
-![西交活动现场](../images/xdu-xjtu-os/xjtu2.jpg)
+<figure style="text-align: center;">
+  <img src="../images/xdu-xjtu-os/xjtu2.jpg" alt="西交活动现场"
+       style="display: block; margin: 0 auto; max-width: 600px; max-height: 400px; object-fit: contain;">
+  <figcaption>西交活动现场</figcaption>
+</figure>
 
-![深度私聊](../images/xdu-xjtu-os/xjtu3.jpg)
+<figure style="text-align: center;">
+  <img src="../images/xdu-xjtu-os/xjtu3.jpg" alt="西交活动现场"
+       style="display: block; margin: 0 auto; max-width: 600px; max-height: 400px; object-fit: contain;">
+  <figcaption>西交活动现场</figcaption>
+</figure>
 
 ### 2. 深度私聊
 
 活动结束后，飞桨开源社区与西交的同学们进行了深入的私聊。大家围坐在一起，分享各自的开源经历和对未来的期待。这样的交流让大家更加了解彼此，也让开源的精神在这个小小的教室里得到了传承。
 
-![深度私聊](../images/xdu-xjtu-os/xjtu4.jpg)
+<figure style="text-align: center;">
+  <img src="../images/xdu-xjtu-os/xjtu4.jpg" alt="深度私聊"
+       style="display: block; margin: 0 auto; max-width: 600px; max-height: 400px; object-fit: contain;">
+  <figcaption>深度私聊</figcaption>
+</figure>
 
 ### 3. 论西交创新港是不是西安及西交的鸽子
 
 西交的鸽子不怕人，而且异常肥。看来平日的伙食不错，同学们都很喜欢在附近散步，顺便赶一赶这些“走地鸽”。
 
-![西交创新港](../images/xdu-xjtu-os/xjtu5.jpg)
+<figure style="text-align: center;">
+  <img src="../images/xdu-xjtu-os/xjtu5.jpg" alt="西交鸽子"
+       style="display: block; margin: 0 auto; max-width: 600px; max-height: 400px; object-fit: contain;">
+  <figcaption>西交鸽子</figcaption>
+</figure>
 
 说个引战的言论：论西交创新港是不是西安，编者在活动结束后打车回酒店，发现打车的软件显示只能在西安使用，说创新港是咸阳市，真是悲报。编者最后坐地铁坐了几站到达西安属地，才打车回的酒店。
 
@@ -121,4 +168,4 @@ figcaption {
 
 感谢西电开源社区和西安交通大学软件学院同学们的热情参与！我们已经建立了联合微信群，后续将继续分享资源，并期待下一次更具挑战的联合！
 
-你对飞桨或开源 AI 有任何新的想法吗？欢迎发邮件给我们 📮 ext_paddle_oss@baidu.com !
+你对飞桨或开源 AI 有任何新的想法吗？欢迎发邮件给我们 📮 [ext_paddle_oss@baidu.com](mailto:ext_paddle_oss@baidu.com) !
