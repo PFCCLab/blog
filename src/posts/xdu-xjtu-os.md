@@ -52,7 +52,7 @@ figcaption {
 
 ![百度飞桨工程师郑恩嵘](../images/xdu-xjtu-os/zhengenrong.jpg)
 
-西电开源社区 ZeroAurora分 享了漫谈开源大模型，介绍了大模型开源的现状和未来趋势。
+西电开源社区 ZeroAurora 分享了漫谈开源大模型，介绍了大模型开源的现状和未来趋势。
 
 ![西电开源社区ZeroAurora](../images/xdu-xjtu-os/zero.jpg)
 
