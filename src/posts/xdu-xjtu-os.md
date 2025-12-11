@@ -54,7 +54,7 @@ figcaption {
 
 西电开源社区 ZeroAurora分 享了漫谈开源大模型，介绍了大模型开源的现状和未来趋势。
 
-![西电开源社区ZeroAurora](../images/xdu-xjtu-os/zeroaurora.jpg)
+![西电开源社区ZeroAurora](../images/xdu-xjtu-os/zero.jpg)
 
 西电开源社区钱锦一分享了包管理与构建系统：从混沌到秩序，讲述了包管理和构建系统的发展历程和挑战。
 
