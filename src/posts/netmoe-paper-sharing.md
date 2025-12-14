@@ -209,7 +209,7 @@ NetMoE 的核心思想是通过改变数据的放置模式来减小 AlltoAll 过
 
 ![t](../images/netmoe-paper-sharing/fig-9.png)
 
-最终优化目标为通过调整 sapmle placement 来调整 s，从而实现 min t：
+最终优化目标为通过调整 sample placement 来调整 s，从而实现 min t：
 
 ![min_t](../images/netmoe-paper-sharing/fig-10.png)
 
@@ -220,7 +220,7 @@ NetMoE 的核心思想是通过改变数据的放置模式来减小 AlltoAll 过
 ![solution](../images/netmoe-paper-sharing/fig-11.png)
 
 - Stage-1：优化 inter-connect。考虑到通信开销主要由 inter-connect 引入，优先减少其通信量是一个较优选择。首先将所有的 sample 以 node 为单位分好组。仅考虑到 node 级别而非 device 级别缩小问题的规模。
-- Stage-2：优化 intra-connect。在第一步的的基础上再进一步将问题缩减为同一 node 的不同 device 上应该如何进行 sample placment。
+- Stage-2：优化 intra-connect。在第一步的的基础上再进一步将问题缩减为同一 node 的不同 device 上应该如何进行 sample placement。
 
 最终将问题转化为了一个二分图问题并使用一个优化后的匈牙利算法进行求解。
 

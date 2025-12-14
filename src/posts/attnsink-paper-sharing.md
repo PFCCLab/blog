@@ -95,7 +95,7 @@ $\text{Sink}_k^\epsilon = \frac{1}{L} \sum_{l=1}^{L} \frac{1}{H} \sum_{h=1}^{H} 
    - 即使将第一个 token 随机重采样，attention sink 依然存在，甚至可能更明显 。
    - 如果将输入序列的前几个 token 都进行随机重采样，sink token 的位置可能会发生改变 。
 
-Fix token(StreamingLLM)：在序列中添加一个 global learnable token，作为 repository for unnessary attention scores.
+Fix token(StreamingLLM)：在序列中添加一个 global learnable token，作为 repository for unnecessary attention scores.
 
 如果为序列添加 fix token，那么 attention sink 会稳定出现在 fix token 所在的位置上。将其移动到其他位置也不会影响结果。
 
@@ -122,7 +122,7 @@ Fix token(StreamingLLM)：在序列中添加一个 global learnable token，作�
    - Pre-norm：$\mathbf{H}^l=\text{FFN}\left( \text{LN}\left(\mathbf{O}^l+\mathbf{H}^{l -1}\right)\right)+\mathbf{O}^l+\mathbf{H}^{l-1},\ \mathbf{O}^l=\text{MHSA}(\text{LN}(\mathbf{H}^{l-1}))$
    - Post-norm：$\mathbf{H}^l=\text{LN}\left(\text{FFN}\left( \text{LN}\left(\mathbf{O}^l+\mathbf{H}^{l -1}\right)\right)+ \text{LN}\left(\mathbf{O}^l+\mathbf{H}^{l -1}\right)\right),\ \mathbf{O}^l=\text{MHSA}\left(\mathbf{H}^{l-1}\right)$
    - Pre-norm 结构中，hidden state 的数值可以由 residual connection 在层间传播。一层出现了 massive value 后，后面的层也很有可能保留。
-   - 无论是 pre-norm 还是 post-norm，attention sink 都会存在。Post-norm 的 massive vlue 出现在了 Post-LN 之前。
+   - 无论是 pre-norm 还是 post-norm，attention sink 都会存在。Post-norm 的 massive value 出现在了 Post-LN 之前。
 
 ![](../images/attnsink-paper-sharing/attention_sink_norm_small.png)
 

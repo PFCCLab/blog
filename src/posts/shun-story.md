@@ -56,7 +56,7 @@ category: developer-story
 
    **顺师傅:** 开发者都比较坦诚，由于平时基本都是跟技术打交道，所以不管是话多也好、话少也罢，交流起来都是比较简单、热心的感觉～001 对于开源的那种热爱对我印象最为深刻～
 
-   > [SigureMo](https://github.com/SigureMo) 是 Paddle 社区的资深开发者，由于是第一位社区 commiter 而被大家称为 001。
+   > [SigureMo](https://github.com/SigureMo) 是 Paddle 社区的资深开发者，由于是第一位社区 committer 而被大家称为 001。
 
 8. **为什么 001 会给你带来这样深刻的印象？可以分享一下其中的小故事嘛？**
 
