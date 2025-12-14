@@ -99,7 +99,7 @@ figcaption {
 
    读博给我带来了很多收获！对于我的职业生涯来说，如果我没有读博士，我肯定进不了百度或者英特尔，这一点毫无疑问。对学业方面来说，读博极大锻炼了我自己，也包括提高了心理承受能力、抗压能力。还有一点就是读博扩大了我的学术圈子，如果我没有继续深造，我将无法接触到如此多优秀的同学和高 level 的大佬。此外，博士身份在之后的许多场景中都还是非常有用的！
 
-   > 编者注✍️：Family who konws🐮！涛姐说自己大学不是特别用功，没有搞绩点，但是成绩就是 top 10！是谁羡慕了我不说～
+   > 编者注✍️：Family who knows🐮！涛姐说自己大学不是特别用功，没有搞绩点，但是成绩就是 top 10！是谁羡慕了我不说～
    > ​<!-- 涛姐15年博士毕业照片 -->
 
       <div style="display: flex; justify-content: center">
@@ -185,10 +185,10 @@ figcaption {
          <figcaption>涛姐 7 个月的孕妇照</figcaption>
       </figure>
    </div>
-   
+
 13.   **作为女性研发，你在工作上有没有遇到什么难题？与男性研发相比，你觉得有什么区别？**
 
-      **涛姐：**   我觉得和男生没什么区别。现在 Paddle 里的一些女性研发都非常厉害的，比如和我同一期加入 Paddle 的青青（[@qingqing01](https://github.com/qingqing01)）、益群（[@Xreki](https://github.com/Xreki)）一起工作已经八年了，以及时间更久的志华姐、渝娟姐（虽然离职了），包括新进来的雅美（[@liym27](https://github.com/liym27)）、张婷（[@zhangting2020](https://github.com/zhangting2020)），她们都是非常出色！你能看到的、存活到现在的 Paddle 研发都非常厉害！（~~因为不厉害的早就被淘汰了~~）而且包括我们的两个副总裁也都是女生，能坐到这么高的位置，很大程度能说明能力很强！
+      **涛姐：** 我觉得和男生没什么区别。现在 Paddle 里的一些女性研发都非常厉害的，比如和我同一期加入 Paddle 的青青（[@qingqing01](https://github.com/qingqing01)）、益群（[@Xreki](https://github.com/Xreki)）一起工作已经八年了，以及时间更久的志华姐、渝娟姐（虽然离职了），包括新进来的雅美（[@liym27](https://github.com/liym27)）、张婷（[@zhangting2020](https://github.com/zhangting2020)），她们都是非常出色！你能看到的、存活到现在的 Paddle 研发都非常厉害！（~~因为不厉害的早就被淘汰了~~）而且包括我们的两个副总裁也都是女生，能坐到这么高的位置，很大程度能说明能力很强！
 
       所以，女孩子们一定要有自信，并且多努力学习！不要觉得是男生才能主导，要相信自己也能做成！同时，内心强大一点，知道自己的定位，要明白自己擅长什么，在工作中去充分的扬长避短！
 
@@ -203,7 +203,7 @@ figcaption {
    <div style="display: flex; justify-content: center">
       <figure style="width: 60%;">
          <img src="../images/tao-story/tao-10.jpeg"/>
-         <figcaption>15 年 Team buiding</figcaption>
+         <figcaption>15 年 Team building</figcaption>
       </figure>
    </div>
 

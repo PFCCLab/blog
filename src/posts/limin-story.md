@@ -127,7 +127,7 @@ figcaption {
 
    **敏师傅：** 参加的挺多，都是摸鱼做做边缘任务，最喜欢的应该是 001 带的任务，因为他基本 724 在线，改 PR 的速度赶不上他 Comment 的速度，哈哈哈哈哈哈。
 
-   > 编者注✍️：001 ([SigureMo](https://github.com/SigureMo))是 Paddle 社区出了名的劳模，望周知。由于是第一位社区 commiter 而被大家称为 001。
+   > 编者注✍️：001 ([SigureMo](https://github.com/SigureMo))是 Paddle 社区出了名的劳模，望周知。由于是第一位社区 committer 而被大家称为 001。
 
 10.   **听说你还参加了黑客松，那段经历一定很精彩，能否分享一下你在那期间遇到的有趣事情或者特别人呢？**
 

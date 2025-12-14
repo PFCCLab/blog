@@ -92,13 +92,13 @@ MoE 训练优化关注的是计算/通信 overlap，而推理由于 KV cache 的
 
 - 算力 π：也称为计算平台的**性能上限**，指的是一个计算平台倾尽全力每秒钟所能完成的浮点运算数。单位是 `FLOP/s`
 
-   $\pi: \text{Maxinum FLOPs Per Second}$
+   $\pi: \text{Maximum FLOPs Per Second}$
 
 - 带宽 β：也即计算平台的**带宽上限**，指的是一个计算平台倾尽全力每秒所能完成的内存交换量。单位是`Byte/s`。
 
    一般来说这里的带宽指的是访存速率，但实际上这里也可以看为一个包含通信速率在内的广义的带宽。
 
-   $\beta: \text{Maxinum Memory Access Per Second}$
+   $\beta: \text{Maximum Memory Access Per Second}$
 
 - **计算强度(**Arithmetic Intensity**)上限**$I_{max}$：两个指标相除即可得到计算平台的**计算强度上限**。它描述的是在这个计算平台上，单位内存交换最多用来进行多少次计算。单位是`FLOPs/Byte`。
 
