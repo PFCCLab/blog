@@ -86,7 +86,7 @@ category: community-activity
 
 ![流程图](../images/pactguard-ernie-pp/flowwork-compress2.png)
 
-```pythons
+```python
 class ContractWorkflow:
     def run(self, contract_path: str) -> Dict[str, Any]:
         # 1. 文档解析：调用 MCP / OCR 等服务，拿到结构化文本

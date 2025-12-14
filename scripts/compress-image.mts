@@ -75,10 +75,10 @@ async function compressImage(imgFile: string, postFile: string): Promise<number>
   }
 
   // Create compress transforms
-  const compressTransfroms = createCompressTransforms(COMPRESS_MATRIX)
+  const compressTransforms = createCompressTransforms(COMPRESS_MATRIX)
   // Don't use Promise.all to avoid memory leak
   const compressedBuffers: Buffer[] = []
-  for (const transform of compressTransfroms) {
+  for (const transform of compressTransforms) {
     const buffer = await inputSharp.clone().pipe(transform).toBuffer()
     compressedBuffers.push(buffer)
   }

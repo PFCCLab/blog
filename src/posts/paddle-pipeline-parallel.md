@@ -129,7 +129,7 @@ def apply_pass(main_program, startup_program, pass_name, pass_attr={}):
         "FThenB",
         "1F1B",
         "Eager1F1B",
-    ], f"pipeline scheduler only support FThenB, 1F1B and Eager1F1B, but recieve {pass_name}"
+    ], f"pipeline scheduler only support FThenB, 1F1B and Eager1F1B, but receive {pass_name}"
 
     if pass_name == "1F1B":
         pass_attr["enable_backward_forward_overlap"] = int(

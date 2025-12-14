@@ -54,7 +54,7 @@ PagedAttention 按需分配显存，导致 KV cache 的虚拟地址不连续，�
 
 1. 编程困难：PagedAtten 的 KV 是分块的，不同块的虚拟地址往往是不连续的，需要修改 Attention kernel 的实现，可移植性较低
 
-2. 内存管理模块：推理系统需要维护 KV cahce 和显存块之间的映射关系
+2. 内存管理模块：推理系统需要维护 KV cache 和显存块之间的映射关系
 
 ![alt text](../images/vattention-paper-sharing/blockmap.jpg)
 
