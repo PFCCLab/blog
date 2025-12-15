@@ -136,8 +136,11 @@ pnpm build         # 确保能成功构建
 
 ### PR 标题检查
 
-- PR 标题应尽可能使用 `[<type>] <description>` 的格式，其中 `<type>` 包括但不限于 `Blog`、`CI`、`Theme`、`CodeStyle` 等，便于快速识别 PR 类型。
-- PR 标题应简洁明了地描述所做更改，避免使用模糊或通用的标题，如 `Update docs` 或 `Fix typos`，可以考虑改为 ``[Typos] Fix typos (`liunx` -> `linux`) in installation guide``。 <!-- typos: disable-line -->
+- PR 标题应尽可能使用 `<type>(<scope>): <description>` 的格式
+   - `<type>` 包括但不限于 `feat`、`fix`、`docs`、`style`、`refactor`、`test`、`chore` 等。
+   - `<scope>` 可选，表示更改的范围，如 `blog`、`ci`、`theme` 等。
+   - `<description>` 简要描述更改内容。
+- PR 标题应简洁明了地描述所做更改，避免使用模糊或通用的标题，如 `Update docs` 或 `Fix typos`，可以考虑改为 ``docs(blog): fix typos (`liunx` -> `linux`) in blog `chuan-story` ``。 <!-- typos: disable-line -->
 - 如果 PR 涉及多个方面的更改（比如多篇不同的博客），建议拆分为多个 PR，每个 PR 专注于一个主题，以便于审查和合并。
 - 具体 PR 具体分析，请为每个 PR 提供参考的 PR 标题，标题尽可能保持纯英文。
 
@@ -148,6 +151,7 @@ pnpm build         # 确保能成功构建
 ### 回复方式
 
 - 审查时请尽量使用中文回复，确保所有审查者都能理解评论内容，但在涉及具体代码片段或技术术语时，可以适当使用英文以确保准确表达。
+- 保持评论简洁明了，避免冗长的解释，确保重点突出，便于作者快速理解和修改，并且尽可能给出具体的修改建议或示例代码。
 
 ### 风格检查
 
@@ -160,4 +164,4 @@ pnpm build         # 确保能成功构建
    - `pnpm fmt:check`：检查代码格式。
    - `pnpm lint:filename`：检查文件名规范。
 
-   上述命令在 CI [lint-and-format](.github/workflows/lint-and-fmt.yml) 中也会运行，如果流水线失败，请提示作者根据日志修复相关问题。
+   上述命令在 CI [lint-and-format](./workflows/lint-and-fmt.yml) 中也会运行，如果流水线失败，请提示作者根据日志修复相关问题。
