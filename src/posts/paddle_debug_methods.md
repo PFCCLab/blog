@@ -25,6 +25,8 @@ co_authors:
      github: risemeup1
    - name: 徐晓健
      github: SigureMo
+   - name: 校对师傅
+     github: sunzhongkai588
 category: community-activity
 ---
 
