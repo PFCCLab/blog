@@ -731,7 +731,7 @@ if __name__ == '__main__':
     x = paddle.randn([1, 3, 32, 32])
     # ⚠️ 参数为保存的文件名前缀，如"./resnet_graph_test" 则会生成"resnet_graph_test.svg" 文件
     with paddle.utils.capture_fwd_graph_guard("./resnet_graph_test"):
-    # 上面的API不行可以换成 paddle.utils.capture_forward_subgraph_guard用法一样
+    # 上面的 API 不行可以换成 paddle.utils.capture_forward_subgraph_guard 用法一样
         y = model(x)
         z = y + y  # ⚠️ 这行对loss没有贡献，如果是画反向图是不会绘制的，但是画前向图可以画出来
     y.sum().backward()
@@ -893,7 +893,8 @@ class Model(nn.Layer):
         # ⚠️ dump_dir_path 表示存放反向子图信息的目录
         # ⚠️ need_dump_grad_tensors 表示是否需要dump出子图在中的梯度
         with paddle.utils.capture_backward_subgraph_guard(dump_dir_path="./debug_info",need_dump_grad_tensors=True):
-        # 如果上面不行可以用下面这行 with paddle.utils.capture_backward_subgraph_guard(dump_dir_path="./debug_info",need_dump_grad_tensors =True):
+        # 如果上面不行可以用下面这行
+        # with paddle.utils.capture_backward_subgraph_guard(dump_dir_path="./debug_info",need_dump_grad_tensors=True):
             output = self.fc(feature.reshape([img.shape[0], -1]))
         return output
 if __name__ == '__main__':
