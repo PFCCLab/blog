@@ -739,7 +739,7 @@ if __name__ == '__main__':
 
 示例图如下：
 
-![resnet_graph_test](../images/paddle_debug_methods/resnet_graph_test.jpg)
+![resnet_graph_test](../images/paddle-debug-methods/resnet_graph_test.jpg)
 
 - **前向图导出的原理为：VLog 中有所有 API 的唯一名字，每个 API 的输入输出有唯一名字。通过 VLog 关键字提取获得每个 API 之间的关联关系绘制成图。**
 
@@ -798,7 +798,7 @@ if __name__ == '__main__':
 使用时可以结合 **backward_graph** 与 **call_stack**，使用 GradNode 的名字、this 指针互相检索。找到 GradNode 对应的 Python 栈。
 
 - 2025-12-05_02:44:06.840446\_**backward_graph.dot**
-  ![graphviz](../images/paddle_debug_methods/graphviz.jpg)
+  ![graphviz](../images/paddle-debug-methods/graphviz.jpg)
 
 - 2025-12-05_02:44:06.840446\_**call_stack.log**
 
@@ -938,10 +938,10 @@ loss.sum().backward()
 
 <div style="display: flex; justify-content: center; gap: 16px;">
    <figure style="margin: 0;">
-      <img src="../images/paddle_debug_methods/image-3.png" style="height: 450px; width: auto;">
+      <img src="../images/paddle-debug-methods/image-3.png" style="height: 450px; width: auto;">
    </figure>
    <figure style="margin: 0;">
-      <img src="../images/paddle_debug_methods/image-4.png" style="height: 450px; width: auto;">
+      <img src="../images/paddle-debug-methods/image-4.png" style="height: 450px; width: auto;">
    </figure>
 </div>
 
@@ -979,7 +979,7 @@ paddle.jit.save(
 
 以上 case 可以在 /data/model/ 下得到一个 linear.json 文件，下载该文件，使用 https://netron.app/ 打开该文件，即看到：
 
-![netronviz](../images/paddle_debug_methods/netronviz.png)
+![netronviz](../images/paddle-debug-methods/netronviz.png)
 
 有时候大模型 save 比较困难、涉密，本方法不推荐使用。
 
@@ -1211,23 +1211,23 @@ CoreDump 问题首先要定位到**造成 CoreDump 的 C++的某行代码**，�
 
    我们再执行`dmesg -T`命令，可以在其中找到`11 Sep 2025 10:58:45`时间附近的一条内核消息`NVRM: Xid (PCI:0000:3f:00): 31, pid=2038, name=python, Ch 00000010, intr 00000000. MMU Fault: ENGINE GRAPHICS GPCCLIENT_T1_0 faulted @ 0x7f60_d72f8000. Fault is of type FAULT_PDE ACCESS_TYPE_VIRT_READ`：
 
-   ![image-6](../images/paddle_debug_methods/image-6.png)
+   ![image-6](../images/paddle-debug-methods/image-6.png)
 
    让大模型解读一下这段字符付下：（这种渠道也提示到了错误的显存访问）
 
-   ![image-7](../images/paddle_debug_methods/image-7.png)
+   ![image-7](../images/paddle-debug-methods/image-7.png)
 
    **例子 2**：我们模拟制造一个 Segmentation fault 举例：
 
-   ![image-8](../images/paddle_debug_methods/image-8.png)
+   ![image-8](../images/paddle-debug-methods/image-8.png)
 
    我们再执行`dmesg -T`命令，可以看到：`python[9912]: segfault at 0 ip 00007f717944612f sp 00007ffe2b951c60 error 4 in _ctypes.cpython-39-x86_64-linux-gnu.so[7f7179443000+f000]`：
 
-   ![image-9](../images/paddle_debug_methods/image-9.png)
+   ![image-9](../images/paddle-debug-methods/image-9.png)
 
    让大模型解读一下这段字符付下：
 
-   ![image-10](../images/paddle_debug_methods/image-10.png)
+   ![image-10](../images/paddle-debug-methods/image-10.png)
 
 - **方法 4**：如果以上方法都不好用，那 CoreDump 问题应该参考“**黑盒问题**”的方法：通过外围实验找规律。比如：**简化问题、“这么写就对那么写就崩”、注释掉一半代码试试，回退版本**等。
 
@@ -1252,7 +1252,7 @@ Paddle 中 Hang 的问题比如：**多卡通信 Hang**、CPU/GPU 运算**时间
 
    Hang 发生时，不同卡最后调用的 API 不一样，比如有的是 AllReduce 有的不是。或者通信长度比如`count`或者`datatype`不一样。没有找到 NCCL 日志的官网介绍，但一般肉眼读下来都能读的懂，也可以让大模型解读一下：
 
-   ![image-11](../images/paddle_debug_methods/image-11.png)
+   ![image-11](../images/paddle-debug-methods/image-11.png)
 
 - **思路 2**：我们最有必要知道，发生 Hang 时，每张卡都是**Hang 在了 Paddle 哪行代码上**。`export CUDA_LAUNCH_BLOCKING=1`+`export GLOG_v=10`，或者`export CUDA_LAUNCH_BLOCKING=1`+`export GLOG_vmodule=dygraph_functions=4,nodes4,tracer=3,backward=3,sync_batch_norm_node=4,run_program_op_func=4,run_program_op_node=4`通过 VLOG 日志，往往可以让我们初步缩小范围。
    - 如果是**前向 Hang** 住，可以通过**VLOG+FLAGS_dump_api_python_stack_path** dump 前向 API 对应的 Python 栈。看看 Vlog 中最后一个执行的 API 的唯一命名，根据唯一命名到 Python 栈中找到其代码位置。如有必要，再深入 C++所定到具体哪一行。看看不同卡执行的 diff。大概率是因为控制流，同步卡走向了不同逻辑导致的。
@@ -1288,10 +1288,10 @@ Paddle 中 Hang 的问题比如：**多卡通信 Hang**、CPU/GPU 运算**时间
 
 <div style="display: flex; justify-content: center; gap: 16px;">
    <figure style="margin: 0;">
-      <img src="../images/paddle_debug_methods/image-12.png" style="height: 350px; width: auto;">
+      <img src="../images/paddle-debug-methods/image-12.png" style="height: 350px; width: auto;">
    </figure>
    <figure style="margin: 0;">
-      <img src="../images/paddle_debug_methods/image-13.png" style="height: 350px; width: auto;">
+      <img src="../images/paddle-debug-methods/image-13.png" style="height: 350px; width: auto;">
    </figure>
 </div>
 
@@ -1583,7 +1583,7 @@ Tensor(shape=[4, 4], dtype=float32, place=Place(gpu:0), stop_gradient=False,
         [3.01182270, 3.37088275, 4.71857929, 3.13956690]])
 ```
 
-![流程图](../images/paddle_debug_methods/flowchart.png)
+![流程图](../images/paddle-debug-methods/flowchart.png)
 
 #### 2.6.3. 模型精度问题——使用 PaddleAPITest 全面排查 API 精度可能存在问题的方法（By 李昊阳）
 
@@ -1725,7 +1725,7 @@ Tensor(shape=[4, 4], dtype=float32, place=Place(gpu:0), stop_gradient=False,
 
       测试结果默认位于 `tester/api_config/test_log`：
 
-      ![image-14](../images/paddle_debug_methods/image-14.png)
+      ![image-14](../images/paddle-debug-methods/image-14.png)
 
       日志目录中可见：各类配置集合 api_config\_、检查点 checkpoint、日志 log、全量日志 log_inorder、稳定性精度报告 stable.csv。
 
@@ -1742,11 +1742,11 @@ Tensor(shape=[4, 4], dtype=float32, place=Place(gpu:0), stop_gradient=False,
 
    有精度误差的配置位于 api_config_accuracy_diff.txt，可在 log_inorder.txt 中搜索对应配置，查看报错信息：
 
-   ![image-15](../images/paddle_debug_methods/image-15.png)
+   ![image-15](../images/paddle-debug-methods/image-15.png)
 
    配置级别的稳定性精度报告 **stable.csv** 解读如下：
 
-   ![image-16](../images/paddle_debug_methods/image-16.png)
+   ![image-16](../images/paddle-debug-methods/image-16.png)
 
    每行代表一个 Tensor 的比较结果，一个配置会有多行比较结果，列的含义为：
 
@@ -1762,7 +1762,7 @@ Tensor(shape=[4, 4], dtype=float32, place=Place(gpu:0), stop_gradient=False,
 
    API 级别的精度报告 **stable_stat.csv** 解读如下：
 
-   ![image-17](../images/paddle_debug_methods/image-17.png)
+   ![image-17](../images/paddle-debug-methods/image-17.png)
 
    每行代表一类 API + dtype + comp 的比较结果合并，一行该类别的所有配置，列的含义为：
 
@@ -1788,7 +1788,7 @@ Tensor(shape=[4, 4], dtype=float32, place=Place(gpu:0), stop_gradient=False,
 
 **原理：** 它的基本原理如下图所示，工具会通过 hook 自动监控 paddle 和 torch 代码的运行过程，并将输出、参数梯度和权重等数据保存下来，最后进行对比。由于该工具会分别监控两个框架下的运行，因此不需要将代码写在同一个文件中
 
-![image-18](../images/paddle_debug_methods/image-18.png)
+![image-18](../images/paddle-debug-methods/image-18.png)
 
 **适用场景：**
 
@@ -1829,7 +1829,7 @@ python xxx
 
 导出 Tensor name：checksum ，然后通过在同一个模型在不同环境下运行的出的 md5 结果进行对比，发现精度出问题的地方。
 
-![image-19](../images/paddle_debug_methods/image-19.png)
+![image-19](../images/paddle-debug-methods/image-19.png)
 
 #### 2.6.6. API/Kernel 精度问题
 
