@@ -27,6 +27,7 @@ co_authors:
      github: SigureMo
    - name: 校对师傅
      github: sunzhongkai588
+pinned: true
 category: community-activity
 ---
 
