@@ -16,7 +16,7 @@ const authors = computed(() => {
     <dt class="sr-only">Authors</dt>
     <dd>
       <ul
-        class="flex flex-col pl-10 space-y-5 md:justify-center md:flex-row md:space-y-0 md:space-x-12 md:pl-0 xl:block xl:space-x-0 xl:space-y-8"
+        class="flex flex-col pl-10 gap-y-5 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-6 md:pl-0 lg:grid-cols-3 xl:block xl:space-y-8"
       >
         <template v-for="author in authors" :key="author.name">
           <Author :name="author.name" :github="author.github" :avatar="author.avatar" />
