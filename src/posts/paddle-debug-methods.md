@@ -51,21 +51,21 @@ category: community-activity
    - 避免总在脑子里推演、猜想，而不验证。尽量将猜测通过实验做实，要么认定“肯定是 xxx 方向的问题”，要么认定“xxx 方向没问题需要往别的方向找”，依据猜测前行会没有动力，也可能走弯路。
    - 手勤快的表现：
       - 黑盒问题，通过外围实验找规律。比如：简化问题、“这么写就对那么写就崩”、注释掉一半代码试试，回退版本等。
-      - 白盒问题，通过 Vlog、print、std::cout 多带来信息：程序路径是啥样的？各个变量的值（沾边儿的都打印看看）。
+      - 白盒问题，通过 `VLOG`、`print`、`std::cout` 多带来信息：程序路径是啥样的？各个变量的值（沾边儿的都打印看看）。
       - 日志量太大，大脑是处理不过来的。需要精简重要日志、或者花一些功夫考虑以什么形式呈现问题。
 - 对程序越熟悉，越能做出正确的调试决策。[pfcc/paddle-code-reading](https://github.com/PaddlePaddle/community/tree/master/pfcc/paddle-code-reading) 里有很多 Paddle 机制的介绍。（By 王欢）
 - ...
 
 ## 1.Paddle 的一些调试工具
 
-### 1.1. FLAGS_call_stack_level 报错栈级别控制 & inplace version 问题调试（By 王欢）
+### 1.1. `FLAGS_call_stack_level` 报错栈级别控制 & inplace version 问题调试（By 王欢）
 
-- FLAGS_call_stack_level 默认值为 1，代表只打印崩溃时的 Python 栈和 C++的报错提示
-- export FLAGS_call_stack_level=2 后，可以打印崩溃时的 Python 栈、**C++栈**和 C++的报错提示
-- export FLAGS_call_stack_level=3 后，在动态图反向执行崩溃时，可以打印 Python 栈、C++栈和 C++的报错提示，**外加反向节点对应的前向 Python 栈，** 这样有助于知道反向崩溃对应的前向逻辑在哪里。
+- `FLAGS_call_stack_level` 默认值为 1，代表只打印崩溃时的 Python 栈和 C++的报错提示
+- `export FLAGS_call_stack_level=2` 后，可以打印崩溃时的 Python 栈、**C++栈**和 C++的报错提示
+- `export FLAGS_call_stack_level=3` 后，在动态图反向执行崩溃时，可以打印 Python 栈、C++栈和 C++的报错提示，**外加反向节点对应的前向 Python 栈，** 这样有助于知道反向崩溃对应的前向逻辑在哪里。
 
 > [!NOTE]
-> 注意：FLAGS_call_stack_level=1、FLAGS_call_stack_level=2 几乎性能无损，而 FLAGS_call_stack_level=3 是性能有损的（损耗的是 CPU 调度性能，但不会引发 GPU Sync 或 GPU Kernel 变慢）！
+> 注意：`FLAGS_call_stack_level=1`、`FLAGS_call_stack_level=2` 几乎性能无损，而 `FLAGS_call_stack_level=3` 是性能有损的（损耗的是 CPU 调度性能，但不会引发 GPU Sync 或 GPU Kernel 变慢）！
 
 以如下代码为例（以下代码是一个 inplace version 异常的 case，当日常遇到 inplace version 时，可以使用 export FLAGS_call_stack_level=3 调试，可以看到前向“不希望被 inplace”的 Tensor 位置）：
 
@@ -101,7 +101,7 @@ RuntimeError: (PermissionDenied) Tensor '' used in gradient computation has been
   [Hint: Expected tensor_version == wrapper_version_snapshot, but received tensor_version:1 != wrapper_version_snapshot:0.] (at /data/Eager/Paddle/paddle/fluid/eager/tensor_wrapper.h:246)
 ```
 
-export FLAGS_call_stack_level=2 后
+`export FLAGS_call_stack_level=2` 后
 
 ```log
 W0911 06:12:25.607916 27765 backward.cc:462] While running Node (PowGradNode) raises an EnforceNotMet exception
@@ -135,7 +135,7 @@ PermissionDeniedError: Tensor '' used in gradient computation has been modified 
   [Hint: Expected tensor_version == wrapper_version_snapshot, but received tensor_version:1 != wrapper_version_snapshot:0.] (at /data/Eager/Paddle2/paddle/fluid/eager/tensor_wrapper.h:264)
 ```
 
-export FLAGS_call_stack_level=3 后
+`export FLAGS_call_stack_level=3` 后
 
 ```log
 W0911 06:12:47.854785 27875 backward.cc:462] While running Node (PowGradNode) raises an EnforceNotMet exception
@@ -179,8 +179,8 @@ PermissionDeniedError: Tensor '' used in gradient computation has been modified 
 
 #### 1.2.1. GLOG 基本用法介绍
 
-- 环境变量`GLOG_v=<level>` ，`<level>`为一个数字表示 GLOG 输出日志的级别，GLOG_v 是全局的日志级别控制变量对所有的模块（编译单元）都生效，GLOG_v 等级越高（数字越大）则输出的 LOG 信息越丰富。
-- 环境变量 `GLOG_vmodule=<module>=<level>[,<module2>=<level2>,...]`，其中 `<module>` 是文件名（不含扩展名），`<level>` 是日志级别。`GLOG_vmodule`是一个模块级别的日志控制变量，允许为一个或者多个特定的 C++ 源文件设置不同的日志级别。
+- 环境变量 `GLOG_v=<level>`，`<level>` 为一个数字表示 GLOG 输出日志的级别，GLOG_v 是全局的日志级别控制变量对所有的模块（编译单元）都生效，GLOG_v 等级越高（数字越大）则输出的 LOG 信息越丰富。
+- 环境变量 `GLOG_vmodule=<module>=<level>[,<module2>=<level2>,...]`，其中 `<module>` 是文件名（不含扩展名），`<level>` 是日志级别。`GLOG_vmodule` 是一个模块级别的日志控制变量，允许为一个或者多个特定的 C++ 源文件设置不同的日志级别。
 - 输出格式的介绍。设置完日志等级之后，输出的 LOG 信息的前缀如下：
 
    ```bash
@@ -633,7 +633,7 @@ PermissionDeniedError: Tensor '' used in gradient computation has been modified 
 - 打印 Allocator 申请、释放信息
    - `GLOG_vmodule=stream_safe_cuda_allocator=10`
 
-##### 1.2.2.2. 使用 vlog_guard & backward_vlog_guard & set_vlog_level
+##### 1.2.2.2. 使用 `vlog_guard` & `backward_vlog_guard` & `set_vlog_level`
 
 - 控制某段代码的 Vlog 级别
 
@@ -676,7 +676,7 @@ z = x3 * y3
 z.backward()
 ```
 
-- 更灵活的控制：使用 paddle.base.core.set_vlog_level 在运行时动态设置 VLOG 的级别
+- 更灵活的控制：使用 `paddle.base.core.set_vlog_level` 在运行时动态设置 VLOG 的级别
 
 ```python
 # case1: Set GLOG_v=1
@@ -689,7 +689,7 @@ z.backward()
 paddle.base.core.set_vlog_level({"dygraph_functions": 0, "nodes": 0, "*": 0})
 ```
 
-> vlog_guard & backward_vlog_guard & set_vlog_level 注意事项：该功能在 2025.12.2 陆续完成迭代，此前版本可能缺少部分或全部功能
+> `vlog_guard` & `backward_vlog_guard` & `set_vlog_level` 注意事项：该功能在 2025.12.2 陆续完成迭代，此前版本可能缺少部分或全部功能
 
 #### 1.2.2.3. Vlog API name、Tensor name 唯一命名
 
@@ -751,7 +751,7 @@ if __name__ == '__main__':
 
 ##### 1.3.2.1 使用方法
 
-Paddle 目前对`Tensor.backward`、`paddle.grad`、`paddle.autograd.backward` 这三个 API 支持了`dump_backward_graph_path`参数。参数涵义为：backward 过程涉及的 debug 信息(反向图、前向图、调用栈)输出的目录路径。
+Paddle 目前对 `Tensor.backward`、`paddle.grad`、`paddle.autograd.backward` 这三个 API 支持了`dump_backward_graph_path` 参数。参数涵义为：backward 过程涉及的 debug 信息(反向图、前向图、调用栈)输出的目录路径。
 
 ```python
 import os
@@ -905,7 +905,7 @@ if __name__ == '__main__':
     y.sum().backward()
 ```
 
-`FLAGS_enable_unique_name=True FLAGS_call_stack_level=3 python test.py`后在`./debug_info`下会产生 4 个文件：
+`FLAGS_enable_unique_name=True FLAGS_call_stack_level=3 python test.py` 后在 `./debug_info` 下会产生 4 个文件：
 
 ```log
 2025-12-05_06:58:48.328456_backward_graph.dot：反向图的dot文件，可以通过https://dreampuf.github.io/GraphvizOnline/导出svg图
@@ -914,15 +914,15 @@ if __name__ == '__main__':
 2025-12-05_06:58:48.328456_ref_forward_graph.dot：将反向图反过来画的前向图，如有必要可以看
 ```
 
-`FLAGS_enable_unique_name=True`是为了给 Node、Tensor 一个唯一命名，如果不需要可以不加。
+`FLAGS_enable_unique_name=True` 是为了给 Node、Tensor 一个唯一命名，如果不需要可以不加。
 
 具体例子以及解释：
 
 ```python
 import paddle
 from paddle.utils import capture_backward_subgraph_guard,backward_vlog_guard
-x = paddle.randn([2,3],dtype="float32")
-y = paddle.randn([2,3],dtype="float64")
+x = paddle.randn([2, 3],dtype="float32")
+y = paddle.randn([2, 3],dtype="float64")
 x.stop_gradient = False
 y.stop_gradient = False
 
@@ -979,7 +979,7 @@ paddle.jit.save(
 )
 ```
 
-以上 case 可以在 /data/model/ 下得到一个 linear.json 文件，下载该文件，使用 https://netron.app/ 打开该文件，即看到：
+以上 case 可以在 `/data/model/` 下得到一个 linear.json 文件，下载该文件，使用 https://netron.app/ 打开该文件，即看到：
 
 ![netronviz](../images/paddle-debug-methods/netronviz.png)
 
@@ -1042,15 +1042,15 @@ vlog.log：VLOG
 
 我们可以结合栈、图、日志联动分析问题，他们之间可以通过唯一 name、this 指针联动检索。
 
-注：文件名后缀`.16554`是进程 ID，多卡多进程情况下，每个卡产生一个文件。
+注：文件名后缀 `.16554` 是进程 ID，多卡多进程情况下，每个卡产生一个文件。
 
-### 1.5. FLAGS_check_cuda_error 以及 \_for_test_check_cuda_error CUDA Error 调试工具（By 王欢）
+### 1.5. `FLAGS_check_cuda_error` 以及 `_for_test_check_cuda_error` CUDA Error 调试工具（By 王欢）
 
 模型运行中可能崩溃在 CUDA Error 上，常见的比如**CUDA 700、CUDA 9、CUDA 719**等。由于 GPU Kernel 大多是**异步运行**的，CUDA Error 报错具有**延迟**性，往往是 bug 发生位置运行后很长时间才报错。这导致 CUDA Error 问题很难查。export FLAGS_check_cuda_error=1，会在动态图 ad_function、反向节点执行前后做 Sync 操作，再做 CUDA Error 的检查。那么 bug 一般发生在最后一次报错和前一次检查之间。
 
-CUDA 700 是显存越界访问，Paddle 使用了显存缓冲池，有时候 Kernel 虽然越界，但访问地址如果还在 Allocator 池子中，则不能第一时间发现越界问题。因此**CUDA 700 建议 export FLAGS_use_system_allocator=1**和 export FLAGS_check_cuda_error=1 同时使用。
+CUDA 700 是显存越界访问，Paddle 使用了显存缓冲池，有时候 Kernel 虽然越界，但访问地址如果还在 Allocator 池子中，则不能第一时间发现越界问题。因此**CUDA 700 建议 `export FLAGS_use_system_allocator=1`**和 `export FLAGS_check_cuda_error=1` 同时使用。
 
-FLAGS_check_cuda_error 的核心逻辑是：
+`FLAGS_check_cuda_error` 的核心逻辑是：
 
 ```c
 void inline CUDAErrorCheck(const std::string& check_tag) {
@@ -1073,7 +1073,7 @@ index = paddle.full([1], 9999999999, "int64")
 result = paddle.index_select(value, index) # ⚠️ index值超出了value shape范围，发生越界，即CUDA700
 ```
 
-FLAGS_check_cuda_error=1 python test.py 结果如下：
+`FLAGS_check_cuda_error=1 python test.py` 结果如下：
 
 ```log
 full_ad_func begin checking...
@@ -1099,25 +1099,25 @@ OSError: (External) CUDA error(700), an illegal memory access was encountered.
 
 `index_select_ad_func begin checking...` 代表刚刚进入 index_select_ad_func 时开始启动检查。
 
-`index_select_ad_func begin check done.`代表刚刚进入 index_select_ad_func 时检查未发现问题。
+`index_select_ad_func begin check done.` 代表刚刚进入 index_select_ad_func 时检查未发现问题。
 
-`index_select_ad_func finish checking...`代表 index_select_ad_func 函数执行完毕，即将离开时开始启动检查。
+`index_select_ad_func finish checking...` 代表 index_select_ad_func 函数执行完毕，即将离开时开始启动检查。
 
-而未出现`index_select_ad_func finish check done.`，说明检查失败了，并给出了发生 CUDA 700 的前向 Python 栈。
+而未出现 `index_select_ad_func finish check done.`，说明检查失败了，并给出了发生 CUDA 700 的前向 Python 栈。
 
-**FLAGS_check_cuda_error=1 还可以配合 FLAGS_call_stack_level=3 一起使用，对于反向 CUDA Error，理论上可以给出对应的前向栈。**
+**`FLAGS_check_cuda_error=1` 还可以配合 `FLAGS_call_stack_level=3` 一起使用，对于反向 CUDA Error，理论上可以给出对应的前向栈。**
 
-FLAGS_check_cuda_error=1 是在每次 API 调用后触发 cudaDeviceSynchronize 的，这会导致模型运行大幅变慢。而且某些时序相关的 bug，可能在 Sync 后就不再能复现了。**Paddle 还提供了轻量的 CUDA Error 检查工具`paddle.base.core.eager._for_test_check_cuda_error()`**，可以在 python 端需要做检查是，自己手动调用，或者在模型端利用`paddle.base.core.eager._for_test_check_cuda_error()`手动二分定位问题。
+FLAGS_check_cuda_error=1 是在每次 API 调用后触发 cudaDeviceSynchronize 的，这会导致模型运行大幅变慢。而且某些时序相关的 bug，可能在 Sync 后就不再能复现了。**Paddle 还提供了轻量的 CUDA Error 检查工具 `paddle.base.core.eager._for_test_check_cuda_error()`**，可以在 python 端需要做检查是，自己手动调用，或者在模型端利用 `paddle.base.core.eager._for_test_check_cuda_error()` 手动二分定位问题。
 
-### 1.6. FLAGS_check_nan_inf 查找 Nan Inf 问题（By 刘益群）
+### 1.6. `FLAGS_check_nan_inf` 查找 Nan Inf 问题（By 刘益群）
 
-如题，在工作中发生 nan、inf 时，可以通过`export FLAGS_check_nan_inf=1`排查。使用方法与 FLAGS_check_cuda_error 等同。
+如题，在工作中发生 nan、inf 时，可以通过 `export FLAGS_check_nan_inf=1`排查。使用方法与 FLAGS_check_cuda_error 等同。
 
-### 1.7. FLAGS_alloc_fill_value 查找算子没有给输出 Tensor 写值的问题（By 锦乐）
+### 1.7. `FLAGS_alloc_fill_value` 查找算子没有给输出 Tensor 写值的问题（By 锦乐）
 
-过去我们出现过 fused_linear、softmax 等算子反向输出 Tensor 没有写值（相当于仅调用了 paddle.empty）的问题。`FLAGS_alloc_fill_value`是一个[0, 255]的 int 值，其意义是每次显存分配结束时给显存空间填值（调用 cudaMemset）。
+过去我们出现过 fused_linear、softmax 等算子反向输出 Tensor 没有写值（相当于仅调用了 paddle.empty）的问题。`FLAGS_alloc_fill_value` 是一个 `[0, 255]` 的 int 值，其意义是每次显存分配结束时给显存空间填值（调用 `cudaMemset`）。
 
-因此，原则上如果算子没有问题，FLAGS_alloc_fill_value=0 和 FLAGS_alloc_fill_value=255 的计算结果是完全一致的，通过此标准可判定是否存在算子没有给输出 Tensor 写值的问题。尤其是当 FLAGS_alloc_fill_value=255 时，FP64、FP32、FP16、BF16 对应的浮点数均为 NaN，一般而言 loss 会快速出 NaN，可以快速定位到算子是否有问题。
+因此，原则上如果算子没有问题，`FLAGS_alloc_fill_value=0` 和 `FLAGS_alloc_fill_value=255` 的计算结果是完全一致的，通过此标准可判定是否存在算子没有给输出 Tensor 写值的问题。尤其是当 `FLAGS_alloc_fill_value=255` 时，FP64、FP32、FP16、BF16 对应的浮点数均为 NaN，一般而言 loss 会快速出 NaN，可以快速定位到算子是否有问题。
 
 ## 2. 常见问题
 
@@ -1127,17 +1127,17 @@ CoreDump 通常是我们程序的 bug 造成了进程直接崩掉，这种情况
 
 CoreDump 问题首先要定位到**造成 CoreDump 的 C++的某行代码**，然后查看**上下文，加一些打印**看看哪些变量异常。这里给出一些所定 C++代码行的方法，或者如何收集一些有效的调试信息。
 
-- **方法 1：GLOG_v=10 python xxx**
+- **方法 1：`GLOG_v=10 python xxx`**
 
    这是 Paddle 日志量最全的 GLOG，那么**崩溃前最后一行日志打印，以及“下一行打印该是啥了？”**。这两行之间，往往是崩溃的地方。可以再加一些 std::cout 进一步定位具体行。如果出现随机挂（崩溃位置随机），这种方法不适用。
 
 - **方法 2：GDB 分析 dump 文件**
 
-   首先通过`ulimit -c unlimited` 来设置 core dump 的大小为无限制
+   首先通过 `ulimit -c unlimited` 来设置 core dump 的大小为无限制
 
-   产生 core.xxx dump 文件后，通过`gdb python core.xxx`解析 dump 文件。使用`bt`（backtrace）命令可以显示由崩溃点开始的函数调用栈，这基本能为我们提供信息锁定较小范围的代码行。但有些时候栈的信息很少。如果出现随机挂（崩溃位置随机），这种方法不适用。
+   产生 core.xxx dump 文件后，通过 `gdb python core.xxx` 解析 dump 文件。使用 `bt`（backtrace）命令可以显示由崩溃点开始的函数调用栈，这基本能为我们提供信息锁定较小范围的代码行。但有些时候栈的信息很少。如果出现随机挂（崩溃位置随机），这种方法不适用。
 
-- **方法 3：根据 CoreDump 时的 signal 信息、`dmesg`查到的内核消息做排查**
+- **方法 3：根据 CoreDump 时的 signal 信息、`dmesg` 查到的内核消息做排查**
 
    由于手头没有实际 CoreDump 的 case，我们举两个例子来演示。实际 CoreDump 可以用等同的方法。
 
@@ -1204,14 +1204,14 @@ CoreDump 问题首先要定位到**造成 CoreDump 的 C++的某行代码**，�
    SIGXFSZ    File size limit exceeded.
    ```
 
-   `Aborted at 1757588325 (unix time) try "date -d @1757588325" if you are using GNU date`提示了问题发生时间，我们执行如下命令：可以看到发生时间为`11 Sep 2025 10:58:45`
+   `Aborted at 1757588325 (unix time) try "date -d @1757588325" if you are using GNU date` 提示了问题发生时间，我们执行如下命令：可以看到发生时间为 `11 Sep 2025 10:58:45`
 
    ```log
    # date -d @1757588325
    Thu 11 Sep 2025 10:58:45 AM UTC
    ```
 
-   我们再执行`dmesg -T`命令，可以在其中找到`11 Sep 2025 10:58:45`时间附近的一条内核消息`NVRM: Xid (PCI:0000:3f:00): 31, pid=2038, name=python, Ch 00000010, intr 00000000. MMU Fault: ENGINE GRAPHICS GPCCLIENT_T1_0 faulted @ 0x7f60_d72f8000. Fault is of type FAULT_PDE ACCESS_TYPE_VIRT_READ`：
+   我们再执行 `dmesg -T` 命令，可以在其中找到 `11 Sep 2025 10:58:45` 时间附近的一条内核消息 `NVRM: Xid (PCI:0000:3f:00): 31, pid=2038, name=python, Ch 00000010, intr 00000000. MMU Fault: ENGINE GRAPHICS GPCCLIENT_T1_0 faulted @ 0x7f60_d72f8000. Fault is of type FAULT_PDE ACCESS_TYPE_VIRT_READ`：
 
    ![image-6](../images/paddle-debug-methods/image-6.png)
 
@@ -1223,7 +1223,7 @@ CoreDump 问题首先要定位到**造成 CoreDump 的 C++的某行代码**，�
 
    ![image-8](../images/paddle-debug-methods/image-8.png)
 
-   我们再执行`dmesg -T`命令，可以看到：`python[9912]: segfault at 0 ip 00007f717944612f sp 00007ffe2b951c60 error 4 in _ctypes.cpython-39-x86_64-linux-gnu.so[7f7179443000+f000]`：
+   我们再执行 `dmesg -T` 命令，可以看到：`python[9912]: segfault at 0 ip 00007f717944612f sp 00007ffe2b951c60 error 4 in _ctypes.cpython-39-x86_64-linux-gnu.so[7f7179443000+f000]`：
 
    ![image-9](../images/paddle-debug-methods/image-9.png)
 
@@ -1243,9 +1243,9 @@ Paddle 中 Hang 的问题比如：**多卡通信 Hang**、CPU/GPU 运算**时间
 
 此类问题，往往是多卡间通信不匹配导致的，比如有的卡在 AllReduce 有的卡在 AllGather，或者都在 AllReduce 但是期望通信的字节长度不一样。
 
-**首先**，我们可以`dmesg -T`看看，一般内核消息中会有类似`[Rank 0] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=xx, OpType::YYY, Numelln=xxx, NumelOut=xxx, Timeout(ms)=60000)`的表述。通过`dmesg -T`也可能发现 Hang 不是类型不匹配导致的，可能是硬件出现了啥异常，不是 Bug。我们这里主要讨论通信不匹配问题的调试思路。
+**首先**，我们可以 `dmesg -T` 看看，一般内核消息中会有类似 `[Rank 0] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=xx, OpType::YYY, Numelln=xxx, NumelOut=xxx, Timeout(ms)=60000)` 的表述。通过 `dmesg -T` 也可能发现 Hang 不是类型不匹配导致的，可能是硬件出现了啥异常，不是 Bug。我们这里主要讨论通信不匹配问题的调试思路。
 
-- **思路 1**：打开`export NCCL_DEBUG=INFO export NCCL_DEBUG_SUBSYS=ALL`可以看看 NCCL 的日志，或许可以发现蛛丝马迹。如果 PDC 上 NCCL 日志没有打印到 worklog 中，可以到`/root/paddlejob/workspace/log`中找找。典型的 NCCL 日志如下：
+- **思路 1**：打开 `export NCCL_DEBUG=INFO export NCCL_DEBUG_SUBSYS=ALL` 可以看看 NCCL 的日志，或许可以发现蛛丝马迹。如果 PDC 上 NCCL 日志没有打印到 worklog 中，可以到 `/root/paddlejob/workspace/log` 中找找。典型的 NCCL 日志如下：
 
    ```log
    -1567437:82977:82977 [0] NCCL INFO AllReduce: 1048576 Bytes -> Algo RING proto LL channel{Lo…Hi}={0…23}
@@ -1262,8 +1262,8 @@ Paddle 中 Hang 的问题比如：**多卡通信 Hang**、CPU/GPU 运算**时间
       - 反向 Hang 住可能是：1）前向多卡控制流 diff，反应在了反向上；2）**前向的通信节点，在特定卡上对 loss 没有贡献，导致反向在特定卡上被裁剪掉了。**
    - 注意，以上试验**必须在`export CUDA_LAUNCH_BLOCKING=1`下进行**
 
-- **思路 3**：在`export CUDA_LAUNCH_BLOCKING=1`下复现 Hang，通过`gdb python3.10 pid`附加到 Hang 的进程中，通过`bt`命令查看 Hang 时的调用堆栈
-   - 此外，基础平台组也给出了一个抓取调用栈的工具：[hang 诊断](https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/jPVgeifnCf/kPjJC7cmS_/ZUDiuqer_EdUmz)注意需要在`export CUDA_LAUNCH_BLOCKING=1`下复现 Hang 的情况下使用。
+- **思路 3**：在 `export CUDA_LAUNCH_BLOCKING=1` 下复现 Hang，通过 `gdb python3.10 pid` 附加到 Hang 的进程中，通过 `bt` 命令查看 Hang 时的调用堆栈
+   - 此外，基础平台组也给出了一个抓取调用栈的工具：[hang 诊断](https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/jPVgeifnCf/kPjJC7cmS_/ZUDiuqer_EdUmz)注意需要在 `export CUDA_LAUNCH_BLOCKING=1` 下复现 Hang 的情况下使用。
 
 - **思路 4**：如果有重点怀疑的通信位置，可以**局部关掉个别通信**，看看是否就不 Hang 了。进而定位代码位置。
 
@@ -1304,11 +1304,11 @@ Paddle 中 Hang 的问题比如：**多卡通信 Hang**、CPU/GPU 运算**时间
 CUDA 700 是显存越界，他有两个特点：
 
 - 所谓“越界”即本进程访问了非本进程权属范围的显存。假如某个 Kernel 发生了越界，但恰巧越界访问的是进程权属范围内的显存，那么系统是检测不到的。由于 cudaMalloc、cudaFree 是异步操作，影响性能，Paddle 底层 Allocator 机制，会预申请大量显存，形成显存池。在上次需要时直接分配使用，防止每次都调用 cudaMalloc、cudaFree。但 Allocator 机制可能导致 CUDA 700 不能及时发现，而发生 Nan、精度等问题。
-   - 因此，有时候 Nan、精度问题可以`export FLAGS_use_system_allocator=1`跑跑，看看是不是越界导致的
-   - 在调试 CUDA 700 问题时，需要`export FLAGS_use_system_allocator=1`第一时间、暴露第一个越界位置
-- 系统不会实时监测越界问题，因此 CUDA 700 报错往往是越界发生后，“过段时间”才报错，往往会报在如：cudaDeviceSynchronize、cudaFree、cudaMemcpyAsync 的地方。我们需要在 Paddle 中引入 Sync 机制，在每个 Kernel 运行结束时触发一次检测，可以“第一时间、暴露第一个越界位置”。1.5 节的`FLAGS_check_cuda_error` `_for_test_check_cuda_error`就是专门做这个用的。
+   - 因此，有时候 Nan、精度问题可以 `export FLAGS_use_system_allocator=1` 跑跑，看看是不是越界导致的
+   - 在调试 CUDA 700 问题时，需要 `export FLAGS_use_system_allocator=1`第一时间、暴露第一个越界位置
+- 系统不会实时监测越界问题，因此 CUDA 700 报错往往是越界发生后，“过段时间”才报错，往往会报在如：cudaDeviceSynchronize、cudaFree、cudaMemcpyAsync 的地方。我们需要在 Paddle 中引入 Sync 机制，在每个 Kernel 运行结束时触发一次检测，可以“第一时间、暴露第一个越界位置”。1.5 节的 `FLAGS_check_cuda_error` `_for_test_check_cuda_error` 就是专门做这个用的。
 
-此外，**cuda-memcheck**是 Nvidia 提供的检测工具，也可以用于 CUDA 700 问题的分析，注意，cuda-memcheck 也需要在`export FLAGS_use_system_allocator=1`下使用更好。
+此外，**cuda-memcheck**是 Nvidia 提供的检测工具，也可以用于 CUDA 700 问题的分析，注意，cuda-memcheck 也需要在 `export FLAGS_use_system_allocator=1` 下使用更好。
 
 #### 2.4.2. 显存用量/碎片
 
@@ -1316,7 +1316,7 @@ CUDA 700 是显存越界，他有两个特点：
 
 ##### 2.4.2.1. 显存用量统计的一些方法/工具（By 王欢）
 
-- **方法 1**：export FLAGS_enable_gpu_memory_usage_log=1，这个 FLAGS 会让 Paddle 在程序结束时打印诸如`[Memory Usage (MB)] gpu 0 : Reserved = 367.985, Allocated = 241.834`，Reserved 代表程序向 GPU 申请的显存峰值。Allocated 代表模型实际使用的显存峰值。
+- **方法 1**：export FLAGS_enable_gpu_memory_usage_log=1，这个 FLAGS 会让 Paddle 在程序结束时打印诸如 `[Memory Usage (MB)] gpu 0 : Reserved = 367.985, Allocated = 241.834`，Reserved 代表程序向 GPU 申请的显存峰值。Allocated 代表模型实际使用的显存峰值。
 
 - **方法 2**：Paddle 提供的显存用量统计 API
 
@@ -1350,7 +1350,7 @@ CUDA 700 是显存越界，他有两个特点：
 
 ##### 2.4.2.2. 显存碎片（By 张婷，王欢）（持续更新中）
 
-由于 cudaMalloc、cudaFree 是异步操作，影响性能，Paddle 底层 Allocator 机制，会预申请大量显存，形成显存池。在上次需要时直接分配使用，防止每次都调用 cudaMalloc、cudaFree。Allocator 在运行过程中，将显存池中的显存块按需切分给上层使用，过程中必然存在切分碎片。因此，碎片必然存在，但碎片太严重影响模型整体表现。我们通常以`paddle.device.cuda.max_memory_reserved() - paddle.device.cuda.max_memory_allocated()`描述碎片的多少。
+由于 cudaMalloc、cudaFree 是异步操作，影响性能，Paddle 底层 Allocator 机制，会预申请大量显存，形成显存池。在上次需要时直接分配使用，防止每次都调用 cudaMalloc、cudaFree。Allocator 在运行过程中，将显存池中的显存块按需切分给上层使用，过程中必然存在切分碎片。因此，碎片必然存在，但碎片太严重影响模型整体表现。我们通常以 `paddle.device.cuda.max_memory_reserved() - paddle.device.cuda.max_memory_allocated()` 描述碎片的多少。
 
 由于不同模型使用显存的“风格”是不同的，因此没有严格最好的 Allocator 策略，在各种模型上表现都最优。我们调试碎片问题，往往需要了解 Allocator 的策略，通过调整 Allocator 提供的策略 FLAGS，降低碎片量。
 
@@ -1364,22 +1364,22 @@ CUDA 700 是显存越界，他有两个特点：
 
 ###### 2.4.2.3.1. 从 Tensor、Allocation 生命周期看显存回收
 
-- `paddle.Tensor`是 Python 端的 Tensor，在 C++端为`paddle::pybind::TensorObject`。TensorObject 通过`paddle::Tensor tensor;`持有`phi::Tensor`
-- `phi::Tensor`是动态图 C++端“大”Tensor，通过`std::shared_ptr<phi::TensorBase> impl_{nullptr};`持有`phi::TensorBase`，`phi::DenseTensor`是`phi::TensorBase`的子类，也是 99.9%场景使用的子类。
-- `phi::DenseTensor`通过`std::shared_ptr<phi::Allocation> holder_;`持有一个`phi::Allocation`。`holder_`生命周期结束则显存释放回 Allocator。
+- `paddle.Tensor` 是 Python 端的 Tensor，在 C++端为`paddle::pybind::TensorObject`。TensorObject 通过 `paddle::Tensor tensor;` 持有 `phi::Tensor`
+- `phi::Tensor` 是动态图 C++端“大”Tensor，通过 `std::shared_ptr<phi::TensorBase> impl_{nullptr};` 持有`phi::TensorBase`，`phi::DenseTensor` 是 `phi::TensorBase` 的子类，也是 99.9%场景使用的子类。
+- `phi::DenseTensor` 通过 `std::shared_ptr<phi::Allocation> holder_;` 持有一个 `phi::Allocation`。`holder_` 生命周期结束则显存释放回 Allocator。
 
-一块显存的释放，需要：1）Python 端`paddle.Tensor`引用计数归零；2）`phi::Tensor::impl_`引用计数归零；3）`phi::DenseTensor::holder_`引用计数归零
+一块显存的释放，需要：1）Python 端 `paddle.Tensor` 引用计数归零；2）`phi::Tensor::impl_` 引用计数归零；3）`phi::DenseTensor::holder_` 引用计数归零
 
 因此，如果一块显存没有释放，我们需要考虑：
 
 - `paddle.Tensor`，PyObject 的引用计数是否归零，是否触发了 GC。会不会还被某个容器持有着？比如 list、dict 等。
-- `phi::Tensor`，会不会发生了两个`phi::Tensor`共用一个`phi::DenseTensor`的情况？比如，会不会，反向图还没执行，前向 Tensor 需要 Hold 给反向使用？
-- `phi::DenseTensor`，会不会静态图的 Scope 中还持有着`phi::DenseTensor`没有 Clear？
-- `phi::Allocation`，会不会有如下情况：对于 View 类 API，input 和 output 是共享显存的。比如 a = paddle.sliec(b)。即便 a 的生命周期全部结束，但 a、b 共同持有相同的`holder_`，导致`holder_`的引用计数不会归零。
+- `phi::Tensor`，会不会发生了两个 `phi::Tensor` 共用一个 `phi::DenseTensor` 的情况？比如，会不会，反向图还没执行，前向 Tensor 需要 Hold 给反向使用？
+- `phi::DenseTensor`，会不会静态图的 Scope 中还持有着 `phi::DenseTensor`没有 Clear？
+- `phi::Allocation`，会不会有如下情况：对于 View 类 API，input 和 output 是共享显存的。比如 a = paddle.sliec(b)。即便 a 的生命周期全部结束，但 a、b 共同持有相同的 `holder_`，导致 `holder_` 的引用计数不会归零。
 
 ###### 2.4.2.3.2. 从 API 执行视角看显存申请
 
-Paddle 的显存绝大多数都是在 Kernel 执行时，通过诸如`dev_ctx.template Alloc<T>(out);`分配的。我们可以通过如下 GLOG 查看动态图 API 执行，以及显存 Alloc、Free 的日志，从中可以看到一些 API 与显存申请释放的信息：`GLOG_vmodule=dygraph_functions=3,nodes3,tracer=3,stream_safe_cuda_allocator=10`
+Paddle 的显存绝大多数都是在 Kernel 执行时，通过诸如 `dev_ctx.template Alloc<T>(out);` 分配的。我们可以通过如下 GLOG 查看动态图 API 执行，以及显存 Alloc、Free 的日志，从中可以看到一些 API 与显存申请释放的信息：`GLOG_vmodule=dygraph_functions=3,nodes3,tracer=3,stream_safe_cuda_allocator=10`
 
 也可以参考 PR https://github.com/PaddlePaddle/Paddle/pull/69138 ，通过修改代码生成，定制化的做一些显存的统计、打印，辅助问题调试。
 
@@ -1488,13 +1488,13 @@ python -m flameprof apb_profile.out > apb_profile.svg
 
 #### 2.6.1. 调精度前首先避免模型精度随机性（By 钟辉，王欢）
 
-1. paddle.seed
+1. `paddle.seed`
 2. DataLoader num_workers**设置为 0**
 3. DataLoader shuffle**设置为 False**
-4. export NVIDIA_TF32_OVERRIDE=0
-5. export NCCL_ALGO= "Tree"
-6. export FLAGS_embedding_deterministic=1
-7. export FLAGS_cudnn_deterministic=1
+4. `export NVIDIA_TF32_OVERRIDE=0`
+5. `export NCCL_ALGO="Tree"`
+6. `export FLAGS_embedding_deterministic=1`
+7. `export FLAGS_cudnn_deterministic=1`
 
 #### 2.6.2. 如何查看某 Tensor 的反向梯度（By 王欢）
 
@@ -1729,7 +1729,7 @@ Tensor(shape=[4, 4], dtype=float32, place=Place(gpu:0), stop_gradient=False,
 
       ![image-14](../images/paddle-debug-methods/image-14.png)
 
-      日志目录中可见：各类配置集合 api_config\_、检查点 checkpoint、日志 log、全量日志 log_inorder、稳定性精度报告 stable.csv。
+      日志目录中可见：各类配置集合 `api_config_*`、检查点 checkpoint、日志 log、全量日志 log_inorder、稳定性精度报告 stable.csv。
 
       使用脚本 `tools/error_stat/csv_stat_stable.py` 对 stable.csv 进一步解析：
 
@@ -1905,7 +1905,7 @@ static_model = paddle.jit.to_static(
 static_model(fake_inputs)
 ```
 
-在原有代码里 `jit.save`处改为 `jit.to_static`并使用 fake 的输入跑一次，看下是否能复现问题
+在原有代码里 `jit.save` 处改为 `jit.to_static` 并使用 fake 的输入跑一次，看下是否能复现问题
 
 如果能复现，那么在一个进程里调试可以方便很多，比如可以二分组网确定出现精度问题的位置。
 
@@ -1913,7 +1913,7 @@ static_model(fake_inputs)
 
 ## 3. 调试小技巧
 
-- 日常调试中，如果想知道某代码位置，是如何从应用到“走”过来的。可以在特定位置加上：`raise ValueError`或`PADDLE_THROW`，再运行一遍，就可以看到从上层执行到底层的执行路径了。（By 王欢）
+- 日常调试中，如果想知道某代码位置，是如何从应用到“走”过来的。可以在特定位置加上：`raise ValueError` 或 `PADDLE_THROW`，再运行一遍，就可以看到从上层执行到底层的执行路径了。（By 王欢）
 
 ---
 
@@ -1923,10 +1923,10 @@ static_model(fake_inputs)
 
 PyLayer 是 C++实现的 Paddle 机制，用于支持自定义反向。在用户使用中，发现用户对 PyLayer 过于“信任”，会给 PyLayer 传递各种格式的参数，有时候会导致反向图组网错误。以下给出简单说明：
 
-1. apply()的输入只支持：Tensor, List of Tensor, Tuple of Tensor，其余形式的 Python 对象将不视为 Tensor 只做透传给 forward()。比如 List of List of Tensor 就不能当成 Tensor 处理。只有被识别为 Tensor 的输入 stop_gradient==False，才会创建反向节点、建立反向边
-2. forward()的输出，也只支持：Tensor, List of Tensor, Tuple of Tensor，其余形式的 Python 对象将不视为 Tensor 只做透传返回给 apply 的调用方。只有被识别为 Tensor 的输出才会建立反向边，才能有梯度。
-3. backward()的输入，由 PyLayer 机制生成，只会生成 Tensor, Tuple of Tensor 两种，如果前向的返回值是 List of Tensor，它的梯度作为 backward 的输入会是 Tuple of Tensor。举例，如果 forward 的返回值是：Tensor，int，List of Tensor, List of List of Tensor，则 backward 的输入会是 Tensor, Tuple of Tensor
+1. `apply()` 的输入只支持：Tensor、List of Tensor、Tuple of Tensor，其余形式的 Python 对象将不视为 Tensor 只做透传给 `forward()`。比如 List of List of Tensor 就不能当成 Tensor 处理。只有被识别为 Tensor 的输入 `stop_gradient==False`，才会创建反向节点、建立反向边
+2. `forward()` 的输出，也只支持：Tensor、List of Tensor、Tuple of Tensor，其余形式的 Python 对象将不视为 Tensor 只做透传返回给 apply 的调用方。只有被识别为 Tensor 的输出才会建立反向边，才能有梯度。
+3. `backward()` 的输入，由 PyLayer 机制生成，只会生成 Tensor、Tuple of Tensor 两种，如果前向的返回值是 List of Tensor，它的梯度作为 backward 的输入会是 Tuple of Tensor。举例，如果 forward 的返回值是：Tensor、int、List of Tensor、List of List of Tensor，则 backward 的输入会是 Tensor、Tuple of Tensor
 4. backward()的输出，应该与 forward 输入的 Tensor“格式”严格一一对应
    1. 如果某个 Tensor 没有梯度，可以传 None
-   2. 如果某个 List of Tensor 中部分 Tensor 没有梯度，需要传[Tensor, None, Tensor, ...]
+   2. 如果某个 List of Tensor 中部分 Tensor 没有梯度，需要传 `[Tensor, None, Tensor, ...]`
    3. 如果 forward 输入的 List of Tensor 的第 1 个 Tensorstop_gradient==True，PyLayer 会认为整个 List 都是不需要梯度的，它期望 backward 的返回值是 None，否则报错
