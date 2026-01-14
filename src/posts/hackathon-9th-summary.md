@@ -61,7 +61,7 @@ category: community-activity
 
 - 模式：远程实训 + 导师 1V1 带教。
 - 成果：从 8 月到 12 月，营员们提交了多份高质量周报。最终 3 位同学顺利答辩结营。
-- 硬核内容：大家攻克了包括 算子切分推导规则切多刀功能适配、动转静性能极致优化等在内的多个难题。
+- 硬核内容：大家攻克了包括算子切分推导规则切多刀功能适配、动转静性能极致优化等在内的多个难题。
 - 彩蛋：这不仅是集训，更是面试现场！多位表现亮眼的同学已经拿到了飞桨的实习、校招、社招 Offer，欢迎加入！
 
 > 集训营开源项目地址：[https://github.com/PFCCLab/Camp](https://github.com/PFCCLab/Camp)，所有学习笔记与周报记录均留痕～
@@ -123,7 +123,7 @@ category: community-activity
 
 > **关于 PFCC**
 >
-> PFCC 全称 Paddle Framework Contributor Club ，意为飞桨框架贡献者俱乐部，是一个有兴趣、正在或者已经为飞桨开源框架做开源贡献的贡献者成立的虚拟组织。在这里，飞桨开源框架的贡献者进行讨论、交流和分享，并为飞桨框架做出持续的贡献。如果你有意愿加入我们，请发邮件到[ext_paddle_oss@baidu.com](mailto:ext_paddle_oss@baidu.com)，在邮件中附上自己的 GitHub ID、贡献详情与联系方式，会有工作人员邀请你加入。
+> PFCC 全称 Paddle Framework Contributor Club，意为飞桨框架贡献者俱乐部，是一个有兴趣、正在或者已经为飞桨开源框架做开源贡献的贡献者成立的虚拟组织。在这里，飞桨开源框架的贡献者进行讨论、交流和分享，并为飞桨框架做出持续的贡献。如果你有意愿加入我们，请发邮件到[ext_paddle_oss@baidu.com](mailto:ext_paddle_oss@baidu.com)，在邮件中附上自己的 GitHub ID、贡献详情与联系方式，会有工作人员邀请你加入。
 
 **加入 PFCC，与我们一起参与到飞桨框架的开发中吧！**
 
