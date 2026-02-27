@@ -60,7 +60,7 @@ figcaption {
 
 <MessageBox>
 <Message name="Echo-Nie" github="Echo-Nie">
-大家好，我是聂宇旋，GitHub ID 是 Echo-Nie，现在是一名大四本科生。 2024 年 7 月，我通过 C4‑AI 大赛与飞桨结缘，随后参与启航计划，后面又持续参与了一些黑客松的开源项目。之后我加入了飞桨团队，并在推理组完成了近四五个月的实习 。
+大家好，我是聂宇旋，GitHub ID 是 Echo-Nie，现在是一名大四本科生。2024 年 7 月，我通过 C4‑AI 大赛与飞桨结缘，随后参与启航计划，后面又持续参与了一些黑客松的开源项目。之后我加入了飞桨团队，并在推理组完成了近四五个月的实习。
 </Message>
 </MessageBox>
 
