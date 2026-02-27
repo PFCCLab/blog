@@ -1,6 +1,6 @@
 ---
 title: 【开源江湖闲聊录】从启航到启航：聂师傅的开源成长记
-date: 2025-11-03
+date: 2026-02-27
 author:
    name: 孙钟恺
    github: sunzhongkai588
