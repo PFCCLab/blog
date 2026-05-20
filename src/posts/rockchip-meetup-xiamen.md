@@ -22,11 +22,6 @@ figcaption {
 
 5 月 18 日下午，黑客松第十期「文心合作伙伴赛道」联合瑞芯微、百度飞桨（厦门）人工智能产业赋能中心，在厦门市思明区软件园一期元汇楼举办线下 Meetup。本次活动围绕瑞芯微生态与「PaddleOCR-VL RKNN3 模型转换」打卡任务展开，吸引了来自厦门及周边地区的开发者和高校同学到场参与。
 
-<figure>
-<img src="../images/rockchip-meetup-xiamen/01-poster.jpg" alt="厦门 Meetup 现场海报" />
-<figcaption>厦门 Meetup 现场</figcaption>
-</figure>
-
 <!-- more -->
 
 ---
