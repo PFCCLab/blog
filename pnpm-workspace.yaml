@@ -1,5 +1,5 @@
-minimumReleaseAgeExclude:
-  - baseline-browser-mapping
+overrides:
+  baseline-browser-mapping: 2.10.32
 
 allowBuilds:
   esbuild: true
