@@ -1,4 +1,5 @@
-minimumReleaseAge: 0
+minimumReleaseAgeExclude:
+  - baseline-browser-mapping
 
 allowBuilds:
   esbuild: true
