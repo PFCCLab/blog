@@ -1,6 +1,3 @@
-overrides:
-  baseline-browser-mapping: 2.10.32
-
 allowBuilds:
   esbuild: true
   nice-napi: true

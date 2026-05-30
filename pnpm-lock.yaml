@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  baseline-browser-mapping: 2.10.32
-
 importers:
 
   .:
@@ -6258,7 +6255,7 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  baseline-browser-mapping@2.10.33: {}
+  baseline-browser-mapping@2.10.32: {}
 
   birpc@2.8.0: {}
 
