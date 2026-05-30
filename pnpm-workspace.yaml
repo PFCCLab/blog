@@ -1,0 +1,7 @@
+minimumReleaseAge: 0
+
+allowBuilds:
+  esbuild: true
+  nice-napi: true
+  sharp: true
+  simple-git-hooks: true
