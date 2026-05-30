@@ -8,12 +8,12 @@
   "scripts": {
     "postinstall": "simple-git-hooks",
     "dev": "vitepress dev src",
-    "build": "tsx src/.vitepress/theme/hooks/beforeBuild.mts && vitepress build src",
+    "build": "node src/.vitepress/theme/hooks/beforeBuild.mts && vitepress build src",
     "serve": "vitepress serve src",
     "fmt": "lint-md src/**/*.md --fix && prettier --write .",
     "fmt:check": "lint-md src/**/*.md && prettier --check .",
-    "img:compress": "tsx scripts/compress-image.mts",
-    "lint:filename": "tsx scripts/check-filename.mts"
+    "img:compress": "node scripts/compress-image.mts",
+    "lint:filename": "node scripts/check-filename.mts"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
@@ -21,7 +21,6 @@
     "@vite-pwa/vitepress": "^1.1.0",
     "feed": "^5.1.0",
     "tailwindcss": "^4.1.17",
-    "tsx": "^4.21.0",
     "vite-plugin-pwa": "^1.2.0",
     "vitepress": "^1.6.4",
     "vue": "^3.5.25",

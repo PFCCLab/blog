@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises'
-import { createPagesDynamicRoutes } from '../loaders/posts.js'
-import { themeConfig } from '../../config.js'
+import { createPagesDynamicRoutes } from '../loaders/posts.ts'
+import { themeConfig } from '../../config.ts'
 
 async function main() {
   const postsPerPage = themeConfig.postsPerPage ?? Number.MAX_SAFE_INTEGER
