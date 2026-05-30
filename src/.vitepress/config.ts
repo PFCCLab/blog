@@ -1,7 +1,7 @@
 import { defineConfigWithTheme } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 import tailwindcss from '@tailwindcss/vite'
-import { genFeed } from './genFeed.js'
+import { genFeed } from './genFeed.ts'
 import mathjax3 from 'markdown-it-mathjax3'
 
 interface ThemeConfig {
