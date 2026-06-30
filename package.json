@@ -31,7 +31,7 @@
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.13.2",
     "markdown-it-mathjax3": "^4.3.2",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.1",
     "sharp": "^0.35.2",
     "simple-git-hooks": "^2.13.1"
   },
