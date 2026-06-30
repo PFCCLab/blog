@@ -66,6 +66,7 @@ figcaption {
 </div>
 
 2. 大家常说的 MoE 架构又到底是啥？
+
 <div style="display: flex; justify-content: center">
     <figure style="width: 49.5%;">
         <img src="../images/post-training-overview/moe.gif"/>
