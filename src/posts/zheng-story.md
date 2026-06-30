@@ -121,7 +121,7 @@ figcaption {
          <figcaption>上图为 RK 开发者大会的合照</figcaption>
       </figure>
    </div>
-    
+
    ​随后就是参加了新的黑客松，认识了 Arm 的 Liliya 姐。Liliya 姐在 Arm 领域给了我很多的帮助，在她的支持下，我了解了很多 Arm 相关的最新技术，也参与到了 Paddle 模型 -> Arm 虚拟硬件部署链路的移植工作中。在她的帮助下，我移植了 Paddle 的多个模型到 Arm 虚拟硬件上，然后就是参加了 Arm 虚拟硬件的小发布会，一不小心成为了 Arm Ambassadors，顺便蹭了她一顿饭。
    ​<!-- 下图为郑师傅和上文的Liliya姐 -->
    <div style="display: flex; justify-content: center">

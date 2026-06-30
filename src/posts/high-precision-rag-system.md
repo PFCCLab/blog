@@ -19,6 +19,7 @@ category: community-activity
 2. **存储层**：利用 Milvus 向量数据库存储 Dense Embedding，同时维护倒排索引以支持关键词检索。
 3. **检索与问答层**：实现向量检索与关键词检索的加权融合（RRF），集成 ERNIE 大模型 API 接口生成回答。
 4. **应用层**：基于 Gradio 构建交互界面。
+
 <div style="display: flex; justify-content: center;">
   <img src="../images/high-precision-rag-system/flow.jpg" alt="Fig 2" style="width: 80%;">
 </div>

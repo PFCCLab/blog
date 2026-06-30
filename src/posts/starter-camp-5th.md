@@ -56,9 +56,9 @@ figcaption {
    <Message name="唐汉霖" github="hanlintang">
    我在启航计划中主要负责PaddleNLP相关的任务，包括BERT、ERNIE等模型在PaddlePaddle 3.0框架下的新版推理实现，以及部分SLM模型的PIR适配，PaddleNLP大模型套件预训练、微调、对齐和量化的新手文档撰写和示例项目开发。除此之外，还完成了一些文档任务，参与了飞桨0-size Tensor支持以及一些bug修复工作。<br>
    这是一次非常宝贵的实践经历，在这个过程里我逐步熟悉了企业中项目开发的版本控制、代码与文档的开发规范、PR提交与审核及CI流程，并在mentor的指导下完成了相应任务。非常感谢飞桨提供的宝贵机会，让我在与老师同学们的交流中对开源和开源社区有了更深入的理解，在开发实践中切实解决了用户的实际问题。未来我将持续精进，为开源社区贡献更多力量。
-   
-   ![tanghanlin](../images/starter-camp-5th/tanghanlin.jpg)
-   </Message>
+
+![tanghanlin](../images/starter-camp-5th/tanghanlin.jpg)
+</Message>
 </MessageBox>
 
 **聂宇旋 云南大学软件学院人工智能学院 22 级 软件工程专业 本科生**
@@ -67,9 +67,9 @@ figcaption {
    <Message name="聂宇旋" github="Echo-Nie">
    在集训期间，我学习了百度飞桨的基础知识与工作流程，并积极参与多个开源任务，包括文档修复、主框架功能补充、Paddle Speech 脚本完善以及 Paddle NLP 文档扩充等。我还处理了多个 Issue 并提交了相应的修复 PR。公司的开发流程更加系统和严谨，特别是在 PR 提交与代码评审方面，是我此前在学校项目中未曾接触过的。这段经历不仅让我熟悉了开源项目的协作机制，也显著提升了我在代码阅读、文档查阅和问题定位方面的能力。<br>
    通过实习，我深入了解了 PaddlePaddle 框架的 API 使用规范、脚本编写标准及文档格式要求。从最初对流程较为生疏，到后来能够独立完成任务，我在实践中逐步养成了规范提交 PR 的习惯，并学会了如何高效地与团队成员沟通协作。这段经历让我深刻认识到敢于提问、主动沟通和保持开源热情的重要性，同时也被社区开发者们的高效执行力所激励。此外，担任助教的经历也让我在帮助他人的过程中实现了自我成长，更加理解开源贡献需要深入思考与持续投入，而非仅仅为了完成任务。
-   
-   ![nieyuxuan](../images/starter-camp-5th/nieyuxuan.jpg)
-   </Message>
+
+![nieyuxuan](../images/starter-camp-5th/nieyuxuan.jpg)
+</Message>
 </MessageBox>
 
 **朱萌萌 北京理工大学 化学与化工学院 纳米化学硕士研究生**
@@ -78,9 +78,9 @@ figcaption {
    <Message name="朱萌萌" github="594233">
    启航计划是我参与的第一个开源活动，让注册许久的Github账号终于有了用武之地。在本次集训中，我成功在本地部署了前沿的多模态模型，并将其迁移到PaddlePaddle框架上，完成模型的推理对齐。过程中，百度团队的AIStudio在线编程环境帮了大忙，它让没有团队支持的我，也能有机会学习先进的人工智能知识。这次宝贵的开源经历不仅让我对大模型有了更深入的认识，也极大地提升了我的技术信心——只要热爱，肯钻研，不断寻找解决方法，就能完成任务！<br>
    这里有热心伙伴并肩完成开源任务，有礼物奖励顺利结营的参与者，更有活泼又专业的导师在线指导。别担心自己行不行，迈出第一步就知道了！同学们，大胆冲吧！
-   
-   ![zhumengmeng](../images/starter-camp-5th/zhumengmeng.jpg)
-   </Message>
+
+![zhumengmeng](../images/starter-camp-5th/zhumengmeng.jpg)
+</Message>
 </MessageBox>
 
 ## 周密的活动安排
