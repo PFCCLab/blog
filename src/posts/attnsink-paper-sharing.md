@@ -76,7 +76,7 @@ $\text{Sink}_k^\epsilon = \frac{1}{L} \sum_{l=1}^{L} \frac{1}{H} \sum_{h=1}^{H} 
 - 输入数据的领域对 attention sink 程度几乎没有影响。
 - 超越自然语言：即便输入随机采样的序列也仍会出现。
 - base model 和 chat model：经过 instruction tuning 后的模型的 attention sink 结果与预训练模型结果相似。
-- model scale：从小模型(14M)到大模型(10B+)，attention sink 均会出现。
+- model scale：从小模型（14M）到大模型（10B+），attention sink 均会出现。
 
 **由于 chat model 和 base model 在 sink 到比例相似，attention sink 很可能是在预训练阶段出现的。**
 
@@ -109,9 +109,9 @@ Fix token(StreamingLLM)：在序列中添加一个 global learnable token，作�
 - 采用 Prefix-LM 时，attention sink 出现在**prefix token 中，而不仅仅是第一个 token**。
    - 仍然只出现在一个 token 上，但这个 token 会是前缀中的某一个，而不是固定在全局的第一个 token。
 
-采用**滑动窗口注意力 (Shifted Window Attention)** 时，attention sink 出现在窗口的“绝对”第一个 token，而非“相对”第一个 token。**较小的窗口大小会抑制 sink 的出现**。
+采用**滑动窗口注意力 （Shifted Window Attention）** 时，attention sink 出现在窗口的“绝对”第一个 token，而非“相对”第一个 token。**较小的窗口大小会抑制 sink 的出现**。
 
-如果一个 token 位于窗口范围内 (即 t≤w，其中 t 为 token 位置，w 为窗口大小)，它仍然能够注意到序列的第一个 token，此时模型仍然会在第一个 token 上出现 sink。当 t>w 时，该 token 只能注意到其窗口内的第一个 token (即第 t−w+1 个 token)，而这个“相对”的第一个 token 通常不会出现 attention sink。减小窗口大小可以阻止 sink 的出现。
+如果一个 token 位于窗口范围内 （即 t≤w，其中 t 为 token 位置，w 为窗口大小），它仍然能够注意到序列的第一个 token，此时模型仍然会在第一个 token 上出现 sink。当 t>w 时，该 token 只能注意到其窗口内的第一个 token （即第 t−w+1 个 token)，而这个“相对”的第一个 token 通常不会出现 attention sink。减小窗口大小可以阻止 sink 的出现。
 
 ## 模型结构对 Attention Sink 的影响
 
@@ -130,7 +130,7 @@ Fix token(StreamingLLM)：在序列中添加一个 global learnable token，作�
 
 ![](../images/attnsink-paper-sharing/attention_sink_table_4.png)
 
-通过引入可学习的 sink token（作为 implicit bias）或直接在注意力机制中添加可学习的键值偏置 (KV biases) 或仅键偏置 (K biases, 此时$\mathbf{v}^{\star l,h}=\mathbf{0}$)，可以将 sink token 从第一个 token 转移到这些引入的 bias 上，且不会损害模型性能 。而仅使用 value bias 则做不到，sink 会回到第一个 token。
+通过引入可学习的 sink token（作为 implicit bias）或直接在注意力机制中添加可学习的键值偏置 （KV biases） 或仅键偏置 (K biases, 此时$\mathbf{v}^{\star l,h}=\mathbf{0}$)，可以将 sink token 从第一个 token 转移到这些引入的 bias 上，且不会损害模型性能 。而仅使用 value bias 则做不到，sink 会回到第一个 token。
 
 ## Attention 形式的影响
 

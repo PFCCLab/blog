@@ -40,7 +40,7 @@ figcaption {
 
 本篇博客主要依据顺师傅的赛题答辩内容进行编写，从**过去**、**现在**、**未来**三个角度，对项目进行分析、总结和展望。
 
-## >>> print(past) 过去
+## >>> print（past） 过去
 
 ### 01 - 关于任务
 
@@ -58,15 +58,15 @@ figcaption {
 
 而本任务，则是要求将 xdoctest 工具引入到 Paddle CI 检查流水线中，利用 xdoctest 能够自动执行示例代码，并对示例代码的输出进行检查的特性，对 Paddle API 文档中的示例代码进行检查，确保示例代码的输出结果与实际运行结果一致，从而提高 Paddle API 文档的质量。
 
-#### >>> print(why_do_it) 为什么做这个事情？
+#### >>> print（why_do_it） 为什么做这个事情？
 
 文档是开发者接触 Paddle 的第一手学习资料，需要保证用户能够 **快速、正确** 地上手 Paddle 框架，代码示例的重要程度也就不言而喻。
 
-#### >>> print(do_it_fast) 何为快速？
+#### >>> print（do_it_fast） 何为快速？
 
 能够引导用户学习飞桨官方文档，并直接获得使用相应 API 接口的能力。
 
-#### >>> print(do_it_right) 何为正确？
+#### >>> print（do_it_right） 何为正确？
 
 提供给用户正确运行、结果符合预期的示例代码。
 
@@ -74,7 +74,7 @@ figcaption {
 
 过去 Paddle 的 API 文档示例代码，对于普通 Python 语句没有提示符要求，对于输出则使用 `#` 进行注释。
 
-#### >>> print(problem) 过去这样做有什么问题？
+#### >>> print（problem） 过去这样做有什么问题？
 
 ![xdoctest-02](../images/xdoctest-project/xdoctest-2.jpg)
 
@@ -82,7 +82,7 @@ figcaption {
 - 不符合 Python 开源项目里对可交互示例的实践和习惯
 - 代码检查不严格，只保证运行，**不保证正确**
 
-#### >>> print(solutions) 都有哪些现成的解决方案？
+#### >>> print（solutions） 都有哪些现成的解决方案？
 
 ![xdoctest-03](../images/xdoctest-project/xdoctest-3.jpg)
 
@@ -106,7 +106,7 @@ Python 标准库中内置了 [doctest](https://docs.python.org/3/library/doctest
 - 项目管理难
 - 工程量巨大
 
-## >>> print(now) 现在
+## >>> print（now） 现在
 
 ### 01 - 项目分解
 
@@ -120,7 +120,7 @@ Python 标准库中内置了 [doctest](https://docs.python.org/3/library/doctest
     </figure>
 </div>
 
-#### >>> print(discussion) 都讨论了些什么？
+#### >>> print（discussion） 都讨论了些什么？
 
 在顺师傅和我们的交流中，共同抛出了相当多的问题进行讨论。这个阶段也遇到了项目的第一个大坑——**历史包袱重**。
 
@@ -137,7 +137,7 @@ Python 标准库中内置了 [doctest](https://docs.python.org/3/library/doctest
 - 接口变动、逻辑变动
 - 与单元测试关注点不同，测试方案不同
 
-#### >>> print(rfc_for_project) 完成设计文档
+#### >>> print（rfc_for_project） 完成设计文档
 
 经过细致的讨论和顺师傅对上述问题的梳理，逐渐理清了项目设计思路，并最终完成设计文档，正式启动项目。
 
@@ -146,7 +146,7 @@ Python 标准库中内置了 [doctest](https://docs.python.org/3/library/doctest
 - **36** 页
 - **2** 个大版本，**3** 个小版本
 
-#### >>> print(milestones) 里程碑
+#### >>> print（milestones） 里程碑
 
 在顺师傅完成项目拆解后，开始着手开发。此时遇到第二个大坑——**项目管理难**。
 
@@ -158,7 +158,7 @@ Python 标准库中内置了 [doctest](https://docs.python.org/3/library/doctest
     </figure>
 </div>
 
-#### >>> print(just_use_it) 直接用 xdoctest 不行吗？
+#### >>> print（just_use_it） 直接用 xdoctest 不行吗？
 
 xdoctest 并不适用如 Paddle 此类庞大复杂的框架。
 
@@ -167,7 +167,7 @@ xdoctest 并不适用如 Paddle 此类庞大复杂的框架。
 - **【无数据类型检查】** 不能比对浮点数、复数等情况
 - **【无法进行全局控制】** 如 timeout，错误语句等
 
-#### >>> print(technique_solutions) 主要的技术解决方案
+#### >>> print（technique_solutions） 主要的技术解决方案
 
 - **针对【接口遍历不全】** 此次任务沿用飞桨原有的接口遍历逻辑，将原有的 xdoctest 的检查逻辑进行拆分
 - **针对【检查环境混用】** 此次任务利用多进程技术对执行环境进行隔离，进而防止环境污染等情况
@@ -184,7 +184,7 @@ xdoctest 并不适用如 Paddle 此类庞大复杂的框架。
 - 解耦示例检查结果
 - 日志级别分离
 
-#### >>> print(workload) 工作量有多大？
+#### >>> print（workload） 工作量有多大？
 
 由于 Paddle 的公开 API 数量众多，且需要全量的优化对应文档的示例代码，所以在该阶段遇到第三个大坑——**工程量巨大**。
 
@@ -202,13 +202,13 @@ xdoctest 并不适用如 Paddle 此类庞大复杂的框架。
 
 ### 03 - 开源社区
 
-#### >>> print(happy_open_source) 社区快乐开源活动
+#### >>> print（happy_open_source） 社区快乐开源活动
 
 飞桨快乐开源活动旨在鼓励更多的开发者参与到飞桨社区的开源建设中，帮助社区修复 bug 或贡献 feature，加入开源、共建飞桨。
 
 在本赛题中，顺师傅发起了 2 个衍生的快乐开源任务，借助社区的力量来一起全量优化 Paddle 文档的示例代码。
 
-#### >>> print(missions_0) 开源任务一 ： 修改中英文示例一致
+#### >>> print（missions_0） 开源任务一 ： 修改中英文示例一致
 
 修改目前 Paddle docs 中仍使用 code-block 的示例代码为 COPY-FROM [docs#5957](https://github.com/PaddlePaddle/docs/issues/5957)
 
@@ -220,7 +220,7 @@ xdoctest 并不适用如 Paddle 此类庞大复杂的框架。
     </figure>
 </div>
 
-#### >>> print(missions_1) 开源任务二 ： 修改旧的示例代码
+#### >>> print（missions_1） 开源任务二 ： 修改旧的示例代码
 
 \[xdoctest\] 分批次修改已有代码的示例 [#55629](https://github.com/PaddlePaddle/Paddle/issues/55629)
 
@@ -250,7 +250,7 @@ xdoctest 并不适用如 Paddle 此类庞大复杂的框架。
 - 阶段总结，问题反馈
 - 开发、打磨工具 `convert_doctest`
 
-##### >>> print(convert_doctest.\_\_doc\_\_) 辅助工具
+##### >>> print（convert_doctest.\_\_doc）_\_) 辅助工具
 
 为了方便社区开发者完成示例代码的修改，顺师傅开发了 [convert_doctest](https://github.com/megemini/convert_doctest) 辅助工具，能够实现：
 
@@ -267,7 +267,7 @@ xdoctest 并不适用如 Paddle 此类庞大复杂的框架。
     </figure>
 </div>
 
-#### >>> print(missions_bravo) 整体开源贡献
+#### >>> print（missions_bravo） 整体开源贡献
 
 - 共有 **24 位** 开源开发者参与。
 - 涉及约 **450 个** 文件。
@@ -282,7 +282,7 @@ xdoctest 并不适用如 Paddle 此类庞大复杂的框架。
 ![xdoctest-11](../images/xdoctest-project/xdoctest-11.jpg)
 ![xdoctest-12](../images/xdoctest-project/xdoctest-12.jpg)
 
-## >>> print(future) 未来
+## >>> print（future） 未来
 
 ### 01 - 任务总结
 

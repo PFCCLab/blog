@@ -62,7 +62,7 @@ figcaption {
        </figure>
    </div>
 
-> 会议材料及回放见百度网盘链接: https://pan.baidu.com/s/16vAVoXpCgdrrRK5e_-w7Ig ，提取码见 PFCC 微信群公告。
+> 会议材料及回放见百度网盘链接： https://pan.baidu.com/s/16vAVoXpCgdrrRK5e_-w7Ig ，提取码见 PFCC 微信群公告。
 
 ## QA 环节
 

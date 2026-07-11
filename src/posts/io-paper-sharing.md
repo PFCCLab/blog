@@ -44,17 +44,17 @@ MoE 模型享受了专家带来的参数扩展，但同样需要保存相较 Den
 </figure>
 MoC的工作集中在减少参数量上，思路也非常简单：
 
-- Partial Experts Checkpointing (PEC) 每次只保存部分专家参数从而减少参数量
+- Partial Experts Checkpointing （PEC） 每次只保存部分专家参数从而减少参数量
 - 不同的 CheckPoint 保存不同的专家（确保每个专家都有 CheckPoint）
-- 选择被保存专家的不同策略(固定顺序/按热门度排序顺序)
+- 选择被保存专家的不同策略（固定顺序/按热门度排序顺序）
 
 ### 一致性问题
 
-有个很直接的问题，如果每次不是保存所有专家的话，不与模型完全一致？确实是这样的，所以 MoC 提出了一个指标：Proportion of Lost Tokens (PLT)来衡量这种影响。简单来说这一轮没有存的专家可以等效于这个专家这一 itr 没有处理任何 token，因此可以直接用这些等效于被丢失的 token 数的比例来衡量。
+有个很直接的问题，如果每次不是保存所有专家的话，不与模型完全一致？确实是这样的，所以 MoC 提出了一个指标：Proportion of Lost Tokens （PLT）来衡量这种影响。简单来说这一轮没有存的专家可以等效于这个专家这一 itr 没有处理任何 token，因此可以直接用这些等效于被丢失的 token 数的比例来衡量。
 
 MoC 做了相关实验，得出的结论是当该比例 ≤ 3.75% 时，对 loss 的影响非常小。这其实比较符合实际情况，因为即使是在正常训练中，也有一些门控策略会出于一些原因主动丢弃一些 token，例如 GShard 为了强制负载均衡就会丢弃一部分 token。这就给异步 CheckPoint 提供了减少参数量的可能。
 
-比较有意思的是，MoC 给出的这个 3.75%比例的 token 丢弃对应为只保存 2 个专家（总专家为 8），这从另一个角度验证了 MoE 层中专家 token 分配不均的情况。
+比较有意思的是，MoC 给出的这个 3.75% 比例的 token 丢弃对应为只保存 2 个专家（总专家为 8），这从另一个角度验证了 MoE 层中专家 token 分配不均的情况。
 
 <figure>
     <img src="../images/io-paper-sharing/image-3.png"/>
@@ -100,7 +100,7 @@ MoE 训练优化关注的是计算/通信 overlap，而推理由于 KV cache 的
 
    $\beta: \text{Maximum Memory Access Per Second}$
 
-- **计算强度(**Arithmetic Intensity**)上限**$I_{max}$：两个指标相除即可得到计算平台的**计算强度上限**。它描述的是在这个计算平台上，单位内存交换最多用来进行多少次计算。单位是`FLOPs/Byte`。
+- **计算强度（**Arithmetic Intensity**）上限**$I_{max}$：两个指标相除即可得到计算平台的**计算强度上限**。它描述的是在这个计算平台上，单位内存交换最多用来进行多少次计算。单位是`FLOPs/Byte`。
 
    $I_{max}: \frac{\pi}{\beta}$
 
@@ -123,7 +123,7 @@ MoE 训练优化关注的是计算/通信 overlap，而推理由于 KV cache 的
 
 由上图中可以看到，计算能力先由带宽上限限制，在带宽满足后才会由算力限制，而带宽和算力分别决定了前段 roofline 的角度和后段 roofline 的高度。roofline 给定了平台计算能力上限，而计算任务需要根据其计算强度与访存强度来在图中找到对应的位置。
 
-给个 example，FasterMoE 中 roofline-model 分析，并且给出了各种优化手段(降低访存量（通信量）/提高计算量)在 roofline-model 中的实际位置。
+给个 example，FasterMoE 中 roofline-model 分析，并且给出了各种优化手段（降低访存量（通信量）/提高计算量）在 roofline-model 中的实际位置。
 
 <figure>
     <img src="../images/io-paper-sharing/image-8.png"/>
@@ -169,8 +169,8 @@ MoE 训练优化关注的是计算/通信 overlap，而推理由于 KV cache 的
 
 - pre-attention:attention前的一些操作，例如 layer norm 和 QKV projection
 - attention
-- post-attention:紧接 attention 的 MoE layer
-- paged weights:切分过的 MoE layer 权重，需要在合适的时候 load 进 GPU
+- post-attention：紧接 attention 的 MoE layer
+- paged weights：切分过的 MoE layer 权重，需要在合适的时候 load 进 GPU
 - DtoH 和 HtoD 可以直观的理解为 I/O pipeline
 
 <img src="../images/io-paper-sharing/image-13.png"/>

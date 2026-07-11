@@ -32,9 +32,9 @@ figcaption {
 
 ### 你需要提前了解什么？
 
-在深入了解大型语言模型 (LLM) 的后训练阶段之前，您最好具备以下基础知识：
+在深入了解大型语言模型 （LLM） 的后训练阶段之前，您最好具备以下基础知识：
 
-- **Tokenizer (分词器)**：了解文本如何被分解成模型可处理的单元。
+- **Tokenizer （分词器）**：了解文本如何被分解成模型可处理的单元。
 - **Transformer 架构**：特别是 decode-only 的 Transformer 架构。
 - **概率论、线性代数**：一些基础的数学知识。
 - **深度学习**：一些基础概念。
@@ -81,9 +81,9 @@ figcaption {
 本文将按照以下章节顺序讲解 LLM 的后训练过程：
 
 1. **引言：一个 LLM 从无到有的全流程**
-2. **[监督微调 (SFT)](#二、监督微调-supervised-fine-tuning-sft)**
-3. **[直接偏好优化 (DPO)](#三、直接偏好优化-direct-preference-optimization-dpo)**
-4. **[在线强化学习 (Online RL)](#四、在线强化学习-online-reinforcement-learning-online-rl)**
+2. **[监督微调 （SFT）](#二、监督微调-supervised-fine-tuning-sft)**
+3. **[直接偏好优化 （DPO）](#三、直接偏好优化-direct-preference-optimization-dpo)**
+4. **[在线强化学习 （Online RL）](#四、在线强化学习-online-reinforcement-learning-online-rl)**
 5. **[总结](#五、总结)**
 6. **[相关前沿工作](#六、相关前沿工作)**
 
@@ -98,7 +98,7 @@ figcaption {
     </figure>
 </div>
 
-### 1. 预训练阶段 (Pre-training)
+### 1. 预训练阶段 （Pre-training）
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
@@ -135,7 +135,7 @@ $-\log P(I) \cdot P(like \mid I) \cdot P(cats \mid I \text{ } like) = - \log P(I
 
 这也是预训练阶段的损失函数。损失函数的值越小，说明模型对这句话的预测能力越强，也即越“贴近人类语言”。
 
-预训练阶段完成后，我们会得到一个 **Base Model (基础模型)**。需要注意的是，**基础模型只在预训练中学习到“预测下一个 token”，而没有学习如何与人类进行对话**。
+预训练阶段完成后，我们会得到一个 **Base Model （基础模型）**。需要注意的是，**基础模型只在预训练中学习到“预测下一个 token”，而没有学习如何与人类进行对话**。
 
 #### 关于 Base Model 的行为
 
@@ -159,7 +159,7 @@ $-\log P(I) \cdot P(like \mid I) \cdot P(cats \mid I \text{ } like) = - \log P(I
 }
 ```
 
-### 2. 后训练阶段 (Post-training)
+### 2. 后训练阶段 （Post-training）
 
 预训练完成后，Base Model 仍然存在一些局限性：
 
@@ -167,11 +167,11 @@ $-\log P(I) \cdot P(like \mid I) \cdot P(cats \mid I \text{ } like) = - \log P(I
 - 如何让模型的回复更加人性化？
 - 如何让模型的回复更加安全？
 
-为了解决这些问题，我们需要进行 **后训练 (Post-training)**。后训练主要有以下几种方法：
+为了解决这些问题，我们需要进行 **后训练 （Post-training）**。后训练主要有以下几种方法：
 
-1. **监督微调 (Supervised Fine-tuning, SFT)**
-2. **直接偏好优化 (Direct Preference Optimization, DPO)**
-3. **在线强化学习 (Online Reinforcement Learning, Online RL)**
+1. **监督微调 （Supervised Fine-tuning, SFT）**
+2. **直接偏好优化 （Direct Preference Optimization, DPO）**
+3. **在线强化学习 （Online Reinforcement Learning, Online RL）**
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 100%;">
@@ -225,7 +225,7 @@ $-\log P(Response \mid Prompt)$
 
 #### （2） DPO 方法概述
 
-DPO 通过构建 **选定好的 prompt + GOOD & BAD response** 来训练模型，是一种 **离线强化学习 (Offline RL)** 的方法。
+DPO 通过构建 **选定好的 prompt + GOOD & BAD response** 来训练模型，是一种 **离线强化学习 （Offline RL）** 的方法。
 
 - **Prompt**：给模型的指令或上下文。
 - **Good response**：被人类/AI 认为更理想的回复。
@@ -318,11 +318,11 @@ _注：奖励值仅为示例。_
 
 ---
 
-## 二、监督微调 (Supervised Fine-tuning, SFT)
+## 二、监督微调 （Supervised Fine-tuning, SFT）
 
-### 1. SFT 是对示例回复的模仿 (Imitating Example Response)
+### 1. SFT 是对示例回复的模仿 （Imitating Example Response）
 
-实际上，SFT 可以被视为用正确的示例 (Prompt, Response) 来教模型在给定 Prompt 的情况下，模仿示例数据中的理想回复，从而学会在相似输入下生成对应的输出。
+实际上，SFT 可以被视为用正确的示例 （Prompt, Response） 来教模型在给定 Prompt 的情况下，模仿示例数据中的理想回复，从而学会在相似输入下生成对应的输出。
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
@@ -335,41 +335,41 @@ _注：奖励值仅为示例。_
 2. **SFT 的校正作用**：为了让模型能够像人类一样进行回答，需要在 Base model 上进行 SFT，把模型从“续写”校正为“指令跟随与回答”。通过提前准备成对的标注数据（用户问题 + 理想的回复）进行 SFT，让模型学会这些回复示例。（如上图中的 2️⃣）
 3. **Instruct model 的诞生**：在 Base model 进行 SFT 之后，我们通常会得到一个 Instruct model（微调模型），它能更好地遵循指令并回答用户问题。（如上图中的 3️⃣）
 
-SFT 的学习原理是：对于第 `i` 个 (Prompt, Response) 对，在给定 prompt 的条件下，最小化 response 部分 tokens 的负对数似然：
+SFT 的学习原理是：对于第 `i` 个 （Prompt, Response） 对，在给定 prompt 的条件下，最小化 response 部分 tokens 的负对数似然：
 
 $\mathcal{L}_{SFT} = - \sum_{i=1}^{N} \log(p_{\theta}(Response^{(i)} \mid Prompt^{(i)}))$
 
 通过这种方式训练模型**最大化给定 Prompt 时生成理想 Response 的可能性**，这就是为什么 SFT 阶段是模型试图模仿这些示例。
 
-### 2. SFT 的最佳应用场景 (Best Use Case for SFT)
+### 2. SFT 的最佳应用场景 （Best Use Case for SFT）
 
 SFT 可以让模型快速学习新的行为范式
 
-- 将预训练模型 (Pre-trained models) 转化为**指令模型 (Instruct models)**。
-- 将非推理模型 (Non-reasoning models) 转化为**推理模型 (Reasoning models)**。
+- 将预训练模型 （Pre-trained models） 转化为**指令模型 （Instruct models）**。
+- 将非推理模型 （Non-reasoning models） 转化为**推理模型 （Reasoning models）**。
 - 让模型无需在 prompt 中提供工具描述即可使用特定工具。
 
 同时， SFT 能提升特定的模型能力
 
 - 通过在大模型生成的高质量合成数据上训练，把大模型能力**蒸馏给小模型**。
 
-### 3. SFT 数据构建原则 (Principles of SFT Data Curation)
+### 3. SFT 数据构建原则 （Principles of SFT Data Curation）
 
 构建高质量 SFT 数据的常见方法包括：
 
-- **蒸馏 (Distillation)**：从更强大、更大的指令模型生成高质量数据。
-- **K-最优/拒绝采样 (Best of K / rejection sampling)**：从原始模型生成多个回复，从中选择最好的一个（例如通过奖励函数）。
-- **过滤 (Filtering)**：从大规模 SFT 数据集中开始，根据回复的质量和 prompt 的多样性进行筛选。
+- **蒸馏 （Distillation）**：从更强大、更大的指令模型生成高质量数据。
+- **K-最优/拒绝采样 （Best of K / rejection sampling）**：从原始模型生成多个回复，从中选择最好的一个（例如通过奖励函数）。
+- **过滤 （Filtering）**：从大规模 SFT 数据集中开始，根据回复的质量和 prompt 的多样性进行筛选。
 
 **质量优先于数量** 是提升能力的关键：
 
 - **1,000 条高质量、多样化的数据 > 1,000,000 条混合质量的数据**。
 - 因为 SFT 的本质是模仿训练样本的行为；如果数据中掺杂了低质量或错误的回复，模型也会被动学习并复现这些模式，从而拉低整体表现。因此，SFT 更应强调 **质量优先于数量**。
 
-### 4. 全参数微调 vs. 参数高效微调 (Full Parameter Fine-tuning vs. Parameter Efficient Fine-Tuning)
+### 4. 全参数微调 vs. 参数高效微调 （Full Parameter Fine-tuning vs. Parameter Efficient Fine-Tuning）
 
-- **全参数微调 (Full Parameter Fine-Tuning)**：直接更新模型的全部参数。更新参数的矩阵 $\Delta W$ 和模型原始参数矩阵 $W$ 大小完全一致。这种方法常用且有效，但缺点是需要消耗更多的训练资源，训练与存储成本高。
-- **参数高效微调 (PEFT)**：以 LoRA 为例，将更新参数的矩阵 $\Delta W$ 分解为两个低秩矩阵 $B \times A$ 相乘，并仅训练低秩矩阵 $B$ 和 $A$。需要更新的参数量远少于全参微调 ($(2 \times d \times r) < (d \times d)$)，显著节省显存并加速训练。但另一方面，LoRA 的特点是“学习得更少，同时遗忘得更少 (Learns Less and Forgets Less)”。
+- **全参数微调 （Full Parameter Fine-Tuning）**：直接更新模型的全部参数。更新参数的矩阵 $\Delta W$ 和模型原始参数矩阵 $W$ 大小完全一致。这种方法常用且有效，但缺点是需要消耗更多的训练资源，训练与存储成本高。
+- **参数高效微调 （PEFT）**：以 LoRA 为例，将更新参数的矩阵 $\Delta W$ 分解为两个低秩矩阵 $B \times A$ 相乘，并仅训练低秩矩阵 $B$ 和 $A$。需要更新的参数量远少于全参微调 ($(2 \times d \times r) < (d \times d)$)，显著节省显存并加速训练。但另一方面，LoRA 的特点是“学习得更少，同时遗忘得更少 （Learns Less and Forgets Less）”。
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 80%;">
@@ -382,7 +382,7 @@ SFT 可以让模型快速学习新的行为范式
 
 ---
 
-## 三、直接偏好优化 (Direct Preference Optimization, DPO)
+## 三、直接偏好优化 （Direct Preference Optimization, DPO）
 
 ### 1. DPO 同时利用正样本和负样本进行训练
 
@@ -457,40 +457,40 @@ $-\log \sigma(\beta(\log \frac{\pi_{\theta}(y_{pos} \mid x)}{\pi_{ref}(y_{pos} \
 
 因此，**DPO 对数据集质量要求很高，只有在高质量的偏好数据集上进行 DPO 对齐才能取得好效果**。数据集需要分布足够广，正、负例足够全。
 
-### 4. DPO 的最佳应用场景 (Best Use Case for DPO)
+### 4. DPO 的最佳应用场景 （Best Use Case for DPO）
 
 DPO 主要用于小幅调整模型的行为和提升模型能力。
 
 - **小幅调整行为**：
-   - 身份 (Identity)
-   - 多语言 (Multilingual)
-   - 指令遵循 (Instruction following)
-   - 安全性 (Safety)
+   - 身份 （Identity）
+   - 多语言 （Multilingual）
+   - 指令遵循 （Instruction following）
+   - 安全性 （Safety）
 - **提升模型能力**：
    - 由于其对比学习的性质，在提升模型能力方面通常优于 SFT。因为 DPO 能同时学习好样本与坏样本。
-   - 在线 DPO (Online DPO) 在提升能力方面优于离线 DPO (Offline DPO)。
+   - 在线 DPO （Online DPO） 在提升能力方面优于离线 DPO (Offline DPO)。
 
-### 5. DPO 数据构建原则 (Principles of DPO Data Curation)
+### 5. DPO 数据构建原则 （Principles of DPO Data Curation）
 
 构建高质量 DPO 数据的常见方法包括：
 
-- **定向纠正 (Correction)**：用原始模型生成的回复作为负样本，对其进行改进后的版本作为正样本。
-   - 示例：`I’m Llama…` (负样本) ➡ `I’m ERNIE…` (正样本)
-- **在线采样 (Online / On-policy)**：正负样本都来自当前模型分布。对同一 prompt 从当前模型生成多条 responses，选择最好的作为正样本，最差的作为负样本（可依据 reward functions 或人工评审来选择 best / worst response）。
+- **定向纠正 （Correction）**：用原始模型生成的回复作为负样本，对其进行改进后的版本作为正样本。
+   - 示例：`I’m Llama…` （负样本） ➡ `I’m ERNIE…` （正样本）
+- **在线采样 （Online / On-policy）**：正负样本都来自当前模型分布。对同一 prompt 从当前模型生成多条 responses，选择最好的作为正样本，最差的作为负样本（可依据 reward functions 或人工评审来选择 best / worst response）。
 
-**避免过拟合 (Avoid overfitting)**：
+**避免过拟合 （Avoid overfitting）**：
 
 - DPO 基于奖励信号进行学习，若好样本包含容易被模型抓到的“捷径”，模型就可能过拟合这些表面特征，而不是学到真正的能力。这属于典型的 **Reward Hacking**。
 - 例如：如果正样本里总出现某些特定词，而负样本没有，模型可能学会“包含这些词就加分”的投机规则。比如正样本里常以 `“Sure, I can help you with that.”` / `“Certainly!”` 开头，而负样本没有。久而久之，奖励模型学会偏好这类礼貌前缀，即使内容本身较弱。因此，在构造偏好数据时应控制无关变量（长度、模板词、客套前缀等），让差异集中在真正要优化的维度。
 
 ---
 
-## 四、在线强化学习 (Online Reinforcement Learning, Online RL)
+## 四、在线强化学习 （Online Reinforcement Learning, Online RL）
 
 ### 1. Online RL vs. Offline RL
 
 - **Online RL**：模型通过实时生成新的 response 来学习。它迭代地收集新的 response 及其 reward，并更新权重，进而学习过程中探索新的 response。
-- **Offline RL**：仅使用预先收集好的 prompt-response(-reward) 进行学习。在学习过程中不会生成新的 response。
+- **Offline RL**：仅使用预先收集好的 prompt-response（-reward） 进行学习。在学习过程中不会生成新的 response。
 
 > 以打王者荣耀为例🌰
 >
@@ -513,7 +513,7 @@ DPO 主要用于小幅调整模型的行为和提升模型能力。
 Online RL 通常是让模型在训练过程中主动探索并生成更优的 response。具体流程是：
 
 1. 给语言模型输入一批 prompts，模型实时生成每个 prompt 对应的 responses。
-2. 奖励函数 (reward function) 根据每个 `prompt + response` 对打分，得到奖励值 Reward。
+2. 奖励函数 （reward function） 根据每个 `prompt + response` 对打分，得到奖励值 Reward。
 3. 形成 `(prompt, response, reward)` 元组，通过强化学习算法（如 PPO、GRPO）更新模型参数。
 
 <div style="display: flex; justify-content: center">
@@ -544,10 +544,10 @@ _注：奖励值仅为示例。_
 
 奖励函数可以有多种形式，比如：
 
-- **基于人类偏好的奖励模型 (reward model)**：通过收集人类对生成结果的偏好数据进行训练，这也是 RLHF (人类反馈强化学习) 的关键思想。
-- **基于明确规则 (rule-based) 的可验证奖励 (verifiable reward)**：借助数学结果验证、单元测试或行为规范，在强调正确性与安全性（数学、代码、行为规范）任务中，将生成结果与预设标准对比，为模型提供可验证且更可靠的奖励信号。
+- **基于人类偏好的奖励模型 （reward model）**：通过收集人类对生成结果的偏好数据进行训练，这也是 RLHF （人类反馈强化学习） 的关键思想。
+- **基于明确规则 （rule-based） 的可验证奖励 （verifiable reward）**：借助数学结果验证、单元测试或行为规范，在强调正确性与安全性（数学、代码、行为规范）任务中，将生成结果与预设标准对比，为模型提供可验证且更可靠的奖励信号。
 
-#### 选项 1: 训练奖励模型 (Reward Model)
+#### 选项 1: 训练奖励模型 （Reward Model）
 
 奖励函数可以是提前训练好一个符合人类偏好的 Reward Model。如图所示：
 
@@ -570,7 +570,7 @@ _注：奖励值仅为示例。_
 - 有助于提升**聊天质量和安全性**。
 - 在强调正确性的领域（如编程、数学、函数调用等）准确性较低。
 
-#### 选项 2: 可验证奖励 (Verifiable Reward)
+#### 选项 2: 可验证奖励 （Verifiable Reward）
 
 另一种奖励形式是基于正确性领域而设计的一些可验证的奖励，例如：
 
@@ -590,9 +590,9 @@ _注：奖励值仅为示例。_
 - 这些投入通常是值得的：在以上场景里，verifiable reward 比训练出来的 reward model 更可靠，奖励信号更精确、稳定。
 - 因而常用于训练推理模型，在编程、数学等任务上表现突出。
 
-### 4. Online RL 中的策略训练 (Policy Training)
+### 4. Online RL 中的策略训练 （Policy Training）
 
-获得奖励信号后，需要根据一定的策略算法进行模型更新。Online RL 中常用的策略训练算法包括近端策略优化 (PPO) 和群组相对策略优化 (GRPO) 等。
+获得奖励信号后，需要根据一定的策略算法进行模型更新。Online RL 中常用的策略训练算法包括近端策略优化 （PPO） 和群组相对策略优化 （GRPO） 等。
 
 <div style="display: flex; justify-content: center">
     <figure style="width: 90%;">
@@ -606,17 +606,17 @@ _注：奖励值仅为示例。_
 PPO 训练中涉及参数冻结和参数更新：
 
 1. **参数冻结**：
-   - **参考模型 (Reference Model)**：作为参考模型（原始模型），用于计算 KL 惩罚，防止 Policy Model 训练偏离原始分布。
-   - **奖励模型 (Reward Model)**：预先基于人类偏好训练好的模型，用于针对 Policy Model 生成的结果 `o` 打分。
+   - **参考模型 （Reference Model）**：作为参考模型（原始模型），用于计算 KL 惩罚，防止 Policy Model 训练偏离原始分布。
+   - **奖励模型 （Reward Model）**：预先基于人类偏好训练好的模型，用于针对 Policy Model 生成的结果 `o` 打分。
 2. **参数更新**：
-   - **策略模型 (Policy Model)**：我们要优化的语言模型，通过 PPO 算法利用优势函数 `A` 进行训练，不断调整生成策略，使其生成更符合人类偏好的输出。
-   - **价值模型 (Value Model)**：用于估算每一步状态的期望回报，辅助计算优势函数 `A`，并在训练中与 Policy Model 同时更新。
+   - **策略模型 （Policy Model）**：我们要优化的语言模型，通过 PPO 算法利用优势函数 `A` 进行训练，不断调整生成策略，使其生成更符合人类偏好的输出。
+   - **价值模型 （Value Model）**：用于估算每一步状态的期望回报，辅助计算优势函数 `A`，并在训练中与 Policy Model 同时更新。
 
 **PPO 训练流程**：
 
-1. **采样 (Sampling)**：准备一个 batch 的 prompts `q`，将 `q` 喂给 Policy Model，让它生成对应的 responses `o`，这个阶段叫做 rollout。
-2. **评估 (Evaluation)**：把 `q + o` 喂给 Value/Reward/Reference 模型，生成奖励 `r` 和状态价值 `v`。
-3. **更新 (Update)**：通过 GAE（广义优势估计）计算出优势 `A`，然后根据优势 `A` 及对应算法，更新 Policy/Value Model。
+1. **采样 （Sampling）**：准备一个 batch 的 prompts `q`，将 `q` 喂给 Policy Model，让它生成对应的 responses `o`，这个阶段叫做 rollout。
+2. **评估 （Evaluation）**：把 `q + o` 喂给 Value/Reward/Reference 模型，生成奖励 `r` 和状态价值 `v`。
+3. **更新 （Update）**：通过 GAE（广义优势估计）计算出优势 `A`，然后根据优势 `A` 及对应算法，更新 Policy/Value Model。
 
 PPO 最大化以下目标：
 
@@ -628,9 +628,9 @@ GRPO 的关键点是组内相对比较：对于同一 prompt `q`，一次生成�
 
 **GRPO 训练流程**：
 
-1. **采样 (Sampling)**：准备一个 batch 的 prompts `q`，将 `q` 喂给 Policy Model。针对每个 `q`，Policy Model 生成一个 group 的 response $\{o_1, o_2, \dots, o_G\}$。
-2. **评估 (Evaluation)**：使用 Reward Model 对每个生成结果 $\{o_1, o_2, \dots, o_G\}$ 进行评分，得到奖励 $\{r_1, r_2, \dots, r_G\}$。
-3. **更新 (Update)**：根据每个回复的奖励 $r_i$ 与组内平均奖励 $\bar{r} = \frac{1}{G}\sum_{j=1}^{G}r_j$ 来计算相对优势 $A_i = \frac{r_i - \bar{r}}{\sqrt{\frac{1}{G}\sum_j (r_j-\bar{r})^2 + \epsilon}}$，并根据相对优势 $A_i$ 和对应算法，以及 Reference Model 的 KL 惩罚，更新 Policy Model。
+1. **采样 （Sampling）**：准备一个 batch 的 prompts `q`，将 `q` 喂给 Policy Model。针对每个 `q`，Policy Model 生成一个 group 的 response $\{o_1, o_2, \dots, o_G\}$。
+2. **评估 （Evaluation）**：使用 Reward Model 对每个生成结果 $\{o_1, o_2, \dots, o_G\}$ 进行评分，得到奖励 $\{r_1, r_2, \dots, r_G\}$。
+3. **更新 （Update）**：根据每个回复的奖励 $r_i$ 与组内平均奖励 $\bar{r} = \frac{1}{G}\sum_{j=1}^{G}r_j$ 来计算相对优势 $A_i = \frac{r_i - \bar{r}}{\sqrt{\frac{1}{G}\sum_j (r_j-\bar{r})^2 + \epsilon}}$，并根据相对优势 $A_i$ 和对应算法，以及 Reference Model 的 KL 惩罚，更新 Policy Model。
 
 #### GRPO vs. PPO
 
@@ -646,11 +646,11 @@ GRPO 的关键点是组内相对比较：对于同一 prompt `q`，一次生成�
 
 ### 1. 后训练的常见方法对比
 
-| 方法                         | 原理                                 | 优点                                                       | 缺点                                             |
-| :--------------------------- | :----------------------------------- | :--------------------------------------------------------- | :----------------------------------------------- |
-| **监督微调 (SFT)**           | 最大化示例 response 的概率来模仿示例 | 实现简单，适合快速学习新的行为范式。                       | 对未被训练集覆盖到的任务，可能带来性能下降。     |
-| **在线强化学习 (Online RL)** | 最大化 response 所获得的 reward      | 更擅长在不降低未见任务表现的前提下提升模型能力，泛化性好。 | 实现很复杂；需要精心设计 Reward Function。       |
-| **直接偏好优化 (DPO)**       | 鼓励好答案、抑制坏答案               | 对比学习，善于修正错误行为、定向提升某些能力。             | 易过拟合；实现复杂度介于 SFT 与 Online RL 之间。 |
+| 方法                           | 原理                                 | 优点                                                       | 缺点                                             |
+| :----------------------------- | :----------------------------------- | :--------------------------------------------------------- | :----------------------------------------------- |
+| **监督微调 （SFT）**           | 最大化示例 response 的概率来模仿示例 | 实现简单，适合快速学习新的行为范式。                       | 对未被训练集覆盖到的任务，可能带来性能下降。     |
+| **在线强化学习 （Online RL）** | 最大化 response 所获得的 reward      | 更擅长在不降低未见任务表现的前提下提升模型能力，泛化性好。 | 实现很复杂；需要精心设计 Reward Function。       |
+| **直接偏好优化 （DPO）**       | 鼓励好答案、抑制坏答案               | 对比学习，善于修正错误行为、定向提升某些能力。             | 易过拟合；实现复杂度介于 SFT 与 Online RL 之间。 |
 
 ### 2. 为什么 RL 相比 SFT 对模型性能降低更少
 

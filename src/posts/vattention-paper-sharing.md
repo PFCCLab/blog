@@ -64,7 +64,7 @@ PagedAttention 按需分配显存，导致 KV cache 的虚拟地址不连续，�
 
 ![alt text](../images/vattention-paper-sharing/kernelcost1.jpg)
 
-4. cpu 开销：需要将映射表传给 Attention kernel，占 decode 阶段 10%的时间
+4. cpu 开销：需要将映射表传给 Attention kernel，占 decode 阶段 10% 的时间
 
 ---
 
@@ -81,11 +81,11 @@ vAttention 在按需分配显存的同时，保障了虚拟地址的连续性，
    - 层数、maximum batch size、maximum context length、head num、dim、sizeof(dtype)
    - 括号里的代表一个虚拟 tensor 的大小，是虚拟空间的分配单元，即内部是连续的
 
-2. 显存按需分配：CUDA virtual memory management APIs 允许单独分配虚拟空间和物理空间，物理空间分配单位是 page-group(数个物理页)
+2. 显存按需分配：CUDA virtual memory management APIs 允许单独分配虚拟空间和物理空间，物理空间分配单位是 page-group（数个物理页）
 
 ![alt text](../images/vattention-paper-sharing/vmm.jpg)
 
-3. 扩展 PyTorch caching allocator，给 KV 对应 tensor 分配虚拟 tensor(没有物理空间)
+3. 扩展 PyTorch caching allocator，给 KV 对应 tensor 分配虚拟 tensor（没有物理空间）
 
 ![alt text](../images/vattention-paper-sharing/pytorch.jpg)
 
@@ -103,7 +103,7 @@ vAttention 在按需分配显存的同时，保障了虚拟地址的连续性，
 
 cuMemMap+cuMemSetAccess 要花费 40us。如果模型有 60 层，一个请求要花费 4.8ms
 
-总时间:$40*B*N*2$﻿
+总时间：$40*B*N*2$﻿
 
 decode：decode 阶段每次只会生成一个 token，所以可以判断下个迭代是否需要申请显存，提前 map。开一个线程提前 map 和计算重叠，一次迭代计算花费几十毫秒到几百毫秒
 

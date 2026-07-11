@@ -179,7 +179,7 @@ figcaption {
 
 与此同时，线上集训营的**一、二、三等奖**的答辩和评审工作也按计划顺利进行，以下是礼品和获奖选手名单：
 
-- 一等奖：iPad (第十代) 💻 [@GoldenStain](https://github.com/GoldenStain)
+- 一等奖：iPad （第十代） 💻 [@GoldenStain](https://github.com/GoldenStain)
 - 二等奖：Apple Watch SE ⌚️ [@Aoraki-Dream](https://github.com/Aoraki-Dream)
 - 三等奖：Airpods（第三代）🎧 [@fufu0615](https://github.com/fufu0615)
 
@@ -194,11 +194,11 @@ figcaption {
 
 - 线上共有 26 名营员合入了超过 80 个 PR；
 - 线上共有 23 名营员成为新的 contributor，12 名营员通过考核；
-- 其余数据正在统计中...
+- 其余数据正在统计中。..
 
 本期启航计划中涌现出众多优秀营员，一二三等奖的竞争异常激烈，因此我们相应地扩大了获奖名额，以下是奖品及获奖选手名单：
 
-- 一等奖：iPad (第十代) 💻 [@LittleHeroZZZX](https://github.com/LittleHeroZZZX)
+- 一等奖：iPad （第十代） 💻 [@LittleHeroZZZX](https://github.com/LittleHeroZZZX)
 - 二等奖：Apple Watch S10 ⌚️ [@aquagull](https://github.com/aquagull)
 - 三等奖：Airpods 3&4 🎧 [@WAYKEN-TSE](https://github.com/WAYKEN-TSE)、[@Albresky](https://github.com/Albresky)
 

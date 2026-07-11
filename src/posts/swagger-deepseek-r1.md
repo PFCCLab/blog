@@ -32,7 +32,7 @@ figcaption {
 
 《DeepSeek-R1》成功探索出用纯强化学习（RL）提高语言模型推理能力的路径。具体而言，《DeepSeek-R1》研究的重点是在没有任何监督数据的情况下发展推理能力的潜力，重点关注它们通过纯 RL 过程的<u>自我演化</u>。
 
-由此《DeepSeek-R1》使用 **DeepSeek-V3-Base** 作为基础模型，并采用 GRPO 作为强化学习框架，以提高模型在推理方面的性能，通过这单阶段的强化学习过程得到了 **DeepSeek-R1-Zero** 模型，DeepSeek-R1-Zero 在训练过程中涌现了"Aha moment"现象，并有强大的推理能力，但是存在着可读性差和语言混合等挑战。为了解决这些问题并进一步提高推理性能，《DeepSeek-R1》使用了少量冷启动数据和多阶段训练阶段，得到最终性能和 OpenAI-o1-1217 相当的 **DeepSeek-R1** 模型。同时《DeepSeek-R1》探索了提升小模型推理能力的方式，发现在小模型上使用 **蒸馏(Distillation)** 效果优于直接使用强化学习。
+由此《DeepSeek-R1》使用 **DeepSeek-V3-Base** 作为基础模型，并采用 GRPO 作为强化学习框架，以提高模型在推理方面的性能，通过这单阶段的强化学习过程得到了 **DeepSeek-R1-Zero** 模型，DeepSeek-R1-Zero 在训练过程中涌现了"Aha moment"现象，并有强大的推理能力，但是存在着可读性差和语言混合等挑战。为了解决这些问题并进一步提高推理性能，《DeepSeek-R1》使用了少量冷启动数据和多阶段训练阶段，得到最终性能和 OpenAI-o1-1217 相当的 **DeepSeek-R1** 模型。同时《DeepSeek-R1》探索了提升小模型推理能力的方式，发现在小模型上使用 **蒸馏（Distillation）** 效果优于直接使用强化学习。
 
 > 为了更好地理解自我演化（self-evolution），可以参考 InstructGPT[2] 中提出的 RLHF（Reinforcement Learning from Human Feedback）。RLHF 通过利用人类反馈进行强化学习训练，帮助模型不断优化和提升推理能力。
 
@@ -235,10 +235,10 @@ DeepSeek-R1 主要探索了两个问题：
 
 - **基础模型：** DeepSeek-V3-Base，在基础模型上进行 Stage3，微调 2 个 epoch
 - **数据生成**
-   - **推理数据(600k)**
+   - **推理数据（600k）**
       - DeepSeek-V3 作为判断标准：将真实值和模型预测输入 DeepSeek-V3，筛选数据
       - 过滤掉混合语言、长段落和代码块的思维链
-   - **非推理数据(200k)**
+   - **非推理数据（200k）**
       - 使用 DeepSeek-V3 pipeline 并且使用部分 DeepSeek-V3 SFT 数据
       - 利用 DeepSeek-V3 生成长链式思维（long CoT）数据
 
@@ -289,11 +289,11 @@ DeepSeek-R1 主要探索了两个问题：
     </figure>
 </div>
 
-- 在教育知识基准(MMLU、GPQA Diamond 等)上，DeepSeek-R1 优于 DeepSeek-V3，特别是在 STEM 相关问题上。模型在 FRAMES 等长上下文任务和 SimpleQA 等事实基准上表现出色，但在中文 SimpleQA 上因**安全强化学习后**倾向**拒绝某些查询**而表现不如 DeepSeek-V3。
+- 在教育知识基准（MMLU、GPQA Diamond 等）上，DeepSeek-R1 优于 DeepSeek-V3，特别是在 STEM 相关问题上。模型在 FRAMES 等长上下文任务和 SimpleQA 等事实基准上表现出色，但在中文 SimpleQA 上因**安全强化学习后**倾向**拒绝某些查询**而表现不如 DeepSeek-V3。
 
-- DeepSeek-R1 在 IF-Eval **(格式指令遵循能力)** 和 AlpacaEval2.0、ArenaHard **(写作任务和开放域问答)** 上表现优异，生成的摘要简洁有效，避免了长度偏差。
+- DeepSeek-R1 在 IF-Eval **（格式指令遵循能力）** 和 AlpacaEval2.0、ArenaHard **（写作任务和开放域问答）** 上表现优异，生成的摘要简洁有效，避免了长度偏差。
 
-- 在**数学任务**上，DeepSeek-R1 与 OpenAI-o1-1217 相当，显著超过其他模型。在**编码算法任务**(LiveCodeBench、Codeforces)上也表现突出，但在工程导向编码任务上与 OpenAI-o1-1217 相比各有优势，未来版本有望进一步提升工程性能。
+- 在**数学任务**上，DeepSeek-R1 与 OpenAI-o1-1217 相当，显著超过其他模型。在**编码算法任务**（LiveCodeBench、Codeforces）上也表现突出，但在工程导向编码任务上与 OpenAI-o1-1217 相比各有优势，未来版本有望进一步提升工程性能。
 
 ### 3.3 蒸馏模型结果
 
@@ -340,7 +340,7 @@ DeepSeek-R1 主要探索了两个问题：
       - 基于模型的 PRM 容易导致奖励黑客行为，重新训练奖励模型需要额外资源
    - 虽然 PRM 在重新排序或辅助搜索方面表现良好，但相比大规模强化学习的计算开销，优势有限
 
-> 奖励黑客(Reward Hacking)行为指模型学会了欺骗奖励系统而非真正提高能力，例如通过特定格式或关键词获取高奖励而不实际解决问题，这种行为会随着训练进行而加剧。此外，为防止这种现象，需要定期重新训练奖励模型，这不仅需要额外的计算资源，还会使整个训练流程变得更加复杂。
+> 奖励黑客（Reward Hacking）行为指模型学会了欺骗奖励系统而非真正提高能力，例如通过特定格式或关键词获取高奖励而不实际解决问题，这种行为会随着训练进行而加剧。此外，为防止这种现象，需要定期重新训练奖励模型，这不仅需要额外的计算资源，还会使整个训练流程变得更加复杂。
 
 - **蒙特卡洛树搜索（MCTS）的探索与挑战**
    - 受 AlphaGo 和 AlphaZero 启发，尝试使用 MCTS 增强测试时计算可扩展性

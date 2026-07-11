@@ -114,7 +114,7 @@ figcaption {
 
    **汪师傅：** 我是以 Paddle2ONNX 的用户角色加入的。郑师傅（[@Zheng-Bicheng](https://github.com/Zheng-Bicheng)）是 PMC Chair，已经提了很多 PR，是主要力量。后面我可能就是多解答一些 issue。
 
-   > 笔者注 ✍️：为了 Paddle2ONNX 项目的可持续健康发展和加强社区治理， 飞桨社区开源发展工作组决定设立 Paddle2ONNX PMC(Project Management Committee) 来负责 Paddle2ONNX 项目的技术决策和维护。
+   > 笔者注 ✍️：为了 Paddle2ONNX 项目的可持续健康发展和加强社区治理， 飞桨社区开源发展工作组决定设立 Paddle2ONNX PMC（Project Management Committee） 来负责 Paddle2ONNX 项目的技术决策和维护。
 
 10.   **据我所知，汪师傅在一家生物公司工作。为什么在生物公司你还是坚持 AI 开源，而且还是 AI 框架开源？**
 
