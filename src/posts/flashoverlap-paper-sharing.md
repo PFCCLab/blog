@@ -196,7 +196,7 @@ M=4096，N=8192，K=7168 -> 1024 个 tile（256\*128）
 
 #### 在线阶段
 
-1. 根据 wave 个数，产生一种 wave partition 的候选 （2^（T-1）中的一种）
+1. 根据 wave 个数，产生一种 wave partition 的候选（2^（T-1）中的一种）
 2. 预测性搜索最优的 group partition 方式
 
 ## 实现

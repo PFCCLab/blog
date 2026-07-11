@@ -1804,7 +1804,7 @@ Tensor(shape=[4, 4], dtype=float32, place=Place(gpu:0), stop_gradient=False,
 - paddle 和 torch 环境不冲突时：创建一个同时安装 paddlepaddle 和 torch 的环境，然后通过 README 中**使用单行命令对齐**部分，可以直接得到对齐结果
 - paddle 和 torch 环境冲突时：
    - 当前存在部分代码需要同时依赖 paddle 和 torch，虽然可以在两个环境中运行，但每个环境中都需要同时存在 paddle 和 torch 包，可以对不用的框架安装一个不冲突的版本，比如 torch 代码的运行环境中安装一个不冲突的 paddle 版本
-   - 参考 README 中**在不同的环境中手动运行**，首先修改 torch_proj/train.py 和 paddle_proj/train.py，使用 with PaDiffGuard（...） 包裹模型调用部分，然后分别运行代码，最后使用 compare_dumps 进行比较
+   - 参考 README 中**在不同的环境中手动运行**，首先修改 torch_proj/train.py 和 paddle_proj/train.py，使用 `with PaDiffGuard(...)` 包裹模型调用部分，然后分别运行代码，最后使用 compare_dumps 进行比较
 - 框架解藕的版本正在开发中，解藕后仅在原始运行环境需执行注入一行代码+调用接口自动比较结果
 
 #### 2.6.5. Paddle 原生模型精度对比工具
@@ -1926,7 +1926,7 @@ PyLayer 是 C++实现的 Paddle 机制，用于支持自定义反向。在用户
 1. `apply()` 的输入只支持：Tensor、List of Tensor、Tuple of Tensor，其余形式的 Python 对象将不视为 Tensor 只做透传给 `forward()`。比如 List of List of Tensor 就不能当成 Tensor 处理。只有被识别为 Tensor 的输入 `stop_gradient==False`，才会创建反向节点、建立反向边
 2. `forward()` 的输出，也只支持：Tensor、List of Tensor、Tuple of Tensor，其余形式的 Python 对象将不视为 Tensor 只做透传返回给 apply 的调用方。只有被识别为 Tensor 的输出才会建立反向边，才能有梯度。
 3. `backward()` 的输入，由 PyLayer 机制生成，只会生成 Tensor、Tuple of Tensor 两种，如果前向的返回值是 List of Tensor，它的梯度作为 backward 的输入会是 Tuple of Tensor。举例，如果 forward 的返回值是：Tensor、int、List of Tensor、List of List of Tensor，则 backward 的输入会是 Tensor、Tuple of Tensor
-4. backward（）的输出，应该与 forward 输入的 Tensor“格式”严格一一对应
+4. `backward()` 的输出，应该与 forward 输入的 Tensor“格式”严格一一对应
    1. 如果某个 Tensor 没有梯度，可以传 None
    2. 如果某个 List of Tensor 中部分 Tensor 没有梯度，需要传 `[Tensor, None, Tensor, ...]`
    3. 如果 forward 输入的 List of Tensor 的第 1 个 Tensorstop_gradient==True，PyLayer 会认为整个 List 都是不需要梯度的，它期望 backward 的返回值是 None，否则报错

@@ -35,7 +35,7 @@ MOE 模型非常适合模型参数增大这个趋势，其计算量随着专家�
 
 对 MOE 来说，专家很多，**分配给每个专家的 token 数量很少**，导致 FFN 需要更大的 batch size 才能充分利用 GPU
 
-batch size 不能无限增大：时延要求，显存限制 （KV），MP 带来通信
+batch size 不能无限增大：时延要求，显存限制（KV），MP 带来通信
 
 ## 核心思想
 
@@ -115,7 +115,7 @@ NCCL 的不足：
 
 不稳定：GPU 同步和访存操作
 
-M2N 的优化： 减少不必要的拷贝、同步、初始化
+M2N 的优化：减少不必要的拷贝、同步、初始化
 
 ![alt text](../images/megascale-infer-paper-sharing/sender_receiver.jpg)
 

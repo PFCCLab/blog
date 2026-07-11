@@ -19,7 +19,7 @@ category: insights
 
 ### 2.1 ring-attention 简介
 
-ring-attention 的核心在于将长序列分块，并将这些块分布到多个设备上，每个设备负责处理其中一个或几个块的 Query （Q） 矩阵。这些设备形成一个环形拓扑结构，数据（主要是 Key 和 Value 块）在这个环中依次传递，同时进行计算。ring-attention 的关键在于，将注意力计算与设备间的数据通信（K/V 块的传递）overlap 起来。当一个设备在计算当前 Q 块与接收到的 K/V 块的注意力时，它可以同时将自己持有的 K/V 块发送出去，有效地隐藏了通信开销。
+ring-attention 的核心在于将长序列分块，并将这些块分布到多个设备上，每个设备负责处理其中一个或几个块的 Query（Q）矩阵。这些设备形成一个环形拓扑结构，数据（主要是 Key 和 Value 块）在这个环中依次传递，同时进行计算。ring-attention 的关键在于，将注意力计算与设备间的数据通信（K/V 块的传递）overlap 起来。当一个设备在计算当前 Q 块与接收到的 K/V 块的注意力时，它可以同时将自己持有的 K/V 块发送出去，有效地隐藏了通信开销。
 
 ![ring-attention原理图](../images/context-parrel-sharing/ring-attention-principle-diagram.png 'ring-attention原理图')
 
@@ -104,7 +104,7 @@ USP 在文章中提出了多个观点，总结如下：
 4. 大规模下，SP 通信成本优于 TP-sp，GQA 可进一步降低 SP 通信成本。这是由于在 Tp 中对 attention 层的 TP 切分一般是在 head 维度上进行的，与 ulysses 一样受到 num_head 的限制。此外，TP-sp 的通信量也相较于 USP 有着较大提高，且不能进行计算-通信的 overlap，也无法如 ulysses 一般随并行性增加而减少通信量。 Tp-sp 是 Megatron-LM 中使用的一种并行策略，TP 将模型的参数在多个计算设备之间切分。在 TP 的中间激活张量部分，并不是所有激活张量都会被分割并分布到多个计算设备上。因此，其所需的内存成本用 αA 表示，其中 0<α<1。Megatron-LM 还通过了 SP 对 TP 进行了进一步优化，用 allgather 和 reducescatter 替换了 TP 中的 allreduce，从而将激活内存成本降低到 A/P，但代价是在 attention 和 FFN 中需要重新执行两次 allgather。
 5. 从 TP-sp 切换到 SP 并不能提升可训练序列长度，SP+ZeRO3 能训练与 TP-sp 相当的长度。TP 是内存效率最高的方法之一，但它会与通信效率较高的 ulysses 竞争 num_head 维度上的并行数，因此当追求尽可能长的上下文长度时应启用 TP 并尽可能多地在 TP 维度上分配 num_head。
 6. 使用 USP 可通过提升 SP 并行度（如增大 ring degree），在更多设备上训练更长序列，这是 TP-sp 无法实现的。
-7. 4D（ TP SP DP PP） 混合并行时，进程组维度排序应为 TP、SP-Ulysses、SP-Ring、ZeRO-DP、PP。TP 的通信最为频繁且通信量高，应当设置在最内维度，尽量在单机内使用高效 nvlink 进行。SP-Ulysses 使用了 all to all 通信，也应当尽量在机内完成。dp 与 pp 一般并行程度限制较少，不启用 ZeRO-3 时通信频率也较低，应当设置在最外层。
+7. 4D（TP SP DP PP）混合并行时，进程组维度排序应为 TP、SP-Ulysses、SP-Ring、ZeRO-DP、PP。TP 的通信最为频繁且通信量高，应当设置在最内维度，尽量在单机内使用高效 nvlink 进行。SP-Ulysses 使用了 all to all 通信，也应当尽量在机内完成。dp 与 pp 一般并行程度限制较少，不启用 ZeRO-3 时通信频率也较低，应当设置在最外层。
 
 USP 同样探索了多种混合并行策略的效果，如下表所示。
 

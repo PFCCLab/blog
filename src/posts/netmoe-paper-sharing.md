@@ -149,7 +149,7 @@ class AuxGate(BaseGate):
 
 ### 网络局部性
 
-众所周知，Intra-connection（以 NVLink 和 PCIe 为例）和 Inter-connection（以 ETH 和 InfiniBand 为例）之间的连接质量有较大差异，一般认为 Intra 的延迟与带宽是远大于 Inter 的，尽管有 RDMA 等技术实现了较高速的 inter 通信，但也需要针对性的优化适配（[DeepEP](https://github.com/deepseek-ai/DeepEP))。这两种连接方式的速率的不匹配进一步加剧了 AlltoAll 通信的开销。
+众所周知，Intra-connection（以 NVLink 和 PCIe 为例）和 Inter-connection（以 ETH 和 InfiniBand 为例）之间的连接质量有较大差异，一般认为 Intra 的延迟与带宽是远大于 Inter 的，尽管有 RDMA 等技术实现了较高速的 inter 通信，但也需要针对性的优化适配（[DeepEP](https://github.com/deepseek-ai/DeepEP)）。这两种连接方式的速率的不匹配进一步加剧了 AlltoAll 通信的开销。
 
 专家热度不均与网络局部性带来的直接影响：MoE 层训练速度降低。[COMET](https://arxiv.org/pdf/2502.19811) 的一个实验直接说明了这个结果，下图左图中，随着 std 增大 token 的分布越来越不均匀，可以看到这种不均匀的 token 分布相较与完全均衡的分布的训练时间慢了 1.5x 左右。
 
