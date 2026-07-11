@@ -107,9 +107,9 @@ figcaption {
 
    > 编者注✍️：黑客松是百度飞桨举办的深度学习领域编程活动，鼓励开发者了解与参与飞桨深度学习开源项目，做出自己的代码贡献。
    > <br/>
-   > PPDE(Paddle Paddle Developers Exp：rts)：飞桨开发者技术专家。
+   > PPDE（PaddlePaddle Developers Experts）：飞桨开发者技术专家。
    > <br/>
-   > PFCC(Paddle Framework Contributor ：lub)：飞桨框架贡献者俱乐部。
+   > PFCC（Paddle Framework Contributor Club）：飞桨框架贡献者俱乐部。
 
    ​刚开始做适配时，RK3588 的工具链还不完善，我苦于没办法和 RK 官方的人沟通，效率一直很低。但青姐这人主打就是一个给力，我真敢提代码，她真敢拉群，直接给我这个开源菜鸟拉到了 RK 的适配群里和 RK 的研发工程师真人 1V1 大战。有了 RK 工程师的支持，项目也就慢慢开始推进了。
 

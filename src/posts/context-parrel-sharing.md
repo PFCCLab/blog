@@ -7,7 +7,7 @@ author:
 category: insights
 ---
 
-## 1。前言
+## 1. 前言
 
 随着多模态模型的崛起，因为处理和理解视频、音频等非文本数据需要更远超传统文本处理的需求的庞大的上下文空间，目前生成式人工智能正朝着上下文长度不断增长的方向发展。谷歌的 Gemini 2.5 Pro 支持 100 万 token 的标准上下文窗口。 Meta 的 Llama 4 系列也推出了支持 100 万 token 上下文的 Maverick 和高达 1000 万 token 的 Scout 版本。Qwen 也紧随其后，部分模型支持高达 100 万 token 的上下文长度。
 
@@ -84,7 +84,7 @@ ring-attention 与一系列基于其的工作在进行 Q、K、V 的本地分块
 
 ulysses 的单卡通信量相比优化后的 ring-attention 较少，为 $O(N / P * d)$，但 ring-attention 实现了通信与计算的 overlap 的操作。此外， ring-attention 需要多次 launch kernel，而 ulysses 只用 launch 一次 attention kernel，可以减少 kernel launch 的开销。但需要注意的是，ulysses 可以并行的最大维度为 head 数量，在并行程度上相较于 ring-attention 有所不足。
 
-## 4。混合序列并行
+## 4. 混合序列并行
 
 ring-attention 与 deepspeed-ulysses 在不同维度上进行了序列并行，二者是正交的，天然可以进行组合。在 2024 年，USP: A Unified Sequence Parallelism Approach for Long Context Generative AI 首次提出了混合序列并行，其主要算法如下所示。其在 ring-attention 中使用的负载均衡方案与上文中提到的 megatron-LM 负载均衡方案一致。
 
