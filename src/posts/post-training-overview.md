@@ -614,9 +614,9 @@ PPO 训练中涉及参数冻结和参数更新：
 
 **PPO 训练流程**：
 
-1. **采样 （Sampling）**：准备一个 batch 的 prompts `q`，将 `q` 喂给 Policy Model，让它生成对应的 responses `o`，这个阶段叫做 rollout。
-2. **评估 （Evaluation）**：把 `q + o` 喂给 Value/Reward/Reference 模型，生成奖励 `r` 和状态价值 `v`。
-3. **更新 （Update）**：通过 GAE（广义优势估计）计算出优势 `A`，然后根据优势 `A` 及对应算法，更新 Policy/Value Model。
+1. **采样（Sampling）**：准备一个 batch 的 prompts `q`，将 `q` 喂给 Policy Model，让它生成对应的 responses `o`，这个阶段叫做 rollout。
+2. **评估（Evaluation）**：把 `q + o` 喂给 Value/Reward/Reference 模型，生成奖励 `r` 和状态价值 `v`。
+3. **更新（Update）**：通过 GAE（广义优势估计）计算出优势 `A`，然后根据优势 `A` 及对应算法，更新 Policy/Value Model。
 
 PPO 最大化以下目标：
 
