@@ -628,9 +628,9 @@ GRPO 的关键点是组内相对比较：对于同一 prompt `q`，一次生成�
 
 **GRPO 训练流程**：
 
-1. **采样 （Sampling）**：准备一个 batch 的 prompts `q`，将 `q` 喂给 Policy Model。针对每个 `q`，Policy Model 生成一个 group 的 response $\{o_1, o_2, \dots, o_G\}$。
-2. **评估 （Evaluation）**：使用 Reward Model 对每个生成结果 $\{o_1, o_2, \dots, o_G\}$ 进行评分，得到奖励 $\{r_1, r_2, \dots, r_G\}$。
-3. **更新 （Update）**：根据每个回复的奖励 $r_i$ 与组内平均奖励 $\bar{r} = \frac{1}{G}\sum_{j=1}^{G}r_j$ 来计算相对优势 $A_i = \frac{r_i - \bar{r}}{\sqrt{\frac{1}{G}\sum_j (r_j-\bar{r})^2 + \epsilon}}$，并根据相对优势 $A_i$ 和对应算法，以及 Reference Model 的 KL 惩罚，更新 Policy Model。
+1. **采样（Sampling）**：准备一个 batch 的 prompts `q`，将 `q` 喂给 Policy Model。针对每个 `q`，Policy Model 生成一个 group 的 response $\{o_1, o_2, \dots, o_G\}$。
+2. **评估（Evaluation）**：使用 Reward Model 对每个生成结果 $\{o_1, o_2, \dots, o_G\}$ 进行评分，得到奖励 $\{r_1, r_2, \dots, r_G\}$。
+3. **更新（Update）**：根据每个回复的奖励 $r_i$ 与组内平均奖励 $\bar{r} = \frac{1}{G}\sum_{j=1}^{G}r_j$ 来计算相对优势 $A_i = \frac{r_i - \bar{r}}{\sqrt{\frac{1}{G}\sum_j (r_j-\bar{r})^2 + \epsilon}}$，并根据相对优势 $A_i$ 和对应算法，以及 Reference Model 的 KL 惩罚，更新 Policy Model。
 
 #### GRPO vs. PPO
 
@@ -648,9 +648,9 @@ GRPO 的关键点是组内相对比较：对于同一 prompt `q`，一次生成�
 
 | 方法                           | 原理                                 | 优点                                                       | 缺点                                             |
 | :----------------------------- | :----------------------------------- | :--------------------------------------------------------- | :----------------------------------------------- |
-| **监督微调 （SFT）**           | 最大化示例 response 的概率来模仿示例 | 实现简单，适合快速学习新的行为范式。                       | 对未被训练集覆盖到的任务，可能带来性能下降。     |
-| **在线强化学习 （Online RL）** | 最大化 response 所获得的 reward      | 更擅长在不降低未见任务表现的前提下提升模型能力，泛化性好。 | 实现很复杂；需要精心设计 Reward Function。       |
-| **直接偏好优化 （DPO）**       | 鼓励好答案、抑制坏答案               | 对比学习，善于修正错误行为、定向提升某些能力。             | 易过拟合；实现复杂度介于 SFT 与 Online RL 之间。 |
+| **监督微调（SFT）**           | 最大化示例 response 的概率来模仿示例 | 实现简单，适合快速学习新的行为范式。                       | 对未被训练集覆盖到的任务，可能带来性能下降。     |
+| **在线强化学习（Online RL）** | 最大化 response 所获得的 reward      | 更擅长在不降低未见任务表现的前提下提升模型能力，泛化性好。 | 实现很复杂；需要精心设计 Reward Function。       |
+| **直接偏好优化（DPO）**       | 鼓励好答案、抑制坏答案               | 对比学习，善于修正错误行为、定向提升某些能力。             | 易过拟合；实现复杂度介于 SFT 与 Online RL 之间。 |
 
 ### 2. 为什么 RL 相比 SFT 对模型性能降低更少
 
