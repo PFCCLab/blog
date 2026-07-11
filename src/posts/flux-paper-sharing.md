@@ -181,7 +181,7 @@ AllGather 中不同重叠技术的主要差异。同样，现有的重叠方法 
 - 使用 `cp.async.bulk` 指令或 Hopper GPU 上的 `cp.async.bulk.tensor` 指令将数据从 scratchpad 存储到全局内存。
 - 对于节点间的远程 GPU 写入，使用 NVSHMEM，通过各种 put API 实现。这些方法使用 CUTLASS EVT 模板实现，模板参数在自动调优期间选择。
 
-**(b) Reduce:**
+**（b）Reduce:**
 
 1. 如果 GPU 支持 P2P 内存访问，可以使用 `red` 或原子指令直接在设备内存上实现归约，而无需更改代码结构或引入过多开销。这些指令有用，但可能不支持所有数据类型或所有 GPU。因此，作者仅对支持的 GPU 和数据类型应用这些指令。
 2. 在 Hopper GPU 上，使用 warp 或线程块专门化实现归约，每个 GPU 将部分结果写入其本地内存，然后由专门的 warp 或线程块拉取就绪的远程数据，在目标 GPU 上执行本地归约。这种 warp 或线程块专门化的归约方法在 Hopper 上与专门化的 GEMM 内核配合良好。
