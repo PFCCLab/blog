@@ -63,7 +63,7 @@ paddle3.0 中自动并行是一项重要的升级点，今天我们来聊一聊 
 
 > 朴素流水并行的缺点：
 >
-> 在任意给定时刻，除了一个 GPU 之外的其他所有 GPU 都是空闲的。因此，如果使用 4 个 GPU，则几乎等同于将单个 GPU 的内存量增加四倍，而其他资源 (如计算) 相当于没用上。所以，朴素流水线存在很多的 Bubble 。因此，朴素的流水线并行将会导致 GPU 使用率过低。
+> 在任意给定时刻，除了一个 GPU 之外的其他所有 GPU 都是空闲的。因此，如果使用 4 个 GPU，则几乎等同于将单个 GPU 的内存量增加四倍，而其他资源（如计算）相当于没用上。所以，朴素流水线存在很多的 Bubble 。因此，朴素的流水线并行将会导致 GPU 使用率过低。
 
 ![picture 3](../images/paddle-pipeline-parallel/2443fea068b43f57f4571d2e1ad35afe9d1de3a8c69491d0c390b3705835a665.jpg)
 
@@ -155,7 +155,7 @@ PassBase - PipelinePassBase - PipelineFThenBPass
                             - Pipeline1F1BPass
 ```
 
-在 PassBase 中定义了 `apply` 方法，`apply` 来方法中又进一步封装了 `_apply_impl` 和 `_apply_single_impl` 方法。PipelinePassBase 中重写了 `_apply_single_impl` 方法:
+在 PassBase 中定义了 `apply` 方法，`apply` 来方法中又进一步封装了 `_apply_impl` 和 `_apply_single_impl` 方法。PipelinePassBase 中重写了 `_apply_single_impl` 方法：
 
 ```python
 # python/paddle/distributed/passes/pipeline_pass_base.py

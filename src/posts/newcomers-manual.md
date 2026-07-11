@@ -98,7 +98,7 @@ SIG 负责人、技术布道官 →           /   引领层 👑    \ → 指导
 
 ## 🎉 <span id="various-contributions">我们鼓励多种形式的贡献</span>
 
-### 📚 文档贡献(可参考 [docs](https://github.com/PaddlePaddle/docs/pulls) 仓库的 pr 贡献）
+### 📚 文档贡献（可参考 [docs](https://github.com/PaddlePaddle/docs/pulls) 仓库的 pr 贡献）
 
 - 改进用户指南
 - 编写教程和示例
@@ -112,7 +112,7 @@ SIG 负责人、技术布道官 →           /   引领层 👑    \ → 指导
 
 ### 🙋 社区支持
 
-- 在论坛回答问题(以 PaddleOCR 为例，可在 [discussions](https://github.com/PaddlePaddle/PaddleOCR/discussions) 回答问题）
+- 在论坛回答问题（以 PaddleOCR 为例，可在 [discussions](https://github.com/PaddlePaddle/PaddleOCR/discussions) 回答问题）
 - 帮助新手上手
 - 参与技术讨论
 
@@ -296,7 +296,7 @@ SIG 负责人、技术布道官 →           /   引领层 👑    \ → 指导
 1. 系统学习
 
 - 从基础课程开始：[PaddlePaddle 基础理论教程](https://aistudio.baidu.com/projectdetail/8748375?channelType=0&channel=0)
-- 学习特定领域入门课程,参考学习资源指南
+- 学习特定领域入门课程，参考学习资源指南
 
 2. 以非代码方式贡献
 
@@ -339,10 +339,10 @@ SIG 负责人、技术布道官 →           /   引领层 👑    \ → 指导
 
 ### 📞 联系我们
 
-- 进群联系:<img src="../images/Newcomers-Manual/QR.jpg" alt="入群二维码"/>
+- 进群联系：<img src="../images/Newcomers-Manual/QR.jpg" alt="入群二维码"/>
 - GitHub: [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle)
-- 飞桨主页: [飞桨官网](https://www.paddlepaddle.org.cn)
-- 星河社区: [AI Studio 星河社区](https://aistudio.baidu.com/community)
+- 飞桨主页： [飞桨官网](https://www.paddlepaddle.org.cn)
+- 星河社区： [AI Studio 星河社区](https://aistudio.baidu.com/community)
 - 邮件联系：[ext_paddle_oss@baidu.com](mailto:ext_paddle_oss@baidu.com)
 
 ### 🌟 开源之旅，从这里起航！
@@ -358,5 +358,5 @@ SIG 负责人、技术布道官 →           /   引领层 👑    \ → 指导
 
 #### 本手册由飞桨社区团队编写，持续更新中
 
-- PS:也可以一起参与本手册共建哦～
+- PS：也可以一起参与本手册共建哦～
 - 致谢文中引用的 AI Studio 项目贡献用户：魔术师、IvanAXu、yanggh、恭喜发财

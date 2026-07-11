@@ -50,7 +50,7 @@ MoE 将 transformer block 中的 FFN 替换为了 Gate+数个 FFN（也就是 ex
 专家并行
 
 - 考虑到 FFN 是模型中占比较大的部分，专家并行通过将每个 transformer block 中的 Expert 分散到不同的 worker 上来分担显存与计算压力
-- 专家并行有个很大的问题，那就是 A worker 上 的 token 可能被路由到 B worker 上，这就需要在不同 worker 之间传输这些 token，不仅仅是 A，所有的 worker 上都可能会有这种情况，因此在 Expert 计算前后两次会有我们称为 AlltoAll 的传输过程（AllScatter 与 AllGather）。目前已经有非常多的工作证明，在传统 MoE 训练框架下（以 Megatron-LM 为例），MoE 层中的 AlltoAll 开销占比可以到达 47% 以上([COMET](https://arxiv.org/pdf/2502.19811))。
+- 专家并行有个很大的问题，那就是 A worker 上 的 token 可能被路由到 B worker 上，这就需要在不同 worker 之间传输这些 token，不仅仅是 A，所有的 worker 上都可能会有这种情况，因此在 Expert 计算前后两次会有我们称为 AlltoAll 的传输过程（AllScatter 与 AllGather）。目前已经有非常多的工作证明，在传统 MoE 训练框架下（以 Megatron-LM 为例），MoE 层中的 AlltoAll 开销占比可以到达 47% 以上（[COMET](https://arxiv.org/pdf/2502.19811))。
 
 ## 2. Motivation
 
@@ -149,7 +149,7 @@ class AuxGate(BaseGate):
 
 ### 网络局部性
 
-众所周知，Intra-connection（以 NVLink 和 PCIe 为例）和 Inter-connection（以 ETH 和 InfiniBand 为例）之间的连接质量有较大差异，一般认为 Intra 的延迟与带宽是远大于 Inter 的，尽管有 RDMA 等技术实现了较高速的 inter 通信，但也需要针对性的优化适配([DeepEP](https://github.com/deepseek-ai/DeepEP))。这两种连接方式的速率的不匹配进一步加剧了 AlltoAll 通信的开销。
+众所周知，Intra-connection（以 NVLink 和 PCIe 为例）和 Inter-connection（以 ETH 和 InfiniBand 为例）之间的连接质量有较大差异，一般认为 Intra 的延迟与带宽是远大于 Inter 的，尽管有 RDMA 等技术实现了较高速的 inter 通信，但也需要针对性的优化适配（[DeepEP](https://github.com/deepseek-ai/DeepEP)）。这两种连接方式的速率的不匹配进一步加剧了 AlltoAll 通信的开销。
 
 专家热度不均与网络局部性带来的直接影响：MoE 层训练速度降低。[COMET](https://arxiv.org/pdf/2502.19811) 的一个实验直接说明了这个结果，下图左图中，随着 std 增大 token 的分布越来越不均匀，可以看到这种不均匀的 token 分布相较与完全均衡的分布的训练时间慢了 1.5x 左右。
 

@@ -66,7 +66,7 @@ Ring Attention 的核心思想，是每个设备分别持有自己的 Q、K、V 
 
 现有用于加速长上下文推理的注意力并行方法（如 Ring Attention）存在显著瓶颈。其核心问题在于通信效率低下：当序列被分片到多个 GPU 上时，这类方法需要设备间传递完整的键值缓存分片，导致通信量随设备数量线性增长（通信复杂度为 O(p)）。这不仅在扩展到大量设备（如百卡级）时造成严重延迟，还因需存储额外的临时键值分片和中间结果而大幅增加峰值内存占用。此外，此类方法通常采用固定的环形通信拓扑，无法有效适配现代 GPU 集群（如 DGX 节点）中“节点内高速互连（如 NVLink）远快于节点间互连（如 InfiniBand）”的异构网络结构，进一步限制了其在跨节点场景下的性能。
 
-提出 Tree Attention，其核心思想是利用自注意力数学本质的重新诠释——将其视为一个能量函数的梯度。这一视角揭示了注意力计算中的关键操作（logsumexp 和 max）具有结合律特性，因此可通过树形归约 (Tree Reduction)高效并行化。具体而言，该方法将序列分片到多个 GPU，各设备先本地计算注意力所需的“部分分子和分母”（经数值稳定化处理），再通过树状通信（如 AllReduce）聚合这些部分结果。这种树形聚合仅需对数级通信步数（O(log p)），显著优于线性通信的现有方案。
+提出 Tree Attention，其核心思想是利用自注意力数学本质的重新诠释——将其视为一个能量函数的梯度。这一视角揭示了注意力计算中的关键操作（logsumexp 和 max）具有结合律特性，因此可通过树形归约（Tree Reduction）高效并行化。具体而言，该方法将序列分片到多个 GPU，各设备先本地计算注意力所需的“部分分子和分母”（经数值稳定化处理），再通过树状通信（如 AllReduce）聚合这些部分结果。这种树形聚合仅需对数级通信步数（O(log p)），显著优于线性通信的现有方案。
 
 关键的基础发现：
 
@@ -76,7 +76,7 @@ Ring Attention 的核心思想，是每个设备分别持有自己的 Q、K、V 
 
 ![](../images/magiattention-sharing/magi_10.png)
 
-进而得到 motivation：能量函数的公式关系表明，只要能高效计算能量函数 $F(ζ)$ 或其梯度，即可精确得到注意力输出。而 logsumexp 和 max 操作具备结合律，进一步使得传输不需要传 kv cache，而是只需要通过具备结合律的 op 下的 allreduce 来完成 lse 的聚合，进而通过 Softmax 通过迭代来进行计算，来得到最终的结果，同时和 FlashAttention-2 进行结合。而 Allreduce 通过树形的 Tree reduce 使得相比 Ring Attention 的 O(p)的通信步骤降低到 O(log p)。（p 为整个拓扑中节点的数量）
+进而得到 motivation：能量函数的公式关系表明，只要能高效计算能量函数 $F(ζ)$ 或其梯度，即可精确得到注意力输出。而 logsumexp 和 max 操作具备结合律，进一步使得传输不需要传 kv cache，而是只需要通过具备结合律的 op 下的 allreduce 来完成 lse 的聚合，进而通过 Softmax 通过迭代来进行计算，来得到最终的结果，同时和 FlashAttention-2 进行结合。而 Allreduce 通过树形的 Tree reduce 使得相比 Ring Attention 的 $O(p)$ 的通信步骤降低到 $O(log p)$。（$p$ 为整个拓扑中节点的数量）
 
 ![](../images/magiattention-sharing/magi_11.png)
 
@@ -138,9 +138,9 @@ MagiAttention: A Distributed Attention Towards Linear Scalability for Ultra-Long
 
 ![](../images/magiattention-sharing/magi_17.png)
 
-对于 magiattention 来说，其兼顾了 1.灵活 mask 表达、2.负载均衡、3.通信设计优化、4.分布式 kernel 优化这四个方面，是目前把这些问题较好的融合起来的 sota 工作，下面我们对这几个方面进行逐一介绍：
+对于 magiattention 来说，其兼顾了 1. 灵活 mask 表达、2. 负载均衡、3. 通信设计优化、4. 分布式 kernel 优化这四个方面，是目前把这些问题较好的融合起来的 sota 工作，下面我们对这几个方面进行逐一介绍：
 
-**(1) 对于灵活 mask 表达：**
+**（1）对于灵活 mask 表达：**
 
 magiattention 通过使用 AttnSlice 三元组：将整个 Attention Mask 分解为多个子计算单元，每个单元定义为三元组：
 `(QRange, KRange, MaskType)` 其中：
@@ -154,7 +154,7 @@ magiattention 通过使用 AttnSlice 三元组：将整个 Attention Mask 分解
 
 ![](../images/magiattention-sharing/magi_19.png)
 
-**(2) 负载均衡设计：**
+**（2）负载均衡设计：**
 
 分块可置换分片策略（Chunk-Wise Permutable Sharding）
 
@@ -164,7 +164,7 @@ magiattention 通过使用 AttnSlice 三元组：将整个 Attention Mask 分解
 
 ![](../images/magiattention-sharing/magi_20.png)
 
-以及一个 O(nlogn)的贪心调度算法，来尽可能让每个桶尽可能负载均衡
+以及一个 $O(nlogn)$ 的贪心调度算法，来尽可能让每个桶尽可能负载均衡
 
 1. 按块计算量降序排序，以及各桶容量（n / cpsize）
 2. 初始化最小堆（记录各桶当前总计算量）
@@ -173,7 +173,7 @@ magiattention 通过使用 AttnSlice 三元组：将整个 Attention Mask 分解
 
 ![](../images/magiattention-sharing/magi_21.png)
 
-**(3) 通信设计优化：**
+**（3）通信设计优化：**
 
 motivation：Ring P2P 通信在稀疏 Mask 下冗余严重（例如变长块因果 Mask 冗余 >30%）：
 
@@ -195,7 +195,7 @@ motivation：Ring P2P 通信在稀疏 Mask 下冗余严重（例如变长块因�
 
 ![](../images/magiattention-sharing/magi_24.png)
 
-**(4) 实验结果：**
+**（4）实验结果：**
 
 主要对比 flashattention-v3，对于 flashattention-v3 支持的模式，magiattention 的 ffa 基本上均比 flashattention-v3 差，但差的不太多基本上 5% 以内。同时 flashattention-v3 有一些不能支持的 mask 模式，ffa 展示了兼容的灵活 mask。
 

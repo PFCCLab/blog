@@ -108,7 +108,7 @@ category: insights
 
 ### 3. Driving state-of-the-art AI research
 
-其中，大部分代码来自于**科研领域**，PyTorch 在推动许多前沿 AI 技术的发展方面发挥了重要作用。今年，已有超过 7,000 个 AI 科研论文相关的 GitHub 仓库用到了 PyTorch。事实上，60%的 AI 研究成果是基于 PyTorch 来实现的。因此，见证这样一个开放、繁荣的科研生态，我们感到无比兴奋。
+其中，大部分代码来自于**科研领域**，PyTorch 在推动许多前沿 AI 技术的发展方面发挥了重要作用。今年，已有超过 7,000 个 AI 科研论文相关的 GitHub 仓库用到了 PyTorch。事实上，60% 的 AI 研究成果是基于 PyTorch 来实现的。因此，见证这样一个开放、繁荣的科研生态，我们感到无比兴奋。
 
 ![conference-3](../images/pytorch-conference-01/conference-3.png)
 

@@ -76,7 +76,7 @@ category: community-activity
 
 #### 参与提示
 
-- 欢迎大家到代码仓库: [Camp](https://github.com/PFCCLab/Camp) 里围观集训营的同学们的工作。
+- 欢迎大家到代码仓库：[Camp](https://github.com/PFCCLab/Camp) 里围观集训营的同学们的工作。
 
 更多详情请查看 issue：https://github.com/PaddlePaddle/Paddle/issues/57264
 

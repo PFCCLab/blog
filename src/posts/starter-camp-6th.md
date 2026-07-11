@@ -133,7 +133,7 @@ import MessageBox from '../.vitepress/components/MessageBox.vue'
 
 因此，在 **11 月 21 日、24 日** 于 **西安电子科技大学** 与 **西安交通大学** 举办校园开源宣讲后，我们分别面向两所学校 **同步开启「启航计划（社团版）」**，让现场产生兴趣的同学可以不等待、不跳转，直接加入一个现成的开源训练营，迈出开源贡献的第一步。
 
-> 西电&西交校园开源宣讲详情请看：[Open Source in Paddle:飞桨&西电&西交 “不设限” 交流活动](https://pfcclab.github.io/posts/xdu-xjtu-os)
+> 西电&西交校园开源宣讲详情请看：[Open Source in Paddle：飞桨&西电&西交 “不设限” 交流活动](https://pfcclab.github.io/posts/xdu-xjtu-os)
 
 ### 社团版与常规启航计划的区别
 
