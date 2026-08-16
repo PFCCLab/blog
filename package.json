@@ -27,7 +27,7 @@
     "workbox-window": "^7.4.0"
   },
   "devDependencies": {
-    "@lint-md/cli": "^2.2.4",
+    "@lint-md/cli": "^2.2.5",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.13.3",
     "markdown-it-mathjax3": "^4.3.2",
