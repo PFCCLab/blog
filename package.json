@@ -27,11 +27,11 @@
     "workbox-window": "^7.4.0"
   },
   "devDependencies": {
-    "@lint-md/cli": "^2.3.1",
+    "@lint-md/cli": "^2.4.0",
     "@types/markdown-it": "^14.2.0",
-    "@types/node": "^24.13.3",
+    "@types/node": "^24.13.6",
     "markdown-it-mathjax3": "^4.3.2",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.9",
     "sharp": "^0.35.4",
     "simple-git-hooks": "^2.14.0"
   },
